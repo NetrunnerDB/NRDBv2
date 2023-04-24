@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { htmlSafe } from '@ember/template';
 
 export default class CardTextBoxComponent extends Component {
   // TODO: move this to a module or super class
@@ -42,20 +41,5 @@ export default class CardTextBoxComponent extends Component {
         break;
     }
     return stats;
-  }
-
-  get illustrators() {
-    let card = this.args.printing;
-    if (card.illustratorNames.length > 0) {
-      return '• ' + card.illustratorNames.map((i) => `<a href="">${i}</a> `);
-    }
-    return '';
-  }
-
-  get imageStyle() {
-    let card = this.args.printing;
-    return htmlSafe(
-      `background-image: url(${card.images.nrdb_classic.small});`
-    );
   }
 }

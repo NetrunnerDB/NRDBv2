@@ -3,7 +3,10 @@
     <div class="hex">
       <div class="hex-border">
         <div class="hex-background">
-          <div class="hex-image thumbnail-{{@printing.cardTypeId}}" style={{this.imageStyle}}></div>
+          <div
+            class="hex-image thumbnail-{{@printing.cardTypeId}}"
+            style="background-image: url({{@printing.images.nrdb_classic.small}})"
+          ></div>
         </div>
       </div>
     </div>
@@ -29,7 +32,16 @@
     </div>
   {{/if}}
   <div class="card-illustrator">
-    <p><i class="icon-{{@printing.faction.id}} {{@printing.faction.id}}"></i> {{@printing.faction.name}} {{{this.illustrators}}}• <i class="icon-{{@printing.cardSet.id}}"></i> {{@printing.cardSet.name}} {{@printing.position}}</p>
+    <p>
+      <i class="icon-{{@printing.faction.id}} {{@printing.faction.id}}"></i>
+      {{@printing.faction.name}}
+      {{#each @printing.illustratorNames as |name|}}
+        <a href="">{{name}}</a>
+      {{/each}}•
+      <i class="icon-{{@printing.cardSet.id}}"></i>
+      {{@printing.cardSet.name}}
+      {{@printing.position}}
+    </p>
   </div>
   {{#if @showProduction}}
   <div class="card-producer">
