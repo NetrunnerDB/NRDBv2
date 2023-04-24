@@ -1,0 +1,138 @@
+@font-face {
+  font-family: netrunner;
+  src: url("../assets/fonts/netrunner.eot");
+  src: url("../assets/fonts/netrunner.eot") format("embedded-opentype"),
+    url("../assets/fonts/netrunner.ttf") format("truetype"),
+    url("../assets/fonts/netrunner.woff") format("woff"),
+    url("../assets/fonts/netrunner.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon"] {
+  font-family: netrunner !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+  top: 0.05em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Factions */
+.icon-anarch::before {
+  content: "\e900";
+}
+
+.icon-criminal::before {
+  content: "\e901";
+}
+
+.icon-shaper::before {
+  content: "\e902";
+}
+
+.icon-haas-bioroid::before {
+  content: "\e903";
+}
+
+.icon-jinteki::before {
+  content: "\e904";
+}
+
+.icon-nbn::before {
+  content: "\e905";
+}
+
+.icon-weyland-consortium::before {
+  content: "\e906";
+}
+
+.icon-adam::before {
+  content: "\e907";
+}
+
+.icon-apex::before {
+  content: "\e908";
+}
+
+.icon-sunny-lebeau::before {
+  content: "\e909";
+}
+
+/* Neutral icon is the NSG Netrunner icon for both corp and runner */
+.icon-neutral-corp::before,
+.icon-neutral-runner::before {
+  content: "\e90a";
+}
+
+/* Game symbols */
+.icon-credit::before {
+  content: "\e90b";
+  margin-left: -0.1em;
+  margin-right: -0.1em;
+  font-size: 1.1em;
+}
+
+.icon-recurring-credit::before {
+  content: "\e90c";
+}
+
+.icon-click::before {
+  content: "\e90d";
+}
+
+.icon-subroutine::before {
+  content: "\e90e";
+  margin-right: 0.2em;
+}
+
+.icon-trash-ability::before {
+  content: "\e90f";
+}
+
+.icon-trash-cost::before {
+  content: "\e910";
+}
+
+.icon-link::before {
+  content: "\e911";
+}
+
+.icon-mu::before {
+  content: "\e912";
+  font-size: 1.5em;
+}
+
+.icon-mu {
+  transform: translateY(0.2em);
+}
+
+.icon-rez-cost::before {
+  content: "\e913";
+}
+
+.icon-agenda-points::before {
+  content: "\e914";
+}
+
+.icon-interrupt::before {
+  content: "\e915";
+}
+
+.icon-hq::before {
+  content: "\e916";
+}
+
+.icon-rd::before {
+  content: "\e917";
+}
+
+.icon-archives::before {
+  content: "\e918";
+}

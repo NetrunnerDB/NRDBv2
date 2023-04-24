@@ -1,0 +1,27 @@
+{{page-title "Card"}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-xl-2 d-flex order-xl-0 flex-column my-2">
+      {{!-- TODO: point these at neighbouring cards --}}
+      
+      <Card::LinkTo @model={{@model}} class="btn btn-light text-decoration-none text-truncate">
+        <FaIcon @icon="left-long" /> {{@model.title}}
+      </Card::LinkTo>
+    </div>
+    <div class="col-6 col-xl-2 d-flex order-xl-2 flex-column my-2">
+      {{!-- TODO: and this --}}
+      <Card::LinkTo @model={{@model}} class="btn btn-light text-decoration-none text-truncate">
+        {{@model.title}} <FaIcon @icon="right-long" />
+      </Card::LinkTo>
+    </div>
+
+    <div class="col-xl-8 d-flex order-xl-1 flex-column my-2">
+      <Card::FullDisplay @printing={{@model}} />
+    </div>
+
+    <div class="col-12 d-flex order-xl-3 flex-column my-2">
+      <Card::Community />
+    </div>
+  </div>
+</div>

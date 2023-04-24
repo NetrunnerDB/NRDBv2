@@ -1,0 +1,90 @@
+{{page-title "Search"}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 d-flex flex-row flex-sm-column mt-2">
+      <div class="card border-0 flex-grow-1" id="nav-main-content">
+        <div class="card-body d-flex flex-column flex-lg-row justify-content-between">
+
+          <div id="results-output-settings" class="d-flex flex-column flex-sm-row">
+            <div>
+              <select id="select-search-type" class="form-select form-select-sm select-simple" aria-label="Give search results as">
+                <option value="cards" selected>Cards</option>
+                <option value="printings">Printings</option>
+              </select>
+            </div>
+            <label class="text-center inline-search-label mx-2">as</label>
+            <div>
+              <select id="select-output-type" class="form-select form-select-sm select-simple" aria-label="Format search results as">
+                <option value="checklist" selected>Checklist</option>
+                <option value="full-card">Full cards</option>
+                <option value="image-only">Images only</option>
+                <option value="text-only">Text only</option>
+                <option value="name-only">Names only</option>
+              </select>
+            </div>
+            <label class="text-center inline-search-label mx-2">sorted by</label>
+            <div>
+              <select id="select-sort-by" class="form-select form-select-sm select-simple" aria-label="Sort search results by">
+                <option value="title" selected>Name</option>
+                <option value="card-set-id">Set name</option>
+                <option value="date-release">Release date</option>
+                <option value="faction-id">Faction</option>
+                <option value="card-type-id">Type</option>
+                <option value="cost">Cost</option>
+              </select>
+            </div>
+            <div>
+              <select id="select-sort-direction" class="form-select form-select-sm select-simple ms-sm-2 mt-2 mt-sm-0" aria-label="Sort direction">
+                <option value="ascending" selected>Ascending</option>
+                <option value="descending">Descending</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <ul id="results-pagination" class="pagination pagination-simple flex-wrap justify-content-center mt-3 mt-lg-0 mb-0"></ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 d-flex flex-column my-2">
+      <div class="card card-responsive border-0 flex-grow-1" id="nav-main-content">
+        <div id="results-container" class="card-body m-0 m-sm-4">
+          {{!-- Checklist --}}
+          <div id="results-checklist" class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Faction</th>
+                  <th scope="col"><i class="icon icon-credit"></i></th>
+                  <th scope="col">...</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Subtype</th>
+                  <th scope="col">Influence</th>
+                  <th scope="col">Set</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          {{!-- Full Card --}}
+          <div id="results-full-card" class="row mt-3 mt-sm-0"></div>
+          {{!-- Image Only --}}
+          <div id="results-image-only" class="row mt-3 mt-sm-0"></div>
+          {{!-- Text Only --}}
+          <div id="results-text-only" class="row"></div>
+          {{!-- Name Only --}}
+          <div id="results-name-only"></div>
+          <div id="results-none" class="collapse">
+            <div class="text-center">
+              No results found!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

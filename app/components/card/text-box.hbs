@@ -1,0 +1,40 @@
+<div class="card-text-box">
+  {{#if @showThumbnail}}
+    <div class="hex">
+      <div class="hex-border">
+        <div class="hex-background">
+          <div class="hex-image thumbnail-{{@printing.cardTypeId}}" style={{this.imageStyle}}></div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  {{#if @showTitle}}
+  <div class="card-title">
+    {{@printing.title}}
+  </div>
+  {{/if}}
+  <div class="card-details">
+    <span class="card-type"><b>{{@printing.cardTypeId}}:</b></span> {{!-- TODO: add a card->cardType relation so this can be implemented properly --}}
+    <span class="card-subtypes">{{@printing.displaySubtypes}}</span>
+    <span class="card-stats">{{{this.stats}}}</span>
+  </div>
+  {{#if @printing.text}}
+  <div class="card-text border-{{@printing.faction.id}}">
+    <Card::Text @text={{@printing.text}} />
+  </div>
+  {{/if}}
+  {{#if (and @showFlavor @printing.flavor)}}
+  <div class="card-flavor">
+    {{{@printing.flavor}}}
+    </div>
+  {{/if}}
+  <div class="card-illustrator">
+    <p><i class="icon-{{@printing.faction.id}} {{@printing.faction.id}}"></i> {{@printing.faction.name}} {{{this.illustrators}}}• <i class="icon-{{@printing.cardSet.id}}"></i> {{@printing.cardSet.name}} {{@printing.position}}</p>
+  </div>
+  {{#if @showProduction}}
+  <div class="card-producer">
+    {{!-- TODO: once this data is available in the API make this show cards designed or reprinted by NSG --}}
+    <p><FaIcon @icon="fantasy-flight-games" @prefix="fab" /> Designed and printed by FFG.</p>
+  </div>
+  {{/if}}
+</div>
