@@ -42,12 +42,4 @@ export default class CardTextBoxComponent extends Component {
     }
     return stats;
   }
-
-  get illustrators() {
-    let card = this.args.printing;
-    if (card.illustratorNames.length > 0) {
-      return '• ' + card.illustratorNames.map((i) => `<a href="">${i}</a> `);
-    }
-    return '';
-  }
 }
