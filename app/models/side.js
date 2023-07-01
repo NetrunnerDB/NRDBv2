@@ -5,7 +5,7 @@ export default class SideModel extends Model {
   @attr updatedAt;
 
   @hasMany('faction', { async: true, inverse: 'side' }) factions;
-  @hasMany('card_types', { async: true, inverse: null }) cards; // TODO: this breaks if you connect it to card_types
+  @hasMany('card_types', { async: true, inverse: 'side' }) cardTypes;
   @hasMany('card', { async: true, inverse: 'side' }) cards;
   @hasMany('printing', { async: true, inverse: 'side' }) printings;
 }
