@@ -1,0 +1,23 @@
+{{#unless this.filteredOut}}
+  <div class="panel panel-default">
+    <div class="header panel-heading" style="display: flex;">
+      <h3 style="margin: 15px 0 10px 0">{{@title}}</h3>
+      <button
+        class="btn btn-secondary"
+        style="margin-left:auto; margin-top: auto; margin-bottom: auto;"
+        type="button"
+        {{action "togglePanel"}}
+      >{{if this.show "Hide" "Show"}}</button>
+    </div>
+    {{#if this.show}}
+      {{#if @subtitle}}
+        <div class="subheader panel-heading">
+          {{@subtitle}}
+        </div>
+      {{/if}}
+      <div class="panel-body">
+        {{yield}}
+      </div>
+    {{/if}}
+  </div>
+{{/unless}}
