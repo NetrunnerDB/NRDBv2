@@ -14,8 +14,8 @@ module.exports = function (environment) {
       },
     },
 
-    API_URL: 'https://api-preview.netrunnerdb.com/api/v3', // Must not have a trailing / at the end
-    // API_URL: 'localhost:3000/api/v3',
+    // API_URL: 'https://api-preview.netrunnerdb.com/api/v3', // Must not have a trailing / at the end
+    API_URL: 'http://localhost:3000/api/v3',
     googleFonts: ['Merriweather Sans'],
 
     APP: {
