@@ -1,0 +1,65 @@
+{{page-title "Sets"}}
+
+<div class="container">
+  <div class="row">
+    <div
+      class="col-12 col-xl-8 offset-xl-2 d-flex flex-row flex-sm-column my-2"
+    >
+      <div class="card border-0 flex-grow-1" id="nav-main-content">
+        <div
+          class="card-body d-flex flex-column flex-lg-row justify-content-between"
+        >
+
+          <div class="container" id="banlists">
+            <h1>Sets</h1>
+            <p></p>
+            {{! TODO: when the API represents which sets were printed by which org, split these into two lists based on that }}
+            <ul class="list-unstyled">
+              {{#each (sort-by "dateRelease:desc" @model) as |cycle|}}
+                <li>
+                  <div class="row">
+                    <div class="col-6 text-truncate">
+                      {{! TODO: implement the set icons }}
+                      <Icon @id="neutral-corp" />
+                      {{cycle.name}}
+                    </div>
+                    <div class="col-2">
+                      {{! TODO: expose the numbers of cards in cycles }}
+                      120
+                    </div>
+                    <div class="col-4">
+                      {{cycle.dateRelease}}
+                    </div>
+                  </div>
+                  <ul class="list-unstyled">
+                    {{#if (gt cycle.cardSets.length 1)}}
+                      {{#each
+                        (sort-by "dateRelease:desc" cycle.cardSets)
+                        as |set|
+                      }}
+                        <li class="ps-2">
+                          <div class="row">
+                            <div class="col-6 text-truncate">
+                              <Icon @id="subroutine" />
+                              {{set.name}}
+                            </div>
+                            <div class="col-2">
+                              {{set.size}}
+                            </div>
+                            <div class="col-4">
+                              {{set.dateRelease}}
+                            </div>
+                          </div>
+                        </li>
+                      {{/each}}
+                    {{/if}}
+                  </ul>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

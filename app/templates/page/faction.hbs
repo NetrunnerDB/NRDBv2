@@ -1,0 +1,49 @@
+{{page-title @model.name}}
+
+<div class="container">
+  <div class="row">
+    <div
+      class="col-12 col-xl-8 offset-xl-2 d-flex flex-row flex-sm-column my-2"
+    >
+      <div class="card border-0 flex-grow-1" id="nav-main-content">
+        <div
+          class="card-body d-flex flex-column flex-lg-row justify-content-between"
+        >
+
+          <div class="container" id="banlists">
+            <h1><Icon @id={{@model.faction.id}} /> {{@model.faction.name}}</h1>
+            <h2>Side: {{@model.faction.side.name}}</h2>
+            {{#if @model.faction.description}}
+              <Quote @id={{@model.faction.id}}>
+                {{@model.faction.description}}
+              </Quote>
+            {{/if}}
+            <h3 class="mt-4">Identities</h3>
+            {{#each @model.ids as |id|}}
+              <div class="row mb-4">
+                <div class="col-3">
+                  {{! TODO: get the actual ID image }}
+                  <Card::Image
+                    src="https://netrunnerdb.com/card_image/large/11001.jpg"
+                  />
+                </div>
+                <div class="col-9">
+                  <h4>{{id.title}}</h4>
+                  <div class="border-top border-bottom py-4">
+                    Decklist 1
+                  </div>
+                  <div class="border-top border-bottom py-4">
+                    Decklist 2
+                  </div>
+                  <div class="border-top border-bottom py-4">
+                    Decklist 3
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
