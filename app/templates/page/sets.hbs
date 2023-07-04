@@ -25,10 +25,10 @@
                     </div>
                     <div class="col-2">
                       {{! TODO: expose the numbers of cards in cycles }}
-                      120
+                      {{cycle.cardCount}}
                     </div>
                     <div class="col-4">
-                      {{cycle.dateRelease}}
+                      {{format-date cycle.dateRelease}}
                     </div>
                   </div>
                   <ul class="list-unstyled">
@@ -47,7 +47,7 @@
                               {{set.size}}
                             </div>
                             <div class="col-4">
-                              {{set.dateRelease}}
+                              {{format-date set.dateRelease}}
                             </div>
                           </div>
                         </li>
