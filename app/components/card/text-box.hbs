@@ -28,7 +28,7 @@
   {{/if}}
   {{#if (and @showFlavor @printing.flavor)}}
     <div class="card-flavor">
-      {{{@printing.flavor}}}
+      {{html-safe @printing.flavor}}
     </div>
   {{/if}}
   <div class="card-illustrator">

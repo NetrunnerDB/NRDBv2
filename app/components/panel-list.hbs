@@ -16,7 +16,7 @@
             placeholder="Search..."
             aria-label="Search"
             @value={{this.query}}
-            {{action "filter" on="input"}}
+            {{on "input" this.filter}}
           />
         </div>
       {{/if}}
