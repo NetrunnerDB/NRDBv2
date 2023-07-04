@@ -6,7 +6,7 @@
         class="btn btn-secondary"
         style="margin-left:auto; margin-top: auto; margin-bottom: auto;"
         type="button"
-        {{action "togglePanel"}}
+        {{on "click" this.togglePanel}}
       >{{if this.show "Hide" "Show"}}</button>
     </div>
     {{#if this.show}}

@@ -5,13 +5,13 @@
         <button
           class="show-all col-2 btn btn-secondary"
           type="button"
-          {{action "showAll"}}
+          {{on "click" this.showAll}}
         >Show all</button>
       {{/if}}
       {{#if @showSearch}}
         <div class="panel-search">
           <Input
-            type="text"
+            @type="text"
             class="form-control"
             placeholder="Search..."
             aria-label="Search"
@@ -24,7 +24,7 @@
         <button
           class="hide-all col-2 btn btn-secondary"
           type="button"
-          {{action "hideAll"}}
+          {{on "click" this.hideAll}}
         >Hide all</button>
       {{/if}}
       {{#if @showSort}}
