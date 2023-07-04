@@ -12,7 +12,7 @@ export default class CardLinkToComponent extends Component {
     }
 
     // If given a numeric id, get the printing with that id and return it
-    if (this.args.id.match(/^\d+$/)) {
+    if (this.args.id?.match(/^\d+$/)) {
       return this.store.findRecord('printing', this.args.id);
     }
 
