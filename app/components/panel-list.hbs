@@ -1,0 +1,52 @@
+<div class="panel-list">
+  {{#if (or @showMassToggle @showSearch @showSort)}}
+    <p class="row">
+      {{#if @showMassToggle}}
+        <button
+          class="show-all col-2 btn btn-secondary"
+          type="button"
+          {{on "click" this.showAll}}
+        >Show all</button>
+      {{/if}}
+      {{#if @showSearch}}
+        <div class="panel-search">
+          <Input
+            @type="text"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
+            @value={{this.query}}
+            {{on "input" this.filter}}
+          />
+        </div>
+      {{/if}}
+      {{#if @showMassToggle}}
+        <button
+          class="hide-all col-2 btn btn-secondary"
+          type="button"
+          {{on "click" this.hideAll}}
+        >Hide all</button>
+      {{/if}}
+      {{#if @showSort}}
+        <div class="panel-dropdown dropdown" style="padding-right: 0;">
+          <button
+            class="dropdown-toggle btn btn-light"
+            data-toggle="dropdown"
+            aria-expanded="false"
+            type="button"
+          >
+            Sort
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li><a href="#" onclick="return false;" id="sort-0">Name (A-Z)</a></li>
+            <li><a href="#" onclick="return false;" id="sort-1">Name (Z-A)</a></li>
+            <li><a href="#" onclick="return false;" id="sort-2">Cards (most)</a></li>
+            <li><a href="#" onclick="return false;" id="sort-3">Cards (least)</a></li>
+          </ul>
+        </div>
+      {{/if}}
+    </p>
+  {{/if}}
+  {{yield}}
+</div>

@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 // import RSVP from 'rsvp';
 
-export default class CardRoute extends Route {
+export default class PageCardRoute extends Route {
   @service store;
 
   async model(params) {
@@ -16,28 +16,8 @@ export default class CardRoute extends Route {
     }
 
     // Get the printing
-    let printing = await this.store.findRecord('printing', id, {
-      include: 'faction,card_set', // Should also include card_type but that relation hasn't been implemented yet
-    });
+    let printing = await this.store.findRecord('printing', id);
+
     return printing;
-
-    // // Get its set
-    // let cardSet = this.store.findRecord('card_set', printing.get('cardSetId'), {
-    //   include: 'printings',
-    // });
-
-    // // Get its faction and type
-    // let faction = this.store.findRecord('faction', printing.get('factionId'));
-    // let cardType = this.store.findRecord(
-    //   'card_type',
-    //   printing.get('cardTypeId')
-    // );
-
-    // return RSVP.hash({
-    //   printing: printing,
-    //   // faction: faction,
-    //   // cardSet: cardSet,
-    //   // cardType: cardType
-    // });
   }
 }

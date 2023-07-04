@@ -63,12 +63,14 @@
                     <div class="d-flex justify-content-between">
                       <div class="text-truncate">
                         <Card::LinkTo
-                          @model={{printing}}
+                          @printing={{printing}}
                         >{{printing.cardSetName}}</Card::LinkTo>
                         {{! TODO: point this at the set page once that's implemented }}
                       </div>
                       <div>
-                        <Card::LinkTo @model={{printing}}>(view)</Card::LinkTo>
+                        <Card::LinkTo
+                          @printing={{printing}}
+                        >(view)</Card::LinkTo>
                       </div>
                     </div>
                   {{/each}}

@@ -1,11 +1,14 @@
-{{! TODO: is there a way to programatically pass all arguments from this component to the child LinkTo? }}
-<LinkTo @model={{@model.id}} ...attributes>
-  {{yield}}
-  <Tippy @placement="auto" @theme="light-border" as |tippy|>
-    <Card::TextBox
-      @printing={{@model}}
-      @showTitle={{true}}
-      @showThumbnail={{true}}
-    />
-  </Tippy>
-</LinkTo>
+{{#if this.printing.isPending}}
+  LOADING...
+{{else}}
+  <LinkTo @route="page.card" @model={{this.printing.id}} ...attributes>
+    {{yield}}
+    <Tippy @placement="auto" @theme="light-border">
+      <Card::TextBox
+        @printing={{this.printing}}
+        @showTitle={{true}}
+        @showThumbnail={{true}}
+      />
+    </Tippy>
+  </LinkTo>
+{{/if}}

@@ -193,11 +193,6 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  font-size: 16px;
-  font-family: LatoWeb, sans-serif;
-}
-
 nav {
   font-size: 18px;
   font-family: LatoWeb, sans-serif;
@@ -205,6 +200,9 @@ nav {
 }
 
 body {
+  font-size: 16px;
+  font-family: LatoWeb, sans-serif;
+
   --a: 230;
 
   background: linear-gradient(

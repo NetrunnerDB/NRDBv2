@@ -13,6 +13,7 @@ module.exports = function (defaults) {
         css: {
           'netrunner-font': '/assets/netrunner-font.css',
           color: '/assets/color.css',
+          panel: '/assets/panel.css',
         },
       },
     },

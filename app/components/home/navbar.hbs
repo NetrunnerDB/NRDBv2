@@ -1,10 +1,10 @@
-<div class="col-md-3 d-none d-xl-flex flex-column px-0">
+<header class="col-md-3 d-none d-xl-flex flex-column px-0">
   <div class="sticky-top vh-100 shadow bg-white mx-2">
     <nav class="navbar pt-0">
       <div class="bg-white py-5 w-100">
         <LinkTo @route="home" class="navbar-brand large-brand d-flex mx-auto">
           <span class="mx-auto">
-            <img src="/assets/images/logo.png" />
+            <img src="/assets/images/logo.png" alt="NetrunnerDB" />
             <span>NetrunnerDB</span>
           </span>
         </LinkTo>
@@ -30,19 +30,19 @@
         </li>
         <hr />
         <li class="nav-item">
-          <LinkTo @route="home.sets" class="button nav-link w-100">
+          <LinkTo @route="page.sets" class="button nav-link w-100">
             <FaIcon @icon="inbox" />
             Card Sets
           </LinkTo>
         </li>
         <li class="nav-item">
-          <LinkTo @route="home.formats" class="button nav-link w-100">
+          <LinkTo @route="page.formats" class="button nav-link w-100">
             <FaIcon @icon="cubes" />
             Play Formats
           </LinkTo>
         </li>
         <li class="nav-item">
-          <LinkTo @route="home.banlists" class="button nav-link w-100">
+          <LinkTo @route="page.banlists" class="button nav-link w-100">
             <FaIcon @icon="ban" />
             Banlists
           </LinkTo>
@@ -63,4 +63,4 @@
       </ul>
     </nav>
   </div>
-</div>
+</header>

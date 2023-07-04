@@ -25,6 +25,8 @@ export default class PrintingModel extends Model {
   @belongsTo('card-set', { async: true, inverse: 'printings' }) cardSet;
   @belongsTo('card-type', { async: true, inverse: null }) cardType;
   @belongsTo('faction', { async: true, inverse: 'printings' }) faction;
+  @belongsTo('side', { async: true, inverse: 'printings' }) side;
+  @hasMany('illustrator', { async: true, inverse: 'printings' }) illustrators;
 
   // Card::Universal
   @attr strippedTitle;

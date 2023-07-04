@@ -17,8 +17,7 @@
     </div>
   {{/if}}
   <div class="card-details">
-    <span class="card-type"><b>{{@printing.cardTypeId}}:</b></span>
-    {{! TODO: add a card->cardType relation so this can be implemented properly }}
+    <span class="card-type"><b>{{@printing.cardType.name}}:</b></span>
     <span class="card-subtypes">{{@printing.displaySubtypes}}</span>
     <span class="card-stats"><Card::Stats @printing={{@printing}} /></span>
   </div>
@@ -29,17 +28,17 @@
   {{/if}}
   {{#if (and @showFlavor @printing.flavor)}}
     <div class="card-flavor">
-      {{{@printing.flavor}}}
+      {{html-safe @printing.flavor}}
     </div>
   {{/if}}
   <div class="card-illustrator">
     <p>
-      <i class="icon-{{@printing.faction.id}} {{@printing.faction.id}}"></i>
+      <Icon @id={{@printing.faction.id}} />
       {{@printing.faction.name}}
       {{#each @printing.illustratorNames as |name|}}
         <a href="">{{name}}</a>
       {{/each}}•
-      <i class="icon-{{@printing.cardSet.id}}"></i>
+      <Icon @id={{@printing.cardSet.id}} />
       {{@printing.cardSet.name}}
       {{@printing.position}}
     </p>

@@ -4,7 +4,7 @@
       <nav class="navbar navbar-expand-md bg-white shadow py-md-0">
         <div class="container-fluid px-0">
           <LinkTo @route="home" class="navbar-brand ms-3">
-            <img src="/assets/images/logo.png" />
+            <img src="/assets/images/logo.png" alt="NetrunnerDB" />
             <span class="d-md-none d-lg-inline-block">NetrunnerDB</span>
           </LinkTo>
           <button
@@ -37,20 +37,85 @@
                 <LinkTo
                   @route="page.syntax"
                   class="nav-link button-link px-2 p-md-3"
-                ><FaIcon @icon="key" /> Syntax</LinkTo>
+                ><FaIcon @icon="key" class="d-md-none d-xl-inline-block" />
+                  Syntax</LinkTo>
               </li>
               <li class="nav-item">
                 <LinkTo
                   @route="page.advanced-search"
                   class="nav-link button-link px-2 p-md-3"
-                ><FaIcon @icon="magnifying-glass" /> Advanced</LinkTo>
+                ><FaIcon
+                    @icon="magnifying-glass"
+                    class="d-md-none d-xl-inline-block"
+                  />
+                  Advanced</LinkTo>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none d-lg-inline-block">
                 <LinkTo
                   @route="page.card"
                   @model="lockpick"
                   class="nav-link button-link px-2 p-md-3"
-                ><FaIcon @icon="dice" class="d-md-none" /> Random</LinkTo>
+                ><FaIcon @icon="dice" class="d-md-none d-xl-inline-block" />
+                  Random</LinkTo>
+              </li>
+              <li class="nav-item">
+                <BsDropdown as |dd|>
+                  <dd.toggle class="nav-link button-link px-2 p-md-3">
+                    <FaIcon @icon="map" class="d-md-none d-xl-inline-block" />
+                    Explore
+                    <span class="caret"></span></dd.toggle>
+                  <dd.menu style="min-width: 100%" as |ddm|>
+                    <ddm.item>
+                      <ddm.linkTo
+                        class="nav-link button-link px-2 px-md-3"
+                        @route="page.factions"
+                        {{on "click" this.closeDropdown}}
+                      >Factions</ddm.linkTo>
+                    </ddm.item>
+                    <ddm.item>
+                      <ddm.linkTo
+                        class="nav-link button-link px-2 px-md-3"
+                        @route="page.formats"
+                        {{on "click" this.closeDropdown}}
+                      >Formats</ddm.linkTo>
+                    </ddm.item>
+                    <ddm.item>
+                      <ddm.linkTo
+                        class="nav-link button-link px-2 px-md-3"
+                        @route="page.banlists"
+                        {{on "click" this.closeDropdown}}
+                      >Ban Lists</ddm.linkTo>
+                    </ddm.item>
+                    <ddm.item>
+                      <ddm.linkTo
+                        class="nav-link button-link px-2 px-md-3"
+                        @route="page.illustrators"
+                        {{on "click" this.closeDropdown}}
+                      >Illustrators</ddm.linkTo>
+                    </ddm.item>
+                    <ddm.item>
+                      <ddm.linkTo
+                        class="nav-link button-link px-2 px-md-3"
+                        @route="page.sets"
+                        {{on "click" this.closeDropdown}}
+                      >Sets</ddm.linkTo>
+                    </ddm.item>
+                    <ddm.item>
+                      <ddm.linkTo
+                        class="nav-link button-link px-2 px-md-3"
+                        @route="page.reviews"
+                        {{on "click" this.closeDropdown}}
+                      >Reviews</ddm.linkTo>
+                    </ddm.item>
+                    <ddm.item>
+                      <ddm.linkTo
+                        class="nav-link button-link px-2 px-md-3"
+                        @route="page.rulings"
+                        {{on "click" this.closeDropdown}}
+                      >Rulings</ddm.linkTo>
+                    </ddm.item>
+                  </dd.menu>
+                </BsDropdown>
               </li>
               <li class="nav-item ms-md-4 me-md-0">
                 <LinkTo

@@ -1,5 +1,5 @@
 @font-face {
-  font-family: netrunner;
+  font-family: netrunner, sans-serif;
   src: url("../assets/fonts/netrunner.eot");
   src: url("../assets/fonts/netrunner.eot") format("embedded-opentype"),
     url("../assets/fonts/netrunner.ttf") format("truetype"),
@@ -10,7 +10,7 @@
 }
 
 [class^="icon"] {
-  font-family: netrunner !important;
+  font-family: netrunner, sans-serif !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
