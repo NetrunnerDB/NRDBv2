@@ -13,4 +13,8 @@ export default class CardSetModel extends Model {
   @belongsTo('card-set-type', { async: true, inverse: 'cardSets' }) cardSetType;
   @hasMany('card', { async: true, inverse: null }) cards;
   @hasMany('printing', { async: true, inverse: 'cardSet' }) printings;
+
+  get isBooster() {
+    return this.cardSetTypeId === 'booster_pack';
+  }
 }

@@ -12,6 +12,9 @@ export default class CardCycleModel extends Model {
   @hasMany('printing', { async: true, inverse: 'cardCycle' }) printings;
 
   get cardCount() {
-    return this.cardSets.reduce((sum, set) => sum + set.size, 0);
+    return this.cardSets
+      .toArray()
+      .filter((set) => !set.isBooster)
+      .reduce((sum, set) => sum + set.size, 0);
   }
 }
