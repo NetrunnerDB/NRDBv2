@@ -14,7 +14,7 @@
             <h1><Icon @id={{@model.faction.id}} /> {{@model.faction.name}}</h1>
             <h2>Side: {{@model.faction.side.name}}</h2>
             {{#if @model.faction.description}}
-              <Quote @id={{@model.faction.id}}>
+              <Quote @factionId={{@model.faction.id}}>
                 {{@model.faction.description}}
               </Quote>
             {{/if}}
