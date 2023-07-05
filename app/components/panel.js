@@ -5,7 +5,6 @@ import { addListener } from '@ember/object/events';
 import { getOwner } from '@ember/application';
 
 export default class PanelComponent extends Component {
-  @tracked show = false;
   @tracked filteredOut = false;
 
   constructor(owner, args) {
@@ -15,14 +14,12 @@ export default class PanelComponent extends Component {
     addListener(getOwner(this), 'filter', this.filter);
   }
 
-  @action showPanel() {
-    this.show = true;
-  }
-  @action hidePanel() {
-    this.show = false;
-  }
   @action togglePanel() {
-    this.show = !this.show;
+    if (this.args.isOpen) {
+      this.args.hidePanel();
+    } else {
+      this.args.showPanel();
+    }
   }
 
   @action filter(query) {
