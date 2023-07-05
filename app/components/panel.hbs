@@ -7,9 +7,9 @@
         style="margin-left:auto; margin-top: auto; margin-bottom: auto;"
         type="button"
         {{on "click" this.togglePanel}}
-      >{{if this.show "Hide" "Show"}}</button>
+      >{{if @isOpen "Hide" "Show"}}</button>
     </div>
-    {{#if this.show}}
+    {{#if @isOpen}}
       {{#if @subtitle}}
         <div class="subheader panel-heading">
           {{@subtitle}}
