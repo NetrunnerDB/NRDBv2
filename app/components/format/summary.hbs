@@ -4,8 +4,10 @@
   <ul class="list-unstyled ms-4">
     {{#if @model.format.activeRestrictionId}}
       <li><a href="#">{{@model.snapshot.restriction.name}}</a></li>
-      <li>active as of
-        <strong>{{@model.snapshot.restriction.dateStart}}</strong></li>
+      <li>
+        active as of
+        <strong>{{format-date @model.snapshot.restriction.dateStart}}</strong>
+      </li>
     {{else}}
       <li><strong>No banlist</strong></li>
     {{/if}}

@@ -23,9 +23,7 @@
               <div class="row mb-4">
                 <div class="col-3">
                   {{! TODO: get the actual ID image }}
-                  <Card::Image
-                    src="https://netrunnerdb.com/card_image/large/11001.jpg"
-                  />
+                  <Card::Image @card={{id}} />
                 </div>
                 <div class="col-9">
                   <h4>{{id.title}}</h4>

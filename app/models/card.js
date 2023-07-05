@@ -52,5 +52,5 @@ export default class CardModel extends Model {
   @belongsTo('faction', { async: true, inverse: 'cards' }) faction;
   @belongsTo('card-type', { async: true, inverse: 'cards' }) cardType;
   @belongsTo('card-subtype', { async: true, inverse: 'cards' }) cardSubtype;
-  @hasMany('printing', { async: true, inverse: 'card' }) printings;
+  @hasMany('printing', { async: false, inverse: 'card' }) printings;
 }

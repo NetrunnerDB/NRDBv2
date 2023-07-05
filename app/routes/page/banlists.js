@@ -7,9 +7,9 @@ export default class PageBanlistsRoute extends Route {
 
   async model() {
     return await Promise.all([
-      this.store.findRecord('format', 'standard'),
-      this.store.findRecord('format', 'startup'),
-      this.store.findRecord('format', 'eternal'),
+      this.store.findRecord('format', 'startup', { include: 'restrictions' }),
+      this.store.findRecord('format', 'standard', { include: 'restrictions' }),
+      this.store.findRecord('format', 'eternal', { include: 'restrictions' }),
     ]);
   }
 }
