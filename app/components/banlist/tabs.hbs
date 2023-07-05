@@ -2,69 +2,79 @@
   <div class="card-header">
     <ul class="nav nav-tabs nav-fill card-header-tabs">
       <li class="nav-item">
-        <a
+        {{!-- <a
           href="#"
           role="button"
           class="nav-link {{if (eq this.tab 'startup') 'active'}}"
           {{on "click" (fn this.setTab "startup")}}
-        >Startup</a>
+        >Startup</a> --}}
+        <LinkTo
+          class="nav-link"
+          @route="page.banlists"
+          @query={{hash format="startup"}}
+        >Startup</LinkTo>
       </li>
       <li class="nav-item">
-        <a
-          href="#"
-          role="button"
-          class="nav-link {{if (eq this.tab 'standard') 'active'}}"
-          {{on "click" (fn this.setTab "standard")}}
-        >Standard</a>
+
+        <LinkTo
+          class="nav-link"
+          @route="page.banlists"
+          @query={{hash format="standard"}}
+        >Standard</LinkTo>
       </li>
       <li class="nav-item">
-        <a
-          href="#"
-          role="button"
-          class="nav-link {{if (eq this.tab 'eternal') 'active'}}"
-          {{on "click" (fn this.setTab "eternal")}}
-        >Eternal</a>
+        <LinkTo
+          class="nav-link"
+          @route="page.banlists"
+          @query={{hash format="eternal"}}
+        >Eternal</LinkTo>
       </li>
     </ul>
   </div>
   <div class="card-body">
     {{#each @formats as |format|}}
-      {{#if (eq this.tab format.id)}}
+      {{#if (eq @selectedFormat format.id)}}
         <div id={{format.id}}>
           {{#if format.restrictions}}
-            <PanelList @showMassToggle="true" @showSearch="true">
-              {{#each (sort-by "dateStart:desc" format.restrictions) as |r|}}
-                <Panel
-                  @title="{{r.name}}"
-                  @subtitle="{{r.size}} cards. Start Date: {{r.dateStart}}."
-                >
-                  <div class="row">
-                    <div class="col-6">
-                      <h3>Corp Cards</h3>
-                      <ul>
-                        <li>
-                          <strong>Banned</strong>
-                          <ul>
-                            {{#each r.verdicts.banned as |banned|}}
-                              <li>
-                                <Card::linkTo
-                                  @id={{banned}}
-                                  class="text-truncate"
-                                >
-                                  {{banned}}
-                                </Card::linkTo>
-                              </li>
-                            {{/each}}
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-6">
-                      <h3>Runner Cards</h3>
-                    </div>
+            <PanelList
+              @showMassToggle="true"
+              @showSearch="true"
+              @format={{format}}
+              as |props actions|
+            >
+              <Panel
+                @title="{{props.r.name}}"
+                @subtitle="{{props.r.size}} cards. Start Date: {{props.r.dateStart}}."
+                @isOpen={{props.isOpen}}
+                @showPanel={{fn actions.showPanel props.r.name}}
+                @hidePanel={{fn actions.hidePanel props.r.name}}
+              >
+                <div class="row">
+                  <div class="col-6">
+                    <h3>Corp Cards</h3>
+                    <ul>
+                      <li>
+                        <strong>Banned</strong>
+                        <ul>
+                          {{#each props.r.verdicts.banned as |banned|}}
+                            <li>
+                              <Card::linkTo
+                                @id={{banned}}
+                                class="text-truncate"
+                              >
+                                {{banned}}
+                              </Card::linkTo>
+                            </li>
+                          {{/each}}
+                        </ul>
+                      </li>
+                    </ul>
                   </div>
-                </Panel>
-              {{/each}}
+                  <div class="col-6">
+                    <h3>Runner Cards</h3>
+                  </div>
+                </div>
+              </Panel>
             </PanelList>
           {{else}}
             No cards are currently banned in
