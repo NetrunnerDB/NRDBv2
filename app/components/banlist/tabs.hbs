@@ -1,34 +1,15 @@
 <div class="card flex-grow-1" id="nav-main-content">
   <div class="card-header">
     <ul class="nav nav-tabs nav-fill card-header-tabs">
-      <li class="nav-item">
-        {{!-- <a
-          href="#"
-          role="button"
-          class="nav-link {{if (eq this.tab 'startup') 'active'}}"
-          {{on "click" (fn this.setTab "startup")}}
-        >Startup</a> --}}
-        <LinkTo
-          class="nav-link"
-          @route="page.banlists"
-          @query={{hash format="startup"}}
-        >Startup</LinkTo>
-      </li>
-      <li class="nav-item">
-
-        <LinkTo
-          class="nav-link"
-          @route="page.banlists"
-          @query={{hash format="standard"}}
-        >Standard</LinkTo>
-      </li>
-      <li class="nav-item">
-        <LinkTo
-          class="nav-link"
-          @route="page.banlists"
-          @query={{hash format="eternal"}}
-        >Eternal</LinkTo>
-      </li>
+      {{#each @formats as |format|}}
+        <li class="nav-item">
+          <LinkTo
+            class="nav-link"
+            @route="page.banlists"
+            @query={{hash format=format.id}}
+          >{{format.name}}</LinkTo>
+        </li>
+      {{/each}}
     </ul>
   </div>
   <div class="card-body">
