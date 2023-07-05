@@ -13,7 +13,6 @@ export default class CardCycleModel extends Model {
 
   get cardCount() {
     return this.cardSets
-      .toArray()
       .filter((set) => !set.isBooster)
       .reduce((sum, set) => sum + set.size, 0);
   }
