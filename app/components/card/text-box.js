@@ -19,7 +19,7 @@ export default class CardTextBoxComponent extends Component {
       case 'runner_identity':
         stats = `${card.minimumDeckSize}/${this.maybe(
           card.influenceLimit,
-          '∞'
+          '∞',
         )} ${card.baseLink}<i class="icon-link"></i>`;
         break;
       case 'agenda':

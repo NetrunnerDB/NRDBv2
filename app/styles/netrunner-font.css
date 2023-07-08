@@ -1,7 +1,8 @@
 @font-face {
   font-family: netrunner, sans-serif;
   src: url("../assets/fonts/netrunner.eot");
-  src: url("../assets/fonts/netrunner.eot") format("embedded-opentype"),
+  src:
+    url("../assets/fonts/netrunner.eot") format("embedded-opentype"),
     url("../assets/fonts/netrunner.ttf") format("truetype"),
     url("../assets/fonts/netrunner.woff") format("woff"),
     url("../assets/fonts/netrunner.svg") format("svg");
