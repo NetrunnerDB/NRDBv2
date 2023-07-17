@@ -10,10 +10,7 @@ export default class PanelListComponent extends Component {
 
   constructor() {
     super(...arguments);
-    this.args.format
-      .hasMany('restrictions')
-      .ids()
-      .forEach(() => this.panels.push(false));
+    this.args.items.forEach(() => this.panels.push(false));
   }
 
   @action showAll() {
