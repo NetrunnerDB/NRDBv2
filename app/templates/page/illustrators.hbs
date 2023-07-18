@@ -21,30 +21,33 @@
                 @showSearch="true"
                 @showSort="true"
                 @mutuallyExclusive="true"
+                @items={{@model}}
+                as |illustrator isOpen actions|
               >
-                {{#each @model as |illustrator|}}
-                  <Panel
-                    @title="{{illustrator.name}} — ({{illustrator.numPrintings}} card{{if
-                      (not-eq illustrator.numPrintings 1)
-                      's'
-                    }})"
-                    @subtitle=""
-                  >
-                    <div class="container">
-                      <div class="row">
-                        {{#each illustrator.printings as |printing|}}
-                          <ul class="col-4">
-                            <li>
-                              <Card::LinkTo @printing={{printing}}>
-                                {{printing.title}}
-                              </Card::LinkTo>
-                            </li>
-                          </ul>
-                        {{/each}}
-                      </div>
+                <Panel
+                  @title="{{illustrator.name}}"
+                  @subtitle="{{illustrator.numPrintings}} card{{if
+                    (not-eq illustrator.numPrintings 1)
+                    's'
+                  }}"
+                  @isOpen={{isOpen}}
+                  @showPanel={{fn actions.showPanel illustrator.name}}
+                  @hidePanel={{fn actions.hidePanel illustrator.name}}
+                >
+                  <div class="container">
+                    <div class="row">
+                      {{#each illustrator.printings as |printing|}}
+                        <ul class="col-4">
+                          <li>
+                            <Card::LinkTo @printing={{printing}}>
+                              {{printing.title}}
+                            </Card::LinkTo>
+                          </li>
+                        </ul>
+                      {{/each}}
                     </div>
-                  </Panel>
-                {{/each}}
+                  </div>
+                </Panel>
               </PanelList>
             </div>
           </div>

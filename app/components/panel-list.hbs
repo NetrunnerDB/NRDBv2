@@ -50,9 +50,11 @@
   {{/if}}
   {{#each (sort-by "dateStart:desc" @items) as |item index|}}
     {{yield 
-      (hash item=item isOpen=(get this.panels index))
+      item
+      (get this.panels index)
       (hash
-        showPanel=(fn this.showPanel index) hidePanel=(fn this.hidePanel index)
+        showPanel=(fn this.showPanel index) 
+        hidePanel=(fn this.hidePanel index)
       )
     }}
   {{/each}}
