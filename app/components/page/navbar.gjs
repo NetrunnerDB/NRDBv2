@@ -1,16 +1,21 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { LinkTo } from '@ember/routing';
+import { on } from '@ember/modifier';
+import Collapse from 'ember-bootstrap/components/bs-collapse';
+import Dropdown from 'ember-bootstrap/components/bs-dropdown';
+import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon'
 
 export default class PageNavbarComponent extends Component {
   @tracked showDropdown = false;
 
-  @action toggleDropdown() {
-    this.showDropdown = !this.showDropdown;
+  get isCollapsed() {
+    return !this.showDropdown
   }
 
-  @action openDropdown() {
-    this.showDropdown = true;
+  @action toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
   }
 
   @action closeDropdown() {
@@ -34,21 +39,24 @@ export default class PageNavbarComponent extends Component {
               >
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <BsCollapse
-                @collapsed={{not this.showDropdown}}
+              <Collapse
+                @collapsed={{this.isCollapsed}}
                 class="navbar-collapse d-md-flex"
               >
                 <div class="navbar-nav flex-grow-1 pe-md-4">
                   <form id="card-search-bar" class="form-inline w-100 my-3 my-md-0">
                     <div class="input-group">
                       <input
+                        id="navbar-search"
                         type="text"
                         class="form-control p-relative py-3"
                         placeholder="Search for cards..."
                       />
+                      <label for="navbar-search" hidden="">Search for cards</label>
                     </div>
                   </form>
                 </div>
+                {{! template-lint-disable no-invalid-interactive }}
                 <ul
                   class="navbar-nav me-auto pb-2 pb-md-0"
                   {{on "click" this.closeDropdown}}
@@ -79,7 +87,7 @@ export default class PageNavbarComponent extends Component {
                       Random</LinkTo>
                   </li>
                   <li class="nav-item">
-                    <BsDropdown as |dd|>
+                    <Dropdown as |dd|>
                       <dd.toggle class="nav-link button-link px-2 p-md-3">
                         <FaIcon @icon="map" class="d-md-none d-xl-inline-block" />
                         Explore
@@ -135,7 +143,7 @@ export default class PageNavbarComponent extends Component {
                           >Rulings</ddm.linkTo>
                         </ddm.item>
                       </dd.menu>
-                    </BsDropdown>
+                    </Dropdown>
                   </li>
                   <li class="nav-item ms-md-4 me-md-0">
                     <LinkTo
@@ -145,7 +153,7 @@ export default class PageNavbarComponent extends Component {
                       <span class="d-md-none"> Random</span></LinkTo>
                   </li>
                 </ul>
-              </BsCollapse>
+              </Collapse>
             </div>
           </nav>
         </div>
