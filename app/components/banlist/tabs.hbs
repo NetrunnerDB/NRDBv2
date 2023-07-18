@@ -20,15 +20,15 @@
             <PanelList
               @showMassToggle="true"
               @showSearch="true"
-              @format={{format}}
-              as |props actions|
+              @items={{format.restrictions}}
+              as |restriction isOpen actions|
             >
               <Panel
-                @title="{{props.r.name}}"
-                @subtitle="{{props.r.size}} cards. Start Date: {{props.r.dateStart}}."
-                @isOpen={{props.isOpen}}
-                @showPanel={{fn actions.showPanel props.r.name}}
-                @hidePanel={{fn actions.hidePanel props.r.name}}
+                @title="{{restriction.name}}"
+                @subtitle="{{restriction.size}} cards. Start Date: {{date-format restriction.dateStart}}."
+                @isOpen={{isOpen}}
+                @showPanel={{fn actions.showPanel restriction.name}}
+                @hidePanel={{fn actions.hidePanel restriction.name}}
               >
                 <div class="row">
                   <div class="col-6">
@@ -37,7 +37,7 @@
                       <li>
                         <strong>Banned</strong>
                         <ul>
-                          {{#each props.r.verdicts.banned as |banned|}}
+                          {{#each restriction.verdicts.banned as |banned|}}
                             <li>
                               <Card::linkTo
                                 @id={{banned}}
