@@ -21,14 +21,14 @@
               @showMassToggle="true"
               @showSearch="true"
               @items={{format.restrictions}}
-              as |props actions|
+              as |restriction isOpen actions|
             >
               <Panel
-                @title="{{props.item.name}}"
-                @subtitle="{{props.item.size}} cards. Start Date: {{props.item.dateStart}}."
-                @isOpen={{props.isOpen}}
-                @showPanel={{fn actions.showPanel props.item.name}}
-                @hidePanel={{fn actions.hidePanel props.item.name}}
+                @title="{{restriction.name}}"
+                @subtitle="{{restriction.size}} cards. Start Date: {{restriction.dateStart}}."
+                @isOpen={{isOpen}}
+                @showPanel={{fn actions.showPanel restriction.name}}
+                @hidePanel={{fn actions.hidePanel restriction.name}}
               >
                 <div class="row">
                   <div class="col-6">
@@ -37,7 +37,7 @@
                       <li>
                         <strong>Banned</strong>
                         <ul>
-                          {{#each props.item.verdicts.banned as |banned|}}
+                          {{#each restriction.verdicts.banned as |banned|}}
                             <li>
                               <Card::linkTo
                                 @id={{banned}}
