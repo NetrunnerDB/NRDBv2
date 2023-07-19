@@ -1,4 +1,6 @@
-@import "./quote.css";
+@import url("./quote.css");
+@import url("./components/full-display.css");
+@import url("./components/navbar.css");
 
 :root {
   --nr-primary: #dc143b;
@@ -268,6 +270,11 @@ footer {
   text-decoration: none;
 }
 
+.button-array button {
+  font-size: inherit;
+  width: 100%;
+}
+
 .navbar button,
 .navbar .button {
   padding: 16px 40px;
@@ -275,6 +282,20 @@ footer {
   border: none;
   text-align: left;
   text-decoration: none;
+}
+
+.button-array button:not(:first-child) {
+  margin-top: 5px;
+}
+
+@media only screen and (width > 768px) {
+  .button-array button {
+    padding: 0;
+  }
+
+  .button-array button:not(:first-child) {
+    margin-top: 2px;
+  }
 }
 
 .navbar button:hover,
@@ -379,12 +400,30 @@ tbody th {
   font-weight: normal;
 }
 
+/* Custom scrollbar */
+*::-webkit-scrollbar {
+  width: 9px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--nr-grey-light);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--nr-secondary);
+  border: transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nr-secondary) var(--nr-grey-light);
+}
+
 .search-results tbody tr {
   border: 0 solid transparent;
 }
 
 .search-results tbody tr:nth-child(2n + 1) {
-  background-color: #f0f0f0;
   background: linear-gradient(
     90deg,
     rgb(255 255 255 / 0%) 0%,
@@ -420,25 +459,6 @@ tbody th {
   .inline-search-label {
     padding-bottom: 2px;
   }
-}
-
-/* Custom scrollbar */
-*::-webkit-scrollbar {
-  width: 9px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--nr-grey-light);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--nr-secondary);
-  border: transparent;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--nr-secondary) var(--nr-grey-light);
 }
 
 img.card-art {
@@ -651,9 +671,6 @@ img.card-art {
   font-style: italic;
 }
 
-.card-text-box .card-illustrator {
-}
-
 .names-only-key {
   border-right: 1px solid var(--nr-grey-light);
   text-align: right;
@@ -708,9 +725,6 @@ img.card-art {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.hex-image {
   background-position: center top;
 }
 
@@ -808,25 +822,6 @@ img.card-art {
 .hex-image.thumbnail-resource-ffg {
   transform: scale(1.3);
   background-position: calc(50% - 1px) -2px;
-}
-
-.button-array button {
-  font-size: inherit;
-  width: 100%;
-}
-
-.button-array button:not(:first-child) {
-  margin-top: 5px;
-}
-
-@media only screen and (width > 768px) {
-  .button-array button {
-    padding: 0;
-  }
-
-  .button-array button:not(:first-child) {
-    margin-top: 2px;
-  }
 }
 
 .legality-available::before,

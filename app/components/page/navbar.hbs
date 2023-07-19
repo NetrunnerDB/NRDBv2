@@ -22,13 +22,16 @@
               <form id="card-search-bar" class="form-inline w-100 my-3 my-md-0">
                 <div class="input-group">
                   <input
+                    id="navbar-search"
                     type="text"
                     class="form-control p-relative py-3"
                     placeholder="Search for cards..."
                   />
+                  <label for="navbar-search" hidden="">Search for cards</label>
                 </div>
               </form>
             </div>
+            {{! template-lint-disable no-invalid-interactive }}
             <ul
               class="navbar-nav me-auto pb-2 pb-md-0"
               {{on "click" this.closeDropdown}}
@@ -64,7 +67,7 @@
                     <FaIcon @icon="map" class="d-md-none d-xl-inline-block" />
                     Explore
                     <span class="caret"></span></dd.toggle>
-                  <dd.menu style="min-width: 100%" as |ddm|>
+                  <dd.menu class="nav-item-menu" as |ddm|>
                     <ddm.item>
                       <ddm.linkTo
                         class="nav-link button-link px-2 px-md-3"

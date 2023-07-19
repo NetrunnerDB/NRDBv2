@@ -77,6 +77,10 @@
   margin-left: 12px;
 }
 
+.panel-dropdown {
+  padding-right: 0;
+}
+
 .panel-dropdown,
 .panel-dropdown button,
 .panel-dropdown .dropdown-menu {
