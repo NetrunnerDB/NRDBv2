@@ -11,11 +11,32 @@
 }
 
 .panel-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
   border-bottom-color: transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+}
+
+.panel-heading button {
+  margin: auto 0;
+}
+
+.panel-heading-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-heading-text-title {
+  margin: 0;
+}
+
+.panel-heading-text-subtitle {
+  margin: 0;
+  opacity: 0.7;
 }
 
 .panel-body {

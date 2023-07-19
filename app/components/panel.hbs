@@ -1,20 +1,21 @@
 {{#unless this.filteredOut}}
-  <div class="panel panel-default">
-    <div class="header panel-heading" style="display: flex;">
-      <h3 style="margin: 15px 0 10px 0">{{@title}}</h3>
+  <div class="panel panel-default {{if @isOpen 'panel-open'}}">
+    <div class="panel-heading">
+      <div class="panel-heading-text">
+        <h4 class="panel-heading-text-title">{{@title}}</h4>
+        {{#if @subtitle}}
+          <h6 class="panel-heading-text-subtitle">
+            {{@subtitle}}
+          </h6>
+        {{/if}}
+      </div>
       <button
         class="btn btn-secondary"
-        style="margin-left:auto; margin-top: auto; margin-bottom: auto;"
         type="button"
         {{on "click" this.togglePanel}}
       >{{if @isOpen "Hide" "Show"}}</button>
     </div>
     {{#if @isOpen}}
-      {{#if @subtitle}}
-        <div class="subheader panel-heading">
-          {{@subtitle}}
-        </div>
-      {{/if}}
       <div class="panel-body">
         {{yield}}
       </div>

@@ -1,34 +1,15 @@
 <div class="card flex-grow-1" id="nav-main-content">
   <div class="card-header">
     <ul class="nav nav-tabs nav-fill card-header-tabs">
-      <li class="nav-item">
-        {{!-- <a
-          href="#"
-          role="button"
-          class="nav-link {{if (eq this.tab 'startup') 'active'}}"
-          {{on "click" (fn this.setTab "startup")}}
-        >Startup</a> --}}
-        <LinkTo
-          class="nav-link"
-          @route="page.banlists"
-          @query={{hash format="startup"}}
-        >Startup</LinkTo>
-      </li>
-      <li class="nav-item">
-
-        <LinkTo
-          class="nav-link"
-          @route="page.banlists"
-          @query={{hash format="standard"}}
-        >Standard</LinkTo>
-      </li>
-      <li class="nav-item">
-        <LinkTo
-          class="nav-link"
-          @route="page.banlists"
-          @query={{hash format="eternal"}}
-        >Eternal</LinkTo>
-      </li>
+      {{#each @formats as |format|}}
+        <li class="nav-item">
+          <LinkTo
+            class="nav-link"
+            @route="page.banlists"
+            @query={{hash format=format.id}}
+          >{{format.name}}</LinkTo>
+        </li>
+      {{/each}}
     </ul>
   </div>
   <div class="card-body">
@@ -39,15 +20,15 @@
             <PanelList
               @showMassToggle="true"
               @showSearch="true"
-              @format={{format}}
-              as |props actions|
+              @items={{format.restrictions}}
+              as |restriction isOpen actions|
             >
               <Panel
-                @title="{{props.r.name}}"
-                @subtitle="{{props.r.size}} cards. Start Date: {{props.r.dateStart}}."
-                @isOpen={{props.isOpen}}
-                @showPanel={{fn actions.showPanel props.r.name}}
-                @hidePanel={{fn actions.hidePanel props.r.name}}
+                @title="{{restriction.name}}"
+                @subtitle="{{restriction.size}} cards. Start Date: {{date-format restriction.dateStart}}."
+                @isOpen={{isOpen}}
+                @showPanel={{fn actions.showPanel restriction.name}}
+                @hidePanel={{fn actions.hidePanel restriction.name}}
               >
                 <div class="row">
                   <div class="col-6">
@@ -56,7 +37,7 @@
                       <li>
                         <strong>Banned</strong>
                         <ul>
-                          {{#each props.r.verdicts.banned as |banned|}}
+                          {{#each restriction.verdicts.banned as |banned|}}
                             <li>
                               <Card::linkTo
                                 @id={{banned}}

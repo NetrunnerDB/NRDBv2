@@ -48,11 +48,13 @@
       {{/if}}
     </p>
   {{/if}}
-  {{#each (sort-by "dateStart:desc" @format.restrictions) as |r index|}}
-    {{yield
-      (hash r=r isOpen=(get this.panels index))
+  {{#each (sort-by "dateStart:desc" @items) as |item index|}}
+    {{yield 
+      item
+      (get this.panels index)
       (hash
-        showPanel=(fn this.showPanel index) hidePanel=(fn this.hidePanel index)
+        showPanel=(fn this.showPanel index) 
+        hidePanel=(fn this.hidePanel index)
       )
     }}
   {{/each}}
