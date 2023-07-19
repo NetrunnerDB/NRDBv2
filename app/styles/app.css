@@ -1,3 +1,5 @@
+@import "./quote.css";
+
 :root {
   --nr-primary: #dc143b;
   --nr-primary-dark: #88001b;
