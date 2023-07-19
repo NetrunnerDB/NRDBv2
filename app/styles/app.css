@@ -470,6 +470,9 @@ img.card-art {
   --mx: 50%;
   --my: 50%;
   --o: 0;
+  --scale: 0;
+  --rotate-x: "0deg";
+  --rotate-y: "0deg";
 
   perspective: 800px;
 }
@@ -484,6 +487,8 @@ img.card-art {
   overflow: hidden;
   transition: filter 0.5s;
   perspective: 10px;
+  transform: scale3d(var(--scale), var(--scale), var(--scale))
+    rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
 }
 
 .card-art-container .card-art-frame.active-card {
