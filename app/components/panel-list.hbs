@@ -28,7 +28,7 @@
         >Hide all</button>
       {{/if}}
       {{#if @showSort}}
-        <div class="panel-dropdown dropdown" style="padding-right: 0;">
+        <div class="panel-dropdown dropdown">
           <button
             class="dropdown-toggle btn btn-light"
             data-toggle="dropdown"
@@ -49,7 +49,7 @@
     </p>
   {{/if}}
   {{#each (sort-by "dateStart:desc" @items) as |item index|}}
-    {{yield 
+    {{yield
       item
       (get this.panels index)
       (hash
