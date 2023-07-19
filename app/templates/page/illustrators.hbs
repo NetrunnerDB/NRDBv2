@@ -36,14 +36,12 @@
                 >
                   <div class="container">
                     <div class="row">
-                      {{#each illustrator.printings as |printing|}}
-                        <ul class="col-4">
-                          <li>
-                            <Card::LinkTo @printing={{printing}}>
-                              {{printing.title}}
-                            </Card::LinkTo>
-                          </li>
-                        </ul>
+                      {{#each (sort-by "title" illustrator.printings) as |printing|}}
+                        <div class="col-3 p-2">
+                          <Card::LinkTo @printing={{printing}} @hideTooltip="true">
+                            <Card::Image @printing={{printing}} @size="large" />
+                          </Card::LinkTo>
+                        </div>
                       {{/each}}
                     </div>
                   </div>
