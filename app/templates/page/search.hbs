@@ -79,7 +79,6 @@
         id="nav-main-content"
       >
         <div id="results-container" class="card-body m-0 m-sm-4">
-          {{! Checklist }}
           <div id="results-checklist" class="table-responsive">
             <table class="table">
               <thead>
@@ -97,19 +96,22 @@
               <tbody></tbody>
             </table>
           </div>
-          {{! Full Card }}
-          <div id="results-full-card" class="row mt-3 mt-sm-0"></div>
-          {{! Image Only }}
-          <div id="results-image-only" class="row mt-3 mt-sm-0"></div>
-          {{! Text Only }}
-          <div id="results-text-only" class="row"></div>
-          {{! Name Only }}
-          <div id="results-name-only"></div>
-          <div id="results-none" class="collapse">
-            <div class="text-center">
-              No results found!
+          {{#each this.results as |result|}}
+            {{! Full Card }}
+            <div id="results-full-card" class="row mt-3 mt-sm-0"></div>
+            {{! Image Only }}
+            <div id="results-image-only" class="row mt-3 mt-sm-0"></div>
+            {{! Text Only }}
+            <div id="results-text-only" class="row"></div>
+            {{! Name Only }}
+            <div id="results-name-only"></div>
+          {{else}}
+            <div id="results-none">
+              <div class="text-center">
+                No results found!
+              </div>
             </div>
-          </div>
+          {{/each}}
         </div>
       </div>
     </div>
