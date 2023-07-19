@@ -6,10 +6,10 @@
   {{on "mousemove" this.mouseMove}}
 >
   <div class="card-art-frame" style={{this.style}}>
-    {{#if @card}}
+    {{#if this.src}}
       <img
         class="card-art"
-        src={{get (get @card.printings 0) "images.nrdb_classic.medium"}}
+        src={{this.src}}
         ...attributes
       />
     {{else}}
