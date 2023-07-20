@@ -31,14 +31,12 @@ export default class CardImageComponent extends Component {
   }
 
   get src() {
-    const printing = this.args.card 
+    const printing = this.args.card
       ? this.args.card.printings[0]
       : this.args.printing;
     const size = this.args.size ?? 'medium';
 
-    return printing 
-      ? printing.images.nrdb_classic[size]
-      : ''
+    return printing ? printing.images.nrdb_classic[size] : '';
   }
 
   @action mouseMove(event) {
