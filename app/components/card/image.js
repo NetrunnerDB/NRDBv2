@@ -30,6 +30,15 @@ export default class CardImageComponent extends Component {
     this.containerStyle.style.setProperty('--rotate-y', `${rotY}deg`);
   }
 
+  get src() {
+    const printing = this.args.card
+      ? this.args.card.printings[0]
+      : this.args.printing;
+    const size = this.args.size ?? 'medium';
+
+    return printing ? printing.images.nrdb_classic[size] : '';
+  }
+
   @action mouseMove(event) {
     this.x = event.layerX;
     this.y = event.layerY;

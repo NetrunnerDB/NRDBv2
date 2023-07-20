@@ -3,12 +3,14 @@
 {{else}}
   <LinkTo @route="page.card" @model={{this.printing.id}} ...attributes>
     {{yield}}
-    <Tippy @placement="auto" @theme="light-border">
-      <Card::TextBox
-        @printing={{this.printing}}
-        @showTitle={{true}}
-        @showThumbnail={{true}}
-      />
-    </Tippy>
+    {{#unless @hideTooltip}}
+      <Tippy @placement="auto" @theme="light-border">
+        <Card::TextBox
+          @printing={{this.printing}}
+          @showTitle={{true}}
+          @showThumbnail={{true}}
+        />
+      </Tippy>
+    {{/unless}}
   </LinkTo>
 {{/if}}
