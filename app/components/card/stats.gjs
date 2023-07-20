@@ -1,5 +1,4 @@
-import { eq } from 'netrunnerdb/utils/template-operator';
-import maybe from 'netrunnerdb/utils/maybe';
+import { eq, maybe } from 'netrunnerdb/utils/template-operators';
 
 <template>
   {{#if (eq @printing.cardTypeId "agenda")}}
