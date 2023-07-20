@@ -1,10 +1,5 @@
-function maybe(val, def = 'X') {
-  return val ? val : def;
-}
-
-function eq(a, b) {
-  return a === b;
-}
+import { eq } from 'netrunnerdb/utils/template-operator';
+import maybe from 'netrunnerdb/utils/maybe';
 
 <template>
   {{#if (eq @printing.cardTypeId "agenda")}}

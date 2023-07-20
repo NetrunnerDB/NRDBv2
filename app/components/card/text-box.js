@@ -1,29 +1,25 @@
 import Component from '@glimmer/component';
+import maybe from 'netrunnerdb/utils/maybe';
 
 export default class CardTextBoxComponent extends Component {
-  // TODO: move this to a module or super class
-  maybe(val, def = 'X') {
-    return val ? val : def;
-  }
-
   get stats() {
     let card = this.args.printing;
     let stats = '';
     switch (card.cardTypeId) {
       case 'corp_identity':
-        stats = `${card.minimumDeckSize}/${this.maybe(
+        stats = `${card.minimumDeckSize}/${maybe(
           card.influenceLimit,
           '∞'
         )}`;
         break;
       case 'runner_identity':
-        stats = `${card.minimumDeckSize}/${this.maybe(
+        stats = `${card.minimumDeckSize}/${maybe(
           card.influenceLimit,
           '∞',
         )} ${card.baseLink}<i class="icon-link"></i>`;
         break;
       case 'agenda':
-        stats = `${this.maybe(card.advancementRequirement)}/${
+        stats = `${maybe(card.advancementRequirement)}/${
           card.agendaPoints
         }<i class="icon-agenda-points"></i>`;
         break;
