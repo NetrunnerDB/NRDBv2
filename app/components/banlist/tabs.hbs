@@ -25,7 +25,7 @@
             >
               <Panel
                 @title="{{restriction.name}}"
-                @subtitle="{{restriction.size}} cards. Start Date: {{date-format restriction.dateStart}}."
+                @subtitle="{{restriction.size}} cards. Start Date: {{format-date restriction.dateStart}}."
                 @isOpen={{isOpen}}
                 @showPanel={{fn actions.showPanel restriction.name}}
                 @hidePanel={{fn actions.hidePanel restriction.name}}
