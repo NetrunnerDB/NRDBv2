@@ -92,7 +92,7 @@ export default class PageNavbarComponent extends Component {
                         <FaIcon @icon="map" class="d-md-none d-xl-inline-block" />
                         Explore
                         <span class="caret"></span></dd.toggle>
-                      <dd.menu style="min-width: 100%" as |ddm|>
+                      <dd.menu class="nav-item-menu" as |ddm|>
                         <ddm.item>
                           <ddm.linkTo
                             class="nav-link button-link px-2 px-md-3"
