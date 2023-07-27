@@ -7,7 +7,7 @@ import { eq } from 'netrunnerdb/utils/template-operators';
 
 export default class CardCommunityComponent extends Component {
   @tracked tab = 'content-rulings';
-  eq = eq
+  eq = eq;
 
   @action setTab(tabId) {
     this.tab = tabId;

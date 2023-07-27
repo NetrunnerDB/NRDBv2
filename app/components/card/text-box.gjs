@@ -1,5 +1,5 @@
-import { and, htmlSafe } from '@ember/template';
-import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon'
+import { htmlSafe } from '@ember/template';
+import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 
 import Icon from '../icon';
 import Text from './text';

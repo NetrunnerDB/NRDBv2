@@ -10,7 +10,9 @@ export default class CardLinkToComponent extends Component {
   @service store;
 
   get linkId() {
-    if (this.args.id) { return this.args.id; }
+    if (this.args.id) {
+      return this.args.id;
+    }
 
     return this.args.printing.id;
   }

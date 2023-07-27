@@ -5,13 +5,13 @@ import { LinkTo } from '@ember/routing';
 import { on } from '@ember/modifier';
 import Collapse from 'ember-bootstrap/components/bs-collapse';
 import Dropdown from 'ember-bootstrap/components/bs-dropdown';
-import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon'
+import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 
 export default class PageNavbarComponent extends Component {
   @tracked showDropdown = false;
 
   get isCollapsed() {
-    return !this.showDropdown
+    return !this.showDropdown;
   }
 
   @action toggleDropdown() {

@@ -1,5 +1,5 @@
 import { LinkTo } from '@ember/routing';
-import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon'
+import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 
 <template>
   <header class="col-md-3 d-none d-xl-flex flex-column px-0">

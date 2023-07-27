@@ -4,7 +4,7 @@ import { fn, hash } from '@ember/helper';
 import LinkToCard from '../card/link-to';
 import PanelList from '../panel-list';
 import Panel from '../panel';
-import formatDate from '../../helpers/format-date'
+import formatDate from '../../helpers/format-date';
 import { eq } from '../../utils/template-operators';
 
 <template>

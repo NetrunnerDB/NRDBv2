@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { get } from '@ember/helper';
 import { on } from '@ember/modifier';
 
 export default class CardImageComponent extends Component {
