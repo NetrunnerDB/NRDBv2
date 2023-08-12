@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class CardImageComponent extends Component {
   @tracked active = false;
@@ -82,4 +83,27 @@ export default class CardImageComponent extends Component {
       window.requestAnimationFrame(this.tick);
     }
   }
+
+  <template>
+    {{! template-lint-disable no-invalid-interactive }}
+    <div
+      class="card-art-container px-3 pb-1 p-sm-0"
+      {{on "mouseenter" this.mouseEnter}}
+      {{on "mouseleave" this.mouseLeave}}
+      {{on "mousemove" this.mouseMove}}
+    >
+      <div class="card-art-frame">
+        {{#if this.src}}
+          <img
+            class="card-art"
+            src={{this.src}}
+            ...attributes
+          />
+        {{else}}
+          <img class="card-art" ...attributes />
+        {{/if}}
+        <div class="glare"></div>
+      </div>
+    </div>
+  </template>
 }

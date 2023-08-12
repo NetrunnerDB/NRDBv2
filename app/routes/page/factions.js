@@ -11,7 +11,7 @@ export default class PageFactionsRoute extends Route {
     // Split factions by side
     let [corp, runner] = factions.reduce(
       ([c, r], e) => (e.sideId == 'corp' ? [[...c, e], r] : [c, [...r, e]]),
-      [[], []]
+      [[], []],
     );
 
     // Sort the factions
@@ -21,7 +21,7 @@ export default class PageFactionsRoute extends Route {
     // Additionally split the runner factions into mini and non-mini
     let [rMain, rMini] = runner.reduce(
       ([c, r], e) => (!e.isMini ? [[...c, e], r] : [c, [...r, e]]),
-      [[], []]
+      [[], []],
     );
 
     // Return all as an object
