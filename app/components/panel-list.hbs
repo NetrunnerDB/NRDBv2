@@ -28,33 +28,49 @@
         >Hide all</button>
       {{/if}}
       {{#if @showSort}}
-        <div class="panel-dropdown dropdown">
+        <div class="panel-dropdown dropdown {{if this.isDropdownOpen 'open'}}">
           <button
             class="dropdown-toggle btn btn-light"
             data-toggle="dropdown"
-            aria-expanded="false"
+            aria-expanded="{{this.isDropdownOpen}}"
             type="button"
+            {{on "click" this.toggleDropdown}}
           >
             Sort
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><a href="#" onclick="return false;" id="sort-0">Name (A-Z)</a></li>
-            <li><a href="#" onclick="return false;" id="sort-1">Name (Z-A)</a></li>
-            <li><a href="#" onclick="return false;" id="sort-2">Cards (most)</a></li>
-            <li><a href="#" onclick="return false;" id="sort-3">Cards (least)</a></li>
+            <li><a
+                href="#"
+                id="sort-0"
+                {{on "click" (fn this.setSortingOrder "name:asc")}}
+              >Name (A-Z)</a></li>
+            <li><a
+                href="#"
+                id="sort-1"
+                {{on "click" (fn this.setSortingOrder "name:desc")}}
+              >Name (Z-A)</a></li>
+            <li><a
+                href="#"
+                id="sort-2"
+                {{on "click" (fn this.setSortingOrder "cards:desc")}}
+              >Cards (most)</a></li>
+            <li><a
+                href="#"
+                id="sort-3"
+                {{on "click" (fn this.setSortingOrder "cards:asc")}}
+              >Cards (least)</a></li>
           </ul>
         </div>
       {{/if}}
     </p>
   {{/if}}
-  {{#each (sort-by "dateStart:desc" @items) as |item index|}}
+  {{#each (sort-by this.sortBy @items) as |item index|}}
     {{yield
       item
       (get this.panels index)
       (hash
-        showPanel=(fn this.showPanel index) 
-        hidePanel=(fn this.hidePanel index)
+        showPanel=(fn this.showPanel index) hidePanel=(fn this.hidePanel index)
       )
     }}
   {{/each}}

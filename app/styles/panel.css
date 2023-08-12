@@ -87,6 +87,10 @@
   width: 100%;
 }
 
+.panel-dropdown.open > .dropdown-menu {
+  display: block;
+}
+
 @media (width >= 768px) {
   .panel-list .row > * {
     margin: 0;

@@ -3,10 +3,13 @@ import { action } from '@ember/object';
 import { sendEvent } from '@ember/object/events';
 import { getOwner } from '@ember/application';
 import { tracked as trackedBuiltin } from 'tracked-built-ins';
+import { tracked } from '@glimmer/tracking';
 
 export default class PanelListComponent extends Component {
   query = '';
   panels = trackedBuiltin([]);
+  @tracked isDropdownOpen = false;
+  @tracked sortBy = 'dateStart:desc';
 
   constructor() {
     super(...arguments);
@@ -35,5 +38,15 @@ export default class PanelListComponent extends Component {
 
   @action hidePanel(panel) {
     this.panels[panel] = false;
+  }
+
+  @action toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  @action setSortingOrder(order, event) {
+    event.preventDefault();
+    this.sortBy = order;
+    this.isDropdownOpen = false;
   }
 }
