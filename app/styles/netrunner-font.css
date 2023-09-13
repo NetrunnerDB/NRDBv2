@@ -96,19 +96,19 @@
   content: "\e908";
 }
 
-.icon-mu:before {
+.icon-mu::before {
   content: "\e904";
 }
 
-.icon-mu1:before {
+.icon-mu1::before {
   content: "\e903";
 }
 
-.icon-mu2:before {
+.icon-mu2::before {
   content: "\e902";
 }
 
-.icon-mu3:before {
+.icon-mu3::before {
   content: "\e901";
 }
 
@@ -147,75 +147,99 @@
 .icon-ashes::before {
   content: "\e929";
 }
+
 .icon-borealis::before {
   content: "\e931";
 }
-.icon-core-set:before {
+
+.icon-core-set::before {
   content: "\e914";
 }
+
 .icon-creation-and-control::before {
   content: "\e913";
 }
+
 .icon-data-and-destiny::before {
   content: "\e912";
 }
+
 .icon-flashpoint::before {
   content: "\e921";
 }
+
 .icon-genesis::before {
   content: "\e911";
 }
+
 .icon-honor-and-profit::before {
   content: "\e910";
 }
+
 .icon-kitara::before {
   content: "\e925";
 }
+
 .icon-liberation::before {
   content: "\e933";
 }
+
 .icon-lunar::before {
   content: "\e90f";
 }
+
 .icon-magnum-opus::before {
   content: "\e927";
 }
+
 .icon-magnum-opus-reprint::before {
   content: "\e92a";
 }
+
 .icon-mumbad::before {
   content: "\e91f";
 }
+
 .icon-order-and-chaos::before {
   content: "\e90e";
 }
+
 .icon-red-sand::before {
   content: "\e922";
 }
+
 .icon-reign-and-reverie::before {
   content: "\e926";
 }
+
 .icon-revised-core-set::before {
   content: "\e924";
 }
+
 .icon-salvaged-memories::before {
   content: "\e92c";
 }
+
 .icon-sansan::before {
   content: "\e90d";
 }
+
 .icon-spin::before {
   content: "\e90c";
 }
+
 .icon-system-core-2019::before {
   content: "\e928";
 }
+
 .icon-system-gateway::before {
   content: "\e92d";
 }
+
 .icon-system-update-2021::before {
   content: "\e92e";
 }
+
 .icon-terminal-directive::before {
   content: "\e923";
 }
