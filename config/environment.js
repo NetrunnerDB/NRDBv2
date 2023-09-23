@@ -14,7 +14,7 @@ module.exports = function (environment) {
       },
     },
 
-    API_URL: 'https://api-preview.netrunnerdb.com',
+    API_URL: 'api-preview.netrunnerdb.com',
     googleFonts: ['Merriweather Sans'],
 
     APP: {
@@ -45,7 +45,7 @@ module.exports = function (environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-    ENV.API_URL = 'https://api-preview.netrunnerdb.com';
+    ENV.API_URL = 'api-preview.netrunnerdb.com';
   }
 
   return ENV;
