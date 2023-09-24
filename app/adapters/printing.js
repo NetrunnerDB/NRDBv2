@@ -1,0 +1,12 @@
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
+import { pluralize } from 'ember-inflector';
+import ENV from 'netrunnerdb/config/environment';
+
+export default class PrintingAdapter extends JSONAPIAdapter {
+  host = ENV.API_URL;
+
+  // Converts Ember's dashes convention convention to Rails' underscores
+  pathForType(type) {
+    return pluralize(type.replace(/-/g, '_'));
+  }
+}
