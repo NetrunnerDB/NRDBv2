@@ -1,5 +1,7 @@
 import { htmlSafe } from '@ember/template';
+import { LinkTo } from '@ember/routing';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import { hash } from 'rsvp';
 
 import Icon from '../icon';
 import Text from './text';
@@ -48,7 +50,7 @@ import Stats from './stats';
         <Icon @id={{@printing.faction.id}} />
         {{@printing.faction.name}}
         {{#each @printing.illustratorNames as |name|}}
-          <a href="">{{name}}</a>
+          <LinkTo @route="page.illustrators"  @query={{ hash search="{{name}}"}}>{{name}}</LinkTo>
         {{/each}}•
         <Icon @id={{@printing.cardSet.id}} />
         {{@printing.cardSet.name}}
