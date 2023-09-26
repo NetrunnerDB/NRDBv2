@@ -1,7 +1,7 @@
 import { htmlSafe } from '@ember/template';
 import { LinkTo } from '@ember/routing';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
-import { hash } from 'rsvp';
+import { hash } from '@ember/helper';
 
 import Icon from '../icon';
 import Text from './text';
