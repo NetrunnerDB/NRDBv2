@@ -10,14 +10,12 @@ export default class PanelListComponent extends Component {
   constructor() {
     super(...arguments);
 
-    this.panels.push(!!this.args.expandFirstItem);
-    this.args.items.slice(1).forEach(() => this.panels.push(false));
+    this.panels.push(...new Array(this.args.items.length).fill(false));
+    this.panels[0] = !!this.args.expandFirstItem;
   }
 
   @action setAllPanels(value) {
-    for (let i in this.panels) {
-      this.panels[i] = value;
-    }
+    this.panels.fill(value);
   }
 
   @action togglePanel(panel) {
