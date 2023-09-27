@@ -17,39 +17,32 @@
                 work has appeared on cards and which cards they illustrated.</p>
             </div>
             <div class="row">
-              <PanelList
+              <Ui::Accordion
                 @showSearch="true"
                 @showSort="true"
-                @mutuallyExclusive="true"
                 @items={{@model}}
-                as |illustrator isOpen actions|
+                as |Panel illustrator|
               >
-                <Panel
-                  @title="{{illustrator.name}}"
-                  @subtitle="{{illustrator.numPrintings}} card{{if
-                    (not-eq illustrator.numPrintings 1)
-                    's'
-                  }}"
-                  @isOpen={{isOpen}}
-                  @showPanel={{fn actions.showPanel illustrator.name}}
-                  @hidePanel={{fn actions.hidePanel illustrator.name}}
-                >
-                  <div class="container">
-                    <div class="row">
-                      {{#each (sort-by "title" illustrator.printings) as |printing|}}
-                        <div class="col-3 p-2">
-                          <Card::LinkTo @printing={{printing}} @hideTooltip="true">
-                            <Card::Image @printing={{printing}} @size="large" />
-                          </Card::LinkTo>
-                        </div>
-                      {{/each}}
-                    </div>
-                  </div>
+                <Panel>
+                  <:title>{{illustrator.name}}</:title>
+                  <:subtitle>
+                    {{illustrator.numPrintings}} card{{if (not-eq illustrator.numPrintings 1) 's' }}
+                  </:subtitle>
+                  <:body>
+                      <div class="row">
+                        {{#each (sort-by "title" illustrator.printings) as |printing|}}
+                          <div class="col-3 p-2">
+                            <Card::LinkTo @printing={{printing}} @hideTooltip="true">
+                              <Card::Image @printing={{printing}} @size="large" />
+                            </Card::LinkTo>
+                          </div>
+                        {{/each}}
+                      </div>
+                  </:body>
                 </Panel>
-              </PanelList>
+              </Ui::Accordion>
             </div>
           </div>
-
         </div>
       </div>
     </div>
