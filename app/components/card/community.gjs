@@ -47,7 +47,19 @@ export default class CardCommunityComponent extends Component {
       <div class="card-body">
         {{#if (eq this.tab "content-rulings")}}
           <div id="content-rulings">
-            Put rulings here
+            <!-- TODO(plural): Put ruling display into a new component with pretty formatting. -->
+            {{#each @card.rulings as |ruling|}}
+            <div id="ruling-{{ruling.id}}">
+              <p>{{#if ruling.nsgRulesTeamVerified}}Verified{{else}}Unverified{{/if}} - {{ ruling.updatedAt }}</p>
+              {{#if ruling.textRuling}}
+              <p>Text Ruling: {{ ruling.textRuling }}</p>
+              {{else}}
+              <p>Question: {{ ruling.question }}</p>
+              <p>Answer: {{ ruling.answer }}</p>
+              {{/if}}
+            </div>
+            <hr />
+            {{/each}}
           </div>
         {{else if (eq this.tab "content-reviews")}}
           <div id="content-reviews">
