@@ -53,5 +53,5 @@ export default class CardModel extends Model {
   @belongsTo('card-type', { async: true, inverse: 'cards' }) cardType;
   @belongsTo('card-subtype', { async: true, inverse: 'cards' }) cardSubtype;
   @hasMany('printing', { async: false, inverse: 'card' }) printings;
-  @hasMany('ruling', { async: true, inverse: 'card'}) rulings;
+  @hasMany('ruling', { async: true, inverse: 'card' }) rulings;
 }
