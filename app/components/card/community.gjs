@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 import { fn } from '@ember/helper';
 import { on } from '@ember/modifier';
 import { eq } from 'netrunnerdb/utils/template-operators';
+import sortBy from 'ember-composable-helpers/helpers/sort-by';
 
 export default class CardCommunityComponent extends Component {
   @tracked tab = 'content-rulings';
@@ -48,7 +49,7 @@ export default class CardCommunityComponent extends Component {
         {{#if (eq this.tab "content-rulings")}}
           <div id="content-rulings">
             {{!-- TODO(plural): Put ruling display into a new component with pretty formatting. --}}
-            {{#each @card.rulings as |ruling|}}
+            {{#each (sortBy "updatedAt:desc" @card.rulings) as |ruling|}}
             <div id="ruling-{{ruling.id}}">
               <p>{{#if ruling.nsgRulesTeamVerified}}Verified{{else}}Unverified{{/if}} - {{ ruling.updatedAt }}</p>
               {{#if ruling.textRuling}}
