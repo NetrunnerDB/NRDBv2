@@ -24,7 +24,7 @@ import LinkToCard from './link-to';
               <div
                 id="card-title"
                 class="card-title mb-0"
-              >{{@printing.title}}</div>
+              >{{#if @printing.isUnique }}♦ {{/if}}{{@printing.title}}</div>
             </div>
             <div class="card-body">
               <div class="row position-relative">
