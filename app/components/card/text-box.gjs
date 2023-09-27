@@ -1,9 +1,11 @@
-import { htmlSafe } from '@ember/template';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import { LinkTo } from '@ember/routing';
+import { hash } from '@ember/helper';
+import { htmlSafe } from '@ember/template';
 
 import Icon from '../icon';
-import Text from './text';
 import Stats from './stats';
+import Text from './text';
 
 <template>
   <div class="card-text-box">
@@ -48,7 +50,7 @@ import Stats from './stats';
         <Icon @id={{@printing.faction.id}} />
         {{@printing.faction.name}}
         {{#each @printing.illustratorNames as |name|}}
-          <a href="">{{name}}</a>
+          <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
         {{/each}}•
         <Icon @id={{@printing.cardSet.id}} />
         {{@printing.cardSet.name}}
