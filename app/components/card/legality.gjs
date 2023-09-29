@@ -4,6 +4,9 @@ export default class CardLegalityComponent extends Component {
   get legalityClass() {
     let snapshot = this.args.snapshot;
     let printing = this.args.printing;
+    if (!snapshot && !printing) {
+      return 'legality-unavailable';
+    }
     let validCardPool = printing.snapshotIds.includes(snapshot.id);
     let banned = snapshot.restrictionId
       ? printing.restrictions.banned.includes(snapshot.restrictionId)
