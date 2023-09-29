@@ -841,6 +841,8 @@ img.card-art {
 .legality-rotated::before,
 .legality-added::before,
 .legality-restricted::before,
+.legality-verified::before,
+.legality-unverified::before,
 .legality-1-inf::before,
 .legality-3-inf::before,
 .legality-penalty::before,
@@ -856,6 +858,16 @@ img.card-art {
   font-size: 0.75em;
   font-weight: bold;
   text-align: center;
+}
+
+.legality-verified::before {
+  content: "VERIFIED";
+  background-color: #577a57;
+}
+
+.legality-unverified::before {
+  content: "UNVERIFIED";
+  background-color: #8f8f8f;
 }
 
 .legality-available::before {

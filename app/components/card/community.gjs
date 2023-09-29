@@ -1,9 +1,11 @@
 import Component from '@glimmer/component';
+import CardRuling from './ruling';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { fn } from '@ember/helper';
 import { on } from '@ember/modifier';
 import { eq } from 'netrunnerdb/utils/template-operators';
+import sortBy from 'ember-composable-helpers/helpers/sort-by';
 
 export default class CardCommunityComponent extends Component {
   @tracked tab = 'content-rulings';
@@ -47,7 +49,10 @@ export default class CardCommunityComponent extends Component {
       <div class="card-body">
         {{#if (eq this.tab "content-rulings")}}
           <div id="content-rulings">
-            Put rulings here
+            {{!-- TODO(plural): Put ruling display into a new component with pretty formatting. --}}
+            {{#each (sortBy "updatedAt:desc" @rulings) as |ruling|}}
+            <CardRuling @ruling={{ruling}} />
+            {{/each}}
           </div>
         {{else if (eq this.tab "content-reviews")}}
           <div id="content-reviews">
