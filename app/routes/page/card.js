@@ -25,7 +25,7 @@ export default class PageCardRoute extends Route {
     let eternalSnapshot = undefined;
     let standardSnapshot = undefined;
     let startupSnapshot = undefined;
-    formats.forEach(f => {
+    formats.forEach((f) => {
       if (f.formatId == 'eternal') {
         eternalSnapshot = f;
       } else if (f.formatId == 'standard') {
@@ -35,6 +35,11 @@ export default class PageCardRoute extends Route {
       }
     });
 
-    return hash({printing, eternalSnapshot, standardSnapshot, startupSnapshot});
+    return hash({
+      printing,
+      eternalSnapshot,
+      standardSnapshot,
+      startupSnapshot,
+    });
   }
 }

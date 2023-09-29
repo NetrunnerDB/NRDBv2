@@ -1,14 +1,26 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 
 export default class CardLegalityComponent extends Component {
   get legalityClass() {
-    let validCardPool = this.args.printing.snapshotIds.includes(this.args.snapshot.id);
-    let banned = this.args.snapshot.restrictionId ? this.args.printing.restrictions.banned.includes(this.args.snapshot.restrictionId) : false;
-    let points = (this.args.snapshot.restrictionId in this.args.printing.restrictions.points) ? this.args.printing.restrictions.points[this.args.snapshot.restrictionId] : 0;
-    let restricted = this.args.snapshot.restrictionId ? this.args.printing.restrictions.restricted.includes(this.args.snapshot.restrictionId) : false;
-    let globalPenalty = this.args.snapshot.restrictionId in this.args.printing.restrictions.global_penalty;
-    let universalFactionCost = (this.args.snapshot.restrictionId in this.args.printing.restrictions.universal_faction_cost) ? this.args.printing.restrictions.universal_faction_cost[this.args.snapshot.restrictionId] : 0;
+    let snapshot = this.args.snapshot;
+    let printing = this.args.printing;
+    let validCardPool = printing.snapshotIds.includes(snapshot.id);
+    let banned = snapshot.restrictionId
+      ? printing.restrictions.banned.includes(snapshot.restrictionId)
+      : false;
+    let points =
+      snapshot.restrictionId in printing.restrictions.points
+        ? printing.restrictions.points[snapshot.restrictionId]
+        : 0;
+    let restricted = snapshot.restrictionId
+      ? printing.restrictions.restricted.includes(snapshot.restrictionId)
+      : false;
+    let globalPenalty =
+      snapshot.restrictionId in printing.restrictions.global_penalty;
+    let universalFactionCost =
+      snapshot.restrictionId in printing.restrictions.universal_faction_cost
+        ? printing.restrictions.universal_faction_cost[snapshot.restrictionId]
+        : 0;
 
     let legality = 'legality-legal';
     if (!validCardPool) {
