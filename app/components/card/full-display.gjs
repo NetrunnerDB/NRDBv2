@@ -24,7 +24,7 @@ import LinkToCard from './link-to';
               <div
                 id="card-title"
                 class="card-title mb-0"
-              >{{@printing.title}}</div>
+              >{{#if @printing.isUnique }}♦ {{/if}}{{@printing.title}}</div>
             </div>
             <div class="card-body">
               <div class="row position-relative">
@@ -48,11 +48,11 @@ import LinkToCard from './link-to';
                   </div>
                   <hr />
                   <div id="legalities">
-                    <Legality @card={{@printing.card}} @format="standard">
+                    <Legality @printing={{@printing}} @format="standard" @snapshot={{@standardSnapshot}}>
                       <b>Standard</b></Legality>
-                    <Legality @card={{@printing.card}} @format="startup">
+                    <Legality @printing={{@printing}} @format="startup" @snapshot={{@startupSnapshot}}>
                       <b>Startup</b></Legality>
-                    <Legality @card={{@printing.card}} @format="eternal">
+                    <Legality @printing={{@printing}} @format="eternal" @snapshot={{@eternalSnapshot}}>
                       <b>Eternal</b></Legality>
                   </div>
                   <hr />
@@ -65,7 +65,7 @@ import LinkToCard from './link-to';
                     </div>
                   </div>
                   <div id="printings">
-                    {{#each @printing.card.printings as |printing|}}
+                    {{#each @otherPrintings as |printing|}}
                       <div class="d-flex justify-content-between">
                         <div class="text-truncate">
                           <LinkToCard

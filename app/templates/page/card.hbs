@@ -1,10 +1,10 @@
-{{page-title @model.title}}
+{{page-title @model.printing.title}}
 
 <div class="container">
   <div class="row">
     <div class="col-6 col-xl-2 d-flex order-xl-0 flex-column my-2">
-      {{#let (previous @model @model.cardSet.printings) as |nextPrinting|}}
-        {{#if (and nextPrinting (not-eq @model nextPrinting))}}
+      {{#let (previous @model.printing @model.printing.cardSet.printings) as |nextPrinting|}}
+        {{#if (and nextPrinting (not-eq @model.printing nextPrinting))}}
           <Card::LinkTo
             @printing={{nextPrinting}}
             class="btn btn-light text-decoration-none text-truncate"
@@ -16,8 +16,8 @@
       {{/let}}
     </div>
     <div class="col-6 col-xl-2 d-flex order-xl-2 flex-column my-2">
-      {{#let (next @model @model.cardSet.printings) as |prevPrinting|}}
-        {{#if (and prevPrinting (not-eq @model prevPrinting))}}
+      {{#let (next @model.printing @model.printing.cardSet.printings) as |prevPrinting|}}
+        {{#if (and prevPrinting (not-eq @model.printing prevPrinting))}}
           <Card::LinkTo
             @printing={{prevPrinting}}
             class="btn btn-light text-decoration-none text-truncate"
@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-xl-8 d-flex order-xl-1 flex-column my-2">
-      <Card::FullDisplay @printing={{@model}} />
+      <Card::FullDisplay @printing={{@model.printing}} @otherPrintings={{@model.otherPrintings}} @eternalSnapshot={{@model.eternalSnapshot}} @standardSnapshot={{@model.standardSnapshot}} @startupSnapshot={{@model.startupSnapshot}} />
     </div>
 
     <div class="col-12 d-flex order-xl-3 flex-column my-2">

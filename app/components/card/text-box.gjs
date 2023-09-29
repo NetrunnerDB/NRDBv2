@@ -23,7 +23,7 @@ import Stats from './stats';
     {{/if}}
     {{#if @showTitle}}
       <div class="card-title">
-        {{@printing.title}}
+        {{#if @printing.isUnique}}♦ {{/if}}{{@printing.title}}
       </div>
     {{/if}}
     <div class="card-details">
