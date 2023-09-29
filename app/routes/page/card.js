@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
-// import RSVP from 'rsvp';
+import { hash } from 'rsvp';
 
 export default class PageCardRoute extends Route {
   @service store;
@@ -18,6 +18,23 @@ export default class PageCardRoute extends Route {
     // Get the printing
     let printing = await this.store.findRecord('printing', id);
 
-    return printing;
+    // Fetch active snapshots for the 3 main formats.
+    let formats = await this.store.query('snapshot', {
+      filter: { active: true, format_id: ['eternal', 'standard', 'startup'] },
+    });
+    let eternalSnapshot = undefined;
+    let standardSnapshot = undefined;
+    let startupSnapshot = undefined;
+    formats.forEach(f => {
+      if (f.formatId == 'eternal') {
+        eternalSnapshot = f;
+      } else if (f.formatId == 'standard') {
+        standardSnapshot = f;
+      } else if (f.formatId == 'startup') {
+        startupSnapshot = f;
+      }
+    });
+
+    return hash({printing, eternalSnapshot, standardSnapshot, startupSnapshot});
   }
 }
