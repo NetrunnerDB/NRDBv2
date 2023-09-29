@@ -14,10 +14,24 @@ module('Integration | Component | card/full-display', function (hooks) {
       card: {
         printings: [],
       },
+      snapshotIds: [],
+      restrictions: {
+        banned: [],
+        global_penalty: [],
+        points: {},
+        restricted: [],
+        universal_faction_cost: {},
+      },
       images: [],
     });
+    this.set('snapshot', {
+      id: 'snapshot',
+      restrictionId: 'restriction',
+    });
 
-    await render(hbs`<Card::FullDisplay @printing={{this.printing}} />`);
+    await render(
+      hbs`<Card::FullDisplay @printing={{this.printing}} @standardSnapshot={{this.snapshot}} @eternalSnapshot={{this.snapshot}} @startupSnapshot={{this.snapshot}} />`,
+    );
 
     assert.dom(this.element).exists();
   });
