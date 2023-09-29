@@ -10,13 +10,19 @@ export default class PageCardRoute extends Route {
 
     // Card pages display a printing, not an abstract card
     // If the given ID is not a printing ID, treat it as a card ID and find its latest printing
+    let card = undefined;
     if (isNaN(parseInt(id))) {
-      let parsed = await this.store.findRecord('card', id);
-      id = parsed.get('latestPrintingId');
+      card = await this.store.findRecord('card', id);
+      id = card.latestPrintingId;
     }
 
     // Get the printing
     let printing = await this.store.findRecord('printing', id);
+    if (!card) {
+      card = await this.store.findRecord('card', printing.cardId);
+    }
+
+    let rulings = await card.rulings;
 
     let otherPrintings = await this.store.query('printing', {
       filter: { card_id: printing.cardId },
@@ -42,6 +48,8 @@ export default class PageCardRoute extends Route {
 
     return hash({
       printing,
+      card,
+      rulings,
       eternalSnapshot,
       standardSnapshot,
       startupSnapshot,

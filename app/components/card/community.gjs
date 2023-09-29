@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import CardRuling from './ruling';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { fn } from '@ember/helper';
@@ -49,17 +50,8 @@ export default class CardCommunityComponent extends Component {
         {{#if (eq this.tab "content-rulings")}}
           <div id="content-rulings">
             {{!-- TODO(plural): Put ruling display into a new component with pretty formatting. --}}
-            {{#each (sortBy "updatedAt:desc" @card.rulings) as |ruling|}}
-            <div id="ruling-{{ruling.id}}">
-              <p>{{#if ruling.nsgRulesTeamVerified}}Verified{{else}}Unverified{{/if}} - {{ ruling.updatedAt }}</p>
-              {{#if ruling.textRuling}}
-              <p>Text Ruling: {{ ruling.textRuling }}</p>
-              {{else}}
-              <p>Question: {{ ruling.question }}</p>
-              <p>Answer: {{ ruling.answer }}</p>
-              {{/if}}
-            </div>
-            <hr />
+            {{#each (sortBy "updatedAt:desc" @rulings) as |ruling|}}
+            <CardRuling @ruling={{ruling}} />
             {{/each}}
           </div>
         {{else if (eq this.tab "content-reviews")}}
