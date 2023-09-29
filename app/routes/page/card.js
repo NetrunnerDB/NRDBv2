@@ -18,6 +18,11 @@ export default class PageCardRoute extends Route {
     // Get the printing
     let printing = await this.store.findRecord('printing', id);
 
+    let otherPrintings = await this.store.query('printing', {
+      filter: { card_id: printing.cardId },
+      sort: '-id',
+    });
+
     // Fetch active snapshots for the 3 main formats.
     let formats = await this.store.query('snapshot', {
       filter: { active: true, format_id: ['eternal', 'standard', 'startup'] },
@@ -40,6 +45,7 @@ export default class PageCardRoute extends Route {
       eternalSnapshot,
       standardSnapshot,
       startupSnapshot,
+      otherPrintings,
     });
   }
 }
