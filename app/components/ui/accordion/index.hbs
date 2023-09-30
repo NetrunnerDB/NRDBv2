@@ -11,12 +11,13 @@
         {{/if}}
         {{#if @showSearch}}
           <div class="panel-search">
-            <Input
-              @type="text"
+            <input
+              type="text"
               class="form-control"
               placeholder="Search..."
               aria-label="Search"
-              @value={{this.query}}
+              value={{this.query}}
+              {{on 'input' this.updateFilter}}
             />
           </div>
         {{/if}}
