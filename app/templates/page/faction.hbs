@@ -22,11 +22,10 @@
             {{#each @model.ids as |id|}}
               <div class="row mb-4">
                 <div class="col-3">
-                  {{! TODO: get the actual ID image }}
-                  <Card::Image @card={{id}} />
+                  <LinkTo @route="page.card" @model={{ id.id }}><Card::Image @card={{id}} /></LinkTo>
                 </div>
                 <div class="col-9">
-                  <h4>{{id.title}}</h4>
+                  <h4><LinkTo @route="page.card" @model={{ id.id }}>{{id.title}}</LinkTo></h4>
                   <div class="border-top border-bottom py-4">
                     Decklist 1
                   </div>
