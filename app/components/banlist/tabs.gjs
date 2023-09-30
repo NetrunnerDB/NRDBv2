@@ -27,6 +27,7 @@ import formatDate from '../../helpers/format-date';
             <Accordion
               @showMassToggle={{true}}
               @showSearch={{true}}
+              @query={{@query}}
               @expandFirstItem={{true}}
               @items={{format.restrictions}}
             >

@@ -1,17 +1,22 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked as trackedBuiltin } from 'tracked-built-ins';
-import { tracked } from '@glimmer/tracking';
+import { service } from '@ember/service';
 
 export default class PanelListComponent extends Component {
+  @service router;
+
   panels = trackedBuiltin([]);
-  @tracked query = '';
 
   constructor() {
     super(...arguments);
 
     this.panels.push(...new Array(this.args.items.length).fill(false));
     this.panels[0] = !!this.args.expandFirstItem;
+  }
+
+  get query() {
+    return this.args.query ?? '';
   }
 
   @action setAllPanels(value) {
@@ -27,6 +32,10 @@ export default class PanelListComponent extends Component {
       return false;
     }
 
-    return !property.toLowerCase().includes(query);
+    return !property.toLowerCase().includes(query.toLowerCase());
+  }
+
+  @action updateFilter({ target: { value: search } }) {
+    this.router.transitionTo({ queryParams: { search } });
   }
 }
