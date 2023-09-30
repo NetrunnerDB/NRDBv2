@@ -2,9 +2,11 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked as trackedBuiltin } from 'tracked-built-ins';
 import { service } from '@ember/service';
+import fade from 'ember-animated/transitions/fade';
 
 export default class PanelListComponent extends Component {
   @service router;
+  transition = fade;
 
   panels = trackedBuiltin([]);
 

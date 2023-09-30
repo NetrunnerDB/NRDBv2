@@ -1290,7 +1290,7 @@
     ember-cli-version-checker "^5.1.2"
     semver "^7.3.5"
 
-"@embroider/addon-shim@^1.0.0", "@embroider/addon-shim@^1.8.3", "@embroider/addon-shim@^1.8.4", "@embroider/addon-shim@^1.8.5":
+"@embroider/addon-shim@^1.0.0", "@embroider/addon-shim@^1.6.0", "@embroider/addon-shim@^1.8.3", "@embroider/addon-shim@^1.8.4", "@embroider/addon-shim@^1.8.5":
   version "1.8.6"
   resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.8.6.tgz#b676991b4fa32c3a98dc7db7dc6cd655029c3f09"
   integrity sha512-siC9kP78uucEbpDcVyxjkwa76pcs5rVzDVpWO4PDc9EAXRX+pzmUuSTLAK3GztUwx7/PWhz1BenAivqdSvSgfg==
@@ -4186,6 +4186,14 @@ electron-to-chromium@^1.4.526:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.528.tgz#7c900fd73d9d2e8bb0dab0e301f25f0f4776ef2c"
   integrity sha512-UdREXMXzLkREF4jA8t89FQjA8WHI6ssP38PMY4/4KhXFQbtImnghh4GkCgrtiZwLKUKVD2iTVXvDVQjfomEQuA==
 
+ember-animation@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ember-animation/-/ember-animation-0.1.0.tgz#082530d18f2add7d12e43f1b521337000adb7e39"
+  integrity sha512-8PI9cBhyUAQV4tYp9GrlLYyW59u/OP35QeDMXJ4tUTHBoaz8Kilc/q9kubHuOXuRMgOo4eXRvmkyX8iGtUVV4g==
+  dependencies:
+    "@embroider/addon-shim" "^1.0.0"
+    ember-modifier "4.0.0-beta.1"
+
 ember-ast-helpers@0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/ember-ast-helpers/-/ember-ast-helpers-0.3.5.tgz#db72afd9bc3de03759720ff7b03d4e3b2c7f2351"
@@ -4853,6 +4861,15 @@ ember-modifier-manager-polyfill@^1.2.0:
     ember-cli-babel "^7.10.0"
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
+
+ember-modifier@4.0.0-beta.1:
+  version "4.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/ember-modifier/-/ember-modifier-4.0.0-beta.1.tgz#12b791ab744beb6a6caab3b7730f7eeb52a48509"
+  integrity sha512-Mg4NRDCbydlF9hXUzmR9B89GcImA/oDFSK3nFNmy/nQLn5B30zDx8OlL132g9vnnbH/DavlxXwsuv3rDs9g13A==
+  dependencies:
+    "@embroider/addon-shim" "^1.6.0"
+    ember-cli-normalize-entity-name "^1.0.0"
+    ember-cli-string-utils "^1.1.0"
 
 "ember-modifier@^2.0.0 || ^3.0.0", ember-modifier@^3.1.0, ember-modifier@^3.2.7:
   version "3.2.7"
