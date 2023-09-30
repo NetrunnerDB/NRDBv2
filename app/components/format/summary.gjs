@@ -1,4 +1,6 @@
 import sortBy from 'ember-composable-helpers/helpers/sort-by';
+import { hash } from '@ember/helper';
+import { LinkTo } from '@ember/routing';
 
 import Icon from '../icon';
 import { eq, formatDate } from '../../utils/template-operators';
@@ -9,7 +11,7 @@ import { eq, formatDate } from '../../utils/template-operators';
     <h3>Current banlist</h3>
     <ul class="list-unstyled ms-4">
       {{#if @model.format.activeRestrictionId}}
-        <li><a href="#">{{@model.snapshot.restriction.name}}</a></li>
+        <li><LinkTo @route="page.banlists" @query={{ hash format=@model.format.id search=@model.snapshot.restriction.name}}>{{@model.snapshot.restriction.name}}</LinkTo></li>
         <li>
           active as of
           <strong>{{(formatDate @model.snapshot.restriction.dateStart)}}</strong>
