@@ -4,8 +4,11 @@
 
   <div class="container sticky-top">
     <div class="row">
-      <Home::MobileNavbar />
+      {{! Show regular horizontal navbar on mobile }}
+      <div class="d-xl-none"><Page::Navbar /></div>
+      {{! Show vertical navbar on mobile }}
       <Home::Navbar />
+
       <Home::Sidebar />
 
       <div class="col-12 col-xl-6 order-2 d-flex flex-column py-2">

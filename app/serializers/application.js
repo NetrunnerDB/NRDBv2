@@ -6,4 +6,9 @@ export default class ApplicationSerializer extends JSONAPISerializer {
   keyForAttribute(key) {
     return decamelize(key);
   }
+
+  // Convert Ember's camelCase back to Rails' underscores
+  keyForRelationship(key) {
+    return key.replace(/(?:\.?)([A-Z])/g, '_$1').toLowerCase();
+  }
 }

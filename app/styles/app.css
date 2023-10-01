@@ -1,3 +1,7 @@
+@import url("./quote.css");
+@import url("./components/full-display.css");
+@import url("./components/navbar.css");
+
 :root {
   --nr-primary: #dc143b;
   --nr-primary-dark: #88001b;
@@ -193,11 +197,6 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  font-size: 16px;
-  font-family: LatoWeb, sans-serif;
-}
-
 nav {
   font-size: 18px;
   font-family: LatoWeb, sans-serif;
@@ -205,6 +204,9 @@ nav {
 }
 
 body {
+  font-size: 16px;
+  font-family: LatoWeb, sans-serif;
+
   --a: 230;
 
   background: linear-gradient(
@@ -268,6 +270,11 @@ footer {
   text-decoration: none;
 }
 
+.button-array button {
+  font-size: inherit;
+  width: 100%;
+}
+
 .navbar button,
 .navbar .button {
   padding: 16px 40px;
@@ -275,6 +282,20 @@ footer {
   border: none;
   text-align: left;
   text-decoration: none;
+}
+
+.button-array button:not(:first-child) {
+  margin-top: 5px;
+}
+
+@media only screen and (width > 768px) {
+  .button-array button {
+    padding: 0;
+  }
+
+  .button-array button:not(:first-child) {
+    margin-top: 2px;
+  }
 }
 
 .navbar button:hover,
@@ -364,7 +385,10 @@ footer {
   background-repeat: no-repeat;
   background-size: 90px;
   background-position: 50% 25%;
-  transition: transform 0.2s, right 0.2s, opacity 0.2s;
+  transition:
+    transform 0.2s,
+    right 0.2s,
+    opacity 0.2s;
 }
 
 .ui-state-active .decklist-identity-image {
@@ -379,12 +403,30 @@ tbody th {
   font-weight: normal;
 }
 
+/* Custom scrollbar */
+*::-webkit-scrollbar {
+  width: 9px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--nr-grey-light);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--nr-secondary);
+  border: transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nr-secondary) var(--nr-grey-light);
+}
+
 .search-results tbody tr {
   border: 0 solid transparent;
 }
 
 .search-results tbody tr:nth-child(2n + 1) {
-  background-color: #f0f0f0;
   background: linear-gradient(
     90deg,
     rgb(255 255 255 / 0%) 0%,
@@ -422,25 +464,6 @@ tbody th {
   }
 }
 
-/* Custom scrollbar */
-*::-webkit-scrollbar {
-  width: 9px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--nr-grey-light);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--nr-secondary);
-  border: transparent;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--nr-secondary) var(--nr-grey-light);
-}
-
 img.card-art {
   width: 100%;
   border-radius: var(--card-border-radius);
@@ -450,6 +473,9 @@ img.card-art {
   --mx: 50%;
   --my: 50%;
   --o: 0;
+  --scale: 0;
+  --rotate-x: "0deg";
+  --rotate-y: "0deg";
 
   perspective: 800px;
 }
@@ -464,11 +490,15 @@ img.card-art {
   overflow: hidden;
   transition: filter 0.5s;
   perspective: 10px;
+  transform: scale3d(var(--scale), var(--scale), var(--scale))
+    rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
 }
 
 .card-art-container .card-art-frame.active-card {
   filter: drop-shadow(0 1px 4px var(--nr-secondary-light));
-  transition: transform 0s, filter 0.5s;
+  transition:
+    transform 0s,
+    filter 0.5s;
 }
 
 .card-art-container .card-art-frame img {
@@ -651,9 +681,6 @@ img.card-art {
   font-style: italic;
 }
 
-.card-text-box .card-illustrator {
-}
-
 .names-only-key {
   border-right: 1px solid var(--nr-grey-light);
   text-align: right;
@@ -708,9 +735,6 @@ img.card-art {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.hex-image {
   background-position: center top;
 }
 
@@ -810,25 +834,6 @@ img.card-art {
   background-position: calc(50% - 1px) -2px;
 }
 
-.button-array button {
-  font-size: inherit;
-  width: 100%;
-}
-
-.button-array button:not(:first-child) {
-  margin-top: 5px;
-}
-
-@media only screen and (width > 768px) {
-  .button-array button {
-    padding: 0;
-  }
-
-  .button-array button:not(:first-child) {
-    margin-top: 2px;
-  }
-}
-
 .legality-available::before,
 .legality-unavailable::before,
 .legality-legal::before,
@@ -836,6 +841,8 @@ img.card-art {
 .legality-rotated::before,
 .legality-added::before,
 .legality-restricted::before,
+.legality-verified::before,
+.legality-unverified::before,
 .legality-1-inf::before,
 .legality-3-inf::before,
 .legality-penalty::before,
@@ -851,6 +858,16 @@ img.card-art {
   font-size: 0.75em;
   font-weight: bold;
   text-align: center;
+}
+
+.legality-verified::before {
+  content: "VERIFIED";
+  background-color: #577a57;
+}
+
+.legality-unverified::before {
+  content: "UNVERIFIED";
+  background-color: #8f8f8f;
 }
 
 .legality-available::before {

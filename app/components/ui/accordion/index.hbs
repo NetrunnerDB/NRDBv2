@@ -1,0 +1,67 @@
+{{#if @items}}
+  <div class="panel-list">
+    {{#if (or @showMassToggle @showSearch @showSort)}}
+      <p class="row">
+        {{#if @showMassToggle}}
+          <button
+            class="show-all col-2 btn btn-secondary"
+            type="button"
+            {{on "click" (fn this.setAllPanels true)}}
+          >Show all</button>
+        {{/if}}
+        {{#if @showSearch}}
+          <div class="panel-search">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search..."
+              aria-label="Search"
+              value={{this.query}}
+              {{on 'input' this.updateFilter}}
+            />
+          </div>
+        {{/if}}
+        {{#if @showMassToggle}}
+          <button
+            class="hide-all col-2 btn btn-secondary"
+            type="button"
+            {{on "click" (fn this.setAllPanels false)}}
+          >Hide all</button>
+        {{/if}}
+        {{#if @showSort}}
+          <div class="panel-dropdown dropdown">
+            <button
+              class="dropdown-toggle btn btn-light"
+              data-toggle="dropdown"
+              aria-expanded="false"
+              type="button"
+            >
+              Sort
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <li><a href="#" onclick="return false;" id="sort-0">Name (A-Z)</a></li>
+              <li><a href="#" onclick="return false;" id="sort-1">Name (Z-A)</a></li>
+              <li><a href="#" onclick="return false;" id="sort-2">Cards (most)</a></li>
+              <li><a href="#" onclick="return false;" id="sort-3">Cards (least)</a></li>
+            </ul>
+          </div>
+        {{/if}}
+      </p>
+    {{/if}}
+    {{#each (sort-by "dateStart:desc" @items) as |item index|}}
+      {{yield
+        (component
+          "ui/accordion/panel"
+          query=this.query
+          isOpen=(get this.panels index)
+          isFiltered=(this.isPanelFiltered this.query item.name)
+          togglePanel=(fn this.togglePanel index)
+        )
+        item
+      }}
+    {{/each}}
+  </div>
+{{else}}
+  {{yield to="empty"}}
+{{/if}}

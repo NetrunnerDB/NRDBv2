@@ -14,8 +14,7 @@ module.exports = function (environment) {
       },
     },
 
-    API_URL: 'https://api-preview.netrunnerdb.com/api/v3', // Must not have a trailing / at the end
-    // API_URL: 'localhost:3000/api/v3',
+    API_URL: 'https://api-preview.netrunnerdb.com/api/v3/public/',
     googleFonts: ['Merriweather Sans'],
 
     APP: {
@@ -46,6 +45,7 @@ module.exports = function (environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.API_URL = 'https://api-preview.netrunnerdb.com/api/v3/public/';
   }
 
   return ENV;

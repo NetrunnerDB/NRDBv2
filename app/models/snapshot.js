@@ -14,5 +14,7 @@ export default class SnapshotModel extends Model {
   @belongsTo('format', { async: true, inverse: 'snapshots' }) format;
   @belongsTo('card-pool', { async: true, inverse: 'snapshots' }) cardPool;
   @belongsTo('restriction', { async: true, inverse: null }) restriction;
-  @hasMany('cards', { async: true, inverse: null }) restriction;
+  @hasMany('card-cycle', { async: true, inverse: null }) cardCycles;
+  @hasMany('card-set', { async: true, inverse: null }) cardSets;
+  @hasMany('card', { async: true, inverse: null }) cards;
 }

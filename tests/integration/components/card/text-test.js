@@ -9,8 +9,9 @@ module('Integration | Component | card/text', function (hooks) {
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
+    this.set('text', 'Tread Lightly');
 
-    await render(hbs`<Card::Text />`);
+    await render(hbs`<Card::Text @text={{this.text}} />`);
 
     assert.dom(this.element).exists();
   });
