@@ -17,11 +17,15 @@ export default class PageCardRoute extends Route {
     }
 
     // Get the printing
-    let printing = await this.store.findRecord('printing', id);
+    let printing = await this.store.findRecord('printing', id,
+      { include: 'card_set,card_type,faction,card,card.rulings' },
+    );
     if (!card) {
-      card = await this.store.findRecord('card', printing.cardId);
+      card = await printing.card;
     }
-
+    let cardSet = await printing.cardSet;
+    let cardType = await printing.cardType;
+    let faction = await printing.faction;
     let rulings = await card.rulings;
 
     let otherPrintings = await this.store.query('printing', {
@@ -47,13 +51,16 @@ export default class PageCardRoute extends Route {
     });
 
     return hash({
-      printing,
       card,
-      rulings,
+      cardSet,
+      cardType,
       eternalSnapshot,
+      faction,
+      otherPrintings,
+      printing,
+      rulings,
       standardSnapshot,
       startupSnapshot,
-      otherPrintings,
     });
   }
 }

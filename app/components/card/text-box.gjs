@@ -29,12 +29,12 @@ import Text from './text';
       </div>
     {{/if}}
     <div class="card-details">
-      <span class="card-type"><b>{{@printing.cardType.name}}:</b></span>
+      <span class="card-type"><b>{{@cardType.name}}:</b></span>
       <span class="card-subtypes">{{@printing.displaySubtypes}}</span>
-      <span class="card-stats"><Stats @printing={{@printing}} /></span>
+      <span class="card-stats"><Stats @printing={{@printing}} @showStrength=true /></span>
     </div>
     {{#if @printing.text}}
-      <div class="card-text border-{{@printing.faction.id}}">
+      <div class="card-text border-{{@printing.factionId}}">
         <Text @text={{@printing.text}} />
       </div>
     {{/if}}
@@ -47,13 +47,13 @@ import Text from './text';
     {{/if}}
     <div class="card-illustrator">
       <p>
-        <Icon @id={{@printing.faction.id}} />
-        {{@printing.faction.name}}
+        <Icon @id={{@printing.factionId}} />
+        {{@faction.name}}
         {{#each @printing.illustratorNames as |name|}}
           <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
         {{/each}}•
-        <Icon @id={{@printing.cardSet.id}} />
-        {{@printing.cardSet.name}}
+        <Icon @id={{@printing.cardSetId}} />
+        {{@cardSet.name}}
         {{@printing.position}}
       </p>
     </div>

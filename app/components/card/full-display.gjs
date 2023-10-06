@@ -30,6 +30,9 @@ import LinkToCard from './link-to';
               <div class="row position-relative">
                 <div id="card-content" class="col-md-7 border-end">
                   <TextBox
+                    @cardSet={{@cardSet}}
+                    @cardType={{@cardType}}
+                    @faction={{@faction}}
                     @printing={{@printing}}
                     @showThumbnail={{false}}
                     @showFlavor={{true}}
