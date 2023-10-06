@@ -17,9 +17,9 @@ export default class PageCardRoute extends Route {
     }
 
     // Get the printing
-    let printing = await this.store.findRecord('printing', id,
-      { include: 'card_set,card_type,faction,card,card.rulings' },
-    );
+    let printing = await this.store.findRecord('printing', id, {
+      include: 'card_set,card_type,faction,card,card.rulings',
+    });
     if (!card) {
       card = await printing.card;
     }
