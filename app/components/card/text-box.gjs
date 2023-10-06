@@ -31,7 +31,7 @@ import Text from './text';
     <div class="card-details">
       <span class="card-type"><b>{{@cardType.name}}:</b></span>
       <span class="card-subtypes">{{@printing.displaySubtypes}}</span>
-      <span class="card-stats"><Stats @printing={{@printing}} @showStrength=true /></span>
+      <span class="card-stats"><Stats @printing={{@printing}} /></span>
     </div>
     {{#if @printing.text}}
       <div class="card-text border-{{@printing.factionId}}">
