@@ -11,12 +11,15 @@ import LinkToCard from './link-to';
           <div id="card-image" class="mx-auto px-4 px-md-0">
             <Image src={{@printing.images.nrdb_classic.large}} />
           </div>
+          {{#if false}}
+          {{! Re-enable this with a check on if this is a flip card when the API supports those explicitly. }}
           <div class="d-flex justify-content-center mt-3">
             <button id="flip" type="button" class="btn btn-secondary"><i
                 class="fa-solid fa-rotate"
               ></i>
               Flip</button>
           </div>
+          {{/if}}
         </div>
         <div class="col-md-8 full-card-text mt-2">
           <div class="card">
