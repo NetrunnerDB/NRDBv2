@@ -10,6 +10,6 @@ export default class InfluencePipsComponent extends Component {
   }
 
   <template>
-    <span class="influence influence-{{ @printing.factionId }}">{{ this.influence }}</span><span></span>
+    <span class="influence influence-{{ @printing.factionId }}">{{ this.influence }}</span>
   </template>
 }
