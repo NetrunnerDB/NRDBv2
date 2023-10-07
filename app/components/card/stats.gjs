@@ -20,10 +20,12 @@ import { eq, maybe } from 'netrunnerdb/utils/template-operators';
       {{@printing.trashCost}}<i class="icon-trash-cost"></i>
     {{/if}}
 
-    {{#if @printing.strength}}
-      <br />
-      Strength:
-      {{@printing.strength}}
+    {{#if @showStrength }}
+      {{#if @printing.strength}}
+        <br />
+        Strength:
+        {{@printing.strength}}
+      {{/if}}
     {{/if}}
   {{/if}}
 </template>
