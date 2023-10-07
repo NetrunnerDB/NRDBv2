@@ -30,7 +30,7 @@
                     </div>
                   </div>
                   <ul class="list-unstyled">
-                    {{#if (gt cycle.cardSets.length 1)}}
+                    {{#if (gt cycle.cardSets.length 0)}}
                       {{#each
                         (sort-by "dateRelease:desc" cycle.cardSets)
                         as |set|
