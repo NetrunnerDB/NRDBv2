@@ -3,30 +3,26 @@
 <div class="container">
   <div class="row">
     <div class="col-6 col-xl-2 d-flex order-xl-0 flex-column my-2">
-      {{#let (previous @model.printing @model.printing.cardSet.printings) as |nextPrinting|}}
-        {{#if (and nextPrinting (not-eq @model.printing nextPrinting))}}
-          <Card::LinkTo
-            @printing={{nextPrinting}}
-            class="btn btn-light text-decoration-none text-truncate"
-          >
-            <FaIcon @icon="left-long" />
-            {{nextPrinting.title}}
-          </Card::LinkTo>
-        {{/if}}
-      {{/let}}
+      {{#if (and @model.previousPrinting (not-eq @model.printing @model.previousPrinting))}}
+        <Card::LinkTo
+          @printing={{@model.previousPrinting}}
+          class="btn btn-light text-decoration-none text-truncate"
+        >
+          <FaIcon @icon="left-long" />
+          {{@model.previousPrinting.title}}
+        </Card::LinkTo>
+      {{/if}}
     </div>
     <div class="col-6 col-xl-2 d-flex order-xl-2 flex-column my-2">
-      {{#let (next @model.printing @model.printing.cardSet.printings) as |prevPrinting|}}
-        {{#if (and prevPrinting (not-eq @model.printing prevPrinting))}}
-          <Card::LinkTo
-            @printing={{prevPrinting}}
-            class="btn btn-light text-decoration-none text-truncate"
-          >
-            {{prevPrinting.title}}
-            <FaIcon @icon="right-long" />
-          </Card::LinkTo>
-        {{/if}}
-      {{/let}}
+      {{#if (and @model.nextPrinting (not-eq @model.printing @model.nextPrinting))}}
+        <Card::LinkTo
+          @printing={{@model.nextPrinting}}
+          class="btn btn-light text-decoration-none text-truncate"
+        >
+          {{@model.nextPrinting.title}}
+          <FaIcon @icon="right-long" />
+        </Card::LinkTo>
+      {{/if}}
     </div>
 
     <div class="col-xl-8 d-flex order-xl-1 flex-column my-2">
