@@ -26,7 +26,7 @@
                 <tr>
                   <td><Icon @icon={{@model.set.cardCycleId }} />{{ @model.set.name }} {{ printing.position }}</td>
                   <td>
-                      <LinkTo @route="page.card" @model="{{ printing.id }}">{{printing.title}}</LinkTo>
+                      <Card::LinkTo @printing={{ printing }}>{{printing.title}}</Card::LinkTo>
                   </td>
                   <td><Icon @icon="{{ printing.factionId }}" /><Card::InfluencePips @printing={{ printing }} /></td>
                   <td><Card::Stats @printing={{printing}} /></td>
