@@ -11,8 +11,7 @@
         >
 
           <div class="container" id="banlists">
-            {{! add cycle icon here and link to cycle as well }}
-            <h1>Set: {{ @model.set.name }}</h1>
+            <h1>Set – <Icon @icon="{{ @model.set.cardCycleId }}" /><LinkTo @route="page.cycle" @model="{{ @model.set.cardCycleId }}" >{{ @model.set.cardCycle.name }}</LinkTo>: {{ @model.set.name }}</h1>
             <p></p>
             <table class="table-striped">
               <thead>
@@ -25,11 +24,11 @@
               <tbody>
               {{#each (sort-by "position:asc" @model.printings) as |printing|}}
                 <tr>
-                  <td><Icon @id={{@model.set.cardCycleId }} />{{ @model.set.name }} {{ printing.position }}</td>
+                  <td><Icon @icon={{@model.set.cardCycleId }} />{{ @model.set.name }} {{ printing.position }}</td>
                   <td>
                       <LinkTo @route="page.card" @model="{{ printing.id }}">{{printing.title}}</LinkTo>
                   </td>
-                  <td><Icon @id="{{ printing.factionId }}" /><Card::InfluencePips @printing={{ printing }} /></td>
+                  <td><Icon @icon="{{ printing.factionId }}" /><Card::InfluencePips @printing={{ printing }} /></td>
                   <td><Card::Stats @printing={{printing}} /></td>
                   <td><b>{{printing.cardType.name}}</b>{{#if printing.displaySubtypes }}: {{ printing.displaySubtypes }}{{/if}}</td>
                 </tr>

@@ -11,7 +11,7 @@ module('Integration | Component | icon', function (hooks) {
     // Handle any actions with this.set('myAction', function(val) { ... });
 
     await render(hbs`
-      <Icon @id="HELLO WORLD" />
+      <Icon @icon="HELLO WORLD" />
     `);
 
     let icon = this.element.querySelector('i');

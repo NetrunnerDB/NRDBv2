@@ -47,12 +47,12 @@ import Text from './text';
     {{/if}}
     <div class="card-illustrator">
       <p>
-        <Icon @id={{@printing.factionId}} />
+        <Icon @icon={{@printing.factionId}} />
         {{@faction.name}}
         {{#each @printing.illustratorNames as |name|}}
           <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
         {{/each}}•
-        <Icon @id={{@printing.cardSetId}} />
+        <Icon @icon={{@printing.cardSetId}} />
         {{@cardSet.name}}
         {{@printing.position}}
       </p>
