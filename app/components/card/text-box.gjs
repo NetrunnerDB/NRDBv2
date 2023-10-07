@@ -4,6 +4,7 @@ import { hash } from '@ember/helper';
 import { htmlSafe } from '@ember/template';
 
 import Icon from '../icon';
+import InfluencePips from './influence-pips';
 import Stats from './stats';
 import Text from './text';
 
@@ -29,7 +30,7 @@ import Text from './text';
       </div>
     {{/if}}
     <div class="card-details">
-      <span class="card-type"><b>{{@cardType.name}}:</b></span>
+      <span class="card-type"><b>{{@printing.cardType.name}}:</b></span>
       <span class="card-subtypes">{{@printing.displaySubtypes}}</span>
       <span class="card-stats"><Stats @printing={{@printing}} /></span>
     </div>
@@ -47,7 +48,7 @@ import Text from './text';
     {{/if}}
     <div class="card-illustrator">
       <p>
-        <Icon @id={{@printing.factionId}} />
+        <InfluencePips @printing={{ @printing }} /><Icon @id={{@printing.factionId}} />
         {{@faction.name}}
         {{#each @printing.illustratorNames as |name|}}
           <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
