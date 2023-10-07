@@ -2,15 +2,16 @@ import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import RSVP from 'rsvp';
 
-export default class PageSetRoute extends Route {
+export default class PageCycleRoute extends Route {
   @service store;
 
   async model(params) {
     return RSVP.hash({
-      set: this.store.findRecord('card_set', params.id),
+      cycle: this.store.findRecord('card_cycle', params.id),
       printings: this.store.query('printing', {
-        filter: { card_set_id: params.id },
-        include: ['card_type'],
+        filter: { card_cycle_id: params.id },
+        include: 'card_set,card_type',
+        page: { limit: 1000 },
       }),
     });
   }

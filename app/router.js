@@ -22,6 +22,7 @@ Router.map(function () {
     this.route('advanced-search');
     this.route('banlists');
     this.route('card', { path: '/card/:id' });
+    this.route('cycle', { path: '/cycle/:id' });
     this.route('cycles');
     this.route('faction', { path: '/faction/:id' });
     this.route('factions');
