@@ -26,13 +26,13 @@ export default class PageCardRoute extends Route {
     let cardSetPrintings = await this.store.query('printing', {
       filter: { card_set_id: printing.cardSetId },
       page: { limit: 1000 },
-      sort: 'id'
+      sort: 'id',
     });
 
     // Identify previous and next printings in the set.
     let previousPrinting = null;
     let nextPrinting = null;
-    cardSetPrintings.forEach(p => {
+    cardSetPrintings.forEach((p) => {
       if (printing.id > p.id) {
         previousPrinting = p;
       }
