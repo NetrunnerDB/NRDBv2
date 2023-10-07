@@ -48,12 +48,12 @@ import Text from './text';
     {{/if}}
     <div class="card-illustrator">
       <p>
-        <InfluencePips @printing={{ @printing }} /><Icon @id={{@printing.factionId}} />
+        <InfluencePips @printing={{ @printing }} /><Icon @icon={{@printing.factionId}} />
         {{@faction.name}}
         {{#each @printing.illustratorNames as |name|}}
           <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
         {{/each}}•
-        <Icon @id={{@printing.cardSetId}} />
+        <Icon @icon={{@printing.cardSetId}} />
         {{@cardSet.name}}
         {{@printing.position}}
       </p>
