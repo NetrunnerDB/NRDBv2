@@ -1,3 +1,4 @@
+import { LinkTo } from '@ember/routing';
 import Image from './image';
 import TextBox from './text-box';
 import Legality from './legality';
@@ -37,6 +38,7 @@ import LinkToCard from './link-to';
                     @cardType={{@cardType}}
                     @faction={{@faction}}
                     @printing={{@printing}}
+                    @showIllustrators={{true}}
                     @showThumbnail={{false}}
                     @showFlavor={{true}}
                     @showProduction={{true}}
@@ -74,9 +76,10 @@ import LinkToCard from './link-to';
                     {{#each @otherPrintings as |printing|}}
                       <div class="d-flex justify-content-between">
                         <div class="text-truncate">
-                          <LinkToCard
-                            @printing={{printing}}
-                          >{{printing.cardSetName}}</LinkToCard>
+                          <LinkTo
+                            @route="page.set"
+                            @model="{{printing.cardSetId}}"
+                          >{{printing.cardSetName}}</LinkTo>
                           {{! TODO: point this at the set page once that's implemented }}
                         </div>
                         <div>
