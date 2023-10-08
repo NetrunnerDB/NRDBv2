@@ -1114,6 +1114,10 @@ img.card-art {
   font-size: 72px !important;
 }
 
+.table-fill {
+  width: 100%;
+}
+
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: rgba(0 0 0 / 5%);
