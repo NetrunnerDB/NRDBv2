@@ -46,18 +46,25 @@ import Text from './text';
         </div>
       {{/if}}
     {{/if}}
-    <div class="card-illustrator">
+    <div>
       <p>
         <InfluencePips @printing={{ @printing }} /><Icon @icon={{@printing.factionId}} />
-        {{@faction.name}}
-        {{#each @printing.illustratorNames as |name|}}
-          <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
-        {{/each}}•
+        {{@printing.faction.name}}
+        •
         <Icon @icon={{@printing.cardSetId}} />
-        {{@cardSet.name}}
+        <LinkTo @route="page.set" @model="{{@printing.cardSet.id}}">{{@printing.cardSet.name}}</LinkTo>
         {{@printing.position}}
       </p>
     </div>
+    {{#if @showIllustrators}}
+    <div class="card-illustrator">
+      <p>
+        Illustrated by {{#each @printing.illustratorNames as |name|}}
+          <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
+        {{/each}}
+      </p>
+    </div>
+    {{/if}}
     {{#if @showProduction}}
       <div class="card-producer">
         {{! TODO: once this data is available in the API make this show cards designed or reprinted by NSG }}
