@@ -27,20 +27,19 @@ export default class CardListsComponent extends Component {
     this.display = display;
   }
 
-  get printingsTableForImages() {
+  makeNColumnTable(printings, numColumns) {
     let t = new Array();
 
-    let numColumns = 4;
     let p = 0;
     let numRows =
-      Math.floor(this.args.printings.length / numColumns) +
-      (this.args.printings.length % numColumns > 0 ? 1 : 0);
+      Math.floor(printings.length / numColumns) +
+      (printings.length % numColumns > 0 ? 1 : 0);
     for (let i = 0; i < numRows; i++) {
       t.push(new Array());
       let row = t[i];
       for (let j = 0; j < numColumns; j++) {
-        if (p < this.args.printings.length) {
-          row.push(this.args.printings[p]);
+        if (p < printings.length) {
+          row.push(printings[p]);
           p++;
         }
       }
@@ -49,26 +48,12 @@ export default class CardListsComponent extends Component {
     return t;
   }
 
+  get printingsTableForImages() {
+    return this.makeNColumnTable(this.args.printings, 4);
+  }
+
   get printingsTableForTextOnly() {
-    let t = new Array();
-
-    let numColumns = 3;
-    let p = 0;
-    let numRows =
-      Math.floor(this.args.printings.length / numColumns) +
-      (this.args.printings.length % numColumns > 0 ? 1 : 0);
-    for (let i = 0; i < numRows; i++) {
-      t.push(new Array());
-      let row = t[i];
-      for (let j = 0; j < numColumns; j++) {
-        if (p < this.args.printings.length) {
-          row.push(this.args.printings[p]);
-          p++;
-        }
-      }
-    }
-
-    return t;
+    return this.makeNColumnTable(this.args.printings, 3);
   }
 
   <template>
