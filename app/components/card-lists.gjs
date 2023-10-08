@@ -1,9 +1,9 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-import { fn } from '@ember/helper';
-import { on } from '@ember/modifier';
+import { hash } from '@ember/helper';
+import { service } from '@ember/service';
 import { eq } from 'netrunnerdb/utils/template-operators';
+import { LinkTo } from '@ember/routing';
 import sortBy from 'ember-composable-helpers/helpers/sort-by';
 import CardLinkTo from './card/link-to';
 import InfluencePips from './card/influence-pips';
@@ -14,18 +14,8 @@ import CardTextBox from './card/text-box';
 import Icon from './icon';
 
 export default class CardListsComponent extends Component {
+  @service router;
   @tracked display = 'checklist';
-  eq = eq;
-
-  constructor() {
-    super(...arguments);
-
-    this.display = this.args.display;
-  }
-
-  @action setDisplay(display) {
-    this.display = display;
-  }
 
   makeNColumnTable(printings, numColumns) {
     let t = new Array();
@@ -62,42 +52,38 @@ export default class CardListsComponent extends Component {
       <div class='card-header'>
         <ul class='nav nav-tabs nav-fill card-header-tabs'>
           <li class='nav-item'>
-            <a
-              href='#'
+            <LinkTo
+              @query={{hash display='checklist'}}
               role='button'
-              class='nav-link {{if (eq this.display "checklist") "active"}}'
-              {{on 'click' (fn this.setDisplay 'checklist')}}
-            >Checklist</a>
+              class='nav-link'
+            >Checklist</LinkTo>
           </li>
           <li class='nav-item'>
-            <a
-              href='#'
+            <LinkTo
+              @query={{hash display='full'}}
               role='button'
-              class='nav-link {{if (eq this.display "full") "active"}}'
-              {{on 'click' (fn this.setDisplay 'full')}}
-            >Full Cards</a>
+              class='nav-link'
+            >Full Cards</LinkTo>
           </li>
           <li class='nav-item'>
-            <a
-              href='#'
+            <LinkTo
+              @query={{hash display='images'}}
               role='button'
-              class='nav-link {{if (eq this.display "images") "active"}}'
-              {{on 'click' (fn this.setDisplay 'images')}}
-            >Images Only</a>
+              class='nav-link'
+            >Images Only</LinkTo>
           </li>
           <li class='nav-item'>
-            <a
-              href='#'
+            <LinkTo
+              @query={{hash display='text'}}
               role='button'
-              class='nav-link {{if (eq this.display "text") "active"}}'
-              {{on 'click' (fn this.setDisplay 'text')}}
-            >Text Only</a>
+              class='nav-link'
+            >Text Only</LinkTo>
           </li>
         </ul>
       </div>
 
       <div class='card-body'>
-        {{#if (eq this.display 'checklist')}}
+        {{#if (eq @display 'checklist')}}
           <div id='card-list-checklist'>
             <table class='table-striped table-fill'>
               <thead>
@@ -130,7 +116,7 @@ export default class CardListsComponent extends Component {
             </table>
           </div>
 
-        {{else if (eq this.display 'full')}}
+        {{else if (eq @display 'full')}}
           <div id='card-list-full-cards'>
             {{#each @printings as |p|}}
               <div class='row'>
@@ -146,7 +132,7 @@ export default class CardListsComponent extends Component {
             {{/each}}
           </div>
 
-        {{else if (eq this.display 'images')}}
+        {{else if (eq @display 'images')}}
           {{#each this.printingsTableForImages as |row|}}
             <div class='row'>
               {{#each row as |p|}}
@@ -157,7 +143,7 @@ export default class CardListsComponent extends Component {
             </div>
           {{/each}}
 
-        {{else if (eq this.display 'text')}}
+        {{else if (eq @display 'text')}}
           <div id='card-list-text-only'>
             {{#each this.printingsTableForTextOnly as |row|}}
               <div class='row'>
