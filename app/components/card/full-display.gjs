@@ -54,6 +54,7 @@ import LinkToCard from './link-to';
                     <button type="button" class="btn btn-secondary">Download text</button>
                     <button type="button" class="btn btn-secondary">Download JSON</button>
                   </div>
+                  {{#if @showLegality }}
                   <hr />
                   <div id="legalities">
                     <Legality @printing={{@printing}} @format="standard" @snapshot={{@standardSnapshot}}>
@@ -63,6 +64,8 @@ import LinkToCard from './link-to';
                     <Legality @printing={{@printing}} @format="eternal" @snapshot={{@eternalSnapshot}}>
                       <b>Eternal</b></Legality>
                   </div>
+                  {{/if}}
+                  {{#if @showPrintings}}
                   <hr />
                   <div class="d-flex justify-content-between">
                     <div class="text-truncate">
@@ -90,6 +93,7 @@ import LinkToCard from './link-to';
                       </div>
                     {{/each}}
                   </div>
+                  {{/if}}
                 </div>
               </div>
             </div>

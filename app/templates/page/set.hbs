@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div
-      class="col-12 col-xl-8 offset-xl-2 d-flex flex-row flex-sm-column my-2"
+      class="col-12 d-flex flex-row flex-sm-column my-2"
     >
       <div class="card border-0 flex-grow-1" id="nav-main-content">
         <div
@@ -12,29 +12,8 @@
 
           <div class="container" id="banlists">
             <h1>Set – <Icon @icon="{{ @model.set.cardCycleId }}" /><LinkTo @route="page.cycle" @model="{{ @model.set.cardCycleId }}" >{{ @model.set.cardCycle.name }}</LinkTo>: {{ @model.set.name }}</h1>
+            <CardLists @printings={{@model.printings}} @set={{@model.set}} @display="{{this.display}}"></CardLists>
             <p></p>
-            <table class="table-striped">
-              <thead>
-                <th>Position</th>
-                <th>Title</th>
-                <th>Faction</th>
-                <th>Attributes</th>
-                <th>Type: Subtypes</th>
-              </thead>
-              <tbody>
-              {{#each (sort-by "position:asc" @model.printings) as |printing|}}
-                <tr>
-                  <td><Icon @icon={{@model.set.cardCycleId }} />{{ @model.set.name }} {{ printing.position }}</td>
-                  <td>
-                      <Card::LinkTo @printing={{ printing }}>{{printing.title}}</Card::LinkTo>
-                  </td>
-                  <td><Icon @icon="{{ printing.factionId }}" /><Card::InfluencePips @printing={{ printing }} /></td>
-                  <td><Card::Stats @printing={{printing}} /></td>
-                  <td><b>{{printing.cardType.name}}</b>{{#if printing.displaySubtypes }}: {{ printing.displaySubtypes }}{{/if}}</td>
-                </tr>
-              {{/each}}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
