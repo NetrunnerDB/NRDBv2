@@ -9,7 +9,6 @@ import sortBy from 'ember-composable-helpers/helpers/sort-by';
 
 export default class CardCommunityComponent extends Component {
   @tracked tab = 'content-rulings';
-  eq = eq;
 
   @action setTab(tabId) {
     this.tab = tabId;
