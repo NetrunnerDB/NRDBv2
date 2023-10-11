@@ -59,7 +59,7 @@ import { eq, formatDate } from '../../utils/template-operators';
         as |cycle|
       }}
         <li>
-          <a href="#">{{cycle.name}}</a>
+          <LinkTo @route="page.cycle" @model="{{ cycle.id }}" >{{cycle.name}}</LinkTo>
         </li>
       {{/each}}
     </ul>
