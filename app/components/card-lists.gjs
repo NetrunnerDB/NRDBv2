@@ -96,7 +96,7 @@ export default class CardListsComponent extends Component {
               <tbody>
                 {{#each (sortBy 'id:asc' @printings) as |printing|}}
                   <tr>
-                    <td><Icon @icon={{@set.cardCycleId}} />{{@set.name}}
+                    <td><Icon @icon={{printing.cardCycleId}} />{{printing.cardSet.name}}
                       {{printing.position}}</td>
                     <td>
                       <CardLinkTo
