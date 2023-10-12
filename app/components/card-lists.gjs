@@ -136,7 +136,7 @@ export default class CardListsComponent extends Component {
           {{#each this.printingsTableForImages as |row|}}
             <div class='row'>
               {{#each row as |p|}}
-                <div class='col-3 card-art-container px-3 pb-1 p-sm-0'>
+                <div class='col-xl-3 col-lg-3 col-md-6 card-art-container px-2 pb-3'>
                   <Image src={{p.images.nrdb_classic.large}} />
                 </div>
               {{/each}}
