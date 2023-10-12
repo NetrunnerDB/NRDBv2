@@ -87,7 +87,7 @@ export default class CardImageComponent extends Component {
   <template>
     {{! template-lint-disable no-invalid-interactive }}
     <div
-      class="card-art-container px-3 pb-1 p-sm-0"
+      class="card-art-container"
       {{on "mouseenter" this.mouseEnter}}
       {{on "mouseleave" this.mouseLeave}}
       {{on "mousemove" this.mouseMove}}
