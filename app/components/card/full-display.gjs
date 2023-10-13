@@ -10,7 +10,7 @@ import LinkToCard from './link-to';
       <div class="row">
         <div class="col-md-4 px-4 px-md-0 z-index-10">
           <div id="card-image" class="mx-auto px-4 px-md-0">
-            <Image src={{@printing.images.nrdb_classic.large}} />
+            <LinkToCard @printing={{@printing}}><Image src={{@printing.images.nrdb_classic.large}} /></LinkToCard>
           </div>
           {{#if false}}
           {{! Re-enable this with a check on if this is a flip card when the API supports those explicitly. }}
