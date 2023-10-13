@@ -10,7 +10,7 @@ import LinkToCard from './link-to';
       <div class="row">
         <div class="col-md-4 px-4 px-md-0 z-index-10">
           <div id="card-image" class="mx-auto px-4 px-md-0">
-            <Image src={{@printing.images.nrdb_classic.large}} />
+            <LinkToCard @printing={{@printing}}><Image src={{@printing.images.nrdb_classic.large}} /></LinkToCard>
           </div>
           {{#if false}}
           {{! Re-enable this with a check on if this is a flip card when the API supports those explicitly. }}
@@ -28,7 +28,7 @@ import LinkToCard from './link-to';
               <div
                 id="card-title"
                 class="card-title mb-0"
-              >{{#if @printing.isUnique }}♦ {{/if}}{{@printing.title}}</div>
+              ><LinkToCard @printing={{@printing}}>{{#if @printing.isUnique }}♦ {{/if}}{{@printing.title}}</LinkToCard></div>
             </div>
             <div class="card-body">
               <div class="row position-relative">
@@ -41,10 +41,11 @@ import LinkToCard from './link-to';
                     @showIllustrators={{true}}
                     @showThumbnail={{false}}
                     @showFlavor={{true}}
-                    @showProduction={{true}}
+                    @showProduction={{false}}
                   />
                 </div>
                 <div class="col-md-5">
+                  {{#if @showDownloads}}
                   <hr class="d-md-none" />
                   <div class="button-array">
                     <button type="button" class="btn btn-secondary">Related cards</button>
@@ -54,6 +55,7 @@ import LinkToCard from './link-to';
                     <button type="button" class="btn btn-secondary">Download text</button>
                     <button type="button" class="btn btn-secondary">Download JSON</button>
                   </div>
+                  {{/if}}
                   {{#if @showLegality }}
                   <hr />
                   <div id="legalities">
