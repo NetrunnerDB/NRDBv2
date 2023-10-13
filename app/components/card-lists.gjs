@@ -101,7 +101,7 @@ export default class CardListsComponent extends Component {
                     <td>
                       <CardLinkTo
                         @printing={{printing}}
-                      >{{printing.title}}</CardLinkTo>
+                      >{{#if printing.isUnique }}♦ {{/if}}{{printing.title}}</CardLinkTo>
                     </td>
                     <td><Icon @icon='{{printing.factionId}}' /><InfluencePips
                         @printing={{printing}}
@@ -148,17 +148,24 @@ export default class CardListsComponent extends Component {
             {{#each this.printingsTableForTextOnly as |row|}}
               <div class='row'>
                 {{#each row as |p|}}
-                  <div class='col-4'>
-                    <CardTextBox
-                      @cardSet={{@p.cardSet}}
-                      @cardType={{@p.cardType}}
-                      @faction={{@p.faction}}
-                      @printing={{p}}
-                      @showIllustrators={{true}}
-                      @showThumbnail={{false}}
-                      @showFlavor={{true}}
-                      @showProduction={{true}}
-                    />
+                  <div class="card col-4 px-md-0">
+                    <div class="card-header">
+                      <div class="card-title">
+                        <CardLinkTo @printing={{p}}>{{#if p.isUnique }}♦ {{/if}}{{p.title}}</CardLinkTo>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <CardTextBox
+                        @cardSet={{@p.cardSet}}
+                        @cardType={{@p.cardType}}
+                        @faction={{@p.faction}}
+                        @printing={{p}}
+                        @showIllustrators={{true}}
+                        @showThumbnail={{false}}
+                        @showFlavor={{true}}
+                        @showProduction={{false}}
+                      />
+                    </div>
                   </div>
                 {{/each}}
               </div>
