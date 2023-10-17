@@ -6,11 +6,11 @@ export default class PageBanlistsRoute extends Route {
   @service store;
 
   async model() {
-    let loadedFormats = await Promise.all([
-      this.store.findRecord('format', 'startup', { include: 'restrictions' }),
-      this.store.findRecord('format', 'standard', { include: 'restrictions' }),
-      this.store.findRecord('format', 'eternal', { include: 'restrictions' }),
-    ]);
+    let loadedFormats = await this.store.query('format', {
+      filter: { id: ['startup', 'standard', 'eternal'] },
+      include: ['restrictions'],
+      sort: '-id',
+    });
 
     const cardIds = new Set();
     const formats = [];
