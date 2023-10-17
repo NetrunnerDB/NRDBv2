@@ -28,19 +28,27 @@ export default class PageBanlistsRoute extends Route {
           name: restriction.name,
           obj: restriction,
           dateStart: restriction.dateStart,
+          hasPoints: false,
+          hasUniversalInfluence: false,
           corp: {
             banned: [],
             restricted: [],
             global_penalty: [],
-            points: {},
-            universal_influence: {},
+            onePoint: [],
+            twoPoints: [],
+            threePoints: [],
+            oneUniversalInfluence: [],
+            threeUniversalInfluence: [],
           },
           runner: {
             banned: [],
             restricted: [],
             global_penalty: [],
-            points: {},
-            universal_influence: {},
+            onePoint: [],
+            twoPoints: [],
+            threePoints: [],
+            oneUniversalInfluence: [],
+            threeUniversalInfluence: [],
           },
         });
         restriction.verdicts.banned.forEach((cardId) => {
@@ -101,51 +109,49 @@ export default class PageBanlistsRoute extends Route {
             r.runner['global_penalty'].push(card);
           }
         });
+        for (let cardId in r.obj.verdicts.points) {
+          r.hasPoints = true;
+          let card = cards.get(cardId);
+          let points = r.obj.verdicts.points[cardId];
+          if (card.sideId == 'corp') {
+            if (points == 1) {
+              r.corp.onePoint.push(card);
+            } else if (points == 2) {
+              r.corp.twoPoints.push(card);
+            } else if (points == 3) {
+              r.corp.threePoints.push(card);
+            }
+          } else if (card.sideId == 'runner') {
+            if (points == 1) {
+              r.runner.onePoint.push(card);
+            } else if (points == 2) {
+              r.runner.twoPoints.push(card);
+            } else if (points == 3) {
+              r.runner.threePoints.push(card);
+            }
+          }
+        }
+        for (let cardId in r.obj.verdicts.universal_faction_cost) {
+          r.hasUniversalInfluence = true;
+          let card = cards.get(cardId);
+          let cost = r.obj.verdicts.universal_faction_cost[cardId];
+          if (card.sideId == 'corp') {
+            if (cost == 1) {
+              r.corp.oneUniversalInfluence.push(card);
+            } else if (cost == 3) {
+              r.corp.threeUniversalInfluence.push(card);
+            }
+          } else if (card.sideId == 'runner') {
+            if (cost == 1) {
+              r.runner.oneUniversalInfluence.push(card);
+            } else if (cost == 3) {
+              r.runner.threeUniversalInfluence.push(card);
+            }
+          }
+        }
       });
     });
 
-    /** Desired Data structure:
-     formats = []
-       'standard' => {
-          'obj' => loadedThing,
-          'restrictions' => [
-            {
-              'obj' => loadedThing,
-              'corp' => {
-                'banned' => [list of cards],
-                'restricted' => [list of cards],
-                'global_penalty' => [list of cards],
-                'points' => {
-                  '1' => [list of cards],
-                  '2' => [list of cards],
-                  '3' => [list of cards]
-                },
-                'universal_influence' => {
-                  '1' => [list of cards],
-                  '2' => [list of cards],
-                  '3' => [list of cards]
-                },
-              },
-              'runner' => {
-                'banned' => [list of cards],
-                'restricted' => [list of cards],
-                'global_penalty' => [list of cards],
-                'points' => {
-                  '1' => [list of cards],
-                  '2' => [list of cards],
-                  '3' => [list of cards]
-                },
-                'universal_influence' => {
-                  '1' => [list of cards],
-                  '2' => [list of cards],
-                  '3' => [list of cards]
-                },
-              },
-            }
-          ]
-       },
-
-    */
     return RSVP.hash({
       formats: formats,
       cards: cardsQuery,

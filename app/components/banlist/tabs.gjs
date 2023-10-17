@@ -105,6 +105,106 @@ import formatDate from '../../helpers/format-date';
                           </li>
                         </ul>
                         {{/if}}
+
+                        {{#if restriction.hasPoints }}
+                        <ul>
+                          <li>
+                            <strong>Points</strong>
+                            <ul>
+                              <li>
+                                <strong>3 Points</strong>
+                                <ul>
+                                  {{#each restriction.corp.threePoints as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                              <li>
+                                <strong>2 Points</strong>
+                                <ul>
+                                  {{#each restriction.corp.twoPoints as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                              <li>
+                                <strong>1 Point</strong>
+                                <ul>
+                                  {{#each restriction.corp.onePoint as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
+
+                        {{#if restriction.hasUniversalInfluence }}
+                        <ul>
+                          <li>
+                            <strong>Universal Influence</strong>
+                            <ul>
+                              {{#if restriction.corp.threeUniversalInfluence.length }}
+                              <li>
+                                <strong>3 Influence</strong>
+                                <ul>
+                                  {{#each restriction.corp.threeUniversalInfluence as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                              {{/if}}
+                              {{#if restriction.corp.oneUniversalInfluence.length }}
+                              <li>
+                                <strong>1 Universal Influence</strong>
+                                <ul>
+                                  {{#each restriction.corp.oneUniversalInfluence as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                              {{/if}}
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
+
                       </div>
 
                       <div class="col-6">
@@ -168,6 +268,106 @@ import formatDate from '../../helpers/format-date';
                           </li>
                         </ul>
                         {{/if}}
+
+                        {{#if restriction.hasPoints }}
+                        <ul>
+                          <li>
+                            <strong>Points</strong>
+                            <ul>
+                              <li>
+                                <strong>3 Points</strong>
+                                <ul>
+                                  {{#each restriction.runner.threePoints as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                              <li>
+                                <strong>2 Points</strong>
+                                <ul>
+                                  {{#each restriction.runner.twoPoints as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                              <li>
+                                <strong>1 Point</strong>
+                                <ul>
+                                  {{#each restriction.runner.onePoint as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
+
+                        {{#if restriction.hasUniversalInfluence }}
+                        <ul>
+                          <li>
+                            <strong>Universal Influence</strong>
+                            <ul>
+                              {{#if restriction.runner.threeUniversalInfluence.length }}
+                              <li>
+                                <strong>3 Influence</strong>
+                                <ul>
+                                  {{#each restriction.runner.threeUniversalInfluence as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                              {{/if}}
+                              {{#if restriction.runner.oneUniversalInfluence.length }}
+                              <li>
+                                <strong>1 Universal Influence</strong>
+                                <ul>
+                                  {{#each restriction.runner.oneUniversalInfluence as |card|}}
+                                    <li>
+                                      <CardLinkTo
+                                        @printing={{card}}
+                                        class="text-truncate"
+                                      >
+                                        {{card.title}}
+                                      </CardLinkTo>
+                                    </li>
+                                  {{/each}}
+                                </ul>
+                              </li>
+                              {{/if}}
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
+
                       </div>
                     </div>
                   </:body>
