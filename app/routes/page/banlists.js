@@ -5,6 +5,10 @@ import RSVP from 'rsvp';
 export default class PageBanlistsRoute extends Route {
   @service store;
 
+  capitalize(text) {
+    return text.charAt(0).toUpperCase() + text.substr(1);
+  }
+
   async model() {
     let loadedFormats = await this.store.query('format', {
       filter: { id: ['startup', 'standard', 'eternal'] },
@@ -30,6 +34,13 @@ export default class PageBanlistsRoute extends Route {
           dateStart: restriction.dateStart,
           hasPoints: false,
           hasUniversalInfluence: false,
+          // This is less general, but we currently only have 1 banned subtype.
+          banned_subtype: restriction.bannedSubtypes.length
+            ? restriction.bannedSubtypes[0]
+            : null,
+          formatted_banned_subtype: restriction.bannedSubtypes.length
+            ? this.capitalize(restriction.bannedSubtypes[0])
+            : null,
           corp: {
             banned: [],
             restricted: [],
@@ -82,15 +93,16 @@ export default class PageBanlistsRoute extends Route {
       cards.set(c.cardId, c);
     });
 
-    // Populate the nice versions (TODO: make a better comment)
     formats.forEach((f) => {
       f.restrictions.forEach((r) => {
         r.obj.verdicts['banned'].forEach((b) => {
           const card = cards.get(b);
-          if (card.sideId == 'corp') {
-            r.corp['banned'].push(card);
-          } else if (card.sideId == 'runner') {
-            r.runner['banned'].push(card);
+          if (card.cardSubtypeIds.indexOf(r.banned_subtype) == -1) {
+            if (card.sideId == 'corp') {
+              r.corp['banned'].push(card);
+            } else if (card.sideId == 'runner') {
+              r.runner['banned'].push(card);
+            }
           }
         });
         r.obj.verdicts['restricted'].forEach((b) => {

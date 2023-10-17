@@ -51,6 +51,12 @@ import formatDate from '../../helpers/format-date';
                           <li>
                             <strong>Banned</strong>
                             <ul>
+                              {{#if restriction.banned_subtype.length }}
+                                {{! TODO: have those cards here, but collapsed by default }}
+                                <li>
+                                All Cards With Subtype: <strong>{{ restriction.formatted_banned_subtype }}</strong>
+                                </li>
+                              {{/if}}
                               {{#each restriction.corp.banned as |banned|}}
                                 <li>
                                   <CardLinkTo
@@ -214,6 +220,12 @@ import formatDate from '../../helpers/format-date';
                           <li>
                             <strong>Banned</strong>
                             <ul>
+                              {{#if restriction.banned_subtype.length }}
+                                {{! TODO: have those cards here, but collapsed by default }}
+                                <li>
+                                All Cards With Subtype: <strong>{{ restriction.formatted_banned_subtype }}</strong>
+                                </li>
+                              {{/if}}
                               {{#each restriction.runner.banned as |banned|}}
                                 <li>
                                   <CardLinkTo
