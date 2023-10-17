@@ -31,40 +31,143 @@ import formatDate from '../../helpers/format-date';
               @expandFirstItem={{true}}
               @items={{format.restrictions}}
             >
-              <:default as |Panel item|>
+              <:default as |Panel restriction|>
                 <Panel>
+                  {{! each restriction}}
                   <:title>
-                    {{item.name}}
+                    {{restriction.name}}
                   </:title>
                   <:subtitle>
-                    {{item.size}}
+                    {{restriction.obj.size}}
                     cards. Start Date:
-                    {{(formatDate item.dateStart)}}.
+                    {{(formatDate restriction.obj.dateStart)}}.
                   </:subtitle>
                   <:body>
                     <div class="row">
                       <div class="col-6">
                         <h3>Corp Cards</h3>
+                        {{#if restriction.obj.verdicts.banned.length }}
                         <ul>
                           <li>
                             <strong>Banned</strong>
                             <ul>
-                              {{#each item.verdicts.banned as |banned|}}
+                              {{#each restriction.corp.banned as |banned|}}
                                 <li>
                                   <CardLinkTo
-                                    @id={{banned}}
+                                    @printing={{banned}}
                                     class="text-truncate"
                                   >
-                                    {{banned}}
+                                    {{banned.title}}
                                   </CardLinkTo>
                                 </li>
                               {{/each}}
                             </ul>
                           </li>
                         </ul>
+                        {{/if}}
+
+                        {{#if restriction.obj.verdicts.restricted.length }}
+                        <ul>
+                          <li>
+                            <strong>Restricted</strong>
+                            <ul>
+                              {{#each restriction.corp.restricted as |restricted|}}
+                                <li>
+                                  <CardLinkTo
+                                    @printing={{restricted}}
+                                    class="text-truncate"
+                                  >
+                                    {{restricted.title}}
+                                  </CardLinkTo>
+                                </li>
+                              {{/each}}
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
+
+                        {{#if restriction.obj.verdicts.global_penalty.length }}
+                        <ul>
+                          <li>
+                            <strong>Global Penalty</strong>
+                            <ul>
+                              {{#each restriction.corp.global_penalty as |global_penalty|}}
+                                <li>
+                                  <CardLinkTo
+                                    @printing={{global_penalty}}
+                                    class="text-truncate"
+                                  >
+                                    {{global_penalty.title}}
+                                  </CardLinkTo>
+                                </li>
+                              {{/each}}
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
                       </div>
+
                       <div class="col-6">
                         <h3>Runner Cards</h3>
+                        {{#if restriction.obj.verdicts.banned.length }}
+                        <ul>
+                          <li>
+                            <strong>Banned</strong>
+                            <ul>
+                              {{#each restriction.runner.banned as |banned|}}
+                                <li>
+                                  <CardLinkTo
+                                    @printing={{banned}}
+                                    class="text-truncate"
+                                  >
+                                    {{banned.title}}
+                                  </CardLinkTo>
+                                </li>
+                              {{/each}}
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
+
+                        {{#if restriction.obj.verdicts.restricted.length }}
+                        <ul>
+                          <li>
+                            <strong>Restricted</strong>
+                            <ul>
+                              {{#each restriction.runner.restricted as |restricted|}}
+                                <li>
+                                  <CardLinkTo
+                                    @printing={{restricted}}
+                                    class="text-truncate"
+                                  >
+                                    {{restricted.title}}
+                                  </CardLinkTo>
+                                </li>
+                              {{/each}}
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
+
+                        {{#if restriction.obj.verdicts.global_penalty.length }}
+                        <ul>
+                          <li>
+                            <strong>Global Penalty</strong>
+                            <ul>
+                              {{#each restriction.runner.global_penalty as |global_penalty|}}
+                                <li>
+                                  <CardLinkTo
+                                    @printing={{global_penalty}}
+                                    class="text-truncate"
+                                  >
+                                    {{global_penalty.title}}
+                                  </CardLinkTo>
+                                </li>
+                              {{/each}}
+                            </ul>
+                          </li>
+                        </ul>
+                        {{/if}}
                       </div>
                     </div>
                   </:body>
