@@ -61,7 +61,7 @@ import Text from './text';
     {{#if @showIllustrators}}
     <div class="card-illustrator">
       <p>
-        {{( hyphenate @printing.releasedBy )}} - Illustrated by {{#each @printing.illustratorNames as |name|}}
+        Illustrated by {{#each @printing.illustratorNames as |name|}}
           <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
         {{/each}}
       </p>
