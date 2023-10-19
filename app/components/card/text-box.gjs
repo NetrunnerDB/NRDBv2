@@ -2,6 +2,8 @@ import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 import { LinkTo } from '@ember/routing';
 import { hash } from '@ember/helper';
 import { htmlSafe } from '@ember/template';
+import hyphenate from '../../helpers/hyphenate';
+import { eq } from 'netrunnerdb/utils/template-operators';
 
 import Icon from '../icon';
 import InfluencePips from './influence-pips';
@@ -59,7 +61,7 @@ import Text from './text';
     {{#if @showIllustrators}}
     <div class="card-illustrator">
       <p>
-        Illustrated by {{#each @printing.illustratorNames as |name|}}
+        {{( hyphenate @printing.releasedBy )}} - Illustrated by {{#each @printing.illustratorNames as |name|}}
           <LinkTo @route="page.illustrators" @query={{ hash search=name}}>{{name}}</LinkTo>
         {{/each}}
       </p>
@@ -67,9 +69,21 @@ import Text from './text';
     {{/if}}
     {{#if @showProduction}}
       <div class="card-producer">
-        {{! TODO: once this data is available in the API make this show cards designed or reprinted by NSG }}
-        <p><FaIcon @icon="fantasy-flight-games" @prefix="fab" />
-          Designed and printed by FFG.</p>
+        <p>
+        {{#if (eq @printing.designedBy 'fantasy_flight_games')}}
+          <FaIcon @icon="fantasy-flight-games" @prefix="fab" /> Designed by Fantasy Flight Games.
+        {{else if (eq @printing.designedBy 'null_signal_games')}}
+          {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
+          <Icon @icon="neutral-runner"  /> Designed by Null Signal Games.
+        {{/if}}
+        <br />
+        {{#if (eq @printing.releasedBy 'fantasy_flight_games')}}
+          <FaIcon @icon="fantasy-flight-games" @prefix="fab" /> Released by Fantasy Flight Games.
+        {{else if (eq @printing.releasedBy 'null_signal_games')}}
+          {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
+          <Icon @icon="neutral-runner"  /> Released by Null Signal Games.
+        {{/if}}
+        </p>
       </div>
     {{/if}}
   </div>
