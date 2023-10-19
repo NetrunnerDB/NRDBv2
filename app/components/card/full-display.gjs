@@ -41,7 +41,7 @@ import LinkToCard from './link-to';
                     @showIllustrators={{true}}
                     @showThumbnail={{false}}
                     @showFlavor={{true}}
-                    @showProduction={{false}}
+                    @showProduction={{true}}
                   />
                 </div>
                 <div class="col-md-5">

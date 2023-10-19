@@ -26,6 +26,7 @@ export default class CardModel extends Model {
   @attr strength;
   @attr trashCost;
   @attr attribution;
+  @attr designedBy;
 
   // ID
   @attr baseLink;
