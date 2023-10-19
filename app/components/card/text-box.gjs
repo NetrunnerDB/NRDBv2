@@ -2,7 +2,6 @@ import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 import { LinkTo } from '@ember/routing';
 import { hash } from '@ember/helper';
 import { htmlSafe } from '@ember/template';
-import hyphenate from '../../helpers/hyphenate';
 import { and, eq } from 'netrunnerdb/utils/template-operators';
 
 import Icon from '../icon';
