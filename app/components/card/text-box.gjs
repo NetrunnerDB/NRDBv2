@@ -3,7 +3,7 @@ import { LinkTo } from '@ember/routing';
 import { hash } from '@ember/helper';
 import { htmlSafe } from '@ember/template';
 import hyphenate from '../../helpers/hyphenate';
-import { eq } from 'netrunnerdb/utils/template-operators';
+import { and, eq } from 'netrunnerdb/utils/template-operators';
 
 import Icon from '../icon';
 import InfluencePips from './influence-pips';
@@ -70,16 +70,14 @@ import Text from './text';
     {{#if @showProduction}}
       <div class="card-producer">
         <p>
-        {{#if (eq @printing.designedBy 'fantasy_flight_games')}}
-          <FaIcon @icon="fantasy-flight-games" @prefix="fab" /> Designed by Fantasy Flight Games.
-        {{else if (eq @printing.designedBy 'null_signal_games')}}
+        {{#if (and (eq @printing.designedBy 'fantasy_flight_games') (eq @printing.releasedBy 'fantasy_flight_games'))}}
+          <FaIcon @icon="fantasy-flight-games" @prefix="fab" /> Designed & Released by Fantasy Flight Games
+        {{else if (and (eq @printing.designedBy 'null_signal_games') (eq @printing.releasedBy 'null_signal_games'))}}
           {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
-          <Icon @icon="neutral-runner"  /> Designed by Null Signal Games.
-        {{/if}}
-        <br />
-        {{#if (eq @printing.releasedBy 'fantasy_flight_games')}}
+          <Icon @icon="neutral-runner"  /> Designed & Released by Null Signal Games
+        {{else if (and (eq @printing.designedBy 'fantasy_flight_games') (eq @printing.releasedBy 'null_signal_games'))}}
           <FaIcon @icon="fantasy-flight-games" @prefix="fab" /> Released by Fantasy Flight Games.
-        {{else if (eq @printing.releasedBy 'null_signal_games')}}
+          <br />
           {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
           <Icon @icon="neutral-runner"  /> Released by Null Signal Games.
         {{/if}}
