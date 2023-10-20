@@ -30,6 +30,9 @@ export default class PageNavbarComponent extends Component {
 
     const query = e.target.query.value;
 
+    // Reset the search bar.
+    e.target.query.value = '';
+
     this.router.transitionTo('page.advanced-search', {
       queryParams: { query: query },
     });

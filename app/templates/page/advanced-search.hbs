@@ -9,7 +9,16 @@
         <div
           class="card-body d-flex flex-column flex-lg-row justify-content-between"
         >
+        <div class="container" id="advanced-search">
+            <h1>Search Form</h1>
 
+            <p>Free form query is: <strong>{{ this.query }}</strong></p>
+
+        </div>
+        </div>
+        <div
+          class="card-body d-flex flex-column flex-lg-row justify-content-between"
+        >
           <div class="container" id="cycle-card-list">
             <h1>Search Results</h1>
             <CardLists @printings={{@model.printings}} @display="{{this.display}}" />
