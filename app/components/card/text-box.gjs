@@ -75,7 +75,7 @@ import Text from './text';
           {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
           <Icon @icon="neutral-runner"  /> Designed & Released by Null Signal Games
         {{else if (and (eq @printing.designedBy 'fantasy_flight_games') (eq @printing.releasedBy 'null_signal_games'))}}
-          <FaIcon @icon="fantasy-flight-games" @prefix="fab" /> Released by Fantasy Flight Games.
+          <FaIcon @icon="fantasy-flight-games" @prefix="fab" /> Designed by Fantasy Flight Games.
           <br />
           {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
           <Icon @icon="neutral-runner"  /> Released by Null Signal Games.
