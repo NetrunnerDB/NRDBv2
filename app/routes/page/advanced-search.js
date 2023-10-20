@@ -5,7 +5,7 @@ import RSVP from 'rsvp';
 export default class PageAdvancedSearchRoute extends Route {
   @service store;
 
-  async model(params) {
+  async model() {
     return RSVP.hash({
       printings: this.store.query('printing', {
         filter: { search: 'faction:shaper' },
