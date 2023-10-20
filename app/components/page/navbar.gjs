@@ -6,9 +6,12 @@ import { on } from '@ember/modifier';
 import Collapse from 'ember-bootstrap/components/bs-collapse';
 import Dropdown from 'ember-bootstrap/components/bs-dropdown';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import { service } from '@ember/service';
 
 export default class PageNavbarComponent extends Component {
+  @service router;
   @tracked showDropdown = false;
+  @tracked query = '';
 
   get isCollapsed() {
     return !this.showDropdown;
@@ -20,6 +23,12 @@ export default class PageNavbarComponent extends Component {
 
   @action closeDropdown() {
     this.showDropdown = false;
+  }
+
+  @action doSearch(e) {
+    if (e.keyCode === 13) {
+      this.router.transitionTo('page.factions', { queryParams: { query: this.query } });
+    }
   }
 
   <template>
@@ -44,17 +53,17 @@ export default class PageNavbarComponent extends Component {
                 class="navbar-collapse d-md-flex"
               >
                 <div class="navbar-nav flex-grow-1 pe-md-4">
-                  <form id="card-search-bar" class="form-inline w-100 my-3 my-md-0">
                     <div class="input-group">
                       <input
-                        id="navbar-search"
+                        id="query"
                         type="text"
                         class="form-control p-relative py-3"
                         placeholder="Search for cards..."
+                        value="{{ this.query }}"
+                        {{ on 'keyPress' this.doSearch }}
                       />
                       <label for="navbar-search" hidden="">Search for cards</label>
                     </div>
-                  </form>
                 </div>
                 {{! template-lint-disable no-invalid-interactive }}
                 <ul
