@@ -10,19 +10,24 @@ export default class SearchFormComponent extends Component {
   @action doSearch(e) {
     e.preventDefault();
 
-    const query = e.target.query.value;
-
-    // Reset the search bar.
-    e.target.query.value = '';
-
-    const searchParams = { query: query };
+    const searchParams = {};
     if (e.target.max_records.value) {
-        searchParams['max_records'] = e.target.max_records.value;
+      searchParams.max_records = e.target.max_records.value;
     }
     if (e.target.latest_printing_only.value) {
-        searchParams['latest_printing_only'] = e.target.latest_printing_only.value;
+      searchParams.latest_printing_only = e.target.latest_printing_only.value;
+    }
+    if (e.target.title.value) {
+      searchParams.title = e.target.title.value;
+    }
+    if (e.target.text.value) {
+      searchParams.text = e.target.text.value;
+    }
+    if (e.target.flavor.value) {
+      searchParams.flavor = e.target.flavor.value;
     }
 
+    console.table(searchParams);
     this.router.transitionTo('page.advanced-search', {
       queryParams: searchParams,
     });
@@ -38,26 +43,33 @@ export default class SearchFormComponent extends Component {
     <div>
         <form id='advanced-search' {{ on 'submit' this.doSearch }}>
         <p>
-        <label for="max_records">Max Records</label>
-        <select id="max_records">
-            <option value="25" selected={{eq @searchParams.max_records "25"}}>25</option>
-            <option value="50" selected={{eq @searchParams.max_records "50"}}>50</option>
-            <option value="100" selected={{eq @searchParams.max_records "100"}}>100</option>
-            <option value="250" selected={{eq @searchParams.max_records "250"}}>250</option>
-            <option value="500" selected={{eq @searchParams.max_records "500"}}>500</option>
-            <option value="1000" selected={{eq @searchParams.max_records "1000"}}>1000</option>
-        </select>
+          <label for="max_records">Max Records</label>
+          <select id="max_records">
+              <option value="25" selected={{eq @searchParams.max_records "25"}}>25</option>
+              <option value="50" selected={{eq @searchParams.max_records "50"}}>50</option>
+              <option value="100" selected={{eq @searchParams.max_records "100"}}>100</option>
+              <option value="250" selected={{eq @searchParams.max_records "250"}}>250</option>
+              <option value="500" selected={{eq @searchParams.max_records "500"}}>500</option>
+              <option value="1000" selected={{eq @searchParams.max_records "1000"}}>1000</option>
+          </select>
         </p>
         <p>
             <label for="latest_printing_only">Latest Printing Only</label>
             <input id="latest_printing_only" type="checkbox" checked={{eq @searchParams.latest_printing_only "true"}} value="true" />
         </p>
         <p>
-            <label for="query">Query:</label> <input type="text" id="query" value="{{ @searchParams.query }}" />
+          <label for="title">Title:</label> <input type="text" id="title" value="{{ @searchParams.title }}" />
         </p>
         <p>
-            <input type="submit" />
+          <label for="text">Text:</label> <input type="text" id="text" value="{{ @searchParams.text }}" />
         </p>
+        <p>
+          <label for="flavor">Flavor:</label> <input type="text" id="flavor" value="{{ @searchParams.flavor }}" />
+        </p>
+        <p>
+          <input type="submit" />
+        </p>
+
         <pre>
         == Result Type
 

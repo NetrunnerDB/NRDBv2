@@ -6,6 +6,9 @@ export default class PageAdvancedSearchRoute extends Route {
   @service store;
 
   queryParams = {
+    display: {
+      refreshModel: true,
+    },
     query: {
       refreshModel: true,
     },
@@ -15,22 +18,48 @@ export default class PageAdvancedSearchRoute extends Route {
     latest_printing_only: {
       refreshModel: true,
     },
+    title: {
+      refreshModel: true,
+    },
+    text: {
+      refreshModel: true,
+    },
+    flavor: {
+      refreshModel: true,
+    },
   };
 
+  buildSearchFilter(params) {
+    // Do the silly thing
+    let filter = '';
+    if (params.title) {
+      filter += `title:"${params.title}" `;
+    }
+    if (params.text) {
+      filter += `text:"${params.text}" `;
+    }
+    if (params.flavor) {
+      filter += `flavor:"${params.flavor}" `;
+    }
+
+    return filter;
+  }
+
   async model(params) {
-    if (params.query) {
+    if (params.query || params.title || params.text || params.flavor) {
       return RSVP.hash({
-        searchParams: {
-          query: params.query,
-          max_records: params.max_records ? params.max_records : 100,
-          latest_printing_only: params.latest_printing_only,
-        },
+        searchParams: params,
+        searchIssued: true,
         printings: this.store.query('printing', {
-          filter: { search: params.query },
+          filter: { search: this.buildSearchFilter(params) },
           include: ['card_set', 'card_type', 'faction'],
           page: { limit: params.max_records ? params.max_records : 100 },
         }),
       });
+    } else {
+      return RSVP.hash({
+        searchIssued: false
+      })
     }
   }
 }
