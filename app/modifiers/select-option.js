@@ -1,5 +1,5 @@
 import { modifier } from 'ember-modifier';
 
-export default modifier((element, [maxRecords]) => {
-  element.querySelector(`option[value="${maxRecords}"]`).selected = true;
+export default modifier((element, [value]) => {
+  element.querySelector(`option[value="${value}"]`).selected = true;
 });
