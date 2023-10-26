@@ -42,7 +42,7 @@ export default class PageAdvancedSearchRoute extends Route {
       filter += `flavor:"${params.flavor}" `;
     }
     if (params.latest_printing_only) {
-      filter += `is_latest_printing:t `
+      filter += `is_latest_printing:t `;
     }
 
     return filter.trim();
@@ -63,7 +63,7 @@ export default class PageAdvancedSearchRoute extends Route {
     } else {
       return RSVP.hash({
         printings: [],
-      })
+      });
     }
   }
 }
