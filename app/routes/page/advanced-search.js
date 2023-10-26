@@ -31,7 +31,6 @@ export default class PageAdvancedSearchRoute extends Route {
   };
 
   buildSearchFilter(params) {
-    // Do the silly thing
     let filter = '';
     if (params.title) {
       filter += `title:"${params.title}" `;
@@ -42,8 +41,11 @@ export default class PageAdvancedSearchRoute extends Route {
     if (params.flavor) {
       filter += `flavor:"${params.flavor}" `;
     }
+    if (params.latest_printing_only) {
+      filter += `is_latest_printing:t `
+    }
 
-    return filter;
+    return filter.trim();
   }
 
   async model(params) {

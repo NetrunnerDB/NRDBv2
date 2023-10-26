@@ -13,7 +13,7 @@ export default class SearchFormComponent extends Component {
     // Set all params unconditionally to force the model to refresh completely.
     const searchParams = {
       max_records: e.target.max_records.value,
-      latest_printing_only: e.target.latest_printing_only.value,
+      latest_printing_only: e.target.latest_printing_only.checked ? e.target.latest_printing_only.value : '',
       title: e.target.title.value,
       text: e.target.text.value,
       flavor: e.target.flavor.value,
