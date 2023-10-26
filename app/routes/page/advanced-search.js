@@ -31,21 +31,21 @@ export default class PageAdvancedSearchRoute extends Route {
   };
 
   buildSearchFilter(params) {
-    let filter = '';
+    let filter = [];
     if (params.title) {
-      filter += `title:"${params.title}" `;
+      filter.push(`_:"${params.title}"`);
     }
     if (params.text) {
-      filter += `text:"${params.text}" `;
+      filter.push(`x:"${params.text}"`);
     }
     if (params.flavor) {
-      filter += `flavor:"${params.flavor}" `;
+      filter.push(`a:"${params.flavor}"`);
     }
     if (params.latest_printing_only) {
-      filter += `is_latest_printing:t `;
+      filter.push(`is_latest_printing:t`);
     }
 
-    return filter.trim();
+    return filter.join();
   }
 
   async model(params) {
@@ -57,7 +57,7 @@ export default class PageAdvancedSearchRoute extends Route {
         printings: this.store.query('printing', {
           filter: { search: filter },
           include: ['card_set', 'card_type', 'faction'],
-          page: { limit: params.max_records ? params.max_records : 100 },
+          page: { limit: params.max_records || 100 },
         }),
       });
     } else {
