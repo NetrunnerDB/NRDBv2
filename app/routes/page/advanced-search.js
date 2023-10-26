@@ -5,6 +5,7 @@ import RSVP from 'rsvp';
 export default class PageAdvancedSearchRoute extends Route {
   @service store;
 
+  // TODO(plural): Change to a single query free-form field for requests from other places and a structure for everything else.
   queryParams = {
     display: {
       refreshModel: true,
@@ -46,19 +47,20 @@ export default class PageAdvancedSearchRoute extends Route {
   }
 
   async model(params) {
-    if (params.query || params.title || params.text || params.flavor) {
+    let filter = this.buildSearchFilter(params);
+
+    if (filter) {
       return RSVP.hash({
         searchParams: params,
-        searchIssued: true,
         printings: this.store.query('printing', {
-          filter: { search: this.buildSearchFilter(params) },
+          filter: { search: filter },
           include: ['card_set', 'card_type', 'faction'],
           page: { limit: params.max_records ? params.max_records : 100 },
         }),
       });
     } else {
       return RSVP.hash({
-        searchIssued: false
+        printings: [],
       })
     }
   }
