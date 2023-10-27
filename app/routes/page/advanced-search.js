@@ -49,7 +49,9 @@ export default class PageAdvancedSearchRoute extends Route {
   }
 
   async model(params) {
-    let filter = this.buildSearchFilter(params);
+    let filter = params.query
+      ? this.buildSearchFilter({ title: params.query })
+      : this.buildSearchFilter(params);
 
     if (filter) {
       return RSVP.hash({
