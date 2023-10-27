@@ -9,9 +9,9 @@ module('Integration | Modifier | select-option', function (hooks) {
   // Replace this with your real tests.
   test('it renders', async function (assert) {
     await render(
-      hbs`<select id="test_select" {{select-option 25}}><option value="5">5</option><option value="25">25</option><option value="50">50</option></select>`,
+      hbs`<select id="test_select" {{select-option 25}}><option value="">Default</option><option value="5">5</option><option value="25">25</option><option value="50">50</option></select>`,
     );
 
-    assert.ok(true);
+    assert.dom('#test_select').hasValue('25');
   });
 });
