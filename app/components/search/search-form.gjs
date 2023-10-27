@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { on } from '@ember/modifier';
 import { service } from '@ember/service';
 import { eq } from '../../utils/template-operators';
+import selectOption from '../../modifiers/select-option';
 
 export default class SearchFormComponent extends Component {
   @service router;
@@ -13,6 +14,7 @@ export default class SearchFormComponent extends Component {
     const form = new FormData(e.target);
     const searchParams = Object.fromEntries(form.entries());
     searchParams.latest_printing_only = !!searchParams.latest_printing_only;
+    searchParams.query = null;
 
     this.router.transitionTo('page.advanced-search', {
       queryParams: searchParams,
@@ -190,7 +192,11 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
       <form id='advanced-search' {{on 'submit' this.doSearch}}>
         <p>
           <label for='max_records'>Max Records</label>
-          <select id='max_records' name='max_records'>
+          <select
+            id='max_records'
+            name='max_records'
+            {{selectOption @searchParams.max_records}}
+          >
             <option
               value='25'
               selected={{eq @searchParams.max_records '25'}}
@@ -255,7 +261,7 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
           />
         </p>
         <p>
-          <input type='submit' aria-label="Search" />
+          <input type='submit' aria-label='Search' />
         </p>
       </form>
     </div>
