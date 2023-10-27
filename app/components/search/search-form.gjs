@@ -31,13 +31,14 @@ export default class SearchFormComponent extends Component {
 
 # of records
 
-[checkbox] Latest Printing Only
-[drop down] Sort by
-[drop down] View As
+[x] [checkbox] Latest Printing Only
+[ ] [drop down] Sort by
+[ ] [drop down] View As
 
 == Basic Card Attributes
-title, _: Type: string
-text, x: Type: string
+[x] title, _: Type: string
+[x] text, x: Type: string
+
 [drop down] side, d: Type: string
 [drop down] side_id of the card.
 
@@ -144,7 +145,7 @@ illustrator_id for an illustrator for the printing.
 [numeric] num_printings: Type: integer
 Count of unique printings for this card.
 
-[checkbox] is_latest_printing: Type: boolean
+[x] [checkbox] is_latest_printing: Type: boolean
 Is this printing the latest printing for a card?
 
 [numeric] position: Type: integer
