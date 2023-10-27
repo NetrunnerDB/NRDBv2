@@ -255,7 +255,7 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
           />
         </p>
         <p>
-          <input type='submit' />
+          <input type='submit' aria-label="Search" />
         </p>
       </form>
     </div>

@@ -45,7 +45,7 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`is_latest_printing:t`);
     }
 
-    return filter.join();
+    return filter.join(' ');
   }
 
   async model(params) {
