@@ -50,11 +50,8 @@ export default class SearchFormComponent extends Component {
 [-] [drop down] card_type, t: Type: string
 ^^ Should be multiple select
 
-[drop down] card_subtype, s: Type: array
-[drop down] text names for card subtypes, matched as lowercase.
-
 [drop down] card_subtype_id: Type: array
-[drop down] card_subtype_ids for the card.
+^^ Should be multiple select
 
 [numeric] agenda_points, v: Type: integer
 The printed number of agenda points for the agenda.
@@ -282,6 +279,19 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             <option value=''></option>
             {{#each @cardTypes as |card_type|}}
               <option value='{{card_type.id}}'>{{card_type.name}}</option>
+            {{/each}}
+          </select>
+        </p>
+        <p>
+          <label for='card_subtype_id'>Card Subtype</label>
+          <select
+            id='card_subtype_id'
+            name='card_subtype_id'
+            {{selectOption @searchParams.card_subtype_id}}
+          >
+            <option value=''></option>
+            {{#each @cardSubtypes as |card_subtype|}}
+              <option value='{{card_subtype.id}}'>{{card_subtype.name}}</option>
             {{/each}}
           </select>
         </p>

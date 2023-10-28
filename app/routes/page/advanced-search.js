@@ -37,6 +37,9 @@ export default class PageAdvancedSearchRoute extends Route {
     card_type_id: {
       refreshModel: true,
     },
+    card_subtype_id: {
+      refreshModel: true,
+    },
   };
 
   buildSearchFilter(params) {
@@ -62,6 +65,9 @@ export default class PageAdvancedSearchRoute extends Route {
     if (params.card_type_id) {
       filter.push(`card_type:${params.card_type_id}`);
     }
+    if (params.card_subtype_id) {
+      filter.push(`card_subtype_id:${params.card_subtype_id}`);
+    }
 
     return filter.join(' ');
   }
@@ -71,10 +77,11 @@ export default class PageAdvancedSearchRoute extends Route {
       ? this.buildSearchFilter({ title: params.query })
       : this.buildSearchFilter(params);
 
-    const [sides, factions, cardTypes] = await Promise.all([
+    const [sides, factions, cardTypes, cardSubtypes] = await Promise.all([
       this.store.query('side', {sort: 'name'}),
       this.store.query('faction', {sort: 'name'}),
       this.store.query('card_type', {sort: 'name'}),
+      this.store.query('card_subtype', {sort: 'name'}),
     ]);
 
     if (filter) {
@@ -83,6 +90,7 @@ export default class PageAdvancedSearchRoute extends Route {
         sides: sides,
         factions: factions,
         cardTypes: cardTypes,
+        cardSubtypes: cardSubtypes,
         printings: this.store.query('printing', {
           filter: { search: filter },
           include: ['card_set', 'card_type', 'faction'],
@@ -94,6 +102,7 @@ export default class PageAdvancedSearchRoute extends Route {
         sides: sides,
         factions: factions,
         cardTypes: cardTypes,
+        cardSubtypes: cardSubtypes,
         printings: [],
       });
     }
