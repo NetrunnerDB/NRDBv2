@@ -101,7 +101,7 @@ export default class PageNavbarComponent extends Component {
                   <li class='nav-item d-none d-lg-inline-block'>
                     <LinkTo
                       @route='page.card'
-                      @model='lockpick'
+                      @model='rng_key'
                       class='nav-link button-link px-2 p-md-3'
                     ><FaIcon @icon='dice' class='d-md-none d-xl-inline-block' />
                       Random</LinkTo>
