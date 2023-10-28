@@ -198,30 +198,12 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             name='max_records'
             {{selectOption @searchParams.max_records}}
           >
-            <option
-              value='25'
-              selected={{eq @searchParams.max_records '25'}}
-            >25</option>
-            <option
-              value='50'
-              selected={{eq @searchParams.max_records '50'}}
-            >50</option>
-            <option
-              value='100'
-              selected={{eq @searchParams.max_records '100'}}
-            >100</option>
-            <option
-              value='250'
-              selected={{eq @searchParams.max_records '250'}}
-            >250</option>
-            <option
-              value='500'
-              selected={{eq @searchParams.max_records '500'}}
-            >500</option>
-            <option
-              value='1000'
-              selected={{eq @searchParams.max_records '1000'}}
-            >1000</option>
+            <option value='25'>25</option>
+            <option value='50'>50</option>
+            <option value='100'>100</option>
+            <option value='250'>250</option>
+            <option value='500'>500</option>
+            <option value='1000'>1000</option>
           </select>
         </p>
         <p>
