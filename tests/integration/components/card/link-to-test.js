@@ -15,7 +15,7 @@ module('Integration | Component | card/link-to', function (hooks) {
     });
 
     await render(hbs`
-      <Card::LinkTo @printing={{this.model}}>
+      <Card::LinkTo @printing={{this.model}} @hideTooltip={{true}}>
         Message
       </Card::LinkTo>
     `);
