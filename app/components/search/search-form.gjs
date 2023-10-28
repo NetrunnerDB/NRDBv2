@@ -249,7 +249,7 @@ universal_faction_cost: Type: array
           </select>
         </p>
         <p>
-          <label for='releaseed_by'>Released By Org</label>
+          <label for='released_by'>Released By Org</label>
           <select
             id='released_by'
             name='released_by'
@@ -261,7 +261,7 @@ universal_faction_cost: Type: array
           </select>
         </p>
         <p>
-          <label for='text'>Individual Card Designer:</label>
+          <label for='attribution'>Individual Card Designer:</label>
           <input
             type='text'
             id='attribution'
