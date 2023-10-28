@@ -7,57 +7,23 @@ export default class PageAdvancedSearchRoute extends Route {
 
   // TODO(plural): Change to a single query free-form field for requests from other places and a structure for everything else.
   queryParams = {
-    num_printings: {
-      refreshModel: true,
-    },
-    display: {
-      refreshModel: true,
-    },
-    query: {
-      refreshModel: true,
-    },
-    max_records: {
-      refreshModel: true,
-    },
-    latest_printing_only: {
-      refreshModel: true,
-    },
-    title: {
-      refreshModel: true,
-    },
-    text: {
-      refreshModel: true,
-    },
-    flavor: {
-      refreshModel: true,
-    },
-    side_id: {
-      refreshModel: true,
-    },
-    faction_id: {
-      refreshModel: true,
-    },
-    card_type_id: {
-      refreshModel: true,
-    },
-    card_subtype_id: {
-      refreshModel: true,
-    },
-    is_unique: {
-      refreshModel: true,
-    },
-    designed_by: {
-      refreshModel: true,
-    },
-    released_by : {
-      refreshModel: true,
-    },
-    attribution: {
-      refreshModel: true,
-    },
-    illustrator_id: {
-      refreshModel: true,
-    },
+    attribution: { refreshModel: true },
+    card_subtype_id: { refreshModel: true },
+    card_type_id: { refreshModel: true },
+    designed_by: { refreshModel: true },
+    display: { refreshModel: true },
+    faction_id: { refreshModel: true },
+    flavor: { refreshModel: true },
+    illustrator_id: { refreshModel: true },
+    is_unique: { refreshModel: true },
+    latest_printing_only: { refreshModel: true },
+    max_records: { refreshModel: true },
+    num_printings: { refreshModel: true },
+    query: { refreshModel: true },
+    released_by: { refreshModel: true },
+    side_id: { refreshModel: true },
+    text: { refreshModel: true },
+    title: { refreshModel: true },
   };
 
   buildSearchFilter(params) {
@@ -113,27 +79,28 @@ export default class PageAdvancedSearchRoute extends Route {
       ? this.buildSearchFilter({ title: params.query })
       : this.buildSearchFilter(params);
 
-    const [sides, factions, cardTypes, cardSubtypes, illustrators] = await Promise.all([
-      this.store.query('side', { sort: 'name' }),
-      this.store.query('faction', { sort: 'name' }),
-      this.store.query('card_type', { sort: 'name' }),
-      this.store.query('card_subtype', { sort: 'name' }),
-      this.store.query('illustrator', { sort: 'name' }),
-    ]);
+    const [cardSubtypes, cardTypes, factions, illustrators, sides] =
+      await Promise.all([
+        this.store.query('card_subtype', { sort: 'name' }),
+        this.store.query('card_type', { sort: 'name' }),
+        this.store.query('faction', { sort: 'name' }),
+        this.store.query('illustrator', { sort: 'name' }),
+        this.store.query('side', { sort: 'name' }),
+      ]);
 
     if (filter) {
       return RSVP.hash({
-        searchParams: params,
-        sides: sides,
-        factions: factions,
-        cardTypes: cardTypes,
         cardSubtypes: cardSubtypes,
+        cardTypes: cardTypes,
+        factions: factions,
         illustrators: illustrators,
         printings: this.store.query('printing', {
           filter: { search: filter },
           include: ['card_set', 'card_type', 'faction'],
           page: { limit: params.max_records || 100 },
         }),
+        searchParams: params,
+        sides: sides,
       });
     } else {
       return RSVP.hash({
