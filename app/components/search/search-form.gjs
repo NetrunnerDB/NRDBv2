@@ -35,158 +35,73 @@ export default class SearchFormComponent extends Component {
 
 [x] [checkbox] Latest Printing Only
 [ ] [drop down] Sort by
-[ ] [drop down] View As
+  ^ Should also allow multiple.
+  ^ Needs to ignore inline sorting in the card list component.
 
 == Basic Card Attributes
 [x] title, _: Type: string
 [x] text, x: Type: string
-
+[x] flavor, flavour, a: Type: string
 [x] [drop down] side, d: Type: string
+[-] [drop down] faction, f: Type: string << Should be multiple select
+[-] [drop down] card_type, t: Type: string << Should be multiple select
+[-] [drop down] card_subtype_id: Type: array << Should be multiple select
+[x] [dropdown] is_unique, u: Type: boolean
 
-[-] [drop down] faction, f: Type: string
-[drop down] faction_id of this card.
-^^ Should be multiple select
-
-[-] [drop down] card_type, t: Type: string
-^^ Should be multiple select
-
-[drop down] card_subtype_id: Type: array
-^^ Should be multiple select
-
+=== Advanced Card Attributes
 [numeric] agenda_points, v: Type: integer
-The printed number of agenda points for the agenda.
-
 [numeric] cost, o: Type: integer
-The printed cost of a card. Accepts positive integers and X (case-insensitive).
-
 [numeric] influence_cost, n: Type: integer
-The influence cost or number of influence pips for the card.
-
-[checkbox] is_unique, u: Type: boolean
-Is the card unique?
-
 [numeric] advancement_cost, g: Type: integer
-The advancement_cost value for an agenda. Accepts positive integers and X (case-insensitive).
-
 [numeric] base_link, l: Type: integer
-The printed link value for an Identity.
-
 [numeric] memory_usage, m: Type: integer
-The memory (MU) cost of this card.
-
 [numeric] strength, p: Type: integer
-The strength of the card. Accepts integers or X.
-
 [numeric] trash_cost, h: Type: integer
-The trash cost of this card.
-
-== Advanced Card Attributes
 [checkbox] additional_cost: Type: boolean
-Does the card text specify an additional cost to play?
-
 [checkbox] advanceable: Type: boolean
-Is the card advanceable?
-
 [checkbox] gains_subroutines: Type: boolean
-Does the card text allow for adding or gaining subroutines?
-
 [checkbox] interrupt: Type: boolean
-Does the card have an interrupt ability?
-
 [checkbox] on_encounter_effect: Type: boolean
-Does the card text specify an on encounter effect?
-
 [checkbox] performs_trace: Type: boolean
-Does the card perform a trace?
-
 [checkbox] rez_effect: Type: boolean
-Does the card have a rez effect?
-
 [checkbox] trash_ability: Type: boolean
-Does the card provide a trash ability?
-
 [numeric] link_provided: Type: integer
-The amount of link provided.
-
 [numeric] mu_provided: Type: integer
-The amount of memory (MU) provided by the card.
-
 [numeric] num_printed_subroutines: Type: integer
-The number of printed subroutines on this card.
-
 [numeric] recurring_credits_provided: Type: integer
-The number of recurring credits provided by this card. Accepts integers or X.
 
 == Attribution
-designed_by: Type: string
-The organization that designed the card.
+[x] [dropdown] designed_by: Type: string
+[x] [dropdown] released_by: Type: string
 
-[multi-select] released_by: Type: string
-The organization that released the printing.
+[ ] [date] release_date, date_release, r: Type: date
 
-[multi-select] printings_released_by: Type: array
-All organizations that have released printings for a card.
-
-[date] release_date, date_release, r: Type: date
-The earliest release date for a card or the release date for the set for a printing.
-
-attribution: Type: string
-The designer of this card text, if specified.
+[x] attribution: Type: string
 
 == Flavor & Illustrators
-flavor, flavour, a: Type: string
-The flavor text for a printing.
-
-[multi-select] illustrator, i: Type: string
-The printed version of the illustrator credits, with multiple illustrators separated by commas.
-
-illustrator_id: Type: array
-illustrator_id for an illustrator for the printing.
+[x] [multi-select] illustrator, i: Type: string
 
 == Printings
-[numeric] num_printings: Type: integer
-Count of unique printings for this card.
-
+[x] [numeric] num_printings: Type: integer
 [x] [checkbox] is_latest_printing: Type: boolean
-Is this printing the latest printing for a card?
 
-[numeric] position: Type: integer
-The position of the printing in a card set.
-
-[numeric] quantity, y: Type: integer
-The number of copies of a printing in the set.
+[ ] [numeric] position: Type: integer
+[ ] [numeric] quantity, y: Type: integer
 
 == Formats & Card Pools
-[multi-select] format: Type: array
-format_id for any format containing the card at any time.
-
-[multi-select] card_pool, z: Type: array
-card_pool_ids for a card pool containing a card.
-
-[multi-select] snapshot: Type: array
-snapshot_id of a snapshot containing a card.
+[ ] [multi-select] format: Type: array << should be multi-select
+[ ] [multi-select] card_pool, z: Type: array
+[ ] [multi-select] snapshot: Type: array
 
 == Restrictions
 [multi-select] restriction_id, b: Type: array
-restriction_id specifying the card for any reason, like: restriction_id:eternal_points_list_22_09
-
 [multi-select] eternal_points: Type: array
-Concatenation of restriction_id and an Eternal Points value, joined by a hyphen, like eternal_points:eternal_points_list_22_09-2.
-
 has_global_penalty: Type: array
-restriction_id restricting the card with a global penalty, like has_global_penalty:napd_mwl_1_1.
-
 [checkbox] is_banned: Type: array
-restriction_id specifying the card as banned, like is_banned:standard_ban_list_22_08.
-
 [checkbox] is_restricted: Type: array
-restriction_id specifying the card as banned, like is_restricted:standard_mwl_3_4_b.
-
 [checkbox] in_restriction: Type: boolean
-Is the card specified on any Restriction list?
-
 universal_faction_cost: Type: array
-Concatenation of restriction_id and a Universal Faction Cost value, joined by a hyphen, like universal_faction_cost:napd_mwl_1_2-3.
+
 }}
 
     <div>
@@ -198,8 +113,6 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             name='max_records'
             {{selectOption @searchParams.max_records}}
           >
-            <option value='25'>25</option>
-            <option value='50'>50</option>
             <option value='100'>100</option>
             <option value='250'>250</option>
             <option value='500'>500</option>
@@ -215,6 +128,22 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             checked={{eq @searchParams.latest_printing_only 'true'}}
             value={{eq @searchParams.latest_printing_only 'true'}}
           />
+        </p>
+        <p>
+          <label for='num_printings'>Num Printings for Card</label>
+          <select
+            id='num_printings'
+            name='num_printings'
+            {{selectOption @searchParams.num_printings}}
+          >
+            <option value=''>Any</option>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+          </select>
         </p>
         <p>
           <label for='title'>Title:</label>
@@ -250,7 +179,7 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             name='side_id'
             {{selectOption @searchParams.side_id}}
           >
-            <option value=''></option>
+            <option value=''>Either</option>
             {{#each @sides as |side|}}
               <option value='{{side.id}}'>{{side.name}}</option>
             {{/each}}
@@ -263,7 +192,7 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             name='faction_id'
             {{selectOption @searchParams.faction_id}}
           >
-            <option value=''></option>
+            <option value=''>Any</option>
             {{#each @factions as |faction|}}
               <option value='{{faction.id}}'>{{faction.name}}</option>
             {{/each}}
@@ -276,7 +205,7 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             name='card_type_id'
             {{selectOption @searchParams.card_type_id}}
           >
-            <option value=''></option>
+            <option value=''>Any</option>
             {{#each @cardTypes as |card_type|}}
               <option value='{{card_type.id}}'>{{card_type.name}}</option>
             {{/each}}
@@ -289,9 +218,67 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             name='card_subtype_id'
             {{selectOption @searchParams.card_subtype_id}}
           >
-            <option value=''></option>
+            <option value=''>Any</option>
             {{#each @cardSubtypes as |card_subtype|}}
               <option value='{{card_subtype.id}}'>{{card_subtype.name}}</option>
+            {{/each}}
+          </select>
+        </p>
+        <p>
+          <label for='is_unique'>Unique?</label>
+          <select
+            id='is_unique'
+            name='is_unique'
+            {{selectOption @searchParams.is_unique}}
+          >
+            <option value=''>Either</option>
+            <option value='t'>Yes</option>
+            <option value='f'>No</option>
+          </select>
+        </p>
+        <p>
+          <label for='designed_by'>Designed By Org</label>
+          <select
+            id='designed_by'
+            name='designed_by'
+            {{selectOption @searchParams.designed_by}}
+          >
+            <option value=''>Either</option>
+            <option value='null_signal_games'>Null Signal Games</option>
+            <option value='fantasy_flight_games'>Fantasy Flight Games</option>
+          </select>
+        </p>
+        <p>
+          <label for='releaseed_by'>Released By Org</label>
+          <select
+            id='released_by'
+            name='released_by'
+            {{selectOption @searchParams.released_by}}
+          >
+            <option value=''>Either</option>
+            <option value='null_signal_games'>Null Signal Games</option>
+            <option value='fantasy_flight_games'>Fantasy Flight Games</option>
+          </select>
+        </p>
+        <p>
+          <label for='text'>Individual Card Designer:</label>
+          <input
+            type='text'
+            id='attribution'
+            name='attribution'
+            value='{{@searchParams.attribution}}'
+          />
+        </p>
+        <p>
+          <label for='illustrator_id'>Illustrator</label>
+          <select
+            id='illustrator_id'
+            name='illustrator_id'
+            {{selectOption @searchParams.illustrator_id}}
+          >
+            <option value=''>Any</option>
+            {{#each @illustrators as |illustrator|}}
+              <option value='{{illustrator.id}}'>{{illustrator.name}}</option>
             {{/each}}
           </select>
         </p>
