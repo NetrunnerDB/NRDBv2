@@ -2,23 +2,22 @@
 
 <div class="container">
   <div class="row">
-    <div
-      class="col-12 d-flex flex-row flex-sm-column my-2"
-    >
+    <div class="col-12 d-flex flex-row flex-sm-column my-2">
       <div class="card border-0 flex-grow-1" id="nav-main-content">
-        <div
-          class="card-body d-flex flex-column flex-lg-row justify-content-between"
-        >
-        <div class="container" id="advanced-search">
-            <h1>Search Form</h1>
-
-            <p>Free form query is: <strong>{{ this.query }}</strong></p>
-
+        <div class="card-body d-flex flex-column flex-lg-row justify-content-between" >
+          <div class="container" id="advanced-search">
+            <Search::SearchForm @searchParams={{@model.searchParams}} @sides={{@model.sides}} @factions={{@model.factions}} @cardTypes={{@model.cardTypes}} @cardSubtypes={{@model.cardSubtypes}} @illustrators={{@model.illustrators}} />
+          </div>
         </div>
-        </div>
-        <div
-          class="card-body d-flex flex-column flex-lg-row justify-content-between"
-        >
+      </div>
+    </div>
+  </div>
+
+  {{#if @model.printings.length }}
+  <div class="row">
+    <div class="col-12 d-flex flex-row flex-sm-column my-2">
+      <div class="card border-0 flex-grow-1">
+        <div class="card-body d-flex flex-column flex-lg-row justify-content-between">
           <div class="container" id="cycle-card-list">
             <h1>Search Results</h1>
             <CardLists @printings={{@model.printings}} @display="{{this.display}}" />
@@ -27,4 +26,5 @@
       </div>
     </div>
   </div>
+  {{/if}}
 </div>

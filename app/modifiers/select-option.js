@@ -1,5 +1,8 @@
 import { modifier } from 'ember-modifier';
 
 export default modifier((element, [value]) => {
-  element.querySelector(`option[value="${value}"]`).selected = true;
+  const option = element.querySelector(`option[value="${value}"]`);
+  if (option) {
+    option.selected = true;
+  }
 });
