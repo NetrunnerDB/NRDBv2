@@ -75,6 +75,32 @@ export default class PageAdvancedSearchRoute extends Route {
   }
 
   async model(params) {
+    const isUnique = [
+      { id: 't', name: 'Yes' },
+      { id: 'f', name: 'No' },
+    ];
+    const numPrintings = [
+      { id: '', name: 'Any' },
+      { id: 1, name: 1 },
+      { id: 2, name: 2 },
+      { id: 3, name: 3 },
+      { id: 4, name: 4 },
+      { id: 5, name: 5 },
+      { id: 6, name: 6 },
+    ];
+    const numRecords = [
+      { id: 25, name: 25 },
+      { id: 50, name: 50 },
+      { id: 100, name: 100 },
+      { id: 250, name: 250 },
+      { id: 1000, name: 1000 },
+      { id: 5000, name: 5000 },
+    ];
+    const orgs = [
+      { id: 'null_signal_games', name: 'Null Signal Games' },
+      { id: 'fantasy_flight_games', name: 'Fantasy Flight Games' },
+    ];
+
     let filter = params.query
       ? this.buildSearchFilter({ title: params.query })
       : this.buildSearchFilter(params);
@@ -94,6 +120,10 @@ export default class PageAdvancedSearchRoute extends Route {
         cardTypes: cardTypes,
         factions: factions,
         illustrators: illustrators,
+        isUnique: isUnique,
+        numPrintings: numPrintings,
+        numRecords: numRecords,
+        orgs: orgs,
         printings: this.store.query('printing', {
           filter: { search: filter },
           include: ['card_set', 'card_type', 'faction'],
@@ -109,6 +139,10 @@ export default class PageAdvancedSearchRoute extends Route {
         cardTypes: cardTypes,
         cardSubtypes: cardSubtypes,
         illustrators: illustrators,
+        isUnique: isUnique,
+        numPrintings: numPrintings,
+        numRecords: numRecords,
+        orgs: orgs,
         printings: [],
       });
     }

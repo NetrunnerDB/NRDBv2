@@ -2,8 +2,9 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { on } from '@ember/modifier';
 import { service } from '@ember/service';
-import { eq } from '../../utils/template-operators';
-import selectOption from '../../modifiers/select-option';
+import CheckboxElement from './checkbox-element';
+import SelectElement from './select-element';
+import StringTextElement from './string-text-element';
 
 export default class SearchFormComponent extends Component {
   @service router;
@@ -107,180 +108,49 @@ universal_faction_cost: Type: array
     <div>
       <form id='advanced-search' {{on 'submit' this.doSearch}}>
         <p>
-          <label for='max_records'>Max Records</label>
-          <select
-            id='max_records'
-            name='max_records'
-            {{selectOption @searchParams.max_records}}
-          >
-            <option value='100'>100</option>
-            <option value='250'>250</option>
-            <option value='500'>500</option>
-            <option value='1000'>1000</option>
-          </select>
+          <SelectElement @id='max_records' @name='MaxRecords' @options={{@numRecords}} @value={{@searchParams.max_records}} />
         </p>
         <p>
-          <label for='latest_printing_only'>Latest Printing Only</label>
-          <input
-            id='latest_printing_only'
-            name='latest_printing_only'
-            type='checkbox'
-            checked={{eq @searchParams.latest_printing_only 'true'}}
-            value={{eq @searchParams.latest_printing_only 'true'}}
-          />
+          <CheckboxElement @name='Latest Printing Only' @id='latest_printing_only' @value='{{@searchParams.latest_printing_only}}' />
         </p>
         <p>
-          <label for='num_printings'>Num Printings for Card</label>
-          <select
-            id='num_printings'
-            name='num_printings'
-            {{selectOption @searchParams.num_printings}}
-          >
-            <option value=''>Any</option>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='4'>4</option>
-            <option value='5'>5</option>
-            <option value='6'>6</option>
-          </select>
+          <SelectElement @id='num_printings' @name='Num Printings for Card' @options={{@numPrintings}} @value={{@searchParams.num_printings}} />
         </p>
         <p>
-          <label for='title'>Title:</label>
-          <input
-            type='text'
-            id='title'
-            name='title'
-            value='{{@searchParams.title}}'
-          />
+          <StringTextElement @name='Title' @id='title' @value='{{@searchParams.title}}' />
         </p>
         <p>
-          <label for='text'>Text:</label>
-          <input
-            type='text'
-            id='text'
-            name='text'
-            value='{{@searchParams.text}}'
-          />
+          <StringTextElement @name='Card Text' @id='text' @value='{{@searchParams.text}}' />
         </p>
         <p>
-          <label for='flavor'>Flavor:</label>
-          <input
-            type='text'
-            id='flavor'
-            name='flavor'
-            value='{{@searchParams.flavor}}'
-          />
+          <StringTextElement @name='Flavor Text' @id='flavor' @value='{{@searchParams.flavor}}' />
         </p>
         <p>
-          <label for='side_id'>Side</label>
-          <select
-            id='side_id'
-            name='side_id'
-            {{selectOption @searchParams.side_id}}
-          >
-            <option value=''>Either</option>
-            {{#each @sides as |side|}}
-              <option value='{{side.id}}'>{{side.name}}</option>
-            {{/each}}
-          </select>
+          <SelectElement @emptyDefault='Any' @id='side_id' @name='Side' @options={{@sides}} @value={{@searchParams.side_id}} />
         </p>
         <p>
-          <label for='faction_id'>Faction</label>
-          <select
-            id='faction_id'
-            name='faction_id'
-            {{selectOption @searchParams.faction_id}}
-          >
-            <option value=''>Any</option>
-            {{#each @factions as |faction|}}
-              <option value='{{faction.id}}'>{{faction.name}}</option>
-            {{/each}}
-          </select>
+          <SelectElement @emptyDefault='Any' @id='faction_id' @name='Faction' @options={{@factions}} @value={{@searchParams.faction_id}} />
         </p>
         <p>
-          <label for='card_type_id'>Card Type</label>
-          <select
-            id='card_type_id'
-            name='card_type_id'
-            {{selectOption @searchParams.card_type_id}}
-          >
-            <option value=''>Any</option>
-            {{#each @cardTypes as |card_type|}}
-              <option value='{{card_type.id}}'>{{card_type.name}}</option>
-            {{/each}}
-          </select>
+          <SelectElement @emptyDefault='Any' @id='card_type_id' @name='Card Type' @options={{@cardTypes}} @value={{@searchParams.card_type_id}} />
         </p>
         <p>
-          <label for='card_subtype_id'>Card Subtype</label>
-          <select
-            id='card_subtype_id'
-            name='card_subtype_id'
-            {{selectOption @searchParams.card_subtype_id}}
-          >
-            <option value=''>Any</option>
-            {{#each @cardSubtypes as |card_subtype|}}
-              <option value='{{card_subtype.id}}'>{{card_subtype.name}}</option>
-            {{/each}}
-          </select>
+          <SelectElement @emptyDefault='Any' @id='card_subtype_id' @name='Card Subtype' @options={{@cardSubtypes}} @value={{@searchParams.card_subtype_id}} />
         </p>
         <p>
-          <label for='is_unique'>Unique?</label>
-          <select
-            id='is_unique'
-            name='is_unique'
-            {{selectOption @searchParams.is_unique}}
-          >
-            <option value=''>Either</option>
-            <option value='t'>Yes</option>
-            <option value='f'>No</option>
-          </select>
+          <SelectElement @emptyDefault='Any' @id='is_unique' @name='Unique?' @options={{@isUnique}} @value={{@searchParams.is_unique}} />
         </p>
         <p>
-          <label for='designed_by'>Designed By Org</label>
-          <select
-            id='designed_by'
-            name='designed_by'
-            {{selectOption @searchParams.designed_by}}
-          >
-            <option value=''>Either</option>
-            <option value='null_signal_games'>Null Signal Games</option>
-            <option value='fantasy_flight_games'>Fantasy Flight Games</option>
-          </select>
+          <SelectElement @emptyDefault='Any' @id='designed_by' @name='Designed By Org' @options={{@orgs}} @value={{@searchParams.designed_by}} />
         </p>
         <p>
-          <label for='releaseed_by'>Released By Org</label>
-          <select
-            id='released_by'
-            name='released_by'
-            {{selectOption @searchParams.released_by}}
-          >
-            <option value=''>Either</option>
-            <option value='null_signal_games'>Null Signal Games</option>
-            <option value='fantasy_flight_games'>Fantasy Flight Games</option>
-          </select>
+          <SelectElement @emptyDefault='Any' @id='released_by' @name='Released By Org' @options={{@orgs}} @value={{@searchParams.released_by}} />
         </p>
         <p>
-          <label for='text'>Individual Card Designer:</label>
-          <input
-            type='text'
-            id='attribution'
-            name='attribution'
-            value='{{@searchParams.attribution}}'
-          />
+          <StringTextElement @name='Individual Card Designer' @id='attribution' @value='{{@searchParams.attribution}}' />
         </p>
         <p>
-          <label for='illustrator_id'>Illustrator</label>
-          <select
-            id='illustrator_id'
-            name='illustrator_id'
-            {{selectOption @searchParams.illustrator_id}}
-          >
-            <option value=''>Any</option>
-            {{#each @illustrators as |illustrator|}}
-              <option value='{{illustrator.id}}'>{{illustrator.name}}</option>
-            {{/each}}
-          </select>
+          <SelectElement @emptyDefault='Any' @id='illustrator_id' @name='Illustrator' @options={{@illustrators}} @value={{@searchParams.illustrator_id}} />
         </p>
         <p>
           <input type='submit' aria-label='Search' />
