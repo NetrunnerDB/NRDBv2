@@ -7,6 +7,8 @@ export default class PageAdvancedSearchRoute extends Route {
 
   // TODO(plural): Change to a single query free-form field for requests from other places and a structure for everything else.
   queryParams = {
+    additional_cost: { refreshModel: true },
+    advanceable: { refreshModel: true },
     attribution: { refreshModel: true },
     card_subtype_id: { refreshModel: true },
     card_type_id: { refreshModel: true },
@@ -14,16 +16,22 @@ export default class PageAdvancedSearchRoute extends Route {
     display: { refreshModel: true },
     faction_id: { refreshModel: true },
     flavor: { refreshModel: true },
+    gains_subroutines: { refreshModel: true },
     illustrator_id: { refreshModel: true },
+    interrupt: { refreshModel: true },
     is_unique: { refreshModel: true },
     latest_printing_only: { refreshModel: true },
     max_records: { refreshModel: true },
     num_printings: { refreshModel: true },
+    on_encounter_effect: { refreshModel: true },
+    performs_trace: { refreshModel: true },
     query: { refreshModel: true },
     released_by: { refreshModel: true },
+    rez_effect: { refreshModel: true },
     side_id: { refreshModel: true },
     text: { refreshModel: true },
     title: { refreshModel: true },
+    trash_ability: { refreshModel: true },
   };
 
   buildSearchFilter(params) {
@@ -69,6 +77,30 @@ export default class PageAdvancedSearchRoute extends Route {
     }
     if (params.num_printings) {
       filter.push(`num_printings:${params.num_printings}`);
+    }
+    if (params.additional_cost) {
+      filter.push(`additional_cost:t`);
+    }
+    if (params.advanceable) {
+      filter.push(`advanceable:t`);
+    }
+    if (params.gains_subroutines) {
+      filter.push(`gains_subroutines:t`);
+    }
+    if (params.interrupt) {
+      filter.push(`interrupt:t`);
+    }
+    if (params.on_encounter_effect) {
+      filter.push(`on_encounter_effect:t`);
+    }
+    if (params.performs_trace) {
+      filter.push(`performs_trace:t`);
+    }
+    if (params.rez_effect) {
+      filter.push(`rez_effect:t`);
+    }
+    if (params.trash_ability) {
+      filter.push(`trash_ability:t`);
     }
 
     return filter.join(' ');

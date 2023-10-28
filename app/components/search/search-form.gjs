@@ -14,7 +14,23 @@ export default class SearchFormComponent extends Component {
 
     const form = new FormData(e.target);
     const searchParams = Object.fromEntries(form.entries());
-    searchParams.latest_printing_only = !!searchParams.latest_printing_only;
+    // Only specify value for checkbox if explicitly set.
+    searchParams.latest_printing_only = searchParams.latest_printing_only
+      ? 't'
+      : null;
+    searchParams.additional_cost = searchParams.additional_cost ? 't' : null;
+    searchParams.advanceable = searchParams.advanceable ? 't' : null;
+    searchParams.gains_subroutines = searchParams.gains_subroutines
+      ? 't'
+      : null;
+    searchParams.interrupt = searchParams.interrupt ? 't' : null;
+    searchParams.on_encounter_effect = searchParams.on_encounter_effect
+      ? 't'
+      : null;
+    searchParams.performs_trace = searchParams.performs_trace ? 't' : null;
+    searchParams.rez_effect = searchParams.rez_effect ? 't' : null;
+    searchParams.trash_ability = searchParams.trash_ability ? 't' : null;
+
     searchParams.query = null;
 
     this.router.transitionTo('page.advanced-search', {
@@ -140,6 +156,33 @@ universal_faction_cost: Type: array
         <p>
           <SelectElement @emptyDefault='Any' @id='is_unique' @name='Unique?' @options={{@isUnique}} @value={{@searchParams.is_unique}} />
         </p>
+
+        <div>
+          <h3>Advanced Card Abilities</h3>
+          <p>
+           <CheckboxElement @name='Has Additional Cost?'
+               @id='additional_cost' @value='{{@searchParams.additional_cost}}' />
+           <CheckboxElement @name='Advanceable?'
+               @id='advanceable' @value='{{@searchParams.advanceable}}' />
+           <CheckboxElement @name='Gains Subroutines?'
+               @id='gains_subroutines' @value='{{@searchParams.gains_subroutines}}' />
+          </p>
+          <p>
+            <CheckboxElement @name='Has Interrupt?'
+                @id='interrupt' @value='{{@searchParams.interrupt}}' />
+            <CheckboxElement @name='On Encounter Effect?'
+                @id='on_encounter_effect' @value='{{@searchParams.on_encounter_effect}}' />
+            <CheckboxElement @name='Performs Trace?'
+                @id='performs_trace' @value='{{@searchParams.performs_trace}}' />
+          </p>
+          <p>
+            <CheckboxElement @name='Rez Effect?'
+                @id='rez_effect' @value='{{@searchParams.rez_effect}}' />
+            <CheckboxElement @name='Trash Ability?'
+                @id='trash_ability' @value='{{@searchParams.trash_ability}}' />
+          </p>
+        </div>
+
         <p>
           <SelectElement @emptyDefault='Any' @id='designed_by' @name='Designed By Org' @options={{@orgs}} @value={{@searchParams.designed_by}} />
         </p>
