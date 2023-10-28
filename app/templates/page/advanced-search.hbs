@@ -6,7 +6,7 @@
       <div class="card border-0 flex-grow-1" id="nav-main-content">
         <div class="card-body d-flex flex-column flex-lg-row justify-content-between" >
           <div class="container" id="advanced-search">
-            <Search::SearchForm @searchParams={{@model.searchParams}}/>
+            <Search::SearchForm @searchParams={{@model.searchParams}} @sides={{@model.sides}} @factions={{@model.factions}} @cardTypes={{@model.cardTypes}} />
           </div>
         </div>
       </div>

@@ -28,6 +28,15 @@ export default class PageAdvancedSearchRoute extends Route {
     flavor: {
       refreshModel: true,
     },
+    side_id: {
+      refreshModel: true,
+    },
+    faction_id: {
+      refreshModel: true,
+    },
+    card_type_id: {
+      refreshModel: true,
+    },
   };
 
   buildSearchFilter(params) {
@@ -44,6 +53,15 @@ export default class PageAdvancedSearchRoute extends Route {
     if (params.latest_printing_only) {
       filter.push(`is_latest_printing:t`);
     }
+    if (params.side_id) {
+      filter.push(`side:${params.side_id}`);
+    }
+    if (params.faction_id) {
+      filter.push(`faction:${params.faction_id}`);
+    }
+    if (params.card_type_id) {
+      filter.push(`card_type:${params.card_type_id}`);
+    }
 
     return filter.join(' ');
   }
@@ -53,9 +71,18 @@ export default class PageAdvancedSearchRoute extends Route {
       ? this.buildSearchFilter({ title: params.query })
       : this.buildSearchFilter(params);
 
+    const [sides, factions, cardTypes] = await Promise.all([
+      this.store.query('side', {sort: 'name'}),
+      this.store.query('faction', {sort: 'name'}),
+      this.store.query('card_type', {sort: 'name'}),
+    ]);
+
     if (filter) {
       return RSVP.hash({
         searchParams: params,
+        sides: sides,
+        factions: factions,
+        cardTypes: cardTypes,
         printings: this.store.query('printing', {
           filter: { search: filter },
           include: ['card_set', 'card_type', 'faction'],
@@ -64,6 +91,9 @@ export default class PageAdvancedSearchRoute extends Route {
       });
     } else {
       return RSVP.hash({
+        sides: sides,
+        factions: factions,
+        cardTypes: cardTypes,
         printings: [],
       });
     }

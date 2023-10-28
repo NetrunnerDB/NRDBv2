@@ -41,11 +41,14 @@ export default class SearchFormComponent extends Component {
 [x] title, _: Type: string
 [x] text, x: Type: string
 
-[drop down] side, d: Type: string
-[drop down] side_id of the card.
+[x] [drop down] side, d: Type: string
 
-[drop down] faction, f: Type: string
+[-] [drop down] faction, f: Type: string
 [drop down] faction_id of this card.
+^^ Should be multiple select
+
+[-] [drop down] card_type, t: Type: string
+^^ Should be multiple select
 
 [drop down] card_subtype, s: Type: array
 [drop down] text names for card subtypes, matched as lowercase.
@@ -242,6 +245,45 @@ Concatenation of restriction_id and a Universal Faction Cost value, joined by a 
             name='flavor'
             value='{{@searchParams.flavor}}'
           />
+        </p>
+        <p>
+          <label for='side_id'>Side</label>
+          <select
+            id='side_id'
+            name='side_id'
+            {{selectOption @searchParams.side_id}}
+          >
+            <option value=''></option>
+            {{#each @sides as |side|}}
+              <option value='{{side.id}}'>{{side.name}}</option>
+            {{/each}}
+          </select>
+        </p>
+        <p>
+          <label for='faction_id'>Faction</label>
+          <select
+            id='faction_id'
+            name='faction_id'
+            {{selectOption @searchParams.faction_id}}
+          >
+            <option value=''></option>
+            {{#each @factions as |faction|}}
+              <option value='{{faction.id}}'>{{faction.name}}</option>
+            {{/each}}
+          </select>
+        </p>
+        <p>
+          <label for='card_type_id'>Card Type</label>
+          <select
+            id='card_type_id'
+            name='card_type_id'
+            {{selectOption @searchParams.card_type_id}}
+          >
+            <option value=''></option>
+            {{#each @cardTypes as |card_type|}}
+              <option value='{{card_type.id}}'>{{card_type.name}}</option>
+            {{/each}}
+          </select>
         </p>
         <p>
           <input type='submit' aria-label='Search' />
