@@ -74,14 +74,14 @@ export default class SearchFormComponent extends Component {
 [numeric] memory_usage, m: Type: integer
 [numeric] strength, p: Type: integer
 [numeric] trash_cost, h: Type: integer
-[checkbox] additional_cost: Type: boolean
-[checkbox] advanceable: Type: boolean
-[checkbox] gains_subroutines: Type: boolean
-[checkbox] interrupt: Type: boolean
-[checkbox] on_encounter_effect: Type: boolean
-[checkbox] performs_trace: Type: boolean
-[checkbox] rez_effect: Type: boolean
-[checkbox] trash_ability: Type: boolean
+[x] [checkbox] additional_cost: Type: boolean
+[x] [checkbox] advanceable: Type: boolean
+[x] [checkbox] gains_subroutines: Type: boolean
+[x] [checkbox] interrupt: Type: boolean
+[x] [checkbox] on_encounter_effect: Type: boolean
+[x] [checkbox] performs_trace: Type: boolean
+[x] [checkbox] rez_effect: Type: boolean
+[x] [checkbox] trash_ability: Type: boolean
 [numeric] link_provided: Type: integer
 [numeric] mu_provided: Type: integer
 [numeric] num_printed_subroutines: Type: integer
