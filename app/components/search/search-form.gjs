@@ -116,6 +116,7 @@ export default class SearchFormComponent extends Component {
 
 == Restrictions
 [multi-select] restriction_id, b: Type: array
+
 [multi-select] eternal_points: Type: array
 has_global_penalty: Type: array
 [checkbox] is_banned: Type: array
@@ -221,7 +222,18 @@ universal_faction_cost: Type: array
           <SelectElement @emptyDefault='Any' @id='card_set' @name='Set' @options={{@cardSets}} @value={{@searchParams.card_set}} />
           <DateElement @id='release_date' @name='Release Date' @value={{@searchParams.release_date}} />
         </p>
-
+        <h2>Formats, Card Pools, Restrictions, & Snapshots</h2>
+        <p>
+          <SelectElement @emptyDefault='Any' @id='format' @name='Format' @options={{@formats}} @value={{@searchParams.format}} />
+          <SelectElement @emptyDefault='Any' @id='card_pool' @name='Card Pool' @options={{@cardPools}} @value={{@searchParams.card_pool}} />
+        </p>
+        <p>
+          <SelectElement @emptyDefault='Any' @id='restriction_id' @name='Restriction List' @options={{@restrictions}} @value={{@searchParams.restriction_id}} />
+        </p>
+        <p>
+          <SelectElement @emptyDefault='Any' @id='snapshot' @name='Snapshot (Format + Card Pool + Restriction)' @options={{@snapshots}} @value={{@searchParams.snapshot}} />
+        </p>
+        <h2>Deckbuilding Restrictions</h2>
         <h2>Designers and Publishers</h2>
         <p>
           <SelectElement @emptyDefault='Any' @id='designed_by' @name='Designed By Org' @options={{@orgs}} @value={{@searchParams.designed_by}} />
