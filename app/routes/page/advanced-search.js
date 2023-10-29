@@ -9,33 +9,54 @@ export default class PageAdvancedSearchRoute extends Route {
   queryParams = {
     additional_cost: { refreshModel: true },
     advanceable: { refreshModel: true },
+    advancement_cost: { refreshModel: true },
+    agenda_points: { refreshModel: true },
     attribution: { refreshModel: true },
+    base_link: { refreshModel: true },
     card_subtype_id: { refreshModel: true },
     card_type_id: { refreshModel: true },
+    cost: { refreshModel: true },
     designed_by: { refreshModel: true },
     display: { refreshModel: true },
     faction_id: { refreshModel: true },
     flavor: { refreshModel: true },
     gains_subroutines: { refreshModel: true },
     illustrator_id: { refreshModel: true },
+    influence_cost: { refreshModel: true },
     interrupt: { refreshModel: true },
     is_unique: { refreshModel: true },
     latest_printing_only: { refreshModel: true },
+    link_provided: { refreshModel: true },
     max_records: { refreshModel: true },
+    memory_usage: { refreshModel: true },
+    mu_provided: { refreshModel: true },
+    num_printed_subroutines: { refreshModel: true },
     num_printings: { refreshModel: true },
     on_encounter_effect: { refreshModel: true },
     performs_trace: { refreshModel: true },
+    position: { refreshModel: true },
+    quantity: { refreshModel: true },
     query: { refreshModel: true },
+    recurring_credits_provided: { refreshModel: true },
+    release_date: { refreshModel: true },
     released_by: { refreshModel: true },
     rez_effect: { refreshModel: true },
     side_id: { refreshModel: true },
-    text: { refreshModel: true },
+    strength: { refreshmodel: true },
+    text: { refreshmodel: true },
     title: { refreshModel: true },
     trash_ability: { refreshModel: true },
+    trash_cost: { refreshModel: true },
   };
 
   buildSearchFilter(params) {
     let filter = [];
+    if (params.position) {
+      filter.push(`position:${params.position}`);
+    }
+    if (params.quantity) {
+      filter.push(`quantity:${params.quantity}`);
+    }
     if (params.title) {
       filter.push(`_:"${params.title}"`);
     }
@@ -101,6 +122,57 @@ export default class PageAdvancedSearchRoute extends Route {
     }
     if (params.trash_ability) {
       filter.push(`trash_ability:t`);
+    }
+    if (params.agenda_points) {
+      filter.push(`agenda_points:${params.agenda_points}`);
+    }
+    if (params.advancement_cost) {
+      let value =
+        params.advancement_cost == '-1' ? 'X' : params.advancement_cost;
+      filter.push(`advancement_cost:${value}`);
+    }
+    if (params.influence_cost) {
+      filter.push(`influence_cost:${params.influence_cost}`);
+    }
+    if (params.cost) {
+      let value = params.cost == '-1' ? 'X' : params.cost;
+      filter.push(`cost:${value}`);
+    }
+    if (params.base_link) {
+      let value = params.base_link == '-1' ? 'X' : params.base_link;
+      filter.push(`base_link:${value}`);
+    }
+    if (params.memory_usage) {
+      let value = params.memory_usage == '-1' ? 'X' : params.memory_usage;
+      filter.push(`memory_usage:${value}`);
+    }
+    if (params.strength) {
+      let value = params.strength == '-1' ? 'X' : params.strength;
+      filter.push(`strength:${value}`);
+    }
+    if (params.trash_cost) {
+      let value = params.trash_cost == '-1' ? 'X' : params.trash_cost;
+      filter.push(`trash_cost:${value}`);
+    }
+    if (params.mu_provided) {
+      let value = params.mu_provided == '-1' ? 'X' : params.mu_provided;
+      filter.push(`mu_provided:${value}`);
+    }
+    if (params.recurring_credits_provided) {
+      let value =
+        params.recurring_credits_provided == '-1'
+          ? 'X'
+          : params.recurring_credits_provided;
+      filter.push(`recurring_credits_provided:${value}`);
+    }
+    if (params.link_provided) {
+      filter.push(`link_provided:${params.link_provided}`);
+    }
+    if (params.num_printed_subroutines) {
+      filter.push(`num_printed_subroutines:${params.num_printed_subroutines}`);
+    }
+    if (params.release_date) {
+      filter.push(`release_date:${params.release_date}`);
     }
 
     return filter.join(' ');
