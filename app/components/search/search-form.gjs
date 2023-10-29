@@ -3,7 +3,6 @@ import { action } from '@ember/object';
 import { on } from '@ember/modifier';
 import { service } from '@ember/service';
 import CheckboxElement from './checkbox-element';
-import DateElement from './date-element';
 import NumericElement from './numeric-element';
 import SelectElement from './select-element';
 import StringTextElement from './string-text-element';
