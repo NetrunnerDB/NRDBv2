@@ -13,6 +13,8 @@ export default class PageAdvancedSearchRoute extends Route {
     agenda_points: { refreshModel: true },
     attribution: { refreshModel: true },
     base_link: { refreshModel: true },
+    card_cycle: { refreshModel: true },
+    card_set: { refreshModel: true },
     card_subtype_id: { refreshModel: true },
     card_type_id: { refreshModel: true },
     cost: { refreshModel: true },
@@ -59,6 +61,12 @@ export default class PageAdvancedSearchRoute extends Route {
     }
     if (params.title) {
       filter.push(`_:"${params.title}"`);
+    }
+    if (params.card_cycle) {
+      filter.push(`card_cycle:"${params.card_cycle}"`);
+    }
+    if (params.card_set) {
+      filter.push(`card_set:"${params.card_set}"`);
     }
     if (params.text) {
       filter.push(`x:"${params.text}"`);
@@ -209,17 +217,28 @@ export default class PageAdvancedSearchRoute extends Route {
       ? this.buildSearchFilter({ title: params.query })
       : this.buildSearchFilter(params);
 
-    const [cardSubtypes, cardTypes, factions, illustrators, sides] =
-      await Promise.all([
-        this.store.query('card_subtype', { sort: 'name' }),
-        this.store.query('card_type', { sort: 'name' }),
-        this.store.query('faction', { sort: 'name' }),
-        this.store.query('illustrator', { sort: 'name' }),
-        this.store.query('side', { sort: 'name' }),
-      ]);
+    const [
+      cardCycles,
+      cardSets,
+      cardSubtypes,
+      cardTypes,
+      factions,
+      illustrators,
+      sides,
+    ] = await Promise.all([
+      this.store.query('card_cycle', { sort: '-date_release' }),
+      this.store.query('card_set', { sort: '-date_release' }),
+      this.store.query('card_subtype', { sort: 'name' }),
+      this.store.query('card_type', { sort: 'name' }),
+      this.store.query('faction', { sort: 'name' }),
+      this.store.query('illustrator', { sort: 'name' }),
+      this.store.query('side', { sort: 'name' }),
+    ]);
 
     if (filter) {
       return RSVP.hash({
+        cardCycles: cardCycles,
+        cardSets: cardSets,
         cardSubtypes: cardSubtypes,
         cardTypes: cardTypes,
         factions: factions,
@@ -238,16 +257,18 @@ export default class PageAdvancedSearchRoute extends Route {
       });
     } else {
       return RSVP.hash({
-        sides: sides,
-        factions: factions,
-        cardTypes: cardTypes,
+        cardCycles: cardCycles,
+        cardSets: cardSets,
         cardSubtypes: cardSubtypes,
+        cardTypes: cardTypes,
+        factions: factions,
         illustrators: illustrators,
         isUnique: isUnique,
         numPrintings: numPrintings,
         numRecords: numRecords,
         orgs: orgs,
         printings: [],
+        sides: sides,
       });
     }
   }

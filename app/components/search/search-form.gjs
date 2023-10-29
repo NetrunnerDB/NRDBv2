@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { on } from '@ember/modifier';
 import { service } from '@ember/service';
 import CheckboxElement from './checkbox-element';
+import DateElement from './date-element';
 import NumericElement from './numeric-element';
 import SelectElement from './select-element';
 import StringTextElement from './string-text-element';
@@ -94,9 +95,9 @@ export default class SearchFormComponent extends Component {
 [x] [dropdown] designed_by: Type: string
 [x] [dropdown] released_by: Type: string
 [x] attribution: Type: string
-[ ] [dropdown] card_cycle
-[ ] [dropdown] card_set
-[ ] [date] release_date, date_release, r: Type: date
+[x] [dropdown] card_cycle
+[x] [dropdown] card_set
+[x] [date] release_date, date_release, r: Type: date
 
 == Flavor & Illustrators
 [x] [multi-select] illustrator, i: Type: string
@@ -213,6 +214,13 @@ universal_faction_cost: Type: array
                 @id='recurring_credits_provided' min={{-1}} max={{8}} @value='{{@searchParams.recurring_credits_provided}}' />
           </p>
         </div>
+
+        <h2>Cycles & Sets</h2>
+        <p>
+          <SelectElement @emptyDefault='Any' @id='card_cycle' @name='Cycle' @options={{@cardCycles}} @value={{@searchParams.card_cycle}} />
+          <SelectElement @emptyDefault='Any' @id='card_set' @name='Set' @options={{@cardSets}} @value={{@searchParams.card_set}} />
+          <DateElement @id='release_date' @name='Release Date' @value={{@searchParams.release_date}} />
+        </p>
 
         <h2>Designers and Publishers</h2>
         <p>
