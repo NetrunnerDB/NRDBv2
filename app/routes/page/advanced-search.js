@@ -14,6 +14,7 @@ export default class PageAdvancedSearchRoute extends Route {
     attribution: { refreshModel: true },
     base_link: { refreshModel: true },
     card_cycle: { refreshModel: true },
+    card_pool: { refreshModel: true },
     card_set: { refreshModel: true },
     card_subtype_id: { refreshModel: true },
     card_type_id: { refreshModel: true },
@@ -22,6 +23,7 @@ export default class PageAdvancedSearchRoute extends Route {
     display: { refreshModel: true },
     faction_id: { refreshModel: true },
     flavor: { refreshModel: true },
+    format: { refreshModel: true },
     gains_subroutines: { refreshModel: true },
     illustrator_id: { refreshModel: true },
     influence_cost: { refreshModel: true },
@@ -42,8 +44,10 @@ export default class PageAdvancedSearchRoute extends Route {
     recurring_credits_provided: { refreshModel: true },
     release_date: { refreshModel: true },
     released_by: { refreshModel: true },
+    restriction_id: { refreshModel: true },
     rez_effect: { refreshModel: true },
     side_id: { refreshModel: true },
+    snapshot: { refreshModel: true },
     strength: { refreshmodel: true },
     text: { refreshmodel: true },
     title: { refreshModel: true },
@@ -182,6 +186,18 @@ export default class PageAdvancedSearchRoute extends Route {
     if (params.release_date) {
       filter.push(`release_date:${params.release_date}`);
     }
+    if (params.card_pool) {
+      filter.push(`card_pool:${params.card_pool}`);
+    }
+    if (params.format) {
+      filter.push(`format:${params.format}`);
+    }
+    if (params.snapshot) {
+      filter.push(`snapshot:${params.snapshot}`);
+    }
+    if (params.restriction_id) {
+      filter.push(`restriction_id:${params.restriction_id}`);
+    }
 
     return filter.join(' ');
   }
@@ -219,29 +235,64 @@ export default class PageAdvancedSearchRoute extends Route {
 
     const [
       cardCycles,
+      cardPools,
       cardSets,
       cardSubtypes,
       cardTypes,
       factions,
+      formats,
       illustrators,
+      restrictions,
       sides,
+      snapshotsRaw,
     ] = await Promise.all([
       this.store.query('card_cycle', { sort: '-date_release' }),
+      this.store.query('card_pool', { sort: 'name' }),
       this.store.query('card_set', { sort: '-date_release' }),
       this.store.query('card_subtype', { sort: 'name' }),
       this.store.query('card_type', { sort: 'name' }),
       this.store.query('faction', { sort: 'name' }),
+      this.store.query('format', { sort: 'name' }),
       this.store.query('illustrator', { sort: 'name' }),
+      this.store.query('restriction', { sort: '-date_start' }),
       this.store.query('side', { sort: 'name' }),
+      this.store.query('snapshot', { sort: 'format_id,-date_start' }),
     ]);
+
+    const formatMap = {};
+    formats.forEach((f) => {
+      formatMap[f.id] = f.name;
+    });
+    const cardPoolMap = {};
+    cardPools.forEach((p) => {
+      cardPoolMap[p.id] = p.name;
+    });
+    const restrictionMap = {};
+    restrictions.forEach((r) => {
+      restrictionMap[r.id] = r.name;
+    });
+
+    const snapshots = [];
+    snapshotsRaw.forEach((s) => {
+      let name = `${s.id}: ${formatMap[s.formatId]} / ${
+        cardPoolMap[s.cardPoolId]
+      }`;
+      if (s.restrictionId) {
+        name += ` / ${restrictionMap[s.restrictionId]}`;
+      }
+      name += s.active ? ' (active)' : '';
+      snapshots.push({ id: s.id, name: name });
+    });
 
     if (filter) {
       return RSVP.hash({
         cardCycles: cardCycles,
+        cardPools: cardPools,
         cardSets: cardSets,
         cardSubtypes: cardSubtypes,
         cardTypes: cardTypes,
         factions: factions,
+        formats: formats,
         illustrators: illustrators,
         isUnique: isUnique,
         numPrintings: numPrintings,
@@ -252,23 +303,29 @@ export default class PageAdvancedSearchRoute extends Route {
           include: ['card_set', 'card_type', 'faction'],
           page: { limit: params.max_records || 100 },
         }),
+        restrictions: restrictions,
         searchParams: params,
         sides: sides,
+        snapshots: snapshots,
       });
     } else {
       return RSVP.hash({
         cardCycles: cardCycles,
+        cardPools: cardPools,
         cardSets: cardSets,
         cardSubtypes: cardSubtypes,
         cardTypes: cardTypes,
         factions: factions,
+        formats: formats,
         illustrators: illustrators,
         isUnique: isUnique,
         numPrintings: numPrintings,
         numRecords: numRecords,
         orgs: orgs,
         printings: [],
+        restrictions: restrictions,
         sides: sides,
+        snapshots: snapshots,
       });
     }
   }
