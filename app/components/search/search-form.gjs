@@ -1,35 +1,22 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { on } from '@ember/modifier';
 import { service } from '@ember/service';
 import BsForm from 'ember-bootstrap/components/bs-form';
 import PowerSelect from 'ember-power-select/components/power-select';
-import CheckboxElement from './checkbox-element';
-import DateElement from './date-element';
-import NumericElement from './numeric-element';
-import SelectElement from './select-element';
-import StringTextElement from './string-text-element';
 
 export default class SearchFormComponent extends Component {
   @service router;
 
-  @action foo() {
-  }
+  @action foo() {}
 
   @action doSearch(f) {
     // Only specify value for checkbox if explicitly set.
-    f.latest_printing_only = f.latest_printing_only
-      ? 't'
-      : null;
+    f.latest_printing_only = f.latest_printing_only ? 't' : null;
     f.additional_cost = f.additional_cost ? 't' : null;
     f.advanceable = f.advanceable ? 't' : null;
-    f.gains_subroutines = f.gains_subroutines
-      ? 't'
-      : null;
+    f.gains_subroutines = f.gains_subroutines ? 't' : null;
     f.interrupt = f.interrupt ? 't' : null;
-    f.on_encounter_effect = f.on_encounter_effect
-      ? 't'
-      : null;
+    f.on_encounter_effect = f.on_encounter_effect ? 't' : null;
     f.performs_trace = f.performs_trace ? 't' : null;
     f.rez_effect = f.rez_effect ? 't' : null;
     f.trash_ability = f.trash_ability ? 't' : null;
@@ -146,9 +133,9 @@ universal_faction_cost: Type: array
             <form.element @controlType="checkbox" @label="Latest Printing Only?" @property="latest_printing_only" />
           </div>
           <div class="col-sm-3">
-<PowerSelect @options={{this.args.maxRecords}} @onChange={{this.foo}} as |opt|>
-  {{opt.name}}
-</PowerSelect>
+            <PowerSelect @options={{@maxRecords}} @onChange={{this.foo}} as |opt|>
+              {{opt.name}}
+            </PowerSelect>
           </div>
           <div class="col-sm-3">
           Flavor Text
