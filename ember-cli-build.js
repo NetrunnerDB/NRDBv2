@@ -8,6 +8,9 @@ module.exports = function (defaults) {
       bootstrapVersion: 5,
       importBootstrapCSS: true,
     },
+    'ember-power-select': {
+      theme: 'bootstrap'
+    },
     outputPaths: {
       app: {
         css: {

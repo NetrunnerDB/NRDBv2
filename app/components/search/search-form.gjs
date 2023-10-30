@@ -2,6 +2,8 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { on } from '@ember/modifier';
 import { service } from '@ember/service';
+import BsForm from 'ember-bootstrap/components/bs-form';
+import PowerSelect from 'ember-power-select/components/power-select';
 import CheckboxElement from './checkbox-element';
 import DateElement from './date-element';
 import NumericElement from './numeric-element';
@@ -11,32 +13,31 @@ import StringTextElement from './string-text-element';
 export default class SearchFormComponent extends Component {
   @service router;
 
-  @action doSearch(e) {
-    e.preventDefault();
+  @action foo() {
+  }
 
-    const form = new FormData(e.target);
-    const searchParams = Object.fromEntries(form.entries());
+  @action doSearch(f) {
     // Only specify value for checkbox if explicitly set.
-    searchParams.latest_printing_only = searchParams.latest_printing_only
+    f.latest_printing_only = f.latest_printing_only
       ? 't'
       : null;
-    searchParams.additional_cost = searchParams.additional_cost ? 't' : null;
-    searchParams.advanceable = searchParams.advanceable ? 't' : null;
-    searchParams.gains_subroutines = searchParams.gains_subroutines
+    f.additional_cost = f.additional_cost ? 't' : null;
+    f.advanceable = f.advanceable ? 't' : null;
+    f.gains_subroutines = f.gains_subroutines
       ? 't'
       : null;
-    searchParams.interrupt = searchParams.interrupt ? 't' : null;
-    searchParams.on_encounter_effect = searchParams.on_encounter_effect
+    f.interrupt = f.interrupt ? 't' : null;
+    f.on_encounter_effect = f.on_encounter_effect
       ? 't'
       : null;
-    searchParams.performs_trace = searchParams.performs_trace ? 't' : null;
-    searchParams.rez_effect = searchParams.rez_effect ? 't' : null;
-    searchParams.trash_ability = searchParams.trash_ability ? 't' : null;
+    f.performs_trace = f.performs_trace ? 't' : null;
+    f.rez_effect = f.rez_effect ? 't' : null;
+    f.trash_ability = f.trash_ability ? 't' : null;
 
-    searchParams.query = null;
+    f.query = null;
 
     this.router.transitionTo('page.advanced-search', {
-      queryParams: searchParams,
+      queryParams: f,
     });
   }
 
@@ -126,136 +127,118 @@ universal_faction_cost: Type: array
 
 }}
 
-    <div>
-      <form id='advanced-search' {{on 'submit' this.doSearch}}>
-        <h2>Title & Text</h2>
-        <p>
-          <StringTextElement @name='Title' @id='title' @value='{{@searchParams.title}}' />
-          <StringTextElement @name='Card Text' @id='text' @value='{{@searchParams.text}}' />
-        </p>
-        <h2>Printing Attributes</h2>
-        <p>
-          <CheckboxElement @name='Latest Printing Only' @id='latest_printing_only' @value='{{@searchParams.latest_printing_only}}' />
-          <NumericElement @min={{0}} @name='Position In Set' @id='position' @value='{{@searchParams.position}}' />
-          <NumericElement @min={{0}} @name='Quantity' @id='quantity' @value='{{@searchParams.quantity}}' />
-          <SelectElement @id='num_printings' @name='Num Printings for Card' @options={{@numPrintings}} @value={{@searchParams.num_printings}} />
-        </p>
-        <h2>Card Attributes</h2>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='side_id' @name='Side' @options={{@sides}} @value={{@searchParams.side_id}} />
-          <SelectElement @emptyDefault='Any' @id='faction_id' @name='Faction' @options={{@factions}} @value={{@searchParams.faction_id}} />
-          <SelectElement @emptyDefault='Any' @id='card_type_id' @name='Card Type' @options={{@cardTypes}} @value={{@searchParams.card_type_id}} />
-          <SelectElement @emptyDefault='Any' @id='card_subtype_id' @name='Card Subtype' @options={{@cardSubtypes}} @value={{@searchParams.card_subtype_id}} />
-        </p>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='is_unique' @name='Unique?' @options={{@isUnique}} @value={{@searchParams.is_unique}} />
-        </p>
-
-        <div>
-          <h3>Card Attributes</h3>
-          <p>
-            <NumericElement @name='Influence'
-                @id='influence_cost' min={{0}} max={{5}} @value='{{@searchParams.influence_cost}}' />
-            <NumericElement @name='Cost'
-                @id='cost' min={{-1}} max={{6}} @value='{{@searchParams.agenda_points}}' />
-          </p>
-          <p>
-            <NumericElement @name='Advancement Requirement'
-                @id='advancement_cost' min={{-1}} max={{9}} @value='{{@searchParams.advancement_cost}}' />
-            <NumericElement @name='Agenda Points'
-                @id='agenda_points' min={{0}} max={{6}} @value='{{@searchParams.agenda_points}}' />
-          </p>
-          <p>
-            <NumericElement @name='Base Link'
-                @id='base_link' min={{0}} max={{2}} @value='{{@searchParams.base_link}}' />
-            <NumericElement @name='Memory Usage'
-                @id='memory_usage' min={{0}} max={{4}} @value='{{@searchParams.memory_usage}}' />
-          </p>
-          <p>
-            <NumericElement @name='Strength'
-                @id='strength' min={{-1}} max={{11}} @value='{{@searchParams.strength}}' />
-            <NumericElement @name='Trash Cost'
-                @id='trash_cost' min={{0}} max={{8}} @value='{{@searchParams.trash_cost}}' />
-          </p>
+    <BsForm @formLayout="vertical" @onSubmit={{this.doSearch}} @model={{@searchParams}} as |form|>
+      <fieldset>
+        <legend>Title & Text</legend>
+        <div class="row">
+          <div class="col-sm-6">
+            <form.element @controlType="text" @label="Title" @property="title" />
+          </div>
+          <div class="col-sm-6">
+            <form.element @controlType="text" @label="Text" @property="text" />
+          </div>
         </div>
-        <div>
-          <h3>Card Abilities</h3>
-          <p>
-           <CheckboxElement @name='Has Additional Cost?'
-               @id='additional_cost' @value='{{@searchParams.additional_cost}}' />
-           <CheckboxElement @name='Advanceable?'
-               @id='advanceable' @value='{{@searchParams.advanceable}}' />
-           <CheckboxElement @name='Gains Subroutines?'
-               @id='gains_subroutines' @value='{{@searchParams.gains_subroutines}}' />
-          </p>
-          <p>
-            <CheckboxElement @name='Has Interrupt?'
-                @id='interrupt' @value='{{@searchParams.interrupt}}' />
-            <CheckboxElement @name='On Encounter Effect?'
-                @id='on_encounter_effect' @value='{{@searchParams.on_encounter_effect}}' />
-            <CheckboxElement @name='Performs Trace?'
-                @id='performs_trace' @value='{{@searchParams.performs_trace}}' />
-          </p>
-          <p>
-            <CheckboxElement @name='Rez Effect?'
-                @id='rez_effect' @value='{{@searchParams.rez_effect}}' />
-            <CheckboxElement @name='Trash Ability?'
-                @id='trash_ability' @value='{{@searchParams.trash_ability}}' />
-          </p>
-          <p>
-            <NumericElement @name='Link Provided'
-                @id='link_provided' min={{0}} max={{2}} @value='{{@searchParams.link_provided}}' />
-            <NumericElement @name='MU Provided'
-                @id='mu_provided' min={{-1}} max={{3}} @value='{{@searchParams.mu_provided}}' />
-          </p>
-          <p>
-            <NumericElement @name='Num Printed Subroutines'
-                @id='num_printed_subroutines' min={{0}} max={{11}} @value='{{@searchParams.num_printed_subroutines}}' />
-            <NumericElement @name='Recurring Credits Provided'
-                @id='recurring_credits_provided' min={{-1}} max={{8}} @value='{{@searchParams.recurring_credits_provided}}' />
-          </p>
+      </fieldset>
+      <fieldset>
+        <legend>Printing Attributes</legend>
+        <div class="row">
+          <div class="col-sm-3">
+            <form.element @controlType="checkbox" @label="Latest Printing Only?" @property="latest_printing_only" />
+          </div>
+          <div class="col-sm-3">
+<PowerSelect @options={{this.args.maxRecords}} @onChange={{this.foo}} as |opt|>
+  {{opt.name}}
+</PowerSelect>
+          </div>
+          <div class="col-sm-3">
+          Flavor Text
+          </div>
+          <div class="col-sm-3">
+          Illustrators
+          </div>
         </div>
+      </fieldset>
+      <fieldset>
+        <legend>Card Attributes</legend>
+        <div class="row">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Card Abilities</legend>
+        <div class="row">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Cycles & Sets</legend>
+        <div class="row">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Formats, Card Pools, Restrictions, & Snapshots</legend>
+        <div class="row">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Deckbuilding Restrictions</legend>
+        <div class="row">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Designers and Publishers</legend>
+        <div class="row">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Cycles & Sets</legend>
+        <div class="row">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </fieldset>
 
-        <h2>Cycles & Sets</h2>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='card_cycle' @name='Cycle' @options={{@cardCycles}} @value={{@searchParams.card_cycle}} />
-          <SelectElement @emptyDefault='Any' @id='card_set' @name='Set' @options={{@cardSets}} @value={{@searchParams.card_set}} />
-          <DateElement @id='release_date' @name='Release Date' @value={{@searchParams.release_date}} />
-        </p>
-        <h2>Formats, Card Pools, Restrictions, & Snapshots</h2>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='format' @name='Format' @options={{@formats}} @value={{@searchParams.format}} />
-          <SelectElement @emptyDefault='Any' @id='card_pool' @name='Card Pool' @options={{@cardPools}} @value={{@searchParams.card_pool}} />
-        </p>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='restriction_id' @name='Restriction List' @options={{@restrictions}} @value={{@searchParams.restriction_id}} />
-        </p>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='snapshot' @name='Snapshot (Format + Card Pool + Restriction)' @options={{@snapshots}} @value={{@searchParams.snapshot}} />
-        </p>
-        <h2>Deckbuilding Restrictions</h2>
-        <h2>Designers and Publishers</h2>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='designed_by' @name='Designed By Org' @options={{@orgs}} @value={{@searchParams.designed_by}} />
-        </p>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='released_by' @name='Released By Org' @options={{@orgs}} @value={{@searchParams.released_by}} />
-        </p>
-        <p>
-          <StringTextElement @name='Champion Card Designer' @id='attribution' @value='{{@searchParams.attribution}}' />
-        </p>
-        <h2>Flavor & Illustrators</h2>
-        <p>
-          <StringTextElement @name='Flavor Text' @id='flavor' @value='{{@searchParams.flavor}}' />
-        </p>
-        <p>
-          <SelectElement @emptyDefault='Any' @id='illustrator_id' @name='Illustrator' @options={{@illustrators}} @value={{@searchParams.illustrator_id}} />
-        </p>
-        <p>
-          <SelectElement @id='max_records' @name='MaxRecords' @options={{@numRecords}} @value={{@searchParams.max_records}} />
-          <input type='submit' aria-label='Search' />
-        </p>
-      </form>
-    </div>
+      <div class="row">
+        <div class="col-sm-3">
+          Max Records Goes Here.
+        </div>
+        <div class="col-sm-2">
+          <form.submitButton>Submit</form.submitButton>
+        </div>
+      </div>
+    </BsForm>
+
   </template>
 }
