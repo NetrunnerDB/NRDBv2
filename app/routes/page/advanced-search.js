@@ -216,14 +216,6 @@ export default class PageAdvancedSearchRoute extends Route {
       { id: 5, name: 5 },
       { id: 6, name: 6 },
     ];
-    const numRecords = [ 25, 50, 100, 250, 500, 1000, 5000 ];
-//      { id: 25, name: 25 },
-//      { id: 50, name: 50 },
-//      { id: 100, name: 100 },
-//      { id: 250, name: 250 },
-//      { id: 1000, name: 1000 },
-//      { id: 5000, name: 5000 },
-//    ];
     const orgs = [
       { id: 'null_signal_games', name: 'Null Signal Games' },
       { id: 'fantasy_flight_games', name: 'Fantasy Flight Games' },
@@ -296,7 +288,6 @@ export default class PageAdvancedSearchRoute extends Route {
         illustrators: illustrators,
         isUnique: isUnique,
         numPrintings: numPrintings,
-        numRecords: numRecords,
         orgs: orgs,
         printings: this.store.query('printing', {
           filter: { search: filter },
@@ -320,7 +311,6 @@ export default class PageAdvancedSearchRoute extends Route {
         illustrators: illustrators,
         isUnique: isUnique,
         numPrintings: numPrintings,
-        numRecords: numRecords,
         orgs: orgs,
         printings: [],
         restrictions: restrictions,

@@ -1,19 +1,19 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
+import { fn } from '@ember/helper';
 import { tracked } from '@glimmer/tracking';
 import BsForm from 'ember-bootstrap/components/bs-form';
+import PowerSelect from 'ember-power-select/components/power-select';
 
 export default class SearchFormComponent extends Component {
   @service router;
 
-  @tracked maxRecords = 100;
+  @tracked params = {
+    max_records: 100,
+  };
 
-  @action
-  setMaxRecords(o) {
-    console.table(o);
-    this.maxRecords = o;
-  }
+  numRecords = [25, 50, 100, 250, 500, 1000, 5000];
 
   @action doSearch(f) {
     // Only specify value for checkbox if explicitly set.
@@ -120,7 +120,7 @@ universal_faction_cost: Type: array
 
 }}
 
-    <BsForm @formLayout="vertical" @onSubmit={{this.doSearch}} @model={{@searchParams}} as |form|>
+    <BsForm @formLayout="vertical" @onSubmit={{this.doSearch}} @model={{this.params}} as |form|>
       <fieldset>
         <legend>Title & Text</legend>
         <div class="row">
@@ -139,13 +139,16 @@ universal_faction_cost: Type: array
             <form.element @controlType="checkbox" @label="Latest Printing Only?" @property="latest_printing_only" />
           </div>
           <div class="col-sm-3">
-            <form.element
-                @controlType="power-select"
-                @selected={{ this.maxRecords }}
-                @label="Num Records"
-                @options={{@numRecords}}
-                @onChange={{ this.setMaxRecords }}
-                />
+          <form.element @label="Num Records" @property="max_records" as |el|>
+            <PowerSelect
+              @options={{this.numRecords}}
+              @selected={{this.params.max_records}}
+              @triggerId={{el.id}}
+              @onFocus={{action.focus}}
+              @onChange={{fn (mut this.params.max_records)}} as |x|>
+              {{x}}
+            </PowerSelect>
+          </form.element>
           </div>
           <div class="col-sm-3">
           Flavor Text
