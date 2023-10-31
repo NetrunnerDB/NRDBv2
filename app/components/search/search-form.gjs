@@ -1,13 +1,19 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import BsForm from 'ember-bootstrap/components/bs-form';
-import PowerSelect from 'ember-power-select/components/power-select';
 
 export default class SearchFormComponent extends Component {
   @service router;
 
-  @action foo() {}
+  @tracked maxRecords = 100;
+
+  @action
+  setMaxRecords(o) {
+    console.table(o);
+    this.maxRecords = o;
+  }
 
   @action doSearch(f) {
     // Only specify value for checkbox if explicitly set.
@@ -133,9 +139,13 @@ universal_faction_cost: Type: array
             <form.element @controlType="checkbox" @label="Latest Printing Only?" @property="latest_printing_only" />
           </div>
           <div class="col-sm-3">
-            <PowerSelect @options={{@maxRecords}} @onChange={{this.foo}} as |opt|>
-              {{opt.name}}
-            </PowerSelect>
+            <form.element
+                @controlType="power-select"
+                @selected={{ this.maxRecords }}
+                @label="Num Records"
+                @options={{@numRecords}}
+                @onChange={{ this.setMaxRecords }}
+                />
           </div>
           <div class="col-sm-3">
           Flavor Text
