@@ -203,24 +203,6 @@ export default class PageAdvancedSearchRoute extends Route {
   }
 
   async model(params) {
-    const isUnique = [
-      { id: 't', name: 'Yes' },
-      { id: 'f', name: 'No' },
-    ];
-    const numPrintings = [
-      { id: '', name: 'Any' },
-      { id: 1, name: 1 },
-      { id: 2, name: 2 },
-      { id: 3, name: 3 },
-      { id: 4, name: 4 },
-      { id: 5, name: 5 },
-      { id: 6, name: 6 },
-    ];
-    const orgs = [
-      { id: 'null_signal_games', name: 'Null Signal Games' },
-      { id: 'fantasy_flight_games', name: 'Fantasy Flight Games' },
-    ];
-
     let filter = params.query
       ? this.buildSearchFilter({ title: params.query })
       : this.buildSearchFilter(params);
@@ -286,9 +268,6 @@ export default class PageAdvancedSearchRoute extends Route {
         factions: factions,
         formats: formats,
         illustrators: illustrators,
-        isUnique: isUnique,
-        numPrintings: numPrintings,
-        orgs: orgs,
         printings: this.store.query('printing', {
           filter: { search: filter },
           include: ['card_set', 'card_type', 'faction'],
@@ -309,9 +288,6 @@ export default class PageAdvancedSearchRoute extends Route {
         factions: factions,
         formats: formats,
         illustrators: illustrators,
-        isUnique: isUnique,
-        numPrintings: numPrintings,
-        orgs: orgs,
         printings: [],
         restrictions: restrictions,
         searchParams: { max_records: 100 },
