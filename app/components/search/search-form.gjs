@@ -6,15 +6,16 @@ import { tracked } from '@glimmer/tracking';
 import Icon from '../icon';
 import BsForm from 'ember-bootstrap/components/bs-form';
 import PowerSelect from 'ember-power-select/components/power-select';
+import PowerSelectMultiple from 'ember-power-select/components/power-select-multiple';
 
 export default class SearchFormComponent extends Component {
   @service router;
+  @tracked searchParams;
 
-  @tracked display = 'checklist';
-
-  @tracked params = {
-    max_records: 100,
-  };
+  constructor() {
+    super(...arguments);
+    this.searchParams = this.args.searchParams;
+  }
 
   displayOptions = [
     { id: 'checklist', name: 'Checklist' },
@@ -41,53 +42,53 @@ export default class SearchFormComponent extends Component {
   ];
   numRecords = [25, 50, 100, 250, 500, 1000, 5000];
 
-  @action doSearch(f) {
+  @action doSearch() {
+    let p = this.searchParams;
+
     // Only specify value for checkbox if explicitly set.
-    f.latest_printing_only = f.latest_printing_only ? 't' : null;
-    f.additional_cost = f.additional_cost ? 't' : null;
-    f.advanceable = f.advanceable ? 't' : null;
-    f.gains_subroutines = f.gains_subroutines ? 't' : null;
-    f.interrupt = f.interrupt ? 't' : null;
-    f.on_encounter_effect = f.on_encounter_effect ? 't' : null;
-    f.performs_trace = f.performs_trace ? 't' : null;
-    f.rez_effect = f.rez_effect ? 't' : null;
-    f.trash_ability = f.trash_ability ? 't' : null;
+    p.latest_printing_only = p.latest_printing_only ? 't' : null;
+    p.additional_cost = p.additional_cost ? 't' : null;
+    p.advanceable = p.advanceable ? 't' : null;
+    p.gains_subroutines = p.gains_subroutines ? 't' : null;
+    p.interrupt = p.interrupt ? 't' : null;
+    p.on_encounter_effect = p.on_encounter_effect ? 't' : null;
+    p.performs_trace = p.performs_trace ? 't' : null;
+    p.rez_effect = p.rez_effect ? 't' : null;
+    p.trash_ability = p.trash_ability ? 't' : null;
 
-    f.side_id = f.side_id ? f.side_id.id : null;
-    f.faction_id = f.faction_id ? f.faction_id.id : null;
-    f.card_type_id = f.card_type_id ? f.card_type_id.id : null;
-    f.card_subtype_id = f.card_subtype_id ? f.card_subtype_id.id : null;
-    f.illustrator_id = f.illustrator_id ? f.illustrator_id.id : null;
-    f.num_printings = f.num_printings ? f.num_printings.id : null;
-    f.is_unique = f.is_unique ? f.is_unique.id : null;
-    f.quantity = f.quantity ? f.quantity.id : null;
-    f.designed_by = f.designed_by ? f.designed_by.id : null;
-    f.released_by = f.released_by ? f.released_by.id : null;
+    p.side_id = p.side_id ? p.side_id.id : null;
+    p.faction_id = p.faction_id ? p.faction_id.id : null;
+    p.card_type_id = p.card_type_id ? p.card_type_id.id : null;
+    p.card_subtype_id = p.card_subtype_id ? p.card_subtype_id.id : null;
+    p.illustrator_id = p.illustrator_id ? p.illustrator_id.id : null;
+    p.num_printings = p.num_printings ? p.num_printings.id : null;
+    p.is_unique = p.is_unique ? p.is_unique.id : null;
+    p.quantity = p.quantity ? p.quantity.id : null;
+    p.designed_by = p.designed_by ? p.designed_by.id : null;
+    p.released_by = p.released_by ? p.released_by.id : null;
 
-    f.has_additional_cost = f.has_additional_cost
-      ? f.has_additional_cost.id
+    p.has_additional_cost = p.has_additional_cost
+      ? p.has_additional_cost.id
       : null;
-    f.advanceable = f.advanceable ? f.advanceable.id : null;
-    f.gains_subroutines = f.gains_subroutines ? f.gains_subroutines.id : null;
-    f.has_interrupt = f.has_interrupt ? f.has_interrupt.id : null;
-    f.on_encounter_effect = f.on_encounter_effect
-      ? f.on_encounter_effect.id
+    p.advanceable = p.advanceable ? p.advanceable.id : null;
+    p.gains_subroutines = p.gains_subroutines ? p.gains_subroutines.id : null;
+    p.has_interrupt = p.has_interrupt ? p.has_interrupt.id : null;
+    p.on_encounter_effect = p.on_encounter_effect
+      ? p.on_encounter_effect.id
       : null;
-    f.performs_trace = f.performs_trace ? f.performs_trace.id : null;
-    f.rez_effect = f.rez_effect ? f.rez_effect.id : null;
-    f.trash_ability = f.trash_ability ? f.trash_ability.id : null;
-    f.card_cycle = f.card_cycle ? f.card_cycle.id : null;
-    f.card_set = f.card_set ? f.card_set.id : null;
-    f.snapshot = f.snapshot ? f.snapshot.id : null;
-    f.format_id = f.format_id ? f.format_id.id : null;
-    f.card_pool_id = f.card_pool_id ? f.card_pool_id.id : null;
-    f.restriction_id = f.restriction_id ? f.restriction_id.id : null;
-    f.snapshot_id = f.snapshot_id ? f.snapshot_id.id : null;
-    f.quantity = f.quantity ? f.quantity.id : null;
-    f.query = null;
+    p.performs_trace = p.performs_trace ? p.performs_trace.id : null;
+    p.rez_effect = p.rez_effect ? p.rez_effect.id : null;
+    p.trash_ability = p.trash_ability ? p.trash_ability.id : null;
+    p.card_cycle = p.card_cycle ? p.card_cycle.id : null;
+    p.card_set = p.card_set ? p.card_set.id : null;
+    p.snapshot = p.snapshot ? p.snapshot.id : null;
+    p.format_id = p.format_id ? p.format_id.id : null;
+    p.card_pool_id = p.card_pool_id ? p.card_pool_id.id : null;
+    p.restriction_id = p.restriction_id ? p.restriction_id.id : null;
+    p.snapshot_id = p.snapshot_id ? p.snapshot_id.id : null;
 
     this.router.transitionTo('page.advanced-search', {
-      queryParams: f,
+      queryParams: this.searchParams,
     });
   }
 
@@ -98,86 +99,7 @@ export default class SearchFormComponent extends Component {
       <p>Free form query is: <strong>{{@searchParams.query}}</strong></p>
     {{/if}}
 
-    {{!
-== Result Type
-
-# of records
-
-[x] [checkbox] Latest Printing Only
-[ ] [drop down] Sort by
-  ^ Should also allow multiple.
-  ^ Needs to ignore inline sorting in the card list component.
-
-== Basic Card Attributes
-[x] title, _: Type: string
-[x] text, x: Type: string
-[x] flavor, flavour, a: Type: string
-[x] [drop down] side, d: Type: string
-[-] [drop down] faction, f: Type: string << Should be multiple select
-[-] [drop down] card_type, t: Type: string << Should be multiple select
-[-] [drop down] card_subtype_id: Type: array << Should be multiple select
-[x] [dropdown] is_unique, u: Type: boolean
-
-=== Advanced Card Attributes
-[x] [numeric] advancement_cost, g: Type: integer
-[x] [numeric] agenda_points, v: Type: integer
-[x] [numeric] cost, o: Type: integer
-[x] [numeric] influence_cost, n: Type: integer
-
-[x] [numeric] base_link, l: Type: integer
-[x] [numeric] memory_usage, m: Type: integer
-[x] [numeric] strength, p: Type: integer (X)
-[x] [numeric] trash_cost, h: Type: integer
-
-[x] [checkbox] additional_cost: Type: boolean
-[x] [checkbox] advanceable: Type: boolean
-[x] [checkbox] gains_subroutines: Type: boolean
-[x] [checkbox] interrupt: Type: boolean
-[x] [checkbox] on_encounter_effect: Type: boolean
-[x] [checkbox] performs_trace: Type: boolean
-[x] [checkbox] rez_effect: Type: boolean
-[x] [checkbox] trash_ability: Type: boolean
-[x] [numeric] link_provided: Type: integer
-[x] [numeric] mu_provided: Type: integer  X
-[x] [numeric] num_printed_subroutines: Type: integer
-[x] [numeric] recurring_credits_provided: Type: integer X
-
-== Attribution
-[x] [dropdown] designed_by: Type: string
-[x] [dropdown] released_by: Type: string
-[x] attribution: Type: string
-[x] [dropdown] card_cycle
-[x] [dropdown] card_set
-[x] [date] release_date, date_release, r: Type: date
-
-== Flavor & Illustrators
-[x] [multi-select] illustrator, i: Type: string
-
-== Printings
-[x] [numeric] num_printings: Type: integer
-[x] [checkbox] is_latest_printing: Type: boolean
-
-[x] [numeric] position: Type: integer
-[x] [numeric] quantity, y: Type: integer
-
-== Formats & Card Pools
-[ ] [multi-select] format: Type: array << should be multi-select
-[ ] [multi-select] card_pool, z: Type: array
-[ ] [multi-select] snapshot: Type: array
-
-== Restrictions
-[multi-select] restriction_id, b: Type: array
-
-[multi-select] eternal_points: Type: array
-has_global_penalty: Type: array
-[checkbox] is_banned: Type: array
-[checkbox] is_restricted: Type: array
-[checkbox] in_restriction: Type: boolean
-universal_faction_cost: Type: array
-
-}}
-
-    <BsForm @formLayout="vertical" @onSubmit={{this.doSearch}} @model={{this.params}} as |form|>
+    <BsForm @formLayout="vertical" @onSubmit={{this.doSearch}} @model={{@searchParams}} as |form|>
       <fieldset>
         <legend>Title & Text</legend>
         <div class="row">
@@ -203,12 +125,12 @@ universal_faction_cost: Type: array
             <form.element @label="Quantity In Set" @property="quantity" as |el|>
               <PowerSelect
                 @options={{this.oneToSix}}
-                @selected={{this.params.quantity}}
+                @selected={{@searchParams.quantity}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.quantity)}} as |x|>
+                @onChange={{fn (mut this.searchParams.quantity)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -217,12 +139,12 @@ universal_faction_cost: Type: array
             <form.element @label="Num Printings" @property="num_printings" as |el|>
               <PowerSelect
                 @options={{this.oneToSix}}
-                @selected={{this.params.num_printings}}
+                @selected={{this.searchParams.num_printings}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.num_printings)}} as |x|>
+                @onChange={{fn (mut this.searchParams.num_printings)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -236,12 +158,12 @@ universal_faction_cost: Type: array
             <form.element @label="Illustrators" @property="max_records" as |el|>
               <PowerSelect
                 @options={{@illustrators}}
-                @selected={{this.params.illustrator_id}}
+                @selected={{this.searchParams.illustrator_id}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.illustrator_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.illustrator_id)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -256,12 +178,12 @@ universal_faction_cost: Type: array
             <form.element @label="Side" @property="side_id" as |el|>
               <PowerSelect
                 @options={{@sides}}
-                @selected={{this.params.side_id}}
+                @selected={{this.searchParams.side_id}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.side_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.side_id)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -270,12 +192,12 @@ universal_faction_cost: Type: array
             <form.element @label="Faction" @property="faction_id" as |el|>
               <PowerSelect
                 @options={{@factions}}
-                @selected={{this.params.faction_id}}
+                @selected={{this.searchParams.faction_id}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.faction_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.faction_id)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -284,12 +206,12 @@ universal_faction_cost: Type: array
             <form.element @label="Card Type" @property="card_type_id" as |el|>
               <PowerSelect
                 @options={{@cardTypes}}
-                @selected={{this.params.card_type_id}}
+                @selected={{this.searchParams.card_type_id}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.card_type_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.card_type_id)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -298,12 +220,12 @@ universal_faction_cost: Type: array
             <form.element @label="Card Subtype" @property="card_subtype_id" as |el|>
               <PowerSelect
                 @options={{@cardSubtypes}}
-                @selected={{this.params.card_subtype_id}}
+                @selected={{this.searchParams.card_subtype_id}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.card_subtype_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.card_subtype_id)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -314,12 +236,12 @@ universal_faction_cost: Type: array
             <form.element @label="Unique?" @property="is_unique" as |el|>
               <PowerSelect
                 @options={{this.isUnique}}
-                @selected={{this.params.is_unique}}
+                @selected={{this.searchParams.is_unique}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.is_unique)}} as |x|>
+                @onChange={{fn (mut this.searchParams.is_unique)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -362,12 +284,12 @@ universal_faction_cost: Type: array
             <form.element @label="Has Additional Cost?" @property="additional_cost" as |el|>
               <PowerSelect
                 @options={{this.isUnique}}
-                @selected={{this.params.additional_cost}}
+                @selected={{this.searchParams.additional_cost}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.additional_cost)}} as |x|>
+                @onChange={{fn (mut this.searchParams.additional_cost)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -376,12 +298,12 @@ universal_faction_cost: Type: array
             <form.element @label="Advanceable?" @property="advanceable" as |el|>
               <PowerSelect
                 @options={{this.isUnique}}
-                @selected={{this.params.advanceable}}
+                @selected={{this.searchParams.advanceable}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.advanceable)}} as |x|>
+                @onChange={{fn (mut this.searchParams.advanceable)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -390,12 +312,12 @@ universal_faction_cost: Type: array
             <form.element @label="Gains Subroutines?" @property="gains_subroutines" as |el|>
               <PowerSelect
                 @options={{this.isUnique}}
-                @selected={{this.params.gains_subroutines}}
+                @selected={{this.searchParams.gains_subroutines}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.gains_subroutines)}} as |x|>
+                @onChange={{fn (mut this.searchParams.gains_subroutines)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -404,12 +326,12 @@ universal_faction_cost: Type: array
             <form.element @label="Has Interrupt?" @property="has_interrupt" as |el|>
               <PowerSelect
                 @options={{this.isUnique}}
-                @selected={{this.params.has_interrupt}}
+                @selected={{this.searchParams.has_interrupt}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.has_interrupt)}} as |x|>
+                @onChange={{fn (mut this.searchParams.has_interrupt)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -420,12 +342,12 @@ universal_faction_cost: Type: array
             <form.element @label="On Encounter Effect?" @property="on_encounter_effect" as |el|>
               <PowerSelect
                 @options={{this.isUnique}}
-                @selected={{this.params.on_encounter_effect}}
+                @selected={{this.searchParams.on_encounter_effect}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.on_encounter_effect)}} as |x|>
+                @onChange={{fn (mut this.searchParams.on_encounter_effect)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -434,12 +356,12 @@ universal_faction_cost: Type: array
             <form.element @label="Performs Trace?" @property="performs_trace" as |el|>
               <PowerSelect
                 @options={{this.isUnique}}
-                @selected={{this.params.performs_trace}}
+                @selected={{this.searchParams.performs_trace}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.performs_trace)}} as |x|>
+                @onChange={{fn (mut this.searchParams.performs_trace)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -447,13 +369,15 @@ universal_faction_cost: Type: array
           <div class="col-sm-3">
             <form.element @label="Rez Effect?" @property="rez_effect" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
-                @selected={{this.params.rez_effect}}
+                @selected={{this.searchParams.rez_effect}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
+                @triggerRole='listbox'
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.rez_effect)}} as |x|>
+                @onChange={{fn (mut this.searchParams.rez_effect)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -461,13 +385,14 @@ universal_faction_cost: Type: array
           <div class="col-sm-3">
             <form.element @label="Trash Ability?" @property="trash_ability" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
-                @selected={{this.params.trash_ability}}
+                @selected={{this.searchParams.trash_ability}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.trash_ability)}} as |x|>
+                @onChange={{fn (mut this.searchParams.trash_ability)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -494,28 +419,28 @@ universal_faction_cost: Type: array
         <div class="row">
           <div class="col-sm-6">
             <form.element @label="Cycle" @property="card_cycle" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@cardCycles}}
-                @selected={{this.params.card_cycle}}
+                @selected={{this.searchParams.card_cycle}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.card_cycle)}} as |x|>
-                <Icon @icon={{x.id}} /> {{x.name}}
-              </PowerSelect>
+                @onChange={{fn (mut this.searchParams.card_cycle)}} as |x|>
+                <Icon @icon={{x.id}} /> {{x.name}}{{'         '}}
+              </PowerSelectMultiple>
             </form.element>
           </div>
           <div class="col-sm-6">
             <form.element @label="Set" @property="card_set" as |el|>
               <PowerSelect
                 @options={{@cardSets}}
-                @selected={{this.params.card_set}}
+                @selected={{this.searchParams.card_set}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.card_set)}} as |x|>
+                @onChange={{fn (mut this.searchParams.card_set)}} as |x|>
                 <Icon @icon={{x.cardCycleId}} /> {{x.name}}
               </PowerSelect>
             </form.element>
@@ -530,12 +455,12 @@ universal_faction_cost: Type: array
             <form.element @label="Snapshot" @property="snapshot" as |el|>
               <PowerSelect
                 @options={{@snapshots}}
-                @selected={{this.params.snapshot}}
+                @selected={{this.searchParams.snapshot}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.snapshot)}} as |x|>
+                @onChange={{fn (mut this.searchParams.snapshot)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -546,12 +471,12 @@ universal_faction_cost: Type: array
             <form.element @label="Format" @property="format" as |el|>
               <PowerSelect
                 @options={{@formats}}
-                @selected={{this.params.format}}
+                @selected={{this.searchParams.format}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.format)}} as |x|>
+                @onChange={{fn (mut this.searchParams.format)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -560,12 +485,12 @@ universal_faction_cost: Type: array
             <form.element @label="Card Pool" @property="card_pool" as |el|>
               <PowerSelect
                 @options={{@cardPools}}
-                @selected={{this.params.card_pool}}
+                @selected={{this.searchParams.card_pool}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.card_pool)}} as |x|>
+                @onChange={{fn (mut this.searchParams.card_pool)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -574,12 +499,12 @@ universal_faction_cost: Type: array
             <form.element @label="Restriction List" @property="restriction_id" as |el|>
               <PowerSelect
                 @options={{@restrictions}}
-                @selected={{this.params.restriction_id}}
+                @selected={{this.searchParams.restriction_id}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.restriction_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.restriction_id)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -594,10 +519,10 @@ universal_faction_cost: Type: array
             <form.element @label="Designed By" @property="designed_by" as |el|>
               <PowerSelect
                 @options={{this.orgs}}
-                @selected={{this.params.designed_by}}
+                @selected={{this.searchParams.designed_by}}
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.designed_by)}} as |x|>
+                @onChange={{fn (mut this.searchParams.designed_by)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -606,10 +531,10 @@ universal_faction_cost: Type: array
             <form.element @label="Released By" @property="released_by" as |el|>
               <PowerSelect
                 @options={{this.orgs}}
-                @selected={{this.params.released_by}}
+                @selected={{this.searchParams.released_by}}
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.params.released_by)}} as |x|>
+                @onChange={{fn (mut this.searchParams.released_by)}} as |x|>
                 {{x.name}}
               </PowerSelect>
             </form.element>
@@ -635,10 +560,10 @@ universal_faction_cost: Type: array
           <form.element @label="Num Records" @property="max_records" as |el|>
             <PowerSelect
               @options={{this.numRecords}}
-              @selected={{this.params.max_records}}
+              @selected={{this.searchParams.max_records}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
-              @onChange={{fn (mut this.params.max_records)}} as |x|>
+              @onChange={{fn (mut this.searchParams.max_records)}} as |x|>
               {{x}}
             </PowerSelect>
           </form.element>
@@ -647,7 +572,7 @@ universal_faction_cost: Type: array
           <form.element @label="Display" @property="display" as |el|>
             <PowerSelect
               @options={{this.displayOptions}}
-              @selected={{this.display}}
+              @selected={{@searchParams.display}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
               @onChange={{fn (mut this.display)}} as |x|>

@@ -36,6 +36,7 @@ export default class PageAdvancedSearchRoute extends Route {
     mu_provided: { refreshModel: true },
     num_printed_subroutines: { refreshModel: true },
     num_printings: { refreshModel: true },
+    num_records: { refreshModel: true },
     on_encounter_effect: { refreshModel: true },
     performs_trace: { refreshModel: true },
     position: { refreshModel: true },
