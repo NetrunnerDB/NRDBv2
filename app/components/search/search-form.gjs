@@ -124,6 +124,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Quantity In Set" @property="quantity" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.oneToSix}}
                 @selected={{@searchParams.quantity}}
                 @searchEnabled={{true}}
@@ -138,6 +139,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Num Printings" @property="num_printings" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.oneToSix}}
                 @selected={{this.searchParams.num_printings}}
                 @searchEnabled={{true}}
@@ -156,7 +158,7 @@ export default class SearchFormComponent extends Component {
           </div>
           <div class="col-sm-6">
             <form.element @label="Illustrators" @property="max_records" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@illustrators}}
                 @selected={{this.searchParams.illustrator_id}}
                 @searchEnabled={{true}}
@@ -165,7 +167,7 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.illustrator_id)}} as |x|>
                 {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
         </div>
@@ -177,6 +179,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Side" @property="side_id" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{@sides}}
                 @selected={{this.searchParams.side_id}}
                 @searchEnabled={{true}}
@@ -190,7 +193,7 @@ export default class SearchFormComponent extends Component {
           </div>
           <div class="col-sm-3">
             <form.element @label="Faction" @property="faction_id" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@factions}}
                 @selected={{this.searchParams.faction_id}}
                 @searchEnabled={{true}}
@@ -199,12 +202,12 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.faction_id)}} as |x|>
                 {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
           <div class="col-sm-3">
             <form.element @label="Card Type" @property="card_type_id" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@cardTypes}}
                 @selected={{this.searchParams.card_type_id}}
                 @searchEnabled={{true}}
@@ -213,12 +216,12 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.card_type_id)}} as |x|>
                 {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
           <div class="col-sm-3">
             <form.element @label="Card Subtype" @property="card_subtype_id" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@cardSubtypes}}
                 @selected={{this.searchParams.card_subtype_id}}
                 @searchEnabled={{true}}
@@ -227,7 +230,7 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.card_subtype_id)}} as |x|>
                 {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
         </div>
@@ -235,6 +238,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Unique?" @property="is_unique" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
                 @selected={{this.searchParams.is_unique}}
                 @searchEnabled={{true}}
@@ -283,6 +287,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Has Additional Cost?" @property="additional_cost" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
                 @selected={{this.searchParams.additional_cost}}
                 @searchEnabled={{true}}
@@ -297,6 +302,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Advanceable?" @property="advanceable" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
                 @selected={{this.searchParams.advanceable}}
                 @searchEnabled={{true}}
@@ -311,6 +317,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Gains Subroutines?" @property="gains_subroutines" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
                 @selected={{this.searchParams.gains_subroutines}}
                 @searchEnabled={{true}}
@@ -325,6 +332,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Has Interrupt?" @property="has_interrupt" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
                 @selected={{this.searchParams.has_interrupt}}
                 @searchEnabled={{true}}
@@ -341,6 +349,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="On Encounter Effect?" @property="on_encounter_effect" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
                 @selected={{this.searchParams.on_encounter_effect}}
                 @searchEnabled={{true}}
@@ -355,6 +364,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-3">
             <form.element @label="Performs Trace?" @property="performs_trace" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.isUnique}}
                 @selected={{this.searchParams.performs_trace}}
                 @searchEnabled={{true}}
@@ -433,7 +443,7 @@ export default class SearchFormComponent extends Component {
           </div>
           <div class="col-sm-6">
             <form.element @label="Set" @property="card_set" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@cardSets}}
                 @selected={{this.searchParams.card_set}}
                 @searchEnabled={{true}}
@@ -442,7 +452,7 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.card_set)}} as |x|>
                 <Icon @icon={{x.cardCycleId}} /> {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
         </div>
@@ -453,7 +463,7 @@ export default class SearchFormComponent extends Component {
         <div class="row">
           <div class="col-sm-12">
             <form.element @label="Snapshot" @property="snapshot" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@snapshots}}
                 @selected={{this.searchParams.snapshot}}
                 @searchEnabled={{true}}
@@ -462,14 +472,14 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.snapshot)}} as |x|>
                 {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
             <form.element @label="Format" @property="format" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@formats}}
                 @selected={{this.searchParams.format}}
                 @searchEnabled={{true}}
@@ -478,12 +488,12 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.format)}} as |x|>
                 {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
           <div class="col-sm-4">
             <form.element @label="Card Pool" @property="card_pool" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@cardPools}}
                 @selected={{this.searchParams.card_pool}}
                 @searchEnabled={{true}}
@@ -492,12 +502,12 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.card_pool)}} as |x|>
                 {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
           <div class="col-sm-4">
             <form.element @label="Restriction List" @property="restriction_id" as |el|>
-              <PowerSelect
+              <PowerSelectMultiple
                 @options={{@restrictions}}
                 @selected={{this.searchParams.restriction_id}}
                 @searchEnabled={{true}}
@@ -506,7 +516,7 @@ export default class SearchFormComponent extends Component {
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.restriction_id)}} as |x|>
                 {{x.name}}
-              </PowerSelect>
+              </PowerSelectMultiple>
             </form.element>
           </div>
         </div>
@@ -518,6 +528,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-4">
             <form.element @label="Designed By" @property="designed_by" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.orgs}}
                 @selected={{this.searchParams.designed_by}}
                 @triggerId={{el.id}}
@@ -530,6 +541,7 @@ export default class SearchFormComponent extends Component {
           <div class="col-sm-4">
             <form.element @label="Released By" @property="released_by" as |el|>
               <PowerSelect
+                @allowClear={{true}}
                 @options={{this.orgs}}
                 @selected={{this.searchParams.released_by}}
                 @triggerId={{el.id}}
