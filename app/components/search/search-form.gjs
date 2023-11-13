@@ -45,6 +45,13 @@ export default class SearchFormComponent extends Component {
   @action doSearch() {
     let p = this.searchParams;
 
+    if (p.title && p.title.trim().length == 0) {
+      p.title = null;
+    }
+    if (p.text && p.text.trim().length == 0) {
+      p.text = null;
+    }
+
     // Only specify value for checkbox if explicitly set.
     p.latest_printing_only = p.latest_printing_only ? 't' : null;
     p.additional_cost = p.additional_cost ? 't' : null;
@@ -57,10 +64,35 @@ export default class SearchFormComponent extends Component {
     p.trash_ability = p.trash_ability ? 't' : null;
 
     p.side_id = p.side_id ? p.side_id.id : null;
-    p.faction_id = p.faction_id ? p.faction_id.id : null;
-    p.card_type_id = p.card_type_id ? p.card_type_id.id : null;
-    p.card_subtype_id = p.card_subtype_id ? p.card_subtype_id.id : null;
-    p.illustrator_id = p.illustrator_id ? p.illustrator_id.id : null;
+    if (p.faction_id) {
+      if (p.faction_id.length != 0) {
+        p.faction_id = p.faction_id.map((x) => x.id);
+      } else {
+        p.faction_id = null;
+      }
+    }
+    if (p.card_type_id) {
+      if (p.card_type_id.length != 0) {
+        p.card_type_id = p.card_type_id.map((x) => x.id);
+      } else {
+        p.card_type_id = null;
+      }
+    }
+    if (p.card_subtype_id) {
+      if (p.card_subtype_id.length != 0) {
+        p.card_subtype_id = p.card_subtype_id.map((x) => x.id);
+      } else {
+        p.card_subtype_id = null;
+      }
+    }
+    if (p.illustrator_id) {
+      if (p.illustrator_id.length != 0) {
+        p.illustrator_id = p.illustrator_id.map((x) => x.id);
+      } else {
+        p.illustrator_id = null;
+      }
+    }
+
     p.num_printings = p.num_printings ? p.num_printings.id : null;
     p.is_unique = p.is_unique ? p.is_unique.id : null;
     p.quantity = p.quantity ? p.quantity.id : null;
@@ -79,16 +111,30 @@ export default class SearchFormComponent extends Component {
     p.performs_trace = p.performs_trace ? p.performs_trace.id : null;
     p.rez_effect = p.rez_effect ? p.rez_effect.id : null;
     p.trash_ability = p.trash_ability ? p.trash_ability.id : null;
-    p.card_cycle = p.card_cycle ? p.card_cycle.id : null;
-    p.card_set = p.card_set ? p.card_set.id : null;
+
+    if (p.card_cycle) {
+      if (p.card_cycle.length != 0) {
+        p.card_cycle = p.card_cycle.map((x) => x.id);
+      } else {
+        p.card_cycle = null;
+      }
+    }
+    if (p.card_set) {
+      if (p.card_set.length != 0) {
+        p.card_set = p.card_set.map((x) => x.id);
+      } else {
+        p.card_set = null;
+      }
+    }
+
     p.snapshot = p.snapshot ? p.snapshot.id : null;
     p.format_id = p.format_id ? p.format_id.id : null;
     p.card_pool_id = p.card_pool_id ? p.card_pool_id.id : null;
     p.restriction_id = p.restriction_id ? p.restriction_id.id : null;
     p.snapshot_id = p.snapshot_id ? p.snapshot_id.id : null;
 
-    this.router.transitionTo('page.advanced-search', {
-      queryParams: this.searchParams,
+    this.router.transitionTo(this.router.currentRouteName, {
+      queryParams: p,
     });
   }
 
