@@ -102,7 +102,7 @@ export default class SearchFormComponent extends Component {
     <BsForm
       @formLayout='vertical'
       @onSubmit={{this.doSearch}}
-      @model={{@searchParams}}
+      @model={{this.searchParams}}
       as |form|
     >
       <fieldset>
@@ -143,7 +143,7 @@ export default class SearchFormComponent extends Component {
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.oneToSix}}
-                @selected={{@searchParams.quantity}}
+                @selected={{this.searchParams.quantity}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
@@ -741,7 +741,7 @@ export default class SearchFormComponent extends Component {
           <form.element @label='Display' @property='display' as |el|>
             <PowerSelect
               @options={{this.displayOptions}}
-              @selected={{@searchParams.display}}
+              @selected={{this.searchParams.display}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
               @onChange={{fn (mut this.display)}}
