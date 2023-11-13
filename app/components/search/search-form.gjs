@@ -99,30 +99,47 @@ export default class SearchFormComponent extends Component {
       <p>Free form query is: <strong>{{@searchParams.query}}</strong></p>
     {{/if}}
 
-    <BsForm @formLayout="vertical" @onSubmit={{this.doSearch}} @model={{@searchParams}} as |form|>
+    <BsForm
+      @formLayout='vertical'
+      @onSubmit={{this.doSearch}}
+      @model={{@searchParams}}
+      as |form|
+    >
       <fieldset>
         <legend>Title & Text</legend>
-        <div class="row">
-          <div class="col-sm-6">
-            <form.element @controlType="text" @label="Title" @property="title" />
+        <div class='row'>
+          <div class='col-sm-6'>
+            <form.element
+              @controlType='text'
+              @label='Title'
+              @property='title'
+            />
           </div>
-          <div class="col-sm-6">
-            <form.element @controlType="text" @label="Text" @property="text" />
+          <div class='col-sm-6'>
+            <form.element @controlType='text' @label='Text' @property='text' />
           </div>
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Printing Attributes</legend>
-        <div class="row">
-          <div class="col-sm-3">
-            <form.element @controlType="checkbox" @label="Latest Printing Only?" @property="latest_printing_only" />
+        <div class='row'>
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='checkbox'
+              @label='Latest Printing Only?'
+              @property='latest_printing_only'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Position In Set" @property="position" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Position In Set'
+              @property='position'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Quantity In Set" @property="quantity" as |el|>
+          <div class='col-sm-3'>
+            <form.element @label='Quantity In Set' @property='quantity' as |el|>
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.oneToSix}}
@@ -131,13 +148,19 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.quantity)}} as |x|>
+                @onChange={{fn (mut this.searchParams.quantity)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Num Printings" @property="num_printings" as |el|>
+          <div class='col-sm-3'>
+            <form.element
+              @label='Num Printings'
+              @property='num_printings'
+              as |el|
+            >
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.oneToSix}}
@@ -146,18 +169,24 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.num_printings)}} as |x|>
+                @onChange={{fn (mut this.searchParams.num_printings)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <form.element @controlType="text" @label="Flavor Text" @property="flavor" />
+        <div class='row'>
+          <div class='col-sm-6'>
+            <form.element
+              @controlType='text'
+              @label='Flavor Text'
+              @property='flavor'
+            />
           </div>
-          <div class="col-sm-6">
-            <form.element @label="Illustrators" @property="max_records" as |el|>
+          <div class='col-sm-6'>
+            <form.element @label='Illustrators' @property='max_records' as |el|>
               <PowerSelectMultiple
                 @options={{@illustrators}}
                 @selected={{this.searchParams.illustrator_id}}
@@ -165,7 +194,9 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.illustrator_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.illustrator_id)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelectMultiple>
             </form.element>
@@ -175,9 +206,9 @@ export default class SearchFormComponent extends Component {
 
       <fieldset>
         <legend>Card Attributes</legend>
-        <div class="row">
-          <div class="col-sm-3">
-            <form.element @label="Side" @property="side_id" as |el|>
+        <div class='row'>
+          <div class='col-sm-3'>
+            <form.element @label='Side' @property='side_id' as |el|>
               <PowerSelect
                 @allowClear={{true}}
                 @options={{@sides}}
@@ -186,13 +217,15 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.side_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.side_id)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Faction" @property="faction_id" as |el|>
+          <div class='col-sm-3'>
+            <form.element @label='Faction' @property='faction_id' as |el|>
               <PowerSelectMultiple
                 @options={{@factions}}
                 @selected={{this.searchParams.faction_id}}
@@ -200,13 +233,15 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.faction_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.faction_id)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelectMultiple>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Card Type" @property="card_type_id" as |el|>
+          <div class='col-sm-3'>
+            <form.element @label='Card Type' @property='card_type_id' as |el|>
               <PowerSelectMultiple
                 @options={{@cardTypes}}
                 @selected={{this.searchParams.card_type_id}}
@@ -214,13 +249,19 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.card_type_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.card_type_id)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelectMultiple>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Card Subtype" @property="card_subtype_id" as |el|>
+          <div class='col-sm-3'>
+            <form.element
+              @label='Card Subtype'
+              @property='card_subtype_id'
+              as |el|
+            >
               <PowerSelectMultiple
                 @options={{@cardSubtypes}}
                 @selected={{this.searchParams.card_subtype_id}}
@@ -228,15 +269,17 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.card_subtype_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.card_subtype_id)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelectMultiple>
             </form.element>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <form.element @label="Unique?" @property="is_unique" as |el|>
+        <div class='row'>
+          <div class='col-sm-3'>
+            <form.element @label='Unique?' @property='is_unique' as |el|>
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -245,47 +288,81 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.is_unique)}} as |x|>
+                @onChange={{fn (mut this.searchParams.is_unique)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Influence" @property="influence_cost" />
+        <div class='row'>
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Influence'
+              @property='influence_cost'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Cost" @property="cost" />
+          <div class='col-sm-3'>
+            <form.element @controlType='text' @label='Cost' @property='cost' />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Advancement Requirement" @property="advancement_cost" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Advancement Requirement'
+              @property='advancement_cost'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Agenda Points" @property="agenda_points" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Agenda Points'
+              @property='agenda_points'
+            />
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Base Link" @property="base_link" />
+        <div class='row'>
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Base Link'
+              @property='base_link'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Memory Usage" @property="memory_usage" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Memory Usage'
+              @property='memory_usage'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Strength" @property="strength" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Strength'
+              @property='strength'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Trash Cost" @property="trash_cost" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Trash Cost'
+              @property='trash_cost'
+            />
           </div>
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Card Abilities</legend>
-        <div class="row">
-          <div class="col-sm-3">
-            <form.element @label="Has Additional Cost?" @property="additional_cost" as |el|>
+        <div class='row'>
+          <div class='col-sm-3'>
+            <form.element
+              @label='Has Additional Cost?'
+              @property='additional_cost'
+              as |el|
+            >
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -294,13 +371,15 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.additional_cost)}} as |x|>
+                @onChange={{fn (mut this.searchParams.additional_cost)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Advanceable?" @property="advanceable" as |el|>
+          <div class='col-sm-3'>
+            <form.element @label='Advanceable?' @property='advanceable' as |el|>
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -309,13 +388,19 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.advanceable)}} as |x|>
+                @onChange={{fn (mut this.searchParams.advanceable)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Gains Subroutines?" @property="gains_subroutines" as |el|>
+          <div class='col-sm-3'>
+            <form.element
+              @label='Gains Subroutines?'
+              @property='gains_subroutines'
+              as |el|
+            >
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -324,13 +409,19 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.gains_subroutines)}} as |x|>
+                @onChange={{fn (mut this.searchParams.gains_subroutines)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Has Interrupt?" @property="has_interrupt" as |el|>
+          <div class='col-sm-3'>
+            <form.element
+              @label='Has Interrupt?'
+              @property='has_interrupt'
+              as |el|
+            >
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -339,15 +430,21 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.has_interrupt)}} as |x|>
+                @onChange={{fn (mut this.searchParams.has_interrupt)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <form.element @label="On Encounter Effect?" @property="on_encounter_effect" as |el|>
+        <div class='row'>
+          <div class='col-sm-3'>
+            <form.element
+              @label='On Encounter Effect?'
+              @property='on_encounter_effect'
+              as |el|
+            >
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -356,13 +453,19 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.on_encounter_effect)}} as |x|>
+                @onChange={{fn (mut this.searchParams.on_encounter_effect)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Performs Trace?" @property="performs_trace" as |el|>
+          <div class='col-sm-3'>
+            <form.element
+              @label='Performs Trace?'
+              @property='performs_trace'
+              as |el|
+            >
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -371,13 +474,15 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.performs_trace)}} as |x|>
+                @onChange={{fn (mut this.searchParams.performs_trace)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Rez Effect?" @property="rez_effect" as |el|>
+          <div class='col-sm-3'>
+            <form.element @label='Rez Effect?' @property='rez_effect' as |el|>
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -387,13 +492,19 @@ export default class SearchFormComponent extends Component {
                 @triggerId={{el.id}}
                 @triggerRole='listbox'
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.rez_effect)}} as |x|>
+                @onChange={{fn (mut this.searchParams.rez_effect)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-3">
-            <form.element @label="Trash Ability?" @property="trash_ability" as |el|>
+          <div class='col-sm-3'>
+            <form.element
+              @label='Trash Ability?'
+              @property='trash_ability'
+              as |el|
+            >
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.isUnique}}
@@ -402,33 +513,51 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.trash_ability)}} as |x|>
+                @onChange={{fn (mut this.searchParams.trash_ability)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Link Provided" @property="link_provided" />
+        <div class='row'>
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Link Provided'
+              @property='link_provided'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="MU Provided" @property="mu_provided" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='MU Provided'
+              @property='mu_provided'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Num Printed Subroutines" @property="num_printed_subroutines" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Num Printed Subroutines'
+              @property='num_printed_subroutines'
+            />
           </div>
-          <div class="col-sm-3">
-            <form.element @controlType="text" @label="Recurring Credits Provided" @property="recurring_credits_provided" />
+          <div class='col-sm-3'>
+            <form.element
+              @controlType='text'
+              @label='Recurring Credits Provided'
+              @property='recurring_credits_provided'
+            />
           </div>
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Cycles & Sets</legend>
-        <div class="row">
-          <div class="col-sm-6">
-            <form.element @label="Cycle" @property="card_cycle" as |el|>
+        <div class='row'>
+          <div class='col-sm-6'>
+            <form.element @label='Cycle' @property='card_cycle' as |el|>
               <PowerSelectMultiple
                 @options={{@cardCycles}}
                 @selected={{this.searchParams.card_cycle}}
@@ -436,13 +565,16 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.card_cycle)}} as |x|>
-                <Icon @icon={{x.id}} /> {{x.name}}{{'         '}}
+                @onChange={{fn (mut this.searchParams.card_cycle)}}
+                as |x|
+              >
+                <Icon @icon={{x.id}} />
+                {{x.name}}{{'         '}}
               </PowerSelectMultiple>
             </form.element>
           </div>
-          <div class="col-sm-6">
-            <form.element @label="Set" @property="card_set" as |el|>
+          <div class='col-sm-6'>
+            <form.element @label='Set' @property='card_set' as |el|>
               <PowerSelectMultiple
                 @options={{@cardSets}}
                 @selected={{this.searchParams.card_set}}
@@ -450,8 +582,11 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.card_set)}} as |x|>
-                <Icon @icon={{x.cardCycleId}} /> {{x.name}}
+                @onChange={{fn (mut this.searchParams.card_set)}}
+                as |x|
+              >
+                <Icon @icon={{x.cardCycleId}} />
+                {{x.name}}
               </PowerSelectMultiple>
             </form.element>
           </div>
@@ -460,9 +595,9 @@ export default class SearchFormComponent extends Component {
 
       <fieldset>
         <legend>Formats, Card Pools, Restrictions, & Snapshots</legend>
-        <div class="row">
-          <div class="col-sm-12">
-            <form.element @label="Snapshot" @property="snapshot" as |el|>
+        <div class='row'>
+          <div class='col-sm-12'>
+            <form.element @label='Snapshot' @property='snapshot' as |el|>
               <PowerSelectMultiple
                 @options={{@snapshots}}
                 @selected={{this.searchParams.snapshot}}
@@ -470,15 +605,17 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.snapshot)}} as |x|>
+                @onChange={{fn (mut this.searchParams.snapshot)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelectMultiple>
             </form.element>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <form.element @label="Format" @property="format" as |el|>
+        <div class='row'>
+          <div class='col-sm-4'>
+            <form.element @label='Format' @property='format' as |el|>
               <PowerSelectMultiple
                 @options={{@formats}}
                 @selected={{this.searchParams.format}}
@@ -486,13 +623,15 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.format)}} as |x|>
+                @onChange={{fn (mut this.searchParams.format)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelectMultiple>
             </form.element>
           </div>
-          <div class="col-sm-4">
-            <form.element @label="Card Pool" @property="card_pool" as |el|>
+          <div class='col-sm-4'>
+            <form.element @label='Card Pool' @property='card_pool' as |el|>
               <PowerSelectMultiple
                 @options={{@cardPools}}
                 @selected={{this.searchParams.card_pool}}
@@ -500,13 +639,19 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.card_pool)}} as |x|>
+                @onChange={{fn (mut this.searchParams.card_pool)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelectMultiple>
             </form.element>
           </div>
-          <div class="col-sm-4">
-            <form.element @label="Restriction List" @property="restriction_id" as |el|>
+          <div class='col-sm-4'>
+            <form.element
+              @label='Restriction List'
+              @property='restriction_id'
+              as |el|
+            >
               <PowerSelectMultiple
                 @options={{@restrictions}}
                 @selected={{this.searchParams.restriction_id}}
@@ -514,7 +659,9 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.restriction_id)}} as |x|>
+                @onChange={{fn (mut this.searchParams.restriction_id)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelectMultiple>
             </form.element>
@@ -524,79 +671,91 @@ export default class SearchFormComponent extends Component {
 
       <fieldset>
         <legend>Designers and Publishers</legend>
-        <div class="row">
-          <div class="col-sm-4">
-            <form.element @label="Designed By" @property="designed_by" as |el|>
+        <div class='row'>
+          <div class='col-sm-4'>
+            <form.element @label='Designed By' @property='designed_by' as |el|>
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.orgs}}
                 @selected={{this.searchParams.designed_by}}
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.designed_by)}} as |x|>
+                @onChange={{fn (mut this.searchParams.designed_by)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-4">
-            <form.element @label="Released By" @property="released_by" as |el|>
+          <div class='col-sm-4'>
+            <form.element @label='Released By' @property='released_by' as |el|>
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.orgs}}
                 @selected={{this.searchParams.released_by}}
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.released_by)}} as |x|>
+                @onChange={{fn (mut this.searchParams.released_by)}}
+                as |x|
+              >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class="col-sm-4">
-            <form.element @controlType="text" @label="Champion Card Designer" @property="attribution" />
+          <div class='col-sm-4'>
+            <form.element
+              @controlType='text'
+              @label='Champion Card Designer'
+              @property='attribution'
+            />
           </div>
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Cycles & Sets</legend>
-        <div class="row">
-          <div class="col-sm-6">
+        <div class='row'>
+          <div class='col-sm-6'>
           </div>
-          <div class="col-sm-6">
+          <div class='col-sm-6'>
           </div>
         </div>
       </fieldset>
 
-      <div class="row">
-        <div class="col-sm-3">
-          <form.element @label="Num Records" @property="max_records" as |el|>
+      <div class='row'>
+        <div class='col-sm-3'>
+          <form.element @label='Num Records' @property='max_records' as |el|>
             <PowerSelect
               @options={{this.numRecords}}
               @selected={{this.searchParams.max_records}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
-              @onChange={{fn (mut this.searchParams.max_records)}} as |x|>
+              @onChange={{fn (mut this.searchParams.max_records)}}
+              as |x|
+            >
               {{x}}
             </PowerSelect>
           </form.element>
         </div>
-        <div class="col-sm-3">
-          <form.element @label="Display" @property="display" as |el|>
+        <div class='col-sm-3'>
+          <form.element @label='Display' @property='display' as |el|>
             <PowerSelect
               @options={{this.displayOptions}}
               @selected={{@searchParams.display}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
-              @onChange={{fn (mut this.display)}} as |x|>
-              View as {{x.name}}
+              @onChange={{fn (mut this.display)}}
+              as |x|
+            >
+              View as
+              {{x.name}}
             </PowerSelect>
           </form.element>
         </div>
-        <div class="col-sm-2">
+        <div class='col-sm-2'>
           <form.submitButton>Submit</form.submitButton>
         </div>
       </div>
     </BsForm>
-
   </template>
 }
