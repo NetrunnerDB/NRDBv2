@@ -86,13 +86,15 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`side:${params.side_id}`);
     }
     if (params.faction_id) {
-      filter.push(`faction:${params.faction_id}`);
+      filter.push(`faction:${params.faction_id.replaceAll(',', '|')}`);
     }
     if (params.card_type_id) {
-      filter.push(`card_type:${params.card_type_id}`);
+      filter.push(`card_type:${params.card_type_id.replaceAll(',', '|')}`);
     }
     if (params.card_subtype_id) {
-      filter.push(`card_subtype_id:${params.card_subtype_id}`);
+      filter.push(
+        `card_subtype_id:${params.card_subtype_id.replaceAll(',', '|')}`,
+      );
     }
     if (params.is_unique) {
       filter.push(`is_unique:${params.is_unique}`);
@@ -107,7 +109,9 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`attribution:${params.attribution}`);
     }
     if (params.illustrator_id) {
-      filter.push(`illustrator_id:${params.illustrator_id}`);
+      filter.push(
+        `illustrator_id:${params.illustrator_id.replaceAll(',', '|')}`,
+      );
     }
     if (params.num_printings) {
       filter.push(`num_printings:${params.num_printings}`);
@@ -188,16 +192,18 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`release_date:${params.release_date}`);
     }
     if (params.card_pool) {
-      filter.push(`card_pool:${params.card_pool}`);
+      filter.push(`card_pool:${params.card_pool.replaceAll(',', '|')}`);
     }
     if (params.format) {
-      filter.push(`format:${params.format}`);
+      filter.push(`format:${params.format.replaceAll(',', '|')}`);
     }
     if (params.snapshot) {
-      filter.push(`snapshot:${params.snapshot}`);
+      filter.push(`snapshot:${params.snapshot.replaceAll(',', '|')}`);
     }
     if (params.restriction_id) {
-      filter.push(`restriction_id:${params.restriction_id}`);
+      filter.push(
+        `restriction_id:${params.restriction_id.replaceAll(',', '|')}`,
+      );
     }
 
     return filter.join(' ');

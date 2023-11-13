@@ -12,18 +12,41 @@ export default class SearchFormComponent extends Component {
   @service router;
   @tracked searchParams;
 
+  // TODO(plural): sort params to aid caching.
   constructor() {
     super(...arguments);
     this.searchParams = this.args.searchParams;
+    let p = this.searchParams;
+    let a = this.args.searchParams;
 
-    if (this.args.searchParams.faction_id) {
-      let ids = this.args.searchParams.faction_id.split?.(',');
-      let factions = [];
-      for (let id of ids) {
-        factions.push(this.args.factions.find((x) => x.id === id));
-      }
-      this.searchParams.faction_id = factions;
+    p.card_subtype_id = this.multi(a.card_subtype_id, this.args.cardSubtypes);
+    p.card_type_id = this.multi(a.card_type_id, this.args.cardTypes);
+    p.faction_id = this.multi(a.faction_id, this.args.factions);
+    p.quantity = this.single(a.quantity, this.oneToSix);
+    p.num_printings = this.single(a.num_printings, this.oneToSix);
+    p.side_id = this.single(a.side_id, this.args.sides);
+  }
+
+  // Provide value for single select element.
+  single(param, objects) {
+    if (!param) {
+      return null;
     }
+    let id = param.toLowerCase();
+    let matches = objects.filter((x) => x.id == id);
+    if (matches.length > 0) {
+      return matches[0];
+    }
+    return null;
+  }
+
+  // Provide values for multi-select element.
+  multi(param, objects) {
+    if (!param) {
+      return [];
+    }
+    let ids = param.toLowerCase().split?.(',');
+    return objects.filter((x) => ids.includes(x.id));
   }
 
   displayOptions = [
