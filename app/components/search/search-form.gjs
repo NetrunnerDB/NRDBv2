@@ -106,7 +106,7 @@ export default class SearchFormComponent extends Component {
       as |form|
     >
       <fieldset>
-        <legend>Title & Text</legend>
+        <legend>Title &amp; Text</legend>
         <div class='row'>
           <div class='col-sm-6'>
             <form.element
