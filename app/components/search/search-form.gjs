@@ -15,6 +15,15 @@ export default class SearchFormComponent extends Component {
   constructor() {
     super(...arguments);
     this.searchParams = this.args.searchParams;
+
+    if (this.args.searchParams.faction_id) {
+      let ids = this.args.searchParams.faction_id.split?.(',');
+      let factions = [];
+      for (let id of ids) {
+        factions.push(this.args.factions.find((x) => x.id === id));
+      }
+      this.searchParams.faction_id = factions;
+    }
   }
 
   displayOptions = [
@@ -66,7 +75,7 @@ export default class SearchFormComponent extends Component {
     p.side_id = p.side_id ? p.side_id.id : null;
     if (p.faction_id) {
       if (p.faction_id.length != 0) {
-        p.faction_id = p.faction_id.map((x) => x.id);
+        p.faction_id = p.faction_id.map?.((x) => x.id);
       } else {
         p.faction_id = null;
       }
