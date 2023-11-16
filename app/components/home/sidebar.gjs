@@ -15,7 +15,7 @@ export default class SidebarComponent extends Component {
     // Reset the search bar.
     e.target.query.value = '';
 
-    this.router.transitionTo('page.advanced-search', {
+    this.router.transitionTo('page.basic-search', {
       queryParams: { query: query },
     });
   }

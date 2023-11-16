@@ -175,7 +175,7 @@ export default class SearchFormComponent extends Component {
   }
 
   <template>
-    <h1>Search Form</h1>
+    <h1>Advanced Search Form</h1>
 
     {{#if @searchParams.query}}
       <p>Free form query is: <strong>{{@searchParams.query}}</strong></p>
