@@ -35,6 +35,7 @@ export default class SearchFormComponent extends Component {
     p.interrupt = this.single(a.interrupt, this.yesNo);
     p.is_unique = this.single(a.is_unique, this.yesNo);
     p.latest_printing_only = this.single(a.latest_printing_only, this.yesNo);
+    p.max_records = this.single(a.max_records, this.maxRecords);
     p.num_printings = this.single(a.num_printings, this.oneToSix);
     p.on_encounter_effect = this.single(a.on_encounter_effect, this.yesNo);
     p.performs_trace = this.single(a.performs_trace, this.yesNo);
@@ -52,7 +53,7 @@ export default class SearchFormComponent extends Component {
     if (!param) {
       return null;
     }
-    let id = param.toLowerCase();
+    let id = String(param).toLowerCase();
     let matches = objects.filter((x) => x.id == id);
     if (matches.length > 0) {
       return matches[0];
@@ -92,132 +93,81 @@ export default class SearchFormComponent extends Component {
     { id: 'null_signal_games', name: 'Null Signal Games' },
     { id: 'fantasy_flight_games', name: 'Fantasy Flight Games' },
   ];
-  numRecords = [25, 50, 100, 250, 500, 1000, 5000];
+  maxRecords = [25, 50, 100, 250, 500, 1000, 5000].map((x) => {
+    return { id: x, name: x };
+  });
+
+  getText(p, q, field) {
+    if (p[field] && p[field].trim().length > 0) {
+      q[field] = p[field].trim();
+    } else {
+      q[field] = null;
+    }
+  }
+  getSelect(p, q, field) {
+    if (p[field]) {
+      q[field] = p[field].id;
+    } else {
+      q[field] = null;
+    }
+  }
+
+  getMultiSelect(p, q, field) {
+    if (p[field] && p[field].length != 0) {
+      q[field] = p[field].map((x) => x.id);
+    } else {
+      q[field] = null;
+    }
+  }
 
   @action doSearch() {
     let p = this.searchParams;
-    let q = { max_records: p.max_records, display: p.display.id };
+    let q = {};
 
-    if (p.flavor && p.flavor.trim().length > 0) {
-      q.flavor = p.flavor;
-    }
-    if (p.title && p.title.trim().length > 0) {
-      q.title = p.title;
-    }
-    if (p.text && p.text.trim().length > 0) {
-      q.text = p.text;
-    }
-    if (p.position && p.position.trim().length > 0) {
-      q.position = p.position;
-    }
-    if (p.side_id) {
-      q.side_id = p.side_id.id;
-    }
-    if (p.faction_id && p.faction_id.length > 0) {
-      q.faction_id = p.faction_id.map?.((x) => x.id);
-    }
-    if (p.card_type_id && p.card_type_id.length > 0) {
-      q.card_type_id = p.card_type_id.map?.((x) => x.id);
-    }
-    if (p.card_subtype_id && p.card_subtype_id.length > 0) {
-      q.card_subtype_id = p.card_subtype_id.map?.((x) => x.id);
-    }
-    if (p.illustrator_id && p.illustrator_id.length > 0) {
-      q.illustrator_id = p.illustrator_id.map?.((x) => x.id);
-    }
-
-    if (p.influence_cost && p.influence_cost.trim().length > 0) {
-      q.influence_cost = p.influence_cost;
-    }
-    if (p.advancement_cost && p.advancement_cost.trim().length > 0) {
-      q.advancement_cost = p.advancement_cost;
-    }
-    if (p.agenda_points && p.agenda_points.trim().length > 0) {
-      q.agenda_points = p.agenda_points;
-    }
-    if (p.base_link && p.base_link.trim().length > 0) {
-      q.base_link = p.base_link;
-    }
-    if (p.attribution && p.attribution.trim().length > 0) {
-      q.attribution = p.attribution;
-    }
-    if (p.memory_usage && p.memory_usage.trim().length > 0) {
-      q.memory_usage = p.memory_usage;
-    }
-    if (p.strength && p.strength.trim().length > 0) {
-      q.strength = p.strength;
-    }
-    if (p.trash_cost && p.trash_cost.trim().length > 0) {
-      q.trash_cost = p.trash_cost;
-    }
-    if (p.cost && p.cost.trim().length > 0) {
-      q.cost = p.cost;
-    }
-    if (p.link_provided && p.link_provided.trim().length > 0) {
-      q.link_provided = p.link_provided;
-    }
-    if (p.mu_provided && p.mu_provided.trim().length > 0) {
-      q.mu_provided = p.mu_provided;
-    }
-    if (
-      p.num_printed_subroutines &&
-      p.num_printed_subroutines.trim().length > 0
-    ) {
-      q.num_printed_subroutines = p.num_printed_subroutines;
-    }
-    if (
-      p.recurring_credits_provided &&
-      p.recurring_credits_provided.trim().length > 0
-    ) {
-      q.recurring_credits_provided = p.recurring_credits_provided;
-    }
-    q.num_printings = p.num_printings ? p.num_printings.id : null;
-    q.is_unique = p.is_unique ? p.is_unique.id : null;
-    q.quantity = p.quantity ? p.quantity.id : null;
-    q.designed_by = p.designed_by ? p.designed_by.id : null;
-    q.released_by = p.released_by ? p.released_by.id : null;
-
-    q.latest_printing_only = p.latest_printing_only
-      ? p.latest_printing_only.id
-      : null;
-    q.additional_cost = p.additional_cost ? p.additional_cost.id : null;
-    q.advanceable = p.advanceable ? p.advanceable.id : null;
-    q.gains_subroutines = p.gains_subroutines ? p.gains_subroutines.id : null;
-    q.interrupt = p.interrupt ? p.interrupt.id : null;
-    q.on_encounter_effect = p.on_encounter_effect
-      ? p.on_encounter_effect.id
-      : null;
-    q.performs_trace = p.performs_trace ? p.performs_trace.id : null;
-    q.rez_effect = p.rez_effect ? p.rez_effect.id : null;
-    q.trash_ability = p.trash_ability ? p.trash_ability.id : null;
-
-    if (p.card_cycle) {
-      if (p.card_cycle.length != 0) {
-        q.card_cycle = p.card_cycle.map((x) => x.id);
-      } else {
-        q.card_cycle = null;
-      }
-    }
-    if (p.card_set) {
-      if (p.card_set.length != 0) {
-        q.card_set = p.card_set.map((x) => x.id);
-      } else {
-        q.card_set = null;
-      }
-    }
-
-    if (p.snapshot && p.snapshot.length > 0) {
-      q.snapshot = p.snapshot.map?.((x) => x.id);
-    }
-    if (p.format && p.format.length > 0) {
-      q.format = p.format.map?.((x) => x.id);
-    }
-    if (p.card_pool && p.card_pool.length > 0) {
-      q.card_pool = p.card_pool.map?.((x) => x.id);
-    }
-    if (p.restriction_id && p.restriction_id.length > 0) {
-      q.restriction_id = p.restriction_id.map?.((x) => x.id);
-    }
+    this.getMultiSelect(p, q, 'card_cycle');
+    this.getMultiSelect(p, q, 'card_pool');
+    this.getMultiSelect(p, q, 'card_set');
+    this.getMultiSelect(p, q, 'card_subtype_id');
+    this.getMultiSelect(p, q, 'card_type_id');
+    this.getMultiSelect(p, q, 'faction_id');
+    this.getMultiSelect(p, q, 'format');
+    this.getMultiSelect(p, q, 'illustrator_id');
+    this.getMultiSelect(p, q, 'restriction_id');
+    this.getMultiSelect(p, q, 'snapshot');
+    this.getSelect(p, q, 'additional_cost');
+    this.getSelect(p, q, 'advanceable');
+    this.getSelect(p, q, 'designed_by');
+    this.getSelect(p, q, 'display');
+    this.getSelect(p, q, 'gains_subroutines');
+    this.getSelect(p, q, 'interrupt');
+    this.getSelect(p, q, 'is_unique');
+    this.getSelect(p, q, 'latest_printing_only');
+    this.getSelect(p, q, 'max_records');
+    this.getSelect(p, q, 'num_printings');
+    this.getSelect(p, q, 'on_encounter_effect');
+    this.getSelect(p, q, 'performs_trace');
+    this.getSelect(p, q, 'quantity');
+    this.getSelect(p, q, 'released_by');
+    this.getSelect(p, q, 'rez_effect');
+    this.getSelect(p, q, 'side_id');
+    this.getSelect(p, q, 'trash_ability');
+    this.getText(p, q, 'advancement_cost');
+    this.getText(p, q, 'agenda_points');
+    this.getText(p, q, 'attribution');
+    this.getText(p, q, 'base_link');
+    this.getText(p, q, 'cost');
+    this.getText(p, q, 'flavor');
+    this.getText(p, q, 'influence_cost');
+    this.getText(p, q, 'link_provided');
+    this.getText(p, q, 'memory_usage');
+    this.getText(p, q, 'mu_provided');
+    this.getText(p, q, 'num_printed_subroutines');
+    this.getText(p, q, 'position');
+    this.getText(p, q, 'recurring_credits_provided');
+    this.getText(p, q, 'strength');
+    this.getText(p, q, 'text');
+    this.getText(p, q, 'title');
+    this.getText(p, q, 'trash_cost');
 
     this.router.transitionTo(this.router.currentRouteName, {
       queryParams: q,
@@ -868,14 +818,14 @@ export default class SearchFormComponent extends Component {
         <div class='col-sm-3'>
           <form.element @label='Num Records' @property='max_records' as |el|>
             <PowerSelect
-              @options={{this.numRecords}}
+              @options={{this.maxRecords}}
               @selected={{this.searchParams.max_records}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
               @onChange={{fn (mut this.searchParams.max_records)}}
               as |x|
             >
-              {{x}}
+              {{x.name}}
             </PowerSelect>
           </form.element>
         </div>
