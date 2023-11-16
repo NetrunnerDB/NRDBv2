@@ -19,12 +19,32 @@ export default class SearchFormComponent extends Component {
     let p = this.searchParams;
     let a = this.args.searchParams;
 
+    p.additional_cost = this.single(a.additional_cost, this.yesNo);
+    p.advanceable = this.single(a.advanceable, this.yesNo);
+    p.card_cycle = this.multi(a.card_cycle, this.args.cardCycles);
+    p.card_pool = this.multi(a.card_pool, this.args.cardPools);
+    p.card_set = this.multi(a.card_set, this.args.cardSets);
     p.card_subtype_id = this.multi(a.card_subtype_id, this.args.cardSubtypes);
     p.card_type_id = this.multi(a.card_type_id, this.args.cardTypes);
+    p.designed_by = this.single(a.designed_by, this.orgs);
+    p.display = this.single(a.display, this.displayOptions);
     p.faction_id = this.multi(a.faction_id, this.args.factions);
-    p.quantity = this.single(a.quantity, this.oneToSix);
+    p.format = this.multi(a.format, this.args.formats);
+    p.gains_subroutines = this.single(a.gains_subroutines, this.yesNo);
+    p.illustrator_id = this.multi(a.illustrator_id, this.args.illustrators);
+    p.interrupt = this.single(a.interrupt, this.yesNo);
+    p.is_unique = this.single(a.is_unique, this.yesNo);
+    p.latest_printing_only = this.single(a.latest_printing_only, this.yesNo);
     p.num_printings = this.single(a.num_printings, this.oneToSix);
+    p.on_encounter_effect = this.single(a.on_encounter_effect, this.yesNo);
+    p.performs_trace = this.single(a.performs_trace, this.yesNo);
+    p.quantity = this.single(a.quantity, this.oneToSix);
+    p.released_by = this.single(a.released_by, this.orgs);
+    p.restriction_id = this.multi(a.restriction_id, this.args.restrictions);
+    p.rez_effect = this.single(a.rez_effect, this.yesNo);
     p.side_id = this.single(a.side_id, this.args.sides);
+    p.snapshot = this.multi(a.snapshot, this.args.snapshots);
+    p.trash_ability = this.single(a.trash_ability, this.yesNo);
   }
 
   // Provide value for single select element.
@@ -55,7 +75,7 @@ export default class SearchFormComponent extends Component {
     { id: 'images', name: 'Image Only' },
     { id: 'text', name: 'Text Only' },
   ];
-  isUnique = [
+  yesNo = [
     { id: 't', name: 'Yes' },
     { id: 'f', name: 'No' },
   ];
@@ -76,97 +96,131 @@ export default class SearchFormComponent extends Component {
 
   @action doSearch() {
     let p = this.searchParams;
+    let q = { max_records: p.max_records, display: p.display.id };
 
-    if (p.title && p.title.trim().length == 0) {
-      p.title = null;
+    if (p.flavor && p.flavor.trim().length > 0) {
+      q.flavor = p.flavor;
     }
-    if (p.text && p.text.trim().length == 0) {
-      p.text = null;
+    if (p.title && p.title.trim().length > 0) {
+      q.title = p.title;
     }
-
-    // Only specify value for checkbox if explicitly set.
-    p.latest_printing_only = p.latest_printing_only ? 't' : null;
-    p.additional_cost = p.additional_cost ? 't' : null;
-    p.advanceable = p.advanceable ? 't' : null;
-    p.gains_subroutines = p.gains_subroutines ? 't' : null;
-    p.interrupt = p.interrupt ? 't' : null;
-    p.on_encounter_effect = p.on_encounter_effect ? 't' : null;
-    p.performs_trace = p.performs_trace ? 't' : null;
-    p.rez_effect = p.rez_effect ? 't' : null;
-    p.trash_ability = p.trash_ability ? 't' : null;
-
-    p.side_id = p.side_id ? p.side_id.id : null;
-    if (p.faction_id) {
-      if (p.faction_id.length != 0) {
-        p.faction_id = p.faction_id.map?.((x) => x.id);
-      } else {
-        p.faction_id = null;
-      }
+    if (p.text && p.text.trim().length > 0) {
+      q.text = p.text;
     }
-    if (p.card_type_id) {
-      if (p.card_type_id.length != 0) {
-        p.card_type_id = p.card_type_id.map((x) => x.id);
-      } else {
-        p.card_type_id = null;
-      }
+    if (p.position && p.position.trim().length > 0) {
+      q.position = p.position;
     }
-    if (p.card_subtype_id) {
-      if (p.card_subtype_id.length != 0) {
-        p.card_subtype_id = p.card_subtype_id.map((x) => x.id);
-      } else {
-        p.card_subtype_id = null;
-      }
+    if (p.side_id) {
+      q.side_id = p.side_id.id;
     }
-    if (p.illustrator_id) {
-      if (p.illustrator_id.length != 0) {
-        p.illustrator_id = p.illustrator_id.map((x) => x.id);
-      } else {
-        p.illustrator_id = null;
-      }
+    if (p.faction_id && p.faction_id.length > 0) {
+      q.faction_id = p.faction_id.map?.((x) => x.id);
+    }
+    if (p.card_type_id && p.card_type_id.length > 0) {
+      q.card_type_id = p.card_type_id.map?.((x) => x.id);
+    }
+    if (p.card_subtype_id && p.card_subtype_id.length > 0) {
+      q.card_subtype_id = p.card_subtype_id.map?.((x) => x.id);
+    }
+    if (p.illustrator_id && p.illustrator_id.length > 0) {
+      q.illustrator_id = p.illustrator_id.map?.((x) => x.id);
     }
 
-    p.num_printings = p.num_printings ? p.num_printings.id : null;
-    p.is_unique = p.is_unique ? p.is_unique.id : null;
-    p.quantity = p.quantity ? p.quantity.id : null;
-    p.designed_by = p.designed_by ? p.designed_by.id : null;
-    p.released_by = p.released_by ? p.released_by.id : null;
+    if (p.influence_cost && p.influence_cost.trim().length > 0) {
+      q.influence_cost = p.influence_cost;
+    }
+    if (p.advancement_cost && p.advancement_cost.trim().length > 0) {
+      q.advancement_cost = p.advancement_cost;
+    }
+    if (p.agenda_points && p.agenda_points.trim().length > 0) {
+      q.agenda_points = p.agenda_points;
+    }
+    if (p.base_link && p.base_link.trim().length > 0) {
+      q.base_link = p.base_link;
+    }
+    if (p.attribution && p.attribution.trim().length > 0) {
+      q.attribution = p.attribution;
+    }
+    if (p.memory_usage && p.memory_usage.trim().length > 0) {
+      q.memory_usage = p.memory_usage;
+    }
+    if (p.strength && p.strength.trim().length > 0) {
+      q.strength = p.strength;
+    }
+    if (p.trash_cost && p.trash_cost.trim().length > 0) {
+      q.trash_cost = p.trash_cost;
+    }
+    if (p.cost && p.cost.trim().length > 0) {
+      q.cost = p.cost;
+    }
+    if (p.link_provided && p.link_provided.trim().length > 0) {
+      q.link_provided = p.link_provided;
+    }
+    if (p.mu_provided && p.mu_provided.trim().length > 0) {
+      q.mu_provided = p.mu_provided;
+    }
+    if (
+      p.num_printed_subroutines &&
+      p.num_printed_subroutines.trim().length > 0
+    ) {
+      q.num_printed_subroutines = p.num_printed_subroutines;
+    }
+    if (
+      p.recurring_credits_provided &&
+      p.recurring_credits_provided.trim().length > 0
+    ) {
+      q.recurring_credits_provided = p.recurring_credits_provided;
+    }
+    q.num_printings = p.num_printings ? p.num_printings.id : null;
+    q.is_unique = p.is_unique ? p.is_unique.id : null;
+    q.quantity = p.quantity ? p.quantity.id : null;
+    q.designed_by = p.designed_by ? p.designed_by.id : null;
+    q.released_by = p.released_by ? p.released_by.id : null;
 
-    p.has_additional_cost = p.has_additional_cost
-      ? p.has_additional_cost.id
+    q.latest_printing_only = p.latest_printing_only
+      ? p.latest_printing_only.id
       : null;
-    p.advanceable = p.advanceable ? p.advanceable.id : null;
-    p.gains_subroutines = p.gains_subroutines ? p.gains_subroutines.id : null;
-    p.has_interrupt = p.has_interrupt ? p.has_interrupt.id : null;
-    p.on_encounter_effect = p.on_encounter_effect
+    q.additional_cost = p.additional_cost ? p.additional_cost.id : null;
+    q.advanceable = p.advanceable ? p.advanceable.id : null;
+    q.gains_subroutines = p.gains_subroutines ? p.gains_subroutines.id : null;
+    q.interrupt = p.interrupt ? p.interrupt.id : null;
+    q.on_encounter_effect = p.on_encounter_effect
       ? p.on_encounter_effect.id
       : null;
-    p.performs_trace = p.performs_trace ? p.performs_trace.id : null;
-    p.rez_effect = p.rez_effect ? p.rez_effect.id : null;
-    p.trash_ability = p.trash_ability ? p.trash_ability.id : null;
+    q.performs_trace = p.performs_trace ? p.performs_trace.id : null;
+    q.rez_effect = p.rez_effect ? p.rez_effect.id : null;
+    q.trash_ability = p.trash_ability ? p.trash_ability.id : null;
 
     if (p.card_cycle) {
       if (p.card_cycle.length != 0) {
-        p.card_cycle = p.card_cycle.map((x) => x.id);
+        q.card_cycle = p.card_cycle.map((x) => x.id);
       } else {
-        p.card_cycle = null;
+        q.card_cycle = null;
       }
     }
     if (p.card_set) {
       if (p.card_set.length != 0) {
-        p.card_set = p.card_set.map((x) => x.id);
+        q.card_set = p.card_set.map((x) => x.id);
       } else {
-        p.card_set = null;
+        q.card_set = null;
       }
     }
 
-    p.snapshot = p.snapshot ? p.snapshot.id : null;
-    p.format_id = p.format_id ? p.format_id.id : null;
-    p.card_pool_id = p.card_pool_id ? p.card_pool_id.id : null;
-    p.restriction_id = p.restriction_id ? p.restriction_id.id : null;
-    p.snapshot_id = p.snapshot_id ? p.snapshot_id.id : null;
+    if (p.snapshot && p.snapshot.length > 0) {
+      q.snapshot = p.snapshot.map?.((x) => x.id);
+    }
+    if (p.format && p.format.length > 0) {
+      q.format = p.format.map?.((x) => x.id);
+    }
+    if (p.card_pool && p.card_pool.length > 0) {
+      q.card_pool = p.card_pool.map?.((x) => x.id);
+    }
+    if (p.restriction_id && p.restriction_id.length > 0) {
+      q.restriction_id = p.restriction_id.map?.((x) => x.id);
+    }
 
     this.router.transitionTo(this.router.currentRouteName, {
-      queryParams: p,
+      queryParams: q,
     });
   }
 
@@ -203,11 +257,21 @@ export default class SearchFormComponent extends Component {
         <legend>Printing Attributes</legend>
         <div class='row'>
           <div class='col-sm-3'>
-            <form.element
-              @controlType='checkbox'
-              @label='Latest Printing Only?'
-              @property='latest_printing_only'
-            />
+            <form.element @label='Latest Printing Only?' @property='latest_printing_only' as |el|>
+              <PowerSelect
+                @allowClear={{true}}
+                @options={{this.yesNo}}
+                @selected={{this.searchParams.latest_printing_only}}
+                @searchEnabled={{true}}
+                @searchField='name'
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.latest_printing_only)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
           </div>
           <div class='col-sm-3'>
             <form.element
@@ -264,7 +328,7 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-6'>
-            <form.element @label='Illustrators' @property='max_records' as |el|>
+            <form.element @label='Illustrators' @property='illustrator_id' as |el|>
               <PowerSelectMultiple
                 @options={{@illustrators}}
                 @selected={{this.searchParams.illustrator_id}}
@@ -360,7 +424,7 @@ export default class SearchFormComponent extends Component {
             <form.element @label='Unique?' @property='is_unique' as |el|>
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
+                @options={{this.yesNo}}
                 @selected={{this.searchParams.is_unique}}
                 @searchEnabled={{true}}
                 @searchField='name'
@@ -443,7 +507,7 @@ export default class SearchFormComponent extends Component {
             >
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
+                @options={{this.yesNo}}
                 @selected={{this.searchParams.additional_cost}}
                 @searchEnabled={{true}}
                 @searchField='name'
@@ -460,7 +524,7 @@ export default class SearchFormComponent extends Component {
             <form.element @label='Advanceable?' @property='advanceable' as |el|>
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
+                @options={{this.yesNo}}
                 @selected={{this.searchParams.advanceable}}
                 @searchEnabled={{true}}
                 @searchField='name'
@@ -481,7 +545,7 @@ export default class SearchFormComponent extends Component {
             >
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
+                @options={{this.yesNo}}
                 @selected={{this.searchParams.gains_subroutines}}
                 @searchEnabled={{true}}
                 @searchField='name'
@@ -497,18 +561,18 @@ export default class SearchFormComponent extends Component {
           <div class='col-sm-3'>
             <form.element
               @label='Has Interrupt?'
-              @property='has_interrupt'
+              @property='interrupt'
               as |el|
             >
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
-                @selected={{this.searchParams.has_interrupt}}
+                @options={{this.yesNo}}
+                @selected={{this.searchParams.interrupt}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.has_interrupt)}}
+                @onChange={{fn (mut this.searchParams.interrupt)}}
                 as |x|
               >
                 {{x.name}}
@@ -525,7 +589,7 @@ export default class SearchFormComponent extends Component {
             >
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
+                @options={{this.yesNo}}
                 @selected={{this.searchParams.on_encounter_effect}}
                 @searchEnabled={{true}}
                 @searchField='name'
@@ -546,7 +610,7 @@ export default class SearchFormComponent extends Component {
             >
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
+                @options={{this.yesNo}}
                 @selected={{this.searchParams.performs_trace}}
                 @searchEnabled={{true}}
                 @searchField='name'
@@ -563,7 +627,7 @@ export default class SearchFormComponent extends Component {
             <form.element @label='Rez Effect?' @property='rez_effect' as |el|>
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
+                @options={{this.yesNo}}
                 @selected={{this.searchParams.rez_effect}}
                 @searchEnabled={{true}}
                 @searchField='name'
@@ -585,7 +649,7 @@ export default class SearchFormComponent extends Component {
             >
               <PowerSelect
                 @allowClear={{true}}
-                @options={{this.isUnique}}
+                @options={{this.yesNo}}
                 @selected={{this.searchParams.trash_ability}}
                 @searchEnabled={{true}}
                 @searchField='name'
@@ -822,7 +886,7 @@ export default class SearchFormComponent extends Component {
               @selected={{this.searchParams.display}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
-              @onChange={{fn (mut this.display)}}
+              @onChange={{fn (mut this.searchParams.display)}}
               as |x|
             >
               View as

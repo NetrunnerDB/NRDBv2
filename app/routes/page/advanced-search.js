@@ -80,7 +80,7 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`a:"${params.flavor}"`);
     }
     if (params.latest_printing_only) {
-      filter.push(`is_latest_printing:t`);
+      filter.push(`is_latest_printing:${params.latest_printing_only}`);
     }
     if (params.side_id) {
       filter.push(`side:${params.side_id}`);
@@ -297,7 +297,7 @@ export default class PageAdvancedSearchRoute extends Route {
         illustrators: illustrators,
         printings: [],
         restrictions: restrictions,
-        searchParams: { max_records: 100 },
+        searchParams: { display: 'checklist', max_records: 100 },
         sides: sides,
         snapshots: snapshots,
       });
