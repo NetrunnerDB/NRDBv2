@@ -14,21 +14,21 @@ export default class PageBasicSearchRoute extends Route {
   async model(params) {
     if (params.query) {
       return RSVP.hash({
+        display: 'checklist',
+        max_records: 100,
         printings: this.store.query('printing', {
           filter: { search: params.query },
           include: ['card_set', 'card_type', 'faction'],
           page: { limit: params.max_records || 100 },
         }),
-        searchParams: {
-          display: 'checklist',
-          max_records: 100,
-          query: params.query,
-        },
+        query: params.query,
       });
     } else {
       return RSVP.hash({
+        display: 'checklist',
+        max_records: 100,
         printings: [],
-        searchParams: { display: 'checklist', max_records: 100 },
+        query: '',
       });
     }
   }

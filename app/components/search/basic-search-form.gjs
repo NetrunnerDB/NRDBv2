@@ -1,24 +1,41 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
-import { fn } from '@ember/helper';
 import { tracked } from '@glimmer/tracking';
 import BsForm from 'ember-bootstrap/components/bs-form';
 import PowerSelect from 'ember-power-select/components/power-select';
 
 export default class SearchFormComponent extends Component {
   @service router;
-  @tracked searchParams;
 
-  // TODO(plural): sort params to aid caching.
-  constructor() {
-    super(...arguments);
-    this.searchParams = this.args.searchParams;
-    let p = this.searchParams;
-    let a = this.args.searchParams;
+  @tracked _display;
+  @tracked _max_records;
+  @tracked _query;
 
-    p.display = this.single(a.display, this.displayOptions);
-    p.max_records = this.single(a.max_records, this.maxRecords);
+  get query() {
+    return this._query ? this._query : this.args.query;
+  }
+  @action setQuery(f) {
+    this._query = f;
+  }
+  get max_records() {
+    return this._max_records ? this._max_records : this.args.max_records;
+  }
+  @action setMaxRecords(f) {
+    this._max_records = f.id;
+  }
+  get display() {
+    return this._display ? this._display : this.args.display;
+  }
+  @action setDisplay(f) {
+    this._display = f.id;
+  }
+
+  get selectedMaxRecords() {
+    return this.single(this.max_records, this.maxRecords);
+  }
+  get selectedDisplay() {
+    return this.single(this.display, this.displayOptions);
   }
 
   // Provide value for single select element.
@@ -34,15 +51,6 @@ export default class SearchFormComponent extends Component {
     return null;
   }
 
-  // Provide values for multi-select element.
-  multi(param, objects) {
-    if (!param) {
-      return [];
-    }
-    let ids = param.toLowerCase().split?.(',');
-    return objects.filter((x) => ids.includes(x.id));
-  }
-
   displayOptions = [
     { id: 'checklist', name: 'Checklist' },
     { id: 'full', name: 'Full Card' },
@@ -53,39 +61,13 @@ export default class SearchFormComponent extends Component {
     return { id: x, name: x };
   });
 
-  getText(p, q, field) {
-    if (p[field] && p[field].trim().length > 0) {
-      q[field] = p[field].trim();
-    } else {
-      q[field] = null;
-    }
-  }
-  getSelect(p, q, field) {
-    if (p[field]) {
-      q[field] = p[field].id;
-    } else {
-      q[field] = null;
-    }
-  }
-
-  getMultiSelect(p, q, field) {
-    if (p[field] && p[field].length != 0) {
-      q[field] = p[field].map((x) => x.id);
-    } else {
-      q[field] = null;
-    }
-  }
-
   @action doSearch() {
-    let p = this.searchParams;
-    let q = {};
-
-    this.getSelect(p, q, 'display');
-    this.getSelect(p, q, 'max_records');
-    this.getText(p, q, 'query');
-
     this.router.transitionTo(this.router.currentRouteName, {
-      queryParams: q,
+      queryParams: {
+        query: this.query,
+        display: this.display,
+        max_records: this.max_records,
+      },
     });
   }
 
@@ -95,7 +77,6 @@ export default class SearchFormComponent extends Component {
     <BsForm
       @formLayout='vertical'
       @onSubmit={{this.doSearch}}
-      @model={{this.searchParams}}
       as |form|
     >
       <fieldset>
@@ -104,7 +85,8 @@ export default class SearchFormComponent extends Component {
             <form.element
               @controlType='textarea'
               @label='Query'
-              @property='query'
+              @value={{this.query}}
+              @onChange={{this.setQuery}}
             />
           </div>
         </div>
@@ -115,10 +97,10 @@ export default class SearchFormComponent extends Component {
           <form.element @label='Num Records' @property='max_records' as |el|>
             <PowerSelect
               @options={{this.maxRecords}}
-              @selected={{this.searchParams.max_records}}
+              @selected={{this.selectedMaxRecords}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
-              @onChange={{fn (mut this.searchParams.max_records)}}
+              @onChange={{this.setMaxRecords}}
               as |x|
             >
               {{x.name}}
@@ -129,10 +111,10 @@ export default class SearchFormComponent extends Component {
           <form.element @label='Display' @property='display' as |el|>
             <PowerSelect
               @options={{this.displayOptions}}
-              @selected={{this.searchParams.display}}
+              @selected={{this.selectedDisplay}}
               @triggerId={{el.id}}
               @onFocus={{action.focus}}
-              @onChange={{fn (mut this.searchParams.display)}}
+              @onChange={{this.setDisplay}}
               as |x|
             >
               View as
