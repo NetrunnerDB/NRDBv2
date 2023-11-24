@@ -4,8 +4,8 @@ import { tracked } from '@glimmer/tracking';
 export default class AdvancedSearchController extends Controller {
   queryParams = ['display', 'query'];
 
-  @tracked display = 'checklist';
-  @tracked query = '';
+  @tracked display = null;
+  @tracked query = null;
 
   @tracked additional_cost = null;
   @tracked advanceable = null;

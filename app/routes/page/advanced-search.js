@@ -19,6 +19,21 @@ export default class PageAdvancedSearchRoute extends Route {
     card_subtype_id: { refreshModel: true },
     card_type_id: { refreshModel: true },
     cost: { refreshModel: true },
+
+    advancement_cost_operator: { refreshModel: true },
+    agenda_points_operator: { refreshModel: true },
+    base_link_operator: { refreshModel: true },
+    cost_operator: { refreshModel: true },
+    influence_cost_operator: { refreshModel: true },
+    link_provided_operator: { refreshModel: true },
+    memory_usage_operator: { refreshModel: true },
+    mu_provided_operator: { refreshModel: true },
+    num_printed_subroutines_operator: { refreshModel: true },
+    position_operator: { refreshModel: true },
+    recurring_credits_provided_operator: { refreshModel: true },
+    strength_operator: { refreshModel: true },
+    trash_cost_operator: { refreshModel: true },
+
     designed_by: { refreshModel: true },
     display: { refreshModel: true },
     faction_id: { refreshModel: true },
@@ -59,7 +74,8 @@ export default class PageAdvancedSearchRoute extends Route {
   buildSearchFilter(params) {
     let filter = [];
     if (params.position) {
-      filter.push(`position:${params.position}`);
+      let op = params.position_operator ? params.position_operator : ':';
+      filter.push(`position${op}${params.position}`);
     }
     if (params.quantity) {
       filter.push(`quantity:${params.quantity}`);
@@ -141,52 +157,80 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`trash_ability:t`);
     }
     if (params.agenda_points) {
-      filter.push(`agenda_points:${params.agenda_points}`);
+      let op = params.agenda_points_operator
+        ? params.advancement_agenda_points_operator
+        : ':';
+      filter.push(`agenda_points${op}${params.agenda_points}`);
     }
     if (params.advancement_cost) {
+      let op = params.advancement_cost_operator
+        ? params.advancement_cost_operator
+        : ':';
       let value =
         params.advancement_cost == '-1' ? 'X' : params.advancement_cost;
-      filter.push(`advancement_cost:${value}`);
+      filter.push(`advancement_cost${op}${value}`);
     }
     if (params.influence_cost) {
-      filter.push(`influence_cost:${params.influence_cost}`);
+      let op = params.influence_cost_operator
+        ? params.influence_cost_operator
+        : ':';
+      filter.push(`influence_cost${op}${params.influence_cost}`);
     }
     if (params.cost) {
+      let op = params.cost_operator ? params.cost_operator : ':';
       let value = params.cost == '-1' ? 'X' : params.cost;
-      filter.push(`cost:${value}`);
+      filter.push(`cost${op}${value}`);
     }
     if (params.base_link) {
+      let op = params.base_link_operator ? params.base_link_operator : ':';
       let value = params.base_link == '-1' ? 'X' : params.base_link;
-      filter.push(`base_link:${value}`);
+      filter.push(`base_link${op}${value}`);
     }
     if (params.memory_usage) {
+      let op = params.memory_usage_operator
+        ? params.memory_usage_operator
+        : ':';
       let value = params.memory_usage == '-1' ? 'X' : params.memory_usage;
-      filter.push(`memory_usage:${value}`);
+      filter.push(`memory_usage${op}${value}`);
     }
     if (params.strength) {
+      let op = params.strength_operator ? params.strength_operator : ':';
       let value = params.strength == '-1' ? 'X' : params.strength;
-      filter.push(`strength:${value}`);
+      filter.push(`strength${op}${value}`);
     }
     if (params.trash_cost) {
+      let op = params.trash_cost_operator ? params.trash_cost_operator : ':';
       let value = params.trash_cost == '-1' ? 'X' : params.trash_cost;
-      filter.push(`trash_cost:${value}`);
+      filter.push(`trash_cost${op}${value}`);
     }
     if (params.mu_provided) {
+      let op = params.mu_provided_operator ? params.mu_provided_operator : ':';
       let value = params.mu_provided == '-1' ? 'X' : params.mu_provided;
-      filter.push(`mu_provided:${value}`);
+      filter.push(`mu_provided${op}${value}`);
     }
     if (params.recurring_credits_provided) {
+      let op = params.recurring_credits_provided_operator
+        ? params.recurring_credits_provided_operator
+        : ':';
       let value =
         params.recurring_credits_provided == '-1'
           ? 'X'
           : params.recurring_credits_provided;
-      filter.push(`recurring_credits_provided:${value}`);
+      filter.push(`recurring_credits_provided${op}${value}`);
     }
     if (params.link_provided) {
-      filter.push(`link_provided:${params.link_provided}`);
+      let op = params.link_provided_operator
+        ? params.link_provided_operator
+        : ':';
+      filter.push(`link_provided${op}${params.link_provided}`);
     }
     if (params.num_printed_subroutines) {
-      filter.push(`num_printed_subroutines:${params.num_printed_subroutines}`);
+      let op = params.num_printed_subroutines_operator
+        ? params.num_printed_subroutines_operator
+        : ':';
+      filter.push(
+        `num_printed_subroutines${op}${params.num_printed_subroutines}`,
+      );
     }
     if (params.release_date) {
       filter.push(`release_date:${params.release_date}`);
@@ -297,7 +341,7 @@ export default class PageAdvancedSearchRoute extends Route {
         illustrators: illustrators,
         printings: [],
         restrictions: restrictions,
-        searchParams: { display: 'checklist', max_records: 100 },
+        searchParams: params,
         sides: sides,
         snapshots: snapshots,
       });
