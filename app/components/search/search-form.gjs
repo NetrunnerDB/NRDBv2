@@ -12,12 +12,64 @@ export default class SearchFormComponent extends Component {
   @service router;
   @tracked searchParams;
 
-  // TODO(plural): sort params to aid caching.
   constructor() {
     super(...arguments);
     this.searchParams = this.args.searchParams;
     let p = this.searchParams;
     let a = this.args.searchParams;
+
+    p.advancement_cost_operator = this.single(
+      this.ifNull(a.advancement_cost_operator, ':'),
+      this.numericOperators,
+    );
+    p.agenda_points_operator = this.single(
+      this.ifNull(a.agenda_points_operator, ':'),
+      this.numericOperators,
+    );
+    p.base_link_operator = this.single(
+      this.ifNull(a.base_link_operator, ':'),
+      this.numericOperators,
+    );
+    p.cost_operator = this.single(
+      this.ifNull(a.cost_operator, ':'),
+      this.numericOperators,
+    );
+    p.influence_cost_operator = this.single(
+      this.ifNull(a.influence_cost_operator, ':'),
+      this.numericOperators,
+    );
+    p.link_provided_operator = this.single(
+      this.ifNull(a.link_provided_operator, ':'),
+      this.numericOperators,
+    );
+    p.memory_usage_operator = this.single(
+      this.ifNull(a.memory_usage_operator, ':'),
+      this.numericOperators,
+    );
+    p.mu_provided_operator = this.single(
+      this.ifNull(a.mu_provided_operator, ':'),
+      this.numericOperators,
+    );
+    p.num_printed_subroutines_operator = this.single(
+      this.ifNull(a.num_printed_subroutines_operator, ':'),
+      this.numericOperators,
+    );
+    p.position_operator = this.single(
+      this.ifNull(a.position_operator, ':'),
+      this.numericOperators,
+    );
+    p.recurring_credits_provided_operator = this.single(
+      this.ifNull(a.recurring_credits_provided_operator, ':'),
+      this.numericOperators,
+    );
+    p.strength_operator = this.single(
+      this.ifNull(a.strength_operator, ':'),
+      this.numericOperators,
+    );
+    p.trash_cost_operator = this.single(
+      this.ifNull(a.trash_cost_operator, ':'),
+      this.numericOperators,
+    );
 
     p.additional_cost = this.single(a.additional_cost, this.yesNo);
     p.advanceable = this.single(a.advanceable, this.yesNo);
@@ -27,7 +79,10 @@ export default class SearchFormComponent extends Component {
     p.card_subtype_id = this.multi(a.card_subtype_id, this.args.cardSubtypes);
     p.card_type_id = this.multi(a.card_type_id, this.args.cardTypes);
     p.designed_by = this.single(a.designed_by, this.orgs);
-    p.display = this.single(a.display, this.displayOptions);
+    p.display = this.single(
+      this.ifNull(a.display, 'checklist'),
+      this.displayOptions,
+    );
     p.faction_id = this.multi(a.faction_id, this.args.factions);
     p.format = this.multi(a.format, this.args.formats);
     p.gains_subroutines = this.single(a.gains_subroutines, this.yesNo);
@@ -35,7 +90,10 @@ export default class SearchFormComponent extends Component {
     p.interrupt = this.single(a.interrupt, this.yesNo);
     p.is_unique = this.single(a.is_unique, this.yesNo);
     p.latest_printing_only = this.single(a.latest_printing_only, this.yesNo);
-    p.max_records = this.single(a.max_records, this.maxRecords);
+    p.max_records = this.single(
+      this.ifNull(a.max_records, 100),
+      this.maxRecords,
+    );
     p.num_printings = this.single(a.num_printings, this.oneToSix);
     p.on_encounter_effect = this.single(a.on_encounter_effect, this.yesNo);
     p.performs_trace = this.single(a.performs_trace, this.yesNo);
@@ -46,6 +104,16 @@ export default class SearchFormComponent extends Component {
     p.side_id = this.single(a.side_id, this.args.sides);
     p.snapshot = this.multi(a.snapshot, this.args.snapshots);
     p.trash_ability = this.single(a.trash_ability, this.yesNo);
+  }
+
+  ifNull(param, def) {
+    let r = null;
+    if (param) {
+      r = param;
+    } else if (def) {
+      r = def;
+    }
+    return r;
   }
 
   // Provide value for single select element.
@@ -70,6 +138,14 @@ export default class SearchFormComponent extends Component {
     return objects.filter((x) => ids.includes(x.id));
   }
 
+  numericOperators = [
+    { id: ':', name: '=' },
+    { id: '!', name: '!=' },
+    { id: '<', name: '<' },
+    { id: '<=', name: '<=' },
+    { id: '>', name: '>' },
+    { id: '>=', name: '>=' },
+  ];
   displayOptions = [
     { id: 'checklist', name: 'Checklist' },
     { id: 'full', name: 'Full Card' },
@@ -120,6 +196,7 @@ export default class SearchFormComponent extends Component {
     }
   }
 
+  // TODO(plural): sort params to aid caching.
   @action doSearch() {
     let p = this.searchParams;
     let q = {};
@@ -136,6 +213,21 @@ export default class SearchFormComponent extends Component {
     this.getMultiSelect(p, q, 'snapshot');
     this.getSelect(p, q, 'additional_cost');
     this.getSelect(p, q, 'advanceable');
+
+    this.getSelect(p, q, 'advancement_cost_operator');
+    this.getSelect(p, q, 'agenda_points_operator');
+    this.getSelect(p, q, 'base_link_operator');
+    this.getSelect(p, q, 'cost_operator');
+    this.getSelect(p, q, 'influence_cost_operator');
+    this.getSelect(p, q, 'link_provided_operator');
+    this.getSelect(p, q, 'memory_usage_operator');
+    this.getSelect(p, q, 'mu_provided_operator');
+    this.getSelect(p, q, 'num_printed_subroutines_operator');
+    this.getSelect(p, q, 'position_operator');
+    this.getSelect(p, q, 'recurring_credits_provided_operator');
+    this.getSelect(p, q, 'strength_operator');
+    this.getSelect(p, q, 'trash_cost_operator');
+
     this.getSelect(p, q, 'designed_by');
     this.getSelect(p, q, 'display');
     this.getSelect(p, q, 'gains_subroutines');
@@ -223,7 +315,21 @@ export default class SearchFormComponent extends Component {
               </PowerSelect>
             </form.element>
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='position_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.position_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.position_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Position In Set'
@@ -389,24 +495,80 @@ export default class SearchFormComponent extends Component {
           </div>
         </div>
         <div class='row'>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='influence_cost_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.influence_cost_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.influence_cost_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Influence'
               @property='influence_cost'
             />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='cost_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.cost_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.cost_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element @controlType='text' @label='Cost' @property='cost' />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='advancement_cost_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.advancement_cost_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.advancement_cost_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
-              @label='Advancement Requirement'
+              @label='Advancement Cost'
               @property='advancement_cost'
             />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='agenda_points_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.agenda_points_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.agenda_points_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Agenda Points'
@@ -415,28 +577,84 @@ export default class SearchFormComponent extends Component {
           </div>
         </div>
         <div class='row'>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='base_link_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.base_link_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.base_link_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Base Link'
               @property='base_link'
             />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='memory_usage_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.memory_usage_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.memory_usage_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Memory Usage'
               @property='memory_usage'
             />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='strength_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.strength_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.strength_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Strength'
               @property='strength'
             />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='trash_cost_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.trash_cost_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.trash_cost_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Trash Cost'
@@ -614,28 +832,84 @@ export default class SearchFormComponent extends Component {
           </div>
         </div>
         <div class='row'>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='link_provided_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.link_provided_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.link_provided_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Link Provided'
               @property='link_provided'
             />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='mu_provided_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.mu_provided_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.mu_provided_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='MU Provided'
               @property='mu_provided'
             />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='num_printed_subroutines_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.num_printed_subroutines_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.num_printed_subroutines_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Num Printed Subroutines'
               @property='num_printed_subroutines'
             />
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='recurring_credits_provided_operator' as |el|>
+              <PowerSelect
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.recurring_credits_provided_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.recurring_credits_provided_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
             <form.element
               @controlType='text'
               @label='Recurring Credits Provided'
