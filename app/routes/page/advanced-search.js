@@ -9,31 +9,20 @@ export default class PageAdvancedSearchRoute extends Route {
   queryParams = {
     additional_cost: { refreshModel: true },
     advanceable: { refreshModel: true },
+    advancement_cost_operator: { refreshModel: true },
     advancement_cost: { refreshModel: true },
+    agenda_points_operator: { refreshModel: true },
     agenda_points: { refreshModel: true },
     attribution: { refreshModel: true },
+    base_link_operator: { refreshModel: true },
     base_link: { refreshModel: true },
     card_cycle: { refreshModel: true },
     card_pool: { refreshModel: true },
     card_set: { refreshModel: true },
     card_subtype_id: { refreshModel: true },
     card_type_id: { refreshModel: true },
-    cost: { refreshModel: true },
-
-    advancement_cost_operator: { refreshModel: true },
-    agenda_points_operator: { refreshModel: true },
-    base_link_operator: { refreshModel: true },
     cost_operator: { refreshModel: true },
-    influence_cost_operator: { refreshModel: true },
-    link_provided_operator: { refreshModel: true },
-    memory_usage_operator: { refreshModel: true },
-    mu_provided_operator: { refreshModel: true },
-    num_printed_subroutines_operator: { refreshModel: true },
-    position_operator: { refreshModel: true },
-    recurring_credits_provided_operator: { refreshModel: true },
-    strength_operator: { refreshModel: true },
-    trash_cost_operator: { refreshModel: true },
-
+    cost: { refreshModel: true },
     designed_by: { refreshModel: true },
     display: { refreshModel: true },
     faction_id: { refreshModel: true },
@@ -41,22 +30,31 @@ export default class PageAdvancedSearchRoute extends Route {
     format: { refreshModel: true },
     gains_subroutines: { refreshModel: true },
     illustrator_id: { refreshModel: true },
+    influence_cost_operator: { refreshModel: true },
     influence_cost: { refreshModel: true },
     interrupt: { refreshModel: true },
     is_unique: { refreshModel: true },
     latest_printing_only: { refreshModel: true },
+    link_provided_operator: { refreshModel: true },
     link_provided: { refreshModel: true },
     max_records: { refreshModel: true },
+    memory_usage_operator: { refreshModel: true },
     memory_usage: { refreshModel: true },
+    mu_provided_operator: { refreshModel: true },
     mu_provided: { refreshModel: true },
+    num_printed_subroutines_operator: { refreshModel: true },
     num_printed_subroutines: { refreshModel: true },
+    num_printings_operator: { refreshModel: true },
     num_printings: { refreshModel: true },
     num_records: { refreshModel: true },
     on_encounter_effect: { refreshModel: true },
     performs_trace: { refreshModel: true },
+    position_operator: { refreshModel: true },
     position: { refreshModel: true },
+    quantity_operator: { refreshModel: true },
     quantity: { refreshModel: true },
     query: { refreshModel: true },
+    recurring_credits_provided_operator: { refreshModel: true },
     recurring_credits_provided: { refreshModel: true },
     release_date: { refreshModel: true },
     released_by: { refreshModel: true },
@@ -64,10 +62,12 @@ export default class PageAdvancedSearchRoute extends Route {
     rez_effect: { refreshModel: true },
     side_id: { refreshModel: true },
     snapshot: { refreshModel: true },
+    strength_operator: { refreshModel: true },
     strength: { refreshmodel: true },
     text: { refreshmodel: true },
     title: { refreshModel: true },
     trash_ability: { refreshModel: true },
+    trash_cost_operator: { refreshModel: true },
     trash_cost: { refreshModel: true },
   };
 
@@ -78,7 +78,8 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`position${op}${params.position}`);
     }
     if (params.quantity) {
-      filter.push(`quantity:${params.quantity}`);
+      let op = params.quantity_operator ? params.quantity_operator : ':';
+      filter.push(`quantity${op}${params.quantity}`);
     }
     if (params.title) {
       filter.push(`_:"${params.title}"`);
@@ -130,7 +131,10 @@ export default class PageAdvancedSearchRoute extends Route {
       );
     }
     if (params.num_printings) {
-      filter.push(`num_printings:${params.num_printings}`);
+      let op = params.num_printings_operator
+        ? params.num_printings_operator
+        : ':';
+      filter.push(`num_printings${op}${params.num_printings}`);
     }
     if (params.additional_cost) {
       filter.push(`additional_cost:t`);
