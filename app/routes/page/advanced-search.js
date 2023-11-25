@@ -158,7 +158,7 @@ export default class PageAdvancedSearchRoute extends Route {
     }
     if (params.agenda_points) {
       let op = params.agenda_points_operator
-        ? params.advancement_agenda_points_operator
+        ? params.agenda_points_operator
         : ':';
       filter.push(`agenda_points${op}${params.agenda_points}`);
     }
