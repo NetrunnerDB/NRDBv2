@@ -9,6 +9,10 @@ import InfluencePips from './influence-pips';
 import Stats from './stats';
 import Text from './text';
 
+function backgroundImage(image) {
+  return htmlSafe(`background-image: url(${image})`);
+}
+
 <template>
   <div class='card-text-box'>
     {{#if @showThumbnail}}
@@ -19,7 +23,7 @@ import Text from './text';
             {{! template-lint-disable style-concatenation }}
             <div
               class='hex-image thumbnail-{{@printing.cardTypeId}}'
-              style='background-image: url({{@printing.images.nrdb_classic.small}})'
+              style={{backgroundImage @printing.images.nrdb_classic.small}}
             ></div>
           </div>
         </div>
