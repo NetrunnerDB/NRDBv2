@@ -18,6 +18,22 @@ export default class SearchFormComponent extends Component {
     let p = this.searchParams;
     let a = this.args.searchParams;
 
+    p.attribution_operator = this.single(
+      this.ifNull(a.attribution_operator, ':'),
+      this.textOperators,
+    );
+    p.flavor_operator = this.single(
+      this.ifNull(a.flavor_operator, ':'),
+      this.textOperators,
+    );
+    p.title_operator = this.single(
+      this.ifNull(a.title_operator, ':'),
+      this.textOperators,
+    );
+    p.text_operator = this.single(
+      this.ifNull(a.text_operator, ':'),
+      this.textOperators,
+    );
     p.advancement_cost_operator = this.single(
       this.ifNull(a.advancement_cost_operator, ':'),
       this.numericOperators,
@@ -144,6 +160,12 @@ export default class SearchFormComponent extends Component {
     return objects.filter((x) => ids.includes(x.id));
   }
 
+  textOperators = [
+    { id: ':', name: 'LIKE' },
+    { id: '!', name: 'NOT LIKE' },
+    { id: '=~', name: 'REGEX LIKE' },
+    { id: '!=~', name: 'REGEX NOT LIKE' },
+  ];
   numericOperators = [
     { id: ':', name: '=' },
     { id: '!', name: '!=' },
@@ -221,10 +243,12 @@ export default class SearchFormComponent extends Component {
     this.getSelect(p, q, 'advanceable');
     this.getSelect(p, q, 'advancement_cost_operator');
     this.getSelect(p, q, 'agenda_points_operator');
+    this.getSelect(p, q, 'attribution_operator');
     this.getSelect(p, q, 'base_link_operator');
     this.getSelect(p, q, 'cost_operator');
     this.getSelect(p, q, 'designed_by');
     this.getSelect(p, q, 'display');
+    this.getSelect(p, q, 'flavor_operator');
     this.getSelect(p, q, 'gains_subroutines');
     this.getSelect(p, q, 'influence_cost_operator');
     this.getSelect(p, q, 'interrupt');
@@ -245,6 +269,8 @@ export default class SearchFormComponent extends Component {
     this.getSelect(p, q, 'rez_effect');
     this.getSelect(p, q, 'side_id');
     this.getSelect(p, q, 'strength_operator');
+    this.getSelect(p, q, 'text_operator');
+    this.getSelect(p, q, 'title_operator');
     this.getSelect(p, q, 'trash_ability');
     this.getSelect(p, q, 'trash_cost_operator');
     this.getText(p, q, 'advancement_cost');
@@ -288,14 +314,42 @@ export default class SearchFormComponent extends Component {
       <fieldset>
         <legend>Title &amp; Text</legend>
         <div class='row'>
-          <div class='col-sm-6'>
+          <div class='col-sm-2'>
+            <form.element @label='&nbsp;' @property='title_operator' as |el|>
+              <PowerSelect
+                @options={{this.textOperators}}
+                @selected={{this.searchParams.title_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.title_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-4'>
             <form.element
               @controlType='text'
               @label='Title'
               @property='title'
             />
           </div>
-          <div class='col-sm-6'>
+          <div class='col-sm-2'>
+            <form.element @label='&nbsp;' @property='text_operator' as |el|>
+              <PowerSelect
+                @options={{this.textOperators}}
+                @selected={{this.searchParams.text_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.text_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-4'>
             <form.element @controlType='text' @label='Text' @property='text' />
           </div>
         </div>
@@ -386,7 +440,21 @@ export default class SearchFormComponent extends Component {
           </div>
         </div>
         <div class='row'>
-          <div class='col-sm-6'>
+          <div class='col-sm-2'>
+            <form.element @label='&nbsp;' @property='flavor_operator' as |el|>
+              <PowerSelect
+                @options={{this.textOperators}}
+                @selected={{this.searchParams.flavor_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.flavor_operator)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-4'>
             <form.element
               @controlType='text'
               @label='Flavor Text'
@@ -1048,7 +1116,7 @@ export default class SearchFormComponent extends Component {
       <fieldset>
         <legend>Designers and Publishers</legend>
         <div class='row'>
-          <div class='col-sm-4'>
+          <div class='col-sm-3'>
             <form.element @label='Designed By' @property='designed_by' as |el|>
               <PowerSelect
                 @allowClear={{true}}
@@ -1063,7 +1131,7 @@ export default class SearchFormComponent extends Component {
               </PowerSelect>
             </form.element>
           </div>
-          <div class='col-sm-4'>
+          <div class='col-sm-3'>
             <form.element @label='Released By' @property='released_by' as |el|>
               <PowerSelect
                 @allowClear={{true}}
@@ -1072,6 +1140,20 @@ export default class SearchFormComponent extends Component {
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
                 @onChange={{fn (mut this.searchParams.released_by)}}
+                as |x|
+              >
+                {{x.name}}
+              </PowerSelect>
+            </form.element>
+          </div>
+          <div class='col-sm-2'>
+            <form.element @label='&nbsp;' @property='attribution_operator' as |el|>
+              <PowerSelect
+                @options={{this.textOperators}}
+                @selected={{this.searchParams.attribution_operator}}
+                @triggerId={{el.id}}
+                @onFocus={{action.focus}}
+                @onChange={{fn (mut this.searchParams.attribution_operator)}}
                 as |x|
               >
                 {{x.name}}

@@ -14,6 +14,7 @@ export default class PageAdvancedSearchRoute extends Route {
     agenda_points_operator: { refreshModel: true },
     agenda_points: { refreshModel: true },
     attribution: { refreshModel: true },
+    attribution_operator: { refreshModel: true },
     base_link_operator: { refreshModel: true },
     base_link: { refreshModel: true },
     card_cycle: { refreshModel: true },
@@ -27,6 +28,7 @@ export default class PageAdvancedSearchRoute extends Route {
     display: { refreshModel: true },
     faction_id: { refreshModel: true },
     flavor: { refreshModel: true },
+    flavor_operator: { refreshModel: true },
     format: { refreshModel: true },
     gains_subroutines: { refreshModel: true },
     illustrator_id: { refreshModel: true },
@@ -65,7 +67,9 @@ export default class PageAdvancedSearchRoute extends Route {
     strength_operator: { refreshModel: true },
     strength: { refreshmodel: true },
     text: { refreshmodel: true },
+    text_operator: { refreshmodel: true },
     title: { refreshModel: true },
+    title_operator: { refreshModel: true },
     trash_ability: { refreshModel: true },
     trash_cost_operator: { refreshModel: true },
     trash_cost: { refreshModel: true },
@@ -82,7 +86,16 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`quantity${op}${params.quantity}`);
     }
     if (params.title) {
-      filter.push(`_:"${params.title}"`);
+      if (
+        [':', '!'].includes(params.title_operator) ||
+        !params.title_operator
+      ) {
+        filter.push(`_${params.title_operator}"${params.title}"`);
+      } else if (params.title_operator == '=~') {
+        filter.push(`_:/${params.title}/`);
+      } else if (params.title_operator == '!=~') {
+        filter.push(`_!/${params.title}/`);
+      }
     }
     if (params.card_cycle) {
       filter.push(`card_cycle:"${params.card_cycle}"`);
@@ -91,10 +104,25 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`card_set:"${params.card_set}"`);
     }
     if (params.text) {
-      filter.push(`x:"${params.text}"`);
+      if ([':', '!'].includes(params.text_operator) || !params.text_operator) {
+        filter.push(`x${params.text_operator}"${params.text}"`);
+      } else if (params.text_operator == '=~') {
+        filter.push(`x:/${params.text}/`);
+      } else if (params.text_operator == '!=~') {
+        filter.push(`x!/${params.text}/`);
+      }
     }
     if (params.flavor) {
-      filter.push(`a:"${params.flavor}"`);
+      if (
+        [':', '!'].includes(params.flavor_operator) ||
+        !params.flavor_operator
+      ) {
+        filter.push(`a${params.flavor_operator}"${params.flavor}"`);
+      } else if (params.flavor_operator == '=~') {
+        filter.push(`a:/${params.flavor}/`);
+      } else if (params.flavor_operator == '!=~') {
+        filter.push(`a!/${params.flavor}/`);
+      }
     }
     if (params.latest_printing_only) {
       filter.push(`is_latest_printing:${params.latest_printing_only}`);
@@ -123,7 +151,18 @@ export default class PageAdvancedSearchRoute extends Route {
       filter.push(`released_by:${params.released_by}`);
     }
     if (params.attribution) {
-      filter.push(`attribution:${params.attribution}`);
+      if (
+        [':', '!'].includes(params.attribution_operator) ||
+        !params.attribution_operator
+      ) {
+        filter.push(
+          `attribution${params.attribution_operator}"${params.attribution}"`,
+        );
+      } else if (params.attribution_operator == '=~') {
+        filter.push(`attribution:/${params.attribution}/`);
+      } else if (params.attribution_operator == '!=~') {
+        filter.push(`attribution!/${params.attribution}/`);
+      }
     }
     if (params.illustrator_id) {
       filter.push(
