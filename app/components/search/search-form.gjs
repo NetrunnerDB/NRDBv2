@@ -54,8 +54,16 @@ export default class SearchFormComponent extends Component {
       this.ifNull(a.num_printed_subroutines_operator, ':'),
       this.numericOperators,
     );
+    p.num_printings_operator = this.single(
+      this.ifNull(a.num_printings_operator, ':'),
+      this.numericOperators,
+    );
     p.position_operator = this.single(
       this.ifNull(a.position_operator, ':'),
+      this.numericOperators,
+    );
+    p.quantity_operator = this.single(
+      this.ifNull(a.quantity_operator, ':'),
       this.numericOperators,
     );
     p.recurring_credits_provided_operator = this.single(
@@ -94,10 +102,8 @@ export default class SearchFormComponent extends Component {
       this.ifNull(a.max_records, 100),
       this.maxRecords,
     );
-    p.num_printings = this.single(a.num_printings, this.oneToSix);
     p.on_encounter_effect = this.single(a.on_encounter_effect, this.yesNo);
     p.performs_trace = this.single(a.performs_trace, this.yesNo);
-    p.quantity = this.single(a.quantity, this.oneToSix);
     p.released_by = this.single(a.released_by, this.orgs);
     p.restriction_id = this.multi(a.restriction_id, this.args.restrictions);
     p.rez_effect = this.single(a.rez_effect, this.yesNo);
@@ -213,36 +219,34 @@ export default class SearchFormComponent extends Component {
     this.getMultiSelect(p, q, 'snapshot');
     this.getSelect(p, q, 'additional_cost');
     this.getSelect(p, q, 'advanceable');
-
     this.getSelect(p, q, 'advancement_cost_operator');
     this.getSelect(p, q, 'agenda_points_operator');
     this.getSelect(p, q, 'base_link_operator');
     this.getSelect(p, q, 'cost_operator');
-    this.getSelect(p, q, 'influence_cost_operator');
-    this.getSelect(p, q, 'link_provided_operator');
-    this.getSelect(p, q, 'memory_usage_operator');
-    this.getSelect(p, q, 'mu_provided_operator');
-    this.getSelect(p, q, 'num_printed_subroutines_operator');
-    this.getSelect(p, q, 'position_operator');
-    this.getSelect(p, q, 'recurring_credits_provided_operator');
-    this.getSelect(p, q, 'strength_operator');
-    this.getSelect(p, q, 'trash_cost_operator');
-
     this.getSelect(p, q, 'designed_by');
     this.getSelect(p, q, 'display');
     this.getSelect(p, q, 'gains_subroutines');
+    this.getSelect(p, q, 'influence_cost_operator');
     this.getSelect(p, q, 'interrupt');
     this.getSelect(p, q, 'is_unique');
     this.getSelect(p, q, 'latest_printing_only');
+    this.getSelect(p, q, 'link_provided_operator');
     this.getSelect(p, q, 'max_records');
-    this.getSelect(p, q, 'num_printings');
+    this.getSelect(p, q, 'memory_usage_operator');
+    this.getSelect(p, q, 'mu_provided_operator');
+    this.getSelect(p, q, 'num_printed_subroutines_operator');
+    this.getSelect(p, q, 'num_printings_operator');
     this.getSelect(p, q, 'on_encounter_effect');
     this.getSelect(p, q, 'performs_trace');
-    this.getSelect(p, q, 'quantity');
+    this.getSelect(p, q, 'position_operator');
+    this.getSelect(p, q, 'quantity_operator');
+    this.getSelect(p, q, 'recurring_credits_provided_operator');
     this.getSelect(p, q, 'released_by');
     this.getSelect(p, q, 'rez_effect');
     this.getSelect(p, q, 'side_id');
+    this.getSelect(p, q, 'strength_operator');
     this.getSelect(p, q, 'trash_ability');
+    this.getSelect(p, q, 'trash_cost_operator');
     this.getText(p, q, 'advancement_cost');
     this.getText(p, q, 'agenda_points');
     this.getText(p, q, 'attribution');
@@ -254,7 +258,9 @@ export default class SearchFormComponent extends Component {
     this.getText(p, q, 'memory_usage');
     this.getText(p, q, 'mu_provided');
     this.getText(p, q, 'num_printed_subroutines');
+    this.getText(p, q, 'num_printings');
     this.getText(p, q, 'position');
+    this.getText(p, q, 'quantity');
     this.getText(p, q, 'recurring_credits_provided');
     this.getText(p, q, 'strength');
     this.getText(p, q, 'text');
@@ -336,43 +342,47 @@ export default class SearchFormComponent extends Component {
               @property='position'
             />
           </div>
-          <div class='col-sm-3'>
-            <form.element @label='Quantity In Set' @property='quantity' as |el|>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='quantity_operator' as |el|>
               <PowerSelect
-                @allowClear={{true}}
-                @options={{this.oneToSix}}
-                @selected={{this.searchParams.quantity}}
-                @searchEnabled={{true}}
-                @searchField='name'
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.quantity_operator}}
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.quantity)}}
+                @onChange={{fn (mut this.searchParams.quantity_operator)}}
                 as |x|
               >
                 {{x.name}}
               </PowerSelect>
             </form.element>
           </div>
-          <div class='col-sm-3'>
+          <div class='col-sm-2'>
             <form.element
-              @label='Num Printings'
-              @property='num_printings'
-              as |el|
-            >
+              @controlType='text'
+              @label='Quantity In Set'
+              @property='quantity'
+            />
+          </div>
+          <div class='col-sm-1'>
+            <form.element @label='&nbsp;' @property='num_printings_operator' as |el|>
               <PowerSelect
-                @allowClear={{true}}
-                @options={{this.oneToSix}}
-                @selected={{this.searchParams.num_printings}}
-                @searchEnabled={{true}}
-                @searchField='name'
+                @options={{this.numericOperators}}
+                @selected={{this.searchParams.num_printings_operator}}
                 @triggerId={{el.id}}
                 @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.num_printings)}}
+                @onChange={{fn (mut this.searchParams.num_printings_operator)}}
                 as |x|
               >
                 {{x.name}}
               </PowerSelect>
             </form.element>
+          </div>
+          <div class='col-sm-2'>
+            <form.element
+              @controlType='text'
+              @label='Num Printings'
+              @property='num_printings'
+            />
           </div>
         </div>
         <div class='row'>
