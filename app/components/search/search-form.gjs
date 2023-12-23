@@ -512,7 +512,8 @@ export default class SearchFormComponent extends Component {
                 @onChange={{fn (mut this.searchParams.faction_id)}}
                 as |x|
               >
-                {{x.name}}
+                <Icon @icon={{x.id}} />
+                {{x.name}}{{'         '}}
               </PowerSelectMultiple>
             </form.element>
           </div>
