@@ -1,12 +1,12 @@
 import Route from '@ember/routing/route';
-import { inject as service } from "@ember/service";
+import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
 export default class ProfileRoute extends Route {
   @service session;
 
   beforeModel(transition) {
-    this.session.requireAuthentication(transition, "home.login");
+    this.session.requireAuthentication(transition, 'home.login');
   }
 
   model() {
