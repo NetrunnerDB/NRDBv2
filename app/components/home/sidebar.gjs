@@ -66,8 +66,7 @@ export default class SidebarComponent extends Component {
                 {{! TODO }}
               </li>
               <li class="nav-item px-4 py-2">
-                <a class="nav-link" href="#">Public Profile</a>
-                {{! TODO }}
+                <LinkTo @route="private.profile">Profile</LinkTo>
               </li>
               <li class="nav-item px-4 py-2">
                 <a class="nav-link" href="#">Edit Account</a>
