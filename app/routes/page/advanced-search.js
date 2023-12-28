@@ -13,8 +13,8 @@ export default class PageAdvancedSearchRoute extends Route {
     advancement_cost: { refreshModel: true },
     agenda_points_operator: { refreshModel: true },
     agenda_points: { refreshModel: true },
-    attribution: { refreshModel: true },
     attribution_operator: { refreshModel: true },
+    attribution: { refreshModel: true },
     base_link_operator: { refreshModel: true },
     base_link: { refreshModel: true },
     card_cycle: { refreshModel: true },
@@ -27,8 +27,8 @@ export default class PageAdvancedSearchRoute extends Route {
     designed_by: { refreshModel: true },
     display: { refreshModel: true },
     faction_id: { refreshModel: true },
-    flavor: { refreshModel: true },
     flavor_operator: { refreshModel: true },
+    flavor: { refreshModel: true },
     format: { refreshModel: true },
     gains_subroutines: { refreshModel: true },
     illustrator_id: { refreshModel: true },
@@ -58,7 +58,6 @@ export default class PageAdvancedSearchRoute extends Route {
     query: { refreshModel: true },
     recurring_credits_provided_operator: { refreshModel: true },
     recurring_credits_provided: { refreshModel: true },
-    release_date: { refreshModel: true },
     released_by: { refreshModel: true },
     restriction_id: { refreshModel: true },
     rez_effect: { refreshModel: true },
@@ -66,240 +65,113 @@ export default class PageAdvancedSearchRoute extends Route {
     snapshot: { refreshModel: true },
     strength_operator: { refreshModel: true },
     strength: { refreshmodel: true },
-    text: { refreshmodel: true },
     text_operator: { refreshmodel: true },
-    title: { refreshModel: true },
+    text: { refreshmodel: true },
     title_operator: { refreshModel: true },
+    title: { refreshModel: true },
     trash_ability: { refreshModel: true },
     trash_cost_operator: { refreshModel: true },
     trash_cost: { refreshModel: true },
   };
 
+  // Booleans only use the exact match operator.
+  booleanField(p, f, a) {
+    let apiField = a ? a : f;
+    if (p[f]) {
+      return `${apiField}:${p[f]}`;
+    }
+    return null;
+  }
+
+  listField(p, f, a) {
+    let apiField = a ? a : f;
+    if (p[f]) {
+      return `${apiField}:${p[f].replaceAll(',', '|')}`;
+    }
+    return null;
+  }
+
+  // Numeric and text fields have pairs of foo and foo_operator params.
+  numberField(p, f, a) {
+    let apiField = a ? a : f;
+    let value = p[f] == '-1' ? 'X' : p[f];
+    if (p[f]) {
+      // default to : operator if not specified.
+      let op = p[`${f}_operator`] ? p[`${f}_operator`] : ':';
+      return `${apiField}${op}${value}`;
+    }
+    return null;
+  }
+
+  textField(p, f, a) {
+    let apiField = a ? a : f;
+    if (p[f]) {
+      let o = `${f}_operator`;
+      if ([':', '!'].includes(p[o]) || !p[o]) {
+        // Regular or negated LIKE operator.
+        return `${apiField}${p[o]}"${p[f]}"`;
+      } else if (p[o] == '=~') {
+        // Positive regex match.
+        return `${apiField}:/${p[f]}/`;
+      } else if (p[o] == '!=~') {
+        // Negative regex match.
+        return `${apiField}!/${p[f]}/`;
+      }
+    }
+    return null;
+  }
+
   buildSearchFilter(params) {
-    let filter = [];
-    if (params.position) {
-      let op = params.position_operator ? params.position_operator : ':';
-      filter.push(`position${op}${params.position}`);
-    }
-    if (params.quantity) {
-      let op = params.quantity_operator ? params.quantity_operator : ':';
-      filter.push(`quantity${op}${params.quantity}`);
-    }
-    if (params.title) {
-      if (
-        [':', '!'].includes(params.title_operator) ||
-        !params.title_operator
-      ) {
-        filter.push(`_${params.title_operator}"${params.title}"`);
-      } else if (params.title_operator == '=~') {
-        filter.push(`_:/${params.title}/`);
-      } else if (params.title_operator == '!=~') {
-        filter.push(`_!/${params.title}/`);
-      }
-    }
-    if (params.card_cycle) {
-      filter.push(`card_cycle:"${params.card_cycle}"`);
-    }
-    if (params.card_set) {
-      filter.push(`card_set:"${params.card_set}"`);
-    }
-    if (params.text) {
-      if ([':', '!'].includes(params.text_operator) || !params.text_operator) {
-        filter.push(`x${params.text_operator}"${params.text}"`);
-      } else if (params.text_operator == '=~') {
-        filter.push(`x:/${params.text}/`);
-      } else if (params.text_operator == '!=~') {
-        filter.push(`x!/${params.text}/`);
-      }
-    }
-    if (params.flavor) {
-      if (
-        [':', '!'].includes(params.flavor_operator) ||
-        !params.flavor_operator
-      ) {
-        filter.push(`a${params.flavor_operator}"${params.flavor}"`);
-      } else if (params.flavor_operator == '=~') {
-        filter.push(`a:/${params.flavor}/`);
-      } else if (params.flavor_operator == '!=~') {
-        filter.push(`a!/${params.flavor}/`);
-      }
-    }
-    if (params.latest_printing_only) {
-      filter.push(`is_latest_printing:${params.latest_printing_only}`);
-    }
-    if (params.side_id) {
-      filter.push(`side:${params.side_id}`);
-    }
-    if (params.faction_id) {
-      filter.push(`faction:${params.faction_id.replaceAll(',', '|')}`);
-    }
-    if (params.card_type_id) {
-      filter.push(`card_type:${params.card_type_id.replaceAll(',', '|')}`);
-    }
-    if (params.card_subtype_id) {
-      filter.push(
-        `card_subtype_id:${params.card_subtype_id.replaceAll(',', '|')}`,
-      );
-    }
-    if (params.is_unique) {
-      filter.push(`is_unique:${params.is_unique}`);
-    }
-    if (params.designed_by) {
-      filter.push(`designed_by:${params.designed_by}`);
-    }
-    if (params.released_by) {
-      filter.push(`released_by:${params.released_by}`);
-    }
-    if (params.attribution) {
-      if (
-        [':', '!'].includes(params.attribution_operator) ||
-        !params.attribution_operator
-      ) {
-        filter.push(
-          `attribution${params.attribution_operator}"${params.attribution}"`,
-        );
-      } else if (params.attribution_operator == '=~') {
-        filter.push(`attribution:/${params.attribution}/`);
-      } else if (params.attribution_operator == '!=~') {
-        filter.push(`attribution!/${params.attribution}/`);
-      }
-    }
-    if (params.illustrator_id) {
-      filter.push(
-        `illustrator_id:${params.illustrator_id.replaceAll(',', '|')}`,
-      );
-    }
-    if (params.num_printings) {
-      let op = params.num_printings_operator
-        ? params.num_printings_operator
-        : ':';
-      filter.push(`num_printings${op}${params.num_printings}`);
-    }
-    if (params.additional_cost) {
-      filter.push(`additional_cost:t`);
-    }
-    if (params.advanceable) {
-      filter.push(`advanceable:t`);
-    }
-    if (params.gains_subroutines) {
-      filter.push(`gains_subroutines:t`);
-    }
-    if (params.interrupt) {
-      filter.push(`interrupt:t`);
-    }
-    if (params.on_encounter_effect) {
-      filter.push(`on_encounter_effect:t`);
-    }
-    if (params.performs_trace) {
-      filter.push(`performs_trace:t`);
-    }
-    if (params.rez_effect) {
-      filter.push(`rez_effect:t`);
-    }
-    if (params.trash_ability) {
-      filter.push(`trash_ability:t`);
-    }
-    if (params.agenda_points) {
-      let op = params.agenda_points_operator
-        ? params.agenda_points_operator
-        : ':';
-      filter.push(`agenda_points${op}${params.agenda_points}`);
-    }
-    if (params.advancement_cost) {
-      let op = params.advancement_cost_operator
-        ? params.advancement_cost_operator
-        : ':';
-      let value =
-        params.advancement_cost == '-1' ? 'X' : params.advancement_cost;
-      filter.push(`advancement_cost${op}${value}`);
-    }
-    if (params.influence_cost) {
-      let op = params.influence_cost_operator
-        ? params.influence_cost_operator
-        : ':';
-      filter.push(`influence_cost${op}${params.influence_cost}`);
-    }
-    if (params.cost) {
-      let op = params.cost_operator ? params.cost_operator : ':';
-      let value = params.cost == '-1' ? 'X' : params.cost;
-      filter.push(`cost${op}${value}`);
-    }
-    if (params.base_link) {
-      let op = params.base_link_operator ? params.base_link_operator : ':';
-      let value = params.base_link == '-1' ? 'X' : params.base_link;
-      filter.push(`base_link${op}${value}`);
-    }
-    if (params.memory_usage) {
-      let op = params.memory_usage_operator
-        ? params.memory_usage_operator
-        : ':';
-      let value = params.memory_usage == '-1' ? 'X' : params.memory_usage;
-      filter.push(`memory_usage${op}${value}`);
-    }
-    if (params.strength) {
-      let op = params.strength_operator ? params.strength_operator : ':';
-      let value = params.strength == '-1' ? 'X' : params.strength;
-      filter.push(`strength${op}${value}`);
-    }
-    if (params.trash_cost) {
-      let op = params.trash_cost_operator ? params.trash_cost_operator : ':';
-      let value = params.trash_cost == '-1' ? 'X' : params.trash_cost;
-      filter.push(`trash_cost${op}${value}`);
-    }
-    if (params.mu_provided) {
-      let op = params.mu_provided_operator ? params.mu_provided_operator : ':';
-      let value = params.mu_provided == '-1' ? 'X' : params.mu_provided;
-      filter.push(`mu_provided${op}${value}`);
-    }
-    if (params.recurring_credits_provided) {
-      let op = params.recurring_credits_provided_operator
-        ? params.recurring_credits_provided_operator
-        : ':';
-      let value =
-        params.recurring_credits_provided == '-1'
-          ? 'X'
-          : params.recurring_credits_provided;
-      filter.push(`recurring_credits_provided${op}${value}`);
-    }
-    if (params.link_provided) {
-      let op = params.link_provided_operator
-        ? params.link_provided_operator
-        : ':';
-      filter.push(`link_provided${op}${params.link_provided}`);
-    }
-    if (params.num_printed_subroutines) {
-      let op = params.num_printed_subroutines_operator
-        ? params.num_printed_subroutines_operator
-        : ':';
-      filter.push(
-        `num_printed_subroutines${op}${params.num_printed_subroutines}`,
-      );
-    }
-    if (params.release_date) {
-      filter.push(`release_date:${params.release_date}`);
-    }
-    if (params.card_pool) {
-      filter.push(`card_pool:${params.card_pool.replaceAll(',', '|')}`);
-    }
-    if (params.format) {
-      filter.push(`format:${params.format.replaceAll(',', '|')}`);
-    }
-    if (params.snapshot) {
-      filter.push(`snapshot:${params.snapshot.replaceAll(',', '|')}`);
-    }
-    if (params.restriction_id) {
-      filter.push(
-        `restriction_id:${params.restriction_id.replaceAll(',', '|')}`,
-      );
-    }
+    let filter = [
+      this.booleanField(params, 'additional_cost'),
+      this.booleanField(params, 'advanceable'),
+      this.booleanField(params, 'gains_subroutines'),
+      this.booleanField(params, 'interrupt'),
+      this.booleanField(params, 'is_unique'),
+      this.booleanField(params, 'latest_printing_only', 'is_latest_printing'),
+      this.booleanField(params, 'on_encounter_effect'),
+      this.booleanField(params, 'performs_trace'),
+      this.booleanField(params, 'rez_effect'),
+      this.booleanField(params, 'side_id', 'side'),
+      this.booleanField(params, 'trash_ability'),
+      this.listField(params, 'card_cycle'),
+      this.listField(params, 'card_pool'),
+      this.listField(params, 'card_set'),
+      this.listField(params, 'card_subtype_id'),
+      this.listField(params, 'card_type_id', 'card_type'),
+      this.listField(params, 'designed_by'),
+      this.listField(params, 'faction_id', 'faction'),
+      this.listField(params, 'format'),
+      this.listField(params, 'illustrator_id'),
+      this.listField(params, 'released_by'),
+      this.listField(params, 'restriction_id'),
+      this.listField(params, 'snapshot'),
+      this.numberField(params, 'advancement_cost'),
+      this.numberField(params, 'agenda_points'),
+      this.numberField(params, 'base_link'),
+      this.numberField(params, 'cost'),
+      this.numberField(params, 'influence_cost'),
+      this.numberField(params, 'link_provided'),
+      this.numberField(params, 'memory_usage'),
+      this.numberField(params, 'mu_provided'),
+      this.numberField(params, 'num_printed_subroutines'),
+      this.numberField(params, 'num_printings'),
+      this.numberField(params, 'position'),
+      this.numberField(params, 'quantity'),
+      this.numberField(params, 'recurring_credits_provided'),
+      this.numberField(params, 'strength'),
+      this.numberField(params, 'trash_cost'),
+      this.textField(params, 'attribution'),
+      this.textField(params, 'flavor'),
+      this.textField(params, 'text'),
+      this.textField(params, 'title', '_'),
+    ].filter((x) => x !== null);
 
     return filter.join(' ');
   }
 
   async model(params) {
-    let filter = params.query
-      ? this.buildSearchFilter({ title: params.query })
-      : this.buildSearchFilter(params);
+    let filter = this.buildSearchFilter(params);
 
     const [
       cardCycles,
