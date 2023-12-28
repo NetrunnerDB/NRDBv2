@@ -72,7 +72,6 @@ export default class PageNavbarComponent extends Component {
                         class='form-control p-relative py-3'
                         placeholder='Search for card...'
                       />
-                      <label for='navbar-search' hidden=''>Search for cards</label>
                     </div>
                   </form>
                 </div>
