@@ -11,6 +11,9 @@ module.exports = function (defaults) {
     'ember-power-select': {
       theme: 'bootstrap',
     },
+    'ember-simple-auth': {
+      useSessionSetupMethod: true,
+    },
     outputPaths: {
       app: {
         css: {
