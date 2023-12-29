@@ -8,7 +8,7 @@ export default class PrivateRoute extends Route {
   beforeModel(transition) {
     // Set a route to redirect to if the user is not authenticated.
     if (!this.session.data.authenticated.userinfo) {
-     this.session.data.nextURL = transition.to.name;
+      this.session.data.nextURL = transition.to.name;
     }
     this.session.requireAuthentication(transition, 'home.login');
   }
