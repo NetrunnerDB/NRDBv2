@@ -1,0 +1,17 @@
+<div id="content-sets">
+  <h2 class="nr-primary mb-4">Profile</h2>
+  <div class="tab-body">
+    <p>
+    Username: {{ @model.userinfo.preferred_username }}
+    </p>
+    <p>
+    Pronouns: {{ @model.userinfo.pronouns}}
+    </p>
+    <p>
+    Preferred Faction: {{ @model.userinfo.preferred_faction }}
+    </p>
+    <p>
+      <LinkTo @route="home.logout">Log Out</LinkTo>
+    </p>
+  </div>
+</div>

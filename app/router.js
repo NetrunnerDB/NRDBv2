@@ -15,6 +15,8 @@ Router.map(function () {
     this.route('dotw');
     this.route('dotw', { path: '/' }); // Defaults to dotw
     this.route('formats');
+    this.route('login');
+    this.route('logout');
     this.route('sets');
     this.route('updates');
   });
@@ -35,5 +37,9 @@ Router.map(function () {
     this.route('set', { path: '/set/:id' });
     this.route('sets');
     this.route('syntax');
+  });
+  this.route('private', function () {
+    this.route('decks');
+    this.route('profile');
   });
 });
