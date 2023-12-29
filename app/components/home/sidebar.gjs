@@ -62,8 +62,7 @@ export default class SidebarComponent extends Component {
           <nav class="navbar">
             <ul class="navbar-nav">
               <li class="nav-item px-4 py-2">
-                <a class="nav-link" href="#">My decks</a>
-                {{! TODO }}
+                <LinkTo @route="private.decks">My Decks</LinkTo>
               </li>
               <li class="nav-item px-4 py-2">
                 <LinkTo @route="private.profile">Profile</LinkTo>
