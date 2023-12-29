@@ -38,7 +38,7 @@ Router.map(function () {
     this.route('syntax');
   });
   this.route('private', function () {
-    this.route('profile');
     this.route('decks');
+    this.route('profile');
   });
 });
