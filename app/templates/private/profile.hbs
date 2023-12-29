@@ -11,11 +11,7 @@
     Preferred Faction: {{ @model.userinfo.preferred_faction }}
     </p>
     <p>
-      <button
-        class='navbar-toggler me-2'
-        type='button'
-        {{on 'click' this.logout }}
-      >Log Out</button>
+      <LinkTo @route="home.logout">Log Out</LinkTo>
     </p>
   </div>
 </div>
