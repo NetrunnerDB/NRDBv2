@@ -16,6 +16,7 @@ Router.map(function () {
     this.route('dotw', { path: '/' }); // Defaults to dotw
     this.route('formats');
     this.route('login');
+    this.route('logout');
     this.route('sets');
     this.route('updates');
   });
