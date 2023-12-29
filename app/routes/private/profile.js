@@ -4,14 +4,12 @@ import RSVP from 'rsvp';
 
 export default class ProfileRoute extends Route {
   @service session;
-
-  // beforeModel(transition) {
-  //   this.session.requireAuthentication(transition, 'home.login');
-  // }
+  @service store;
 
   model() {
     return RSVP.hash({
       userinfo: this.session.data.authenticated.userinfo,
+      user: this.store.query('user', {}),
     });
   }
 }
