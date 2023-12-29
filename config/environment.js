@@ -54,11 +54,14 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    // TODO(plural): Set up ember-simple-auth-oidc testing config here.
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
     ENV.API_URL = 'https://api.netrunnerdb.com/api/v3/public/';
+    ENV['ember-simple-auth-oidc'].clientId = 'nrdb-v2';
+    ENV['ember-simple-auth-oidc'].afterLogoutUri = 'https://v2.netrunnerdb.com/';
   }
 
   return ENV;
