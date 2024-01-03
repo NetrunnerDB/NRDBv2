@@ -9,7 +9,8 @@ export default class ProfileRoute extends Route {
   model() {
     return RSVP.hash({
       userinfo: this.session.data.authenticated.userinfo,
-      user: this.store.query('user', {}),
+      // Pluck the single object out of the user response.
+      user: this.store.query('user', {}).then((r) => r[0]),
     });
   }
 }
