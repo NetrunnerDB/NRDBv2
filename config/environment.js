@@ -13,8 +13,21 @@ module.exports = function (environment) {
         // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
     },
+    'ember-simple-auth-oidc': {
+      host: 'https://draft-id.nullsignal.games/realms/nullsignal',
+      clientId: 'nrdb-v2-local',
+      authPrefix: 'Bearer',
+      authEndpoint: '/protocol/openid-connect/auth',
+      tokenEndpoint: '/protocol/openid-connect/token',
+      endSessionEndpoint: '/protocol/openid-connect/logout',
+      userinfoEndpoint: '/protocol/openid-connect/userinfo',
+      afterLogoutUri: 'http://localhost:4200/',
+      loginHintName: 'custom_login_hint',
+      expiresIn: 10 * 60000, // 10m timeout.
+      refreshLeeway: 1000,
+    },
 
-    API_URL: 'https://api-preview.netrunnerdb.com/api/v3/public/',
+    API_URL: 'https://api-preview.netrunnerdb.com/api/',
     googleFonts: ['Merriweather Sans'],
 
     APP: {
@@ -41,11 +54,15 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    // TODO(plural): Set up ember-simple-auth-oidc testing config here.
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
-    ENV.API_URL = 'https://api-preview.netrunnerdb.com/api/v3/public/';
+    ENV.API_URL = 'https://api.netrunnerdb.com/api/';
+    ENV['ember-simple-auth-oidc'].clientId = 'nrdb-v2';
+    ENV['ember-simple-auth-oidc'].afterLogoutUri =
+      'https://v2.netrunnerdb.com/';
   }
 
   return ENV;

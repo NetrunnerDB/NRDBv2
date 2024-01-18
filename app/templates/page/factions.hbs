@@ -25,7 +25,7 @@
                     {{#each @model.corp as |faction|}}
                       <li>
                         <LinkTo @route="page.faction" @model={{faction.id}}>
-                          <Icon @id={{faction.id}} />
+                          <Icon @icon={{faction.id}} />
                           {{faction.name}}
                         </LinkTo>
                       </li>
@@ -38,7 +38,7 @@
                     {{#each @model.runnerMain as |faction|}}
                       <li>
                         <LinkTo @route="page.faction" @model={{faction.id}}>
-                          <Icon @id={{faction.id}} />
+                          <Icon @icon={{faction.id}} />
                           {{faction.name}}
                         </LinkTo>
                       </li>
@@ -49,7 +49,7 @@
                     {{#each @model.runnerMini as |faction|}}
                       <li>
                         <LinkTo @route="page.faction" @model={{faction.id}}>
-                          <Icon @id={{faction.id}} />
+                          <Icon @icon={{faction.id}} />
                           {{faction.name}}
                         </LinkTo>
                       </li>

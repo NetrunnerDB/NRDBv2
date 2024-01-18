@@ -1,0 +1,21 @@
+{{page-title @model.set.name}}
+
+<div class="container">
+  <div class="row">
+    <div
+      class="col-12 d-flex flex-row flex-sm-column my-2"
+    >
+      <div class="card border-0 flex-grow-1" id="nav-main-content">
+        <div
+          class="card-body d-flex flex-column flex-lg-row justify-content-between"
+        >
+
+          <div class="container" id="set-card-list">
+            <h1>Set – <Icon @icon="{{ @model.set.cardCycleId }}" /><LinkTo @route="page.cycle" @model="{{ @model.set.cardCycleId }}" >{{ @model.set.cardCycle.name }}</LinkTo>: {{ @model.set.name }}</h1>
+            <CardLists @printings={{@model.printings}} @set={{@model.set}} @display="{{this.display}}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

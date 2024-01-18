@@ -8,6 +8,12 @@ module.exports = function (defaults) {
       bootstrapVersion: 5,
       importBootstrapCSS: true,
     },
+    'ember-power-select': {
+      theme: 'bootstrap',
+    },
+    'ember-simple-auth': {
+      useSessionSetupMethod: true,
+    },
     outputPaths: {
       app: {
         css: {

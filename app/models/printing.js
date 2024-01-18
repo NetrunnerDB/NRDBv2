@@ -15,6 +15,7 @@ export default class PrintingModel extends Model {
   @attr quantity;
   @attr dateRelease;
   @attr images;
+  @attr releasedBy;
 
   // Misc
   @attr updatedAt;
@@ -43,6 +44,7 @@ export default class PrintingModel extends Model {
   @attr cardSubtypeIds;
   @attr displaySubtypes;
   @attr cardAbilities;
+  @attr designedBy;
 
   // Card::General
   @attr cost;

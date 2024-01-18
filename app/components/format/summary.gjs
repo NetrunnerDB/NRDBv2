@@ -23,30 +23,30 @@ import { eq, formatDate } from '../../utils/template-operators';
     <h3>Corp decklists</h3>
     <ul class="list-unstyled ms-4">
       <li><a href="#">Any Corp</a></li>
-      <li><Icon @id="haas-bioroid" />
+      <li><Icon @icon="haas-bioroid" />
         <a href="#">Haas-Bioroid</a></li>
-      <li><Icon @id="jinteki" />
+      <li><Icon @icon="jinteki" />
         <a href="#">Jinteki</a></li>
-      <li><Icon @id="nbn" /> <a href="#">NBN</a></li>
-      <li><Icon @id="weyland-consortium" />
+      <li><Icon @icon="nbn" /> <a href="#">NBN</a></li>
+      <li><Icon @icon="weyland-consortium" />
         <a href="#">Weyland Consortium</a></li>
     </ul>
     <h3>Runner decklists</h3>
     <ul class="list-unstyled ms-4">
       <li><a href="#">Any Runner</a></li>
-      <li><Icon @id="anarch" />
+      <li><Icon @icon="anarch" />
         <a href="#">Anarch</a></li>
-      <li><Icon @id="criminal" />
+      <li><Icon @icon="criminal" />
         <a href="#">Criminal</a></li>
-      <li><Icon @id="shaper" />
+      <li><Icon @icon="shaper" />
         <a href="#">Shaper</a></li>
       {{! TODO: automate this properly }}
       {{#unless (eq @model.format.id "startup")}}
-        <li><Icon @id="adam" />
+        <li><Icon @icon="adam" />
           <a href="#">Adam</a></li>
-        <li><Icon @id="apex" />
+        <li><Icon @icon="apex" />
           <a href="#">Apex</a></li>
-        <li><Icon @id="sunny-lebeau" />
+        <li><Icon @icon="sunny-lebeau" />
           <a href="#">Sunny Lebeau</a></li>
       {{/unless}}
     </ul>
@@ -59,7 +59,7 @@ import { eq, formatDate } from '../../utils/template-operators';
         as |cycle|
       }}
         <li>
-          <a href="#">{{cycle.name}}</a>
+          <LinkTo @route="page.cycle" @model="{{ cycle.id }}" >{{cycle.name}}</LinkTo>
         </li>
       {{/each}}
     </ul>

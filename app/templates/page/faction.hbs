@@ -11,7 +11,7 @@
         >
 
           <div class="container" id="banlists">
-            <h1><Icon @id={{@model.faction.id}} /> {{@model.faction.name}}</h1>
+            <h1><Icon @icon={{@model.faction.id}} /> {{@model.faction.name}}</h1>
             <h2>Side: {{@model.faction.side.name}}</h2>
             {{#if @model.faction.description}}
               <Quote @factionId={{@model.faction.id}}>

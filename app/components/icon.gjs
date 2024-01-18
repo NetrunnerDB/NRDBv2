@@ -1,5 +1,5 @@
 import { format } from './quote';
 
 <template>
-  <i class="icon-{{format @id}} {{format @id}}"></i>
+  <i class="icon-{{format @icon}} {{format @icon}}"></i>
 </template>

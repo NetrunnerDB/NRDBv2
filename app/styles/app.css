@@ -834,6 +834,59 @@ img.card-art {
   background-position: calc(50% - 1px) -2px;
 }
 
+.influence {
+  font-family: "Merriweather Sans", sans-serif;
+}
+
+.influence-anarch {
+  color: orangered;
+  border-color: orangered;
+}
+
+.influence-criminal {
+  border-color: royalblue;
+  color: royalblue;
+}
+
+/* stylelint-disable-next-line */
+.influence-haas_bioroid {
+  border-color: blueviolet;
+  color: blueviolet;
+}
+
+.influence-jinteki {
+  border-color: crimson;
+  color: crimson;
+}
+
+.influence-nbn {
+  border-color: darkorange;
+  color: darkorange;
+}
+
+/* stylelint-disable-next-line */
+.influence-neutral_corp {
+  border-color: gray;
+  color: gray;
+}
+
+/* stylelint-disable-next-line */
+.influence-neutral_runner {
+  border-color: gray;
+  color: gray;
+}
+
+.influence-shaper {
+  border-color: limegreen;
+  color: limegreen;
+}
+
+/* stylelint-disable-next-line */
+.influence-weyland_consortium {
+  border-color: darkgreen;
+  color: darkgreen;
+}
+
 .legality-available::before,
 .legality-unavailable::before,
 .legality-legal::before,
@@ -1059,4 +1112,25 @@ img.card-art {
 
 .font-size-72 {
   font-size: 72px !important;
+}
+
+.table-fill {
+  width: 100%;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: rgba(0 0 0 / 5%);
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
 }

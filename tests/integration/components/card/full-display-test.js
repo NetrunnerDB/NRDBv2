@@ -23,6 +23,8 @@ module('Integration | Component | card/full-display', function (hooks) {
         universal_faction_cost: {},
       },
       images: [],
+      designedBy: 'null_signal_games',
+      releasedBy: 'null_signal_games',
     });
     this.set('snapshot', {
       id: 'snapshot',

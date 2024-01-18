@@ -26,6 +26,7 @@ export default class CardModel extends Model {
   @attr strength;
   @attr trashCost;
   @attr attribution;
+  @attr designedBy;
 
   // ID
   @attr baseLink;
@@ -51,7 +52,7 @@ export default class CardModel extends Model {
   @belongsTo('side', { async: true, inverse: 'cards' }) side;
   @belongsTo('faction', { async: true, inverse: 'cards' }) faction;
   @belongsTo('card-type', { async: true, inverse: 'cards' }) cardType;
-  @belongsTo('card-subtype', { async: true, inverse: 'cards' }) cardSubtype;
+  @hasMany('card-subtype', { async: true, inverse: 'cards' }) cardSubtypes;
   @hasMany('printing', { async: false, inverse: 'card' }) printings;
   @hasMany('ruling', { async: true, inverse: 'card' }) rulings;
 }

@@ -17,11 +17,33 @@ export default class PageCardRoute extends Route {
     }
 
     // Get the printing
-    let printing = await this.store.findRecord('printing', id);
+    let printing = await this.store.findRecord('printing', id, {
+      include: 'card_set,card_type,faction,card,card.rulings',
+    });
     if (!card) {
-      card = await this.store.findRecord('card', printing.cardId);
+      card = await printing.card;
     }
+    let cardSetPrintings = await this.store.query('printing', {
+      filter: { card_set_id: printing.cardSetId },
+      page: { limit: 1000 },
+      sort: 'id',
+    });
 
+    // Identify previous and next printings in the set.
+    let previousPrinting = null;
+    let nextPrinting = null;
+    cardSetPrintings.forEach((p) => {
+      if (printing.id > p.id) {
+        previousPrinting = p;
+      }
+      if (!nextPrinting && printing.id < p.id) {
+        nextPrinting = p;
+      }
+    });
+
+    let cardSet = await printing.cardSet;
+    let cardType = await printing.cardType;
+    let faction = await printing.faction;
     let rulings = await card.rulings;
 
     let otherPrintings = await this.store.query('printing', {
@@ -47,13 +69,18 @@ export default class PageCardRoute extends Route {
     });
 
     return hash({
-      printing,
       card,
-      rulings,
+      cardSet,
+      cardType,
       eternalSnapshot,
+      faction,
+      nextPrinting,
+      otherPrintings,
+      previousPrinting,
+      printing,
+      rulings,
       standardSnapshot,
       startupSnapshot,
-      otherPrintings,
     });
   }
 }
