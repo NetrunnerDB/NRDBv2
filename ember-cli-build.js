@@ -17,7 +17,6 @@ module.exports = function (defaults) {
     outputPaths: {
       app: {
         css: {
-          'netrunner-font': '/assets/netrunner-font.css',
           color: '/assets/color.css',
           panel: '/assets/panel.css',
         },

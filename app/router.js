@@ -7,19 +7,7 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('home', { path: '/' }, function () {
-    this.route('banlists');
-    this.route('community');
-    this.route('decklists');
-    this.route('developer');
-    this.route('dotw');
-    this.route('dotw', { path: '/' }); // Defaults to dotw
-    this.route('formats');
-    this.route('login');
-    this.route('logout');
-    this.route('sets');
-    this.route('updates');
-  });
+  this.route('home', { path: '/' });
   this.route('page', function () {
     this.route('advanced-search');
     this.route('banlists');

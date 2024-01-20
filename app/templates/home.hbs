@@ -2,23 +2,154 @@
 
 <main>
 
-  <div class="container sticky-top">
-    <div class="row">
-      {{! Show regular horizontal navbar on mobile }}
-      <div class="d-xl-none"><Page::Navbar /></div>
-      {{! Show vertical navbar on mobile }}
-      <Home::Navbar />
+  <nav>
+    <div id="top-nav" class="col py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <LinkTo @route="home" class="navbar-brand d-flex mx-auto">
+              <span>
+                <img src="/assets/image/logo.png" alt="NetrunnerDB" />
+                <span>NetrunnerDB</span>
+              </span>
+            </LinkTo>
+          </div>
 
-      <Home::Sidebar />
+          <div class="col-6">
+            <form>
+              <input class="w-100" type="text" placeholder="Search" />
+            </form>
+          </div>
 
-      <div class="col-12 col-xl-6 order-2 d-flex flex-column py-2">
-        <div class="card border-0 flex-grow-1" id="nav-main-content">
-          <div class="card-body m-4">
-            {{outlet}}
+          <div class="col-3 text-end">
+            <div class="row">
+              <div class="col-4 offset-4">
+                <LinkTo
+                  @route="home"
+                  class="button grey cyber"
+                >Register</LinkTo>
+              </div>
+              <div class="col-4">
+                <LinkTo @route="home" class="button blue cyber">Login</LinkTo>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
+    <div id="bottom-nav" class="col py-2 font-size-14">
+      <div class="container w-50 py-2">
+        <div class="row">
+          <div class="col">
+            <LinkTo @route="home">Home</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">My Decks</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Decklists</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Sets</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Factions</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Formats</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Bans</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Rotation</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Reviews</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Rulings</LinkTo>
+          </div>
+          <div class="col">
+            <LinkTo @route="home">Illustrators</LinkTo>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col">
+        <LinkTo @route="home" class="button round"><Icon
+            @icon="anarch"
+          />Anarch</LinkTo>
+      </div>
+      <div class="col">
+        <LinkTo @route="home" class="button round"><Icon
+            @icon="criminal"
+          />Criminal</LinkTo>
+      </div>
+      <div class="col">
+        <LinkTo @route="home" class="button round"><Icon
+            @icon="shaper"
+          />Shaper</LinkTo>
+      </div>
+      <div class="col">
+        <LinkTo @route="home" class="button round"><Icon
+            @icon="haas-bioroid"
+          />Haas-Bioroid</LinkTo>
+      </div>
+      <div class="col">
+        <LinkTo @route="home" class="button round"><Icon
+            @icon="jinteki"
+          />Jinteki</LinkTo>
+      </div>
+      <div class="col">
+        <LinkTo @route="home" class="button round"><Icon
+            @icon="nbn"
+          />NBN</LinkTo>
+      </div>
+      <div class="col">
+        <LinkTo @route="home" class="button round"><Icon
+            @icon="weyland-consortium"
+          />Weyland</LinkTo>
+      </div>
+      <div class="col">
+        <LinkTo @route="home" class="button round">More</LinkTo>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-8">
+        <div class="box">Decklist of the Week</div>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="box">Latest Set</div>
+          </div>
+          <div class="col-12 mt-4">
+            <div class="box">Top 10 Decks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-8">
+        <div class="box">Something Else</div>
+      </div>
+      <div class="col-4">
+        <div class="box">List of upcoming tournaments</div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col">
+        <div class="box">Update Log</div>
+      </div>
     </div>
   </div>
 
