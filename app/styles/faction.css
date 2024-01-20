@@ -1,0 +1,116 @@
+/* TEXT COLOR */
+
+.anarch {
+  color: var(--color--anarch) !important;
+}
+.criminal {
+  color: var(--color--criminal) !important;
+}
+.shaper {
+  color: var(--color--shaper) !important;
+}
+.haas-bioroid {
+  color: var(--color--haas-bioroid) !important;
+}
+.jinteki {
+  color: var(--color--jinteki) !important;
+}
+.nbn {
+  color: var(--color--nbn) !important;
+}
+.weyland-consortium {
+  color: var(--color--weyland-consortium) !important;
+}
+.adam {
+  color: var(--color--adam) !important;
+}
+.apex {
+  color: var(--color--apex) !important;
+}
+.sunny-lebeau {
+  color: var(--color--sunny-lebeau) !important;
+}
+.neutral-corp {
+  color: var(--color--neutral-corp) !important;
+}
+.neutral-runner {
+  color: var(--color--neutral-runner) !important;
+}
+
+/* BG COLOR */
+
+.bg-anarch {
+  background-color: var(--color--anarch) !important;
+}
+.bg-criminal {
+  background-color: var(--color--criminal) !important;
+}
+.bg-shaper {
+  background-color: var(--color--shaper) !important;
+}
+.bg-haas-bioroid {
+  background-color: var(--color--haas-bioroid) !important;
+}
+.bg-jinteki {
+  background-color: var(--color--jinteki) !important;
+}
+.bg-nbn {
+  background-color: var(--color--nbn) !important;
+}
+.bg-weyland-consortium {
+  background-color: var(--color--weyland-consortium) !important;
+}
+.bg-adam {
+  background-color: var(--color--adam) !important;
+}
+.bg-apex {
+  background-color: var(--color--apex) !important;
+}
+.bg-sunny-lebeau {
+  background-color: var(--color--sunny-lebeau) !important;
+}
+.bg-neutral-corp {
+  background-color: var(--color--neutral-corp) !important;
+}
+.bg-neutral-runner {
+  background-color: var(--color--neutral-runner) !important;
+}
+
+/* BORDER COLOR */
+
+.border-anarch {
+  border-color: var(--color--anarch) !important;
+}
+.border-criminal {
+  border-color: var(--color--criminal) !important;
+}
+.border-shaper {
+  border-color: var(--color--shaper) !important;
+}
+.border-haas-bioroid {
+  border-color: var(--color--haas-bioroid) !important;
+}
+.border-jinteki {
+  border-color: var(--color--jinteki) !important;
+}
+.border-nbn {
+  border-color: var(--color--nbn) !important;
+}
+.border-weyland-consortium {
+  border-color: var(--color--weyland-consortium) !important;
+}
+.border-adam {
+  border-color: var(--color--adam) !important;
+}
+.border-apex {
+  border-color: var(--color--apex) !important;
+}
+.border-sunny-lebeau {
+  border-color: var(--color--sunny-lebeau) !important;
+}
+.border-neutral-corp {
+  border-color: var(--color--neutral-corp) !important;
+}
+.border-neutral-runner {
+  border-color: var(--color--neutral-runner) !important;
+}
