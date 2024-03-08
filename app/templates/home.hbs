@@ -1,154 +1,169 @@
 {{page-title "Home"}}
 
-<main>
+<main class="pb-4">
 
-  <nav>
-    <div id="top-nav" class="col py-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-3">
-            <LinkTo @route="home" class="navbar-brand d-flex mx-auto">
-              <span>
-                <img src="/assets/image/logo.png" alt="NetrunnerDB" />
-                <span>NetrunnerDB</span>
-              </span>
-            </LinkTo>
-          </div>
-
-          <div class="col-6">
-            <form>
-              <input class="w-100" type="text" placeholder="Search" />
-            </form>
-          </div>
-
-          <div class="col-3 text-end">
-            <div class="row">
-              <div class="col-4 offset-4">
-                <LinkTo
-                  @route="home"
-                  class="button grey cyber"
-                >Register</LinkTo>
-              </div>
-              <div class="col-4">
-                <LinkTo @route="home" class="button blue cyber">Login</LinkTo>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="bottom-nav" class="col py-2 font-size-14">
-      <div class="container w-50 py-2">
-        <div class="row">
-          <div class="col">
-            <LinkTo @route="home">Home</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">My Decks</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Decklists</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Sets</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Factions</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Formats</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Bans</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Rotation</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Reviews</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Rulings</LinkTo>
-          </div>
-          <div class="col">
-            <LinkTo @route="home">Illustrators</LinkTo>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <Navbar />
 
   <div class="container">
-    <div class="row mt-4">
-      <div class="col">
-        <LinkTo @route="home" class="button round"><Icon
-            @icon="anarch"
-          />Anarch</LinkTo>
-      </div>
-      <div class="col">
-        <LinkTo @route="home" class="button round"><Icon
-            @icon="criminal"
-          />Criminal</LinkTo>
-      </div>
-      <div class="col">
-        <LinkTo @route="home" class="button round"><Icon
-            @icon="shaper"
-          />Shaper</LinkTo>
-      </div>
-      <div class="col">
-        <LinkTo @route="home" class="button round"><Icon
+
+    {{! Factions }}
+    <div class="row mt-3 gy-2 hidden-sm">
+      <div class="col-lg col-3 order-lg-1">
+        <LinkTo @route="home" class="button d-block round"><Icon
             @icon="haas-bioroid"
           />Haas-Bioroid</LinkTo>
       </div>
-      <div class="col">
-        <LinkTo @route="home" class="button round"><Icon
+      <div class="col-lg col-3 order-lg-1">
+        <LinkTo @route="home" class="button d-block round"><Icon
             @icon="jinteki"
           />Jinteki</LinkTo>
       </div>
-      <div class="col">
-        <LinkTo @route="home" class="button round"><Icon
+      <div class="col-lg col-3 order-lg-1">
+        <LinkTo @route="home" class="button d-block round"><Icon
             @icon="nbn"
           />NBN</LinkTo>
       </div>
-      <div class="col">
-        <LinkTo @route="home" class="button round"><Icon
+      <div class="col-lg col-3 order-lg-1">
+        <LinkTo @route="home" class="button d-block round"><Icon
             @icon="weyland-consortium"
           />Weyland</LinkTo>
       </div>
-      <div class="col">
-        <LinkTo @route="home" class="button round">More</LinkTo>
+      <div class="col-lg col-3 offset-lg-0 offset-1">
+        <LinkTo @route="home" class="button d-block round"><Icon
+            @icon="anarch"
+          />Anarch</LinkTo>
+      </div>
+      <div class="col-lg col-3">
+        <LinkTo @route="home" class="button d-block round"><Icon
+            @icon="criminal"
+          />Criminal</LinkTo>
+      </div>
+      <div class="col-lg col-3">
+        <LinkTo @route="home" class="button d-block round"><Icon
+            @icon="shaper"
+          />Shaper</LinkTo>
+      </div>
+      <div class="col-lg col-2 order-lg-2">
+        <LinkTo @route="home" class="button d-block round">More</LinkTo>
       </div>
     </div>
 
     <div class="row mt-4">
-      <div class="col-8">
-        <div class="box">Decklist of the Week</div>
-      </div>
-      <div class="col-4">
-        <div class="row">
-          <div class="col-12">
-            <div class="box">Latest Set</div>
+      <div class="col-12 col-lg-8 col-xl-9">
+        <div class="box">
+
+          <h2>Decklist of the week</h2>
+
+          <div class="decklist-box">
+            <div class="row mx-2">
+              <div class="col-3 visible-lg">
+                <img
+                  class="decklist-identity"
+                  src="https://card-images.netrunnerdb.com/v1/large/33057.jpg"
+                />
+              </div>
+              <div class="col-9 decklist-stats">
+                <p class="decklist-identity-name">
+                  <span class="decklist-identity-title font-size-28">
+                    <Icon @icon="weyland-consortium" />
+                    Ob Superheavy Logistics</span>
+                  <span class="decklist-identity-subtitle fontsize-22">
+                    Extract. Export. Excel.</span></p>
+                <p class="decklist-influence">
+                  15 influence spent (max 15, available 0)</p>
+                <p class="decklist-cards">
+                  49 cards (min 45)</p>
+                <p class="decklist-set">
+                  Cards up to The Automata Initiative</p>
+                <p class="decklist-author font-size-16">
+                  Author: Maninthemoon (1187)</p>
+                <LinkTo @route="home" class="button">
+                  <Icon @icon="subroutine" />View deck</LinkTo>
+              </div>
+            </div>
           </div>
-          <div class="col-12 mt-4">
-            <div class="box">Top 10 Decks</div>
-          </div>
+
+          <p class="my-4">
+            I've been experimenting with this kind of deck since I tried
+            maninthemoon's Arctic Blood. I tried more refined versions of that
+            with great success, then in September I played around with Keeling
+            Ob before our wife was banned, then I tried to turn the deck into
+            something with a scoring plan with Facet. At this point I'm very
+            comfortable with horizontal, very modular and expressive Ob builds,
+            and I looked into a way to leverage that skill for CBI.
+          </p>
+          <LinkTo @route="home" class="button">Read more</LinkTo>
+
         </div>
+        <div class="box mt-4">Something Else</div>
       </div>
-    </div>
+      <div class="col-12 col-lg-4 col-xl-3 mt-4 mt-lg-0">
+        <BoxLink />
 
-    <div class="row mt-4">
-      <div class="col-8">
-        <div class="box">Something Else</div>
-      </div>
-      <div class="col-4">
-        <div class="box">List of upcoming tournaments</div>
-      </div>
-    </div>
-
-    <div class="row mt-4">
-      <div class="col">
-        <div class="box">Update Log</div>
+        <div class="mt-4">
+          <h3 class="mb-2 font-size-18">Latest decks</h3>
+          <DecklistBoxLink
+            @faction="shaper"
+            @name="Aggro Nuka - OKORINA"
+            @author="Maninthemoon"
+            @karma="1187"
+          />
+          <DecklistBoxLink
+            @faction="anarch"
+            @name="AMT Hosh"
+            @author="Maninthemoon"
+            @karma="1187"
+          />
+          <DecklistBoxLink
+            @faction="weyland-consortium"
+            @name="Weyland - back in the game"
+            @author="Maninthemoon"
+            @karma="1187"
+          />
+          <DecklistBoxLink
+            @faction="nbn"
+            @name="NeuroBellona (3-0 @ OKORINA 6)"
+            @author="Maninthemoon"
+            @karma="1187"
+          />
+          <DecklistBoxLink
+            @faction="haas-bioroid"
+            @name="Asset Salvo [OKORINA 6]"
+            @author="Maninthemoon"
+            @karma="1187"
+          />
+          <DecklistBoxLink
+            @faction="criminal"
+            @name="Andy, Woman of Tomorrow"
+            @author="Maninthemoon"
+            @karma="1187"
+          />
+          <DecklistBoxLink
+            @faction="apex"
+            @name="Apex"
+            @author="Apex"
+            @karma="1337"
+          />
+          <DecklistBoxLink
+            @faction="jinteki"
+            @name="Loud(Loud(Loud(Loud)))"
+            @author="Paillu"
+            @karma="850"
+          />
+          <DecklistBoxLink
+            @faction="shaper"
+            @name="Tournament Tao"
+            @author="Maninthemoon"
+            @karma="1187"
+          />
+          <DecklistBoxLink
+            @faction="weyland-consortium"
+            @name="[Startup] Build to be Fast"
+            @author="Maninthemoon"
+            @karma="1187"
+          />
+        </div>
+        <div class="box mt-4">List of upcoming tournaments</div>
       </div>
     </div>
   </div>
