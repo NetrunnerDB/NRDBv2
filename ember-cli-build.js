@@ -19,6 +19,7 @@ module.exports = function (defaults) {
         css: {
           color: '/assets/color.css',
           panel: '/assets/panel.css',
+          bootstrap_ext: '/assets/bootstrap-ext.css',
         },
       },
     },
