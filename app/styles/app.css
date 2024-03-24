@@ -708,7 +708,6 @@ img.card-art {
   padding-left: 20px;
   float: right;
   box-sizing: border-box;
-  background: white;
 }
 
 .hex-border {
@@ -1133,4 +1132,20 @@ legend {
   color: #333;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.ember-tooltip {
+  max-width: 400px;
+}
+
+.tippy-box {
+  background-color: white;
+  color: black;
+  text-shadow: none;
+  border: 2px solid #999999;
+  padding-left: .5em;
+}
+
+.tooltip-inner {
+  text-align: left;
 }
