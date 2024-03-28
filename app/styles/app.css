@@ -692,12 +692,6 @@ img.card-art {
   text-overflow: ellipsis;
 }
 
-.tippy-box {
-  border-radius: 10px;
-  padding: 0.8em 0.5em calc(0.8em + 4px) 0.5em;
-  min-width: 350px;
-}
-
 .hex {
   --path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   --width: 80px;
@@ -1140,10 +1134,12 @@ legend {
 
 .tippy-box {
   background-color: white;
+  border-radius: 10px;
+  border: 2px solid #999;
   color: black;
+  min-width: 350px;
+  padding: 0.8em 0.8em calc(0.8em + 4px) 1em;
   text-shadow: none;
-  border: 2px solid #999999;
-  padding-left: .5em;
 }
 
 .tooltip-inner {
