@@ -1,10 +1,8 @@
-import { service } from '@ember/service';
 import Component from '@glimmer/component';
-import { LinkTo } from '@ember/routing';
-import Tippy from 'ember-tippy/components/tippy';
-import 'tippy.js/themes/light-border.css'; // Used in the link-to.hbs file
-
+import EmberPopover from 'ember-tooltips/components/ember-tooltip';
 import TextBox from './text-box';
+import { LinkTo } from '@ember/routing';
+import { service } from '@ember/service';
 
 export default class CardLinkToComponent extends Component {
   @service store;
@@ -42,13 +40,13 @@ export default class CardLinkToComponent extends Component {
       <LinkTo @route="page.card" @model={{this.linkId}} ...attributes>
         {{yield}}
         {{#unless @hideTooltip}}
-          <Tippy @placement="auto" @theme="light-border">
+          <EmberPopover @tooltipClass="tippy-box" @event="hover">
             <TextBox
               @printing={{this.printing}}
               @showTitle={{true}}
               @showThumbnail={{true}}
             />
-          </Tippy>
+          </EmberPopover>
         {{/unless}}
       </LinkTo>
     {{/if}}
