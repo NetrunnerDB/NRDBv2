@@ -133,11 +133,21 @@ input[type="text"] {
 .nav-item:not(:first-of-type) {
   border-top: solid 1px var(--color--button-border);
 }
+
 .nav-item:hover,
 .nav-item:active {
   text-decoration: none;
   color: var(--color--button-hover);
   background-color: var(--color--button-hover-bg);
+}
+
+.hex {
+  --path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  --width: 80px;
+  --thickness: 2px;
+}
+.hex-border {
+  position: relative;
 }
 
 /* BOXES */
@@ -147,7 +157,10 @@ input[type="text"] {
 .decklist-box-link,
 .decklist-box {
   display: block;
-  position: relative;
+  margin: 0 auto;
+  padding-left: 20px;
+  float: right;
+  box-sizing: border-box;
 }
 
 .box-link,
@@ -269,4 +282,22 @@ nav {
 .navbar-brand:hover {
   filter: opacity(0.5);
   text-decoration: none;
+}
+
+.ember-tooltip {
+  max-width: 400px;
+}
+
+.tippy-box {
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #999;
+  color: black;
+  min-width: 350px;
+  padding: 0.8em 0.8em calc(0.8em + 4px) 1em;
+  text-shadow: none;
+}
+
+.tooltip-inner {
+  text-align: left;
 }
