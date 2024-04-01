@@ -63,6 +63,7 @@
     "ember-resolver": "^10.0.0",
     "ember-simple-auth-oidc": "^6.0.0",
     "ember-source": "~4.12.0",
+    "ember-svg-jar": "^2.4.7",
     "ember-template-imports": "^3.4.2",
     "ember-template-lint": "^5.11.1",
     "ember-tooltips": "^3.6.0",
