@@ -28,7 +28,7 @@ module.exports = function (environment) {
     },
 
     API_URL: 'https://api-preview.netrunnerdb.com/api/',
-    googleFonts: ['Merriweather Sans'],
+    googleFonts: ['Merriweather Sans', 'Outfit', 'Inter'],
 
     APP: {
       // Here you can pass flags/options to your application instance

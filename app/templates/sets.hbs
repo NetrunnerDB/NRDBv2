@@ -1,0 +1,71 @@
+{{page-title "Sets"}}
+
+<main class="pb-4">
+
+  <Navbar />
+
+  <div class="container">
+    <table class="results mt-5">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Cards</th>
+          <th>Release Date</th>
+          <th>Publisher</th>
+          <th>Legality</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each @model as |cycle|}}
+          <tr>
+            <td>
+              {{#if (eq cycle.cardSets.length 1)}}
+                <LinkTo
+                  @route="set"
+                  @model={{get (get cycle.cardSets 0) "id"}}
+                >{{cycle.name}}</LinkTo>
+              {{else}}
+                {{cycle.name}}
+              {{/if}}
+            </td>
+            <td></td>
+            <td>{{format-date cycle.dateRelease}}</td>
+            <td>{{if
+                (eq cycle.releasedBy "null_signal_games")
+                "NSG"
+                "FFG"
+              }}</td>
+            <td>Standard</td>
+            <td>Startup</td>
+            <td>Eternal</td>
+          </tr>
+          {{#if (gt cycle.cardSets.length 1)}}
+            {{#each cycle.cardSets as |set|}}
+              <tr>
+                <td>
+                  <span class="ps-2">
+                    <Icon @icon="subroutine" />
+                    <LinkTo @route="set" @model={{set.id}}>{{set.name}}</LinkTo>
+                  </span>
+                </td>
+                <td>{{set.size}}</td>
+                <td>{{format-date set.dateRelease}}</td>
+                <td>{{if
+                    (eq cycle.releasedBy "null_signal_games")
+                    "NSG"
+                    "FFG"
+                  }}</td>
+                <td>Standard</td>
+                <td>Startup</td>
+                <td>Eternal</td>
+              </tr>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+</main>

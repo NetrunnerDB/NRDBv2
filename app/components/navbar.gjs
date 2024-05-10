@@ -72,12 +72,12 @@ class Navbar extends Component {
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='factions' class='nav-link button-link'>
                       Factions
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='formats' class='nav-link button-link'>
                       Formats
                     </LinkTo>
                   </li>
@@ -150,13 +150,13 @@ class Navbar extends Component {
             <LinkTo @route='home'>Decklists</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Sets</LinkTo>
+            <LinkTo @route='sets'>Sets</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Factions</LinkTo>
+            <LinkTo @route='factions'>Factions</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Formats</LinkTo>
+            <LinkTo @route='formats'>Formats</LinkTo>
           </div>
           <div class='col'>
             <LinkTo @route='home'>Bans</LinkTo>

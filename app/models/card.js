@@ -27,6 +27,7 @@ export default class CardModel extends Model {
   @attr trashCost;
   @attr attribution;
   @attr designedBy;
+  @attr pronouns;
 
   // ID
   @attr baseLink;

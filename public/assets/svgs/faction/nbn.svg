@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300.83">
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
   <defs>
     <style>
       .cls-1 {
-        fill: #ffde00;
+        fill: var(--color--nbn);
       }
 
       .cls-1, .cls-2, .cls-3 {
