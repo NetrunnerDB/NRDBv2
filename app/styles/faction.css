@@ -1,5 +1,4 @@
 /* TEXT COLOR */
-
 .anarch {
   color: var(--color--anarch) !important;
 }
@@ -38,7 +37,6 @@
 }
 
 /* BG COLOR */
-
 .bg-anarch {
   background-color: var(--color--anarch) !important;
 }
@@ -77,7 +75,6 @@
 }
 
 /* BORDER COLOR */
-
 .border-anarch {
   border-color: var(--color--anarch) !important;
 }

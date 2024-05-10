@@ -1,0 +1,49 @@
+{{page-title @model.faction.name}}
+
+<main class="pb-4">
+
+  <Navbar />
+
+  <Titlebar
+    @title="Faction"
+    @subtitle={{@model.faction.name}}
+    @icon={{@model.faction.id}}
+  />
+
+  <div class="container">
+
+    {{#if @model.faction.description}}
+      <div
+        class="box fst-italic visible-lg mt-4 mx-5 bg-alt-{{@model.faction.id}}"
+      >
+        {{break-lines @model.faction.description}}
+      </div>
+    {{/if}}
+
+    {{#each @model.ids as |id|}}
+      <div class="row pt-4 pb-4">
+        <h2 class="font-size-20">{{id.title}}</h2>
+        <div class="col-12 col-md-2">
+          <img
+            class="w-100 visible-md mb-2 game-card"
+            src="{{id.latestPrinting.images.nrdb_classic.large}}"
+          />
+          <LinkTo @route="home" class="button blue d-block mb-2">Create Deck</LinkTo>
+          {{#if id.pronouns}}
+            <div>
+              Pronouns:
+              {{id.pronouns}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="col-12 col-md-10">
+          {{#each @model.decklists as |decklist|}}
+            <DecklistBoxCompact @decklist={{decklist}} />
+            <br />
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+</main>

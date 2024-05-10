@@ -1,11 +1,15 @@
 import Component from '@glimmer/component';
-import { format } from './quote';
 import { svgJar } from 'ember-svg-jar/helpers/svg-jar';
+import { Hyphenate } from '../helpers/hyphenate';
 
-<template>
-  {{svgJar
-    @icon
-    height='1em'
-    style='max-width: 100%; transform: translateY(-2px)'
-  }}
-</template>
+class Icon extends Component {
+  <template>
+    {{svgJar
+      (Hyphenate @icon)
+      height='1em'
+      style='max-width: 100%; transform: translateY(-2px)'
+    }}
+  </template>
+}
+
+export default Icon;
