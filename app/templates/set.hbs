@@ -1,0 +1,114 @@
+{{page-title @model.cardSet.name}}
+
+<main class="pb-4">
+
+  <Navbar />
+
+  <Titlebar
+    @title="Set"
+    @subtitle={{@model.cardSet.name}}
+    @icon={{@model.cardSet.cardCycleId}}
+  >
+    <div class="d-flex mt-4">
+      {{#if @model.prevSet}}
+        <LinkTo @model={{@model.prevSet.id}} class="button round ms-auto">
+          <FaIcon @icon="arrow-left-long" />
+          {{@model.prevSet.name}}
+        </LinkTo>
+      {{/if}}
+      {{#if @model.nextSet}}
+        <LinkTo @model={{@model.nextSet.id}} class="button round">
+          {{@model.nextSet.name}}
+          <FaIcon @icon="arrow-right-long" />
+        </LinkTo>
+      {{/if}}
+    </div>
+  </Titlebar>
+
+  <div class="container">
+
+    <table class="results mt-4">
+      <thead>
+        <tr>
+          <th>Qty.</th>
+          <th>Name</th>
+          <th>Influence</th>
+          <th>Faction</th>
+          <th>Type</th>
+          <th>Subtype</th>
+          <th>Cost</th>
+          <th>...</th>
+          <th>Strength</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each (sort-by "position" @model.cardSet.printings) as |printing|}}
+          <tr>
+            <td>
+              <span class="badge {{if (not-eq printing.quantity 3) 'anarch'}}">
+                {{printing.quantity}}
+              </span>
+            </td>
+            <td>
+              <Card::LinkTo @printing={{printing}} class="text-truncate">
+                {{printing.title}}
+              </Card::LinkTo>
+            </td>
+            <td>
+              {{#if (not (is-empty printing.influenceCost))}}
+                {{printing.influenceCost}}
+                <InfluencePips
+                  @factionId={{printing.factionId}}
+                  @count={{printing.influenceCost}}
+                />
+              {{/if}}
+            </td>
+            <td><Icon @icon={{printing.factionId}} /></td>
+            <td>
+              <Icon @icon={{truncate-type printing.cardTypeId}} />
+              {{truncate-type printing.cardType.name}}
+            </td>
+            <td>{{printing.displaySubtypes}}</td>
+            <td>
+              {{#if (not (is-empty printing.cost))}}
+                {{maybe printing.cost}}
+                {{#if
+                  (or
+                    (eq printing.sideId "runner")
+                    (eq printing.typeId "operation")
+                  )
+                }}
+                  <Icon @icon="credit" />
+                {{else}}
+                  <Icon @icon="rez-cost" />
+                {{/if}}
+              {{else if (not (is-empty printing.advancementRequirement))}}
+                {{maybe printing.advancementRequirement}}
+                <Icon @icon="agenda-points-simple" />
+              {{else if (not (is-empty printing.minimumDeckSize))}}
+                {{printing.minimumDeckSize}}
+              {{/if}}
+            </td>
+            <td>
+              {{#if (not (is-empty printing.trashCost))}}
+                {{maybe printing.trashCost}}
+                <Icon @icon="trash-cost" />
+              {{else if (not (is-empty printing.agendaPoints))}}
+                {{printing.agendaPoints}}
+              {{else if (not (is-empty printing.influenceLimit))}}
+                {{printing.influenceLimit}}
+              {{/if}}
+            </td>
+            <td>
+              {{#if (not (is-empty printing.strength))}}
+                {{maybe printing.strength}}
+                <Icon @icon="agenda" />
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+</main>

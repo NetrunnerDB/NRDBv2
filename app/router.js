@@ -8,6 +8,15 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   this.route('home', { path: '/' });
+  this.route('decklist'); // PLACEHOLDER WITH DUMMY DATA
+  this.route('factions');
+  this.route('faction', { path: '/faction/:id' });
+  this.route('formats');
+  this.route('search');
+  this.route('sets');
+  this.route('set', { path: '/set/:id' });
+
+  // OLD
   this.route('page', function () {
     this.route('advanced-search');
     this.route('banlists');

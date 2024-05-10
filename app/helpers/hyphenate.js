@@ -1,5 +1,11 @@
 import { helper } from '@ember/component/helper';
 
-export default helper(function hyphenate([input]) {
-  return input.replace(/_/g, '-'); // Replace all underscores with dashes
-});
+function hyphenate(input) {
+  if (!input || !input.replace) {
+    return;
+  }
+  return input.replace(/[ _]/g, '-'); // Replace all whitespace and underscores with dashes
+}
+
+export const Hyphenate = hyphenate;
+export default helper(hyphenate);

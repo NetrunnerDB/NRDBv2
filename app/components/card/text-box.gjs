@@ -3,6 +3,9 @@ import { LinkTo } from '@ember/routing';
 import { hash } from '@ember/helper';
 import { htmlSafe } from '@ember/template';
 import { and, eq } from 'netrunnerdb/utils/template-operators';
+import { Hyphenate } from 'netrunnerdb/helpers/hyphenate';
+import { TruncateFaction } from 'netrunnerdb/helpers/truncate-faction';
+import { TruncateType } from 'netrunnerdb/helpers/truncate-type';
 
 import Icon from '../icon';
 import InfluencePips from './influence-pips';
@@ -22,7 +25,10 @@ function backgroundImage(image) {
             {{! template-lint-disable no-inline-styles }}
             {{! template-lint-disable style-concatenation }}
             <div
-              class='hex-image thumbnail-{{@printing.cardTypeId}}'
+              class='hex-image thumbnail-{{Hyphenate @printing.cardTypeId}}{{if
+                  (eq @printing.releasedBy "fantasy_flight_games")
+                  "-ffg"
+                }}'
               style={{backgroundImage @printing.images.nrdb_classic.small}}
             ></div>
           </div>
@@ -30,17 +36,19 @@ function backgroundImage(image) {
       </div>
     {{/if}}
     {{#if @showTitle}}
-      <div class='card-title'>
+      <div class='card-title font-size-20'>
         {{#if @printing.isUnique}}♦ {{/if}}{{@printing.title}}
       </div>
     {{/if}}
     <div class='card-details'>
-      <span class='card-type'><b>{{@printing.cardType.name}}:</b></span>
+      <span class='card-type'>
+        <b>{{TruncateType @printing.cardType.name}}:</b>
+      </span>
       <span class='card-subtypes'>{{@printing.displaySubtypes}}</span>
       <span class='card-stats'><Stats @printing={{@printing}} /></span>
     </div>
     {{#if @printing.text}}
-      <div class='card-text border-{{@printing.factionId}}'>
+      <div class='card-text border-{{Hyphenate @printing.factionId}}'>
         <Text @text={{@printing.text}} />
       </div>
     {{/if}}
@@ -53,9 +61,11 @@ function backgroundImage(image) {
     {{/if}}
     <div>
       <p>
-        <InfluencePips @printing={{@printing}} /><Icon
-          @icon={{@printing.factionId}}
-        />
+        <span class='{{Hyphenate @printing.factionId}}'>
+          <InfluencePips @printing={{@printing}} /><Icon
+            @icon={{@printing.factionId}}
+          />
+        </span>
         {{@printing.faction.name}}
         •
         <Icon @icon={{@printing.cardSetId}} />
@@ -63,6 +73,7 @@ function backgroundImage(image) {
           @route='page.set'
           @model='{{@printing.cardSet.id}}'
         >{{@printing.cardSet.name}}</LinkTo>
+        •
         {{@printing.position}}
       </p>
     </div>
