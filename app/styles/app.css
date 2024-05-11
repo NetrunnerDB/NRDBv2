@@ -22,6 +22,13 @@ p {
   margin: 0;
 }
 
+.secondary {
+  color: var(--color--secondary);
+}
+.secondary-bg {
+  background-color: var(--color--secondary-bg);
+}
+
 a {
   color: var(--color--link);
   text-decoration: none;
@@ -275,7 +282,6 @@ input[type="text"] {
   display: block;
   margin: 0 auto;
   padding-left: 20px;
-  float: right;
   box-sizing: border-box;
 }
 
@@ -383,9 +389,40 @@ input[type="text"] {
   border-radius: 10px;
 }
 
-.card-text {
+.game-card-text {
   border-left: solid 2px;
   padding-left: 0.5em;
+}
+.game-card-details {
+  border-top: solid 1px var(--color--default-border);
+  border-bottom: solid 1px var(--color--default-border);
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+}
+.game-card-footer {
+  margin-top: 10px;
+  padding-top: 2px;
+  border-top: solid 1px var(--color--default-border);
+}
+
+table.game-card-stats {
+  width: 100%;
+}
+table.game-card-stats th {
+  font-family: "Outfit", sans-serif;
+  padding: 7px 16px 9px 16px;
+}
+table.game-card-stats td {
+  padding: 7px 16px 9px 16px;
+}
+table.game-card-stats td:nth-child(2) {
+  text-align: right;
+}
+table.game-card-stats tr:nth-child(odd) {
+  background: var(--color--table-row-alt-a);
+}
+table.game-card-stats tr:nth-child(even) {
+  background: var(--color--table-row-alt-b);
 }
 
 /* CARDS (webdev cards, not Netrunner ones) */
@@ -402,6 +439,18 @@ input[type="text"] {
   word-wrap: break-word;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* BOTH! */
+
+.game-card-card {
+  border-color: var(--color--box-secondary-border);
+  background-color: var(--color--box-secondary-bg);
+}
+.game-card-card .list-group-item {
+  color: var(--color--default);
+  border-color: var(--color--box-secondary-border);
+  background-color: var(--color--box-bg);
 }
 
 /* NAVBAR */
@@ -421,7 +470,7 @@ nav {
   border-bottom: solid 1px var(--color--default-border);
   background-color: var(--color--header-bg);
   text-align: center;
-  z-index: 9999;
+  z-index: 200;
 }
 
 #bottom-nav a {
@@ -472,6 +521,7 @@ nav {
   min-width: 350px;
   padding: 0.8em 0.8em calc(0.8em + 4px) 1em;
   text-shadow: none;
+  z-index: 9999;
 }
 .tooltip-inner {
   text-align: left;
@@ -594,6 +644,115 @@ table.results tr:nth-child(even) {
   font-family: "Inter", sans-serif;
   border-radius: 3px;
   background-color: var(--color--box-secondary-bg);
+}
+
+/* LEGALITY */
+
+.legality-verified:before,
+.legality-unverified:before,
+.legality-available:before,
+.legality-unavailable:before,
+.legality-legal:before,
+.legality-banned:before,
+.legality-rotated:before,
+.legality-added:before,
+.legality-restricted:before,
+.legality-1-inf:before,
+.legality-3-inf:before {
+  display: inline-block;
+  min-width: 7.5em;
+  border-radius: 100px;
+  border: solid 1px;
+  padding: 2px 8px;
+  color: var(--color--legality-text);
+  font-family: "LatoWeb", sans-serif;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.legality-verified:before {
+  content: "VERIFIED";
+  border-color: var(--color--legality-legal);
+}
+
+.legality-unverified:before {
+  content: "UNVERIFIED";
+  border-color: var(--color--legality-unverified);
+}
+
+.legality-available:before {
+  content: "LEGAL";
+  border-color: var(--color--legality-legal);
+}
+
+.legality-unavailable:before {
+  content: "NOT LEGAL";
+  border-color: var(--color--legality-unverified);
+}
+
+.legality-legal:before {
+  content: "LEGAL";
+  border-color: var(--color--legality-legal);
+}
+
+.legality-banned:before {
+  content: "BANNED";
+  border-color: var(--color--legality-banned);
+}
+
+.legality-rotated:before {
+  content: "ROTATED";
+  border-color: var(--color--legality-rotated);
+}
+
+.legality-added:before {
+  content: "ADDED";
+  border-color: var(--color--legality-legal);
+}
+
+.legality-restricted:before {
+  content: "RESTRICTED";
+  border-color: var(--color--legality-restricted);
+}
+
+.legality-1-inf:before {
+  content: "1 INF.";
+  border-color: var(--color--legality-points);
+}
+
+.legality-3-inf:before {
+  content: "3 INF.";
+  border-color: var(--color--legality-points);
+}
+
+.legality-interactive {
+  white-space: nowrap;
+}
+
+.legality-interactive:before {
+  min-width: 1em;
+}
+
+.legality-interactive:not(:hover):not(:active):before {
+  content: "!";
+  min-width: 1em;
+}
+
+.legality-legal.legality-interactive:not(:hover):not(:active):before {
+  content: "/";
+}
+
+.legality-restricted.legality-interactive:not(:hover):not(:active):before {
+  content: "?";
+}
+
+.legality-1-inf.legality-interactive:not(:hover):not(:active):before {
+  content: "1";
+}
+
+.legality-3-inf.legality-interactive:not(:hover):not(:active):before {
+  content: "3";
 }
 
 /* USER CONTENT */

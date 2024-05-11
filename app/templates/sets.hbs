@@ -4,6 +4,8 @@
 
   <Navbar />
 
+  <Titlebar @title="Sets" @subtitle="All sets from Netrunner history" />
+
   <div class="container">
     <table class="results mt-5">
       <thead>
@@ -21,16 +23,21 @@
         {{#each @model as |cycle|}}
           <tr>
             <td>
+              <Icon @icon={{cycle.id}} />
               {{#if (eq cycle.cardSets.length 1)}}
-                <LinkTo
-                  @route="set"
-                  @model={{get (get cycle.cardSets 0) "id"}}
-                >{{cycle.name}}</LinkTo>
+                {{! Cursed way to get the first index of a singleton array }}
+                {{#each cycle.cardSets as |set|}}
+                  <LinkTo @route="set" @model={{set.id}}>
+                    {{cycle.name}}
+                  </LinkTo>
+                {{/each}}
               {{else}}
-                {{cycle.name}}
+                <LinkTo @route="cycle" @model={{cycle.id}}>
+                  {{cycle.name}}
+                </LinkTo>
               {{/if}}
             </td>
-            <td></td>
+            <td>{{cycle.cardCount}}</td>
             <td>{{format-date cycle.dateRelease}}</td>
             <td>{{if
                 (eq cycle.releasedBy "null_signal_games")
