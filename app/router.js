@@ -15,6 +15,8 @@ Router.map(function () {
   this.route('search');
   this.route('sets');
   this.route('set', { path: '/set/:id' });
+  this.route('cycle', { path: '/cycle/:id' });
+  this.route('card', { path: '/card/:id' });
 
   // OLD
   this.route('page', function () {

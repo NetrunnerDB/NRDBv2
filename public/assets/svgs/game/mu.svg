@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="100%" height="100%" viewBox="0 0 5867 5867" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M731.122,1344.32l4404.42,-0l0,2694.54l-790.083,-0l-678.057,483.484l-2936.28,0l0,-3178.02Zm4103.72,477.588l-0,-176.885l-383.25,0l0,176.885l383.25,-0Zm-383.25,1261.78l0,182.781l383.25,-0l-0,-182.781l-383.25,0Zm0,-483.484l0,182.781l383.25,-0l-0,-182.781l-383.25,0Zm0,-477.588l0,182.781l383.25,-0l-0,-182.781l-383.25,0Zm-878.526,2099.03l577.823,-406.835l-0,-2169.78l-3119.06,0l-0,2576.62l2541.24,-0Zm878.526,-660.369l0,182.781l383.25,-0l-0,-182.781l-383.25,0Z" style="fill-rule:nonzero;"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100%"
+   height="100%"
+   viewBox="0 -20 120 120"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer1"
+     transform="translate(-45.715551,-105.71634)"><g
+       style="clip-rule:evenodd;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"
+       id="g1"
+       transform="matrix(0.0269247,0,0,0.0269247,26.030312,69.520922)"><path
+         d="m 731.122,1344.32 h 4404.42 v 2694.54 h -790.083 l -678.057,483.484 H 731.122 v -3178.02 z m 4103.72,477.588 v -176.885 h -383.25 v 176.885 z m -383.25,1261.78 v 182.781 h 383.25 v -182.781 z m 0,-483.484 v 182.781 h 383.25 v -182.781 z m 0,-477.588 v 182.781 h 383.25 v -182.781 z m -878.526,2099.03 577.823,-406.835 v -2169.78 h -3119.06 v 2576.62 h 2541.24 z m 878.526,-660.369 v 182.781 h 383.25 v -182.781 z"
+         style="fill:#999;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path1" /></g></g></svg>

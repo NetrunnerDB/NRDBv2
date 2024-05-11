@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { svgJar } from 'ember-svg-jar/helpers/svg-jar';
 import { Hyphenate } from '../helpers/hyphenate';
 
-class Icon extends Component {
+export default class Icon extends Component {
   <template>
     {{svgJar
       (Hyphenate @icon)
@@ -11,5 +11,3 @@ class Icon extends Component {
     }}
   </template>
 }
-
-export default Icon;
