@@ -14,7 +14,7 @@
 
     {{#if @model.faction.description}}
       <div
-        class="box fst-italic visible-lg mt-4 mx-5 bg-alt-{{@model.faction.id}}"
+        class="box fst-italic visible-lg mt-4 mx-5 bg-img-{{@model.faction.idHyphenated}}"
       >
         {{break-lines @model.faction.description}}
       </div>
@@ -22,7 +22,11 @@
 
     {{#each @model.ids as |id|}}
       <div class="row pt-4 pb-4">
-        <h2 class="font-size-20">{{id.title}}</h2>
+        <h2 class="font-size-20">
+          <Card::LinkTo @printing={{id.latestPrinting}} class="primary">
+            <FancyHeader>{{id.title}}</FancyHeader>
+          </Card::LinkTo>
+        </h2>
         <div class="col-12 col-md-2">
           <img
             class="w-100 visible-md mb-2 game-card"
@@ -38,7 +42,7 @@
           {{/if}}
         </div>
         <div class="col-12 col-md-10">
-          {{#each @model.decklists as |decklist|}}
+          {{#each id.decklists as |decklist|}}
             <DecklistBoxCompact @decklist={{decklist}} />
             <br />
           {{/each}}

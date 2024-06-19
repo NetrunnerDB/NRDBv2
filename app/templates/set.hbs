@@ -9,28 +9,26 @@
     @subtitle={{@model.cardSet.name}}
     @icon={{@model.cardSet.cardCycleId}}
   >
-    <div class="d-flex position-relative mt-4 flex-column">
-      {{#if @model.prevSet}}
-        <LinkTo
-          @model={{@model.prevSet.id}}
-          class="button round position-absolute end-0"
-          style="transform: translateY(10px)"
-        >
-          <FaIcon @icon="arrow-left-long" />
-          {{@model.prevSet.name}}
-        </LinkTo>
-      {{/if}}
-      {{#if @model.nextSet}}
-        <LinkTo
-          @model={{@model.nextSet.id}}
-          class="button round position-absolute end-0"
-          style="transform: translateY(-100%)"
-        >
-          {{@model.nextSet.name}}
-          <FaIcon @icon="arrow-right-long" />
-        </LinkTo>
-      {{/if}}
-    </div>
+    {{#if @model.prevSet}}
+      <LinkTo
+        @model={{@model.prevSet.id}}
+        class="button round position-absolute end-0"
+        style="top: 0; transform: translateY(-40%)"
+      >
+        <FaIcon @icon="arrow-left-long" />
+        {{@model.prevSet.name}}
+      </LinkTo>
+    {{/if}}
+    {{#if @model.nextSet}}
+      <LinkTo
+        @model={{@model.nextSet.id}}
+        class="button round position-absolute end-0"
+        style="bottom: 0; transform: translateY(40%)"
+      >
+        {{@model.nextSet.name}}
+        <FaIcon @icon="arrow-right-long" />
+      </LinkTo>
+    {{/if}}
   </Titlebar>
 
   <div class="container">

@@ -10,9 +10,13 @@ import {
 } from 'netrunnerdb/utils/template-operators';
 import Icon from '../icon';
 import InfluencePips from './influence-pips';
-import LinkTo from './link-to';
+import CardLinkTo from './link-to';
 
 export default class CardListComponent extends Component {
+  constructor(...args) {
+    super(...args);
+  }
+
   <template>
     <table class='results mt-4'>
       <thead>
@@ -32,14 +36,14 @@ export default class CardListComponent extends Component {
         {{#each @printings as |printing|}}
           <tr>
             <td>
-              <span class='badge {{if (notEq printing.quantity 3) "anarch"}}'>
+              <span class='badge'>
                 {{printing.quantity}}
               </span>
             </td>
             <td>
-              <LinkTo @printing={{printing}} class='text-truncate'>
+              <CardLinkTo @printing={{printing}} class='text-truncate'>
                 {{printing.title}}
-              </LinkTo>
+              </CardLinkTo>
             </td>
             <td>
               {{#if (notEmpty printing.influenceCost)}}
@@ -58,6 +62,14 @@ export default class CardListComponent extends Component {
             <td>{{printing.displaySubtypes}}</td>
             <td>
               {{#if (notEmpty printing.cost)}}
+                {{#unless
+                  (or
+                    (eq printing.sideId 'runner')
+                    (eq printing.typeId 'operation')
+                  )
+                }}
+                  <Icon @icon='rez-cost' />
+                {{/unless}}
                 {{maybe printing.cost}}
                 {{#if
                   (or
@@ -66,12 +78,9 @@ export default class CardListComponent extends Component {
                   )
                 }}
                   <Icon @icon='credit' />
-                {{else}}
-                  <Icon @icon='rez-cost' />
                 {{/if}}
               {{else if (notEmpty printing.advancementRequirement)}}
                 {{maybe printing.advancementRequirement}}
-                <Icon @icon='agenda-points-simple' />
               {{else if (notEmpty printing.minimumDeckSize)}}
                 {{printing.minimumDeckSize}}
               {{/if}}
@@ -82,6 +91,7 @@ export default class CardListComponent extends Component {
                 <Icon @icon='trash-cost' />
               {{else if (notEmpty printing.agendaPoints)}}
                 {{printing.agendaPoints}}
+                <Icon @icon='agenda-points-simple' />
               {{else if (notEmpty printing.influenceLimit)}}
                 {{printing.influenceLimit}}
               {{/if}}

@@ -73,6 +73,24 @@
   display: none !important;
 }
 
+/* ROW COLS */
+.row-cols-7 > * {
+  flex: 0 0 auto;
+  width: 14.2857142857%;
+}
+.row-cols-8 > * {
+  flex: 0 0 auto;
+  width: 12.5%;
+}
+.row-cols-9 > * {
+  flex: 0 0 auto;
+  width: 11.111111111%;
+}
+.row-cols-10 > * {
+  flex: 0 0 auto;
+  width: 10%;
+}
+
 /* MISC */
 .fw-100 {
   font-weight: 100;
