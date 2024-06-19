@@ -5,6 +5,7 @@ import { TruncateType } from 'netrunnerdb/helpers/truncate-type';
 import Icon from '../icon';
 import Image from './image';
 import InfluencePips from './influence-pips';
+import Text from './text';
 import TextBox from './text-box';
 import Legality from './legality';
 import LinkToCard from './link-to';
@@ -130,8 +131,8 @@ import LinkToCard from './link-to';
           </tbody>
         </table>
 
-        <div>
-          <p class='mt-2'>{{@printing.text}}</p>
+        <div class='mt-2'>
+          <Text @text={{@printing.text}} />
           {{#if @printing.flavor}}
             <p class='game-card-flavor secondary mt-2'>
               <i>{{@printing.flavor}}</i>
@@ -140,7 +141,12 @@ import LinkToCard from './link-to';
           <p class='mt-2'>
             <b>Illustrated by {{@printing.displayIllustrators}}</b>
           </p>
-          <LinkTo @route='home' class='button blue mt-2'>
+          {{#if @printing.attribution}}
+            <p class='mt-2'>
+              <b>{{@printing.attribution}}</b>
+            </p>
+          {{/if}}
+          <LinkTo @route='home' class='button blue mt-3'>
             <Icon @icon='subroutine' />
             Decks with this card
           </LinkTo>
@@ -196,7 +202,7 @@ import LinkToCard from './link-to';
               {{#each @allPrintings as |printing|}}
                 <p>
                   <Icon @icon={{printing.cardCycle.id}} />
-                  <LinkToCard @printing={{@printing.id}} @hideTooltip={{true}}>
+                  <LinkToCard @id={{printing.id}} @hideTooltip={{true}}>
                     {{printing.cardSet.name}}
                   </LinkToCard>
                 </p>

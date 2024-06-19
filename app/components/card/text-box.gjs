@@ -70,7 +70,7 @@ function backgroundImage(image) {
         •
         <Icon @icon={{@printing.cardSetId}} />
         <LinkTo
-          @route='page.set'
+          @route='set'
           @model='{{@printing.cardSet.id}}'
         >{{@printing.cardSet.name}}</LinkTo>
         •

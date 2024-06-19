@@ -4,78 +4,162 @@
 
   <Navbar />
 
-  {{! HEADER }}
-  <div class="container">
-    <div class="row mt-4">
-      <div class="decklist-banner">
-        <div class="decklist-banner-identity">
-          <img
-            src="https://card-images.netrunnerdb.com/v1/large/22015.jpg"
-            class="w-100"
-          />
-        </div>
-
-        <div class="decklist-banner-data d-flex h-100 mb-3">
-          <div class="mt-auto mb-4">
-            <div class="font-size-32 mb-1">
-              <Icon @icon="shaper" />
-            </div>
-            <h1><b>Throw Another Deer on the Barbie</b></h1>
-            <div>
-              <span class="decklist-banner-stat">
-                By
-                <LinkTo @route="home">Zarbba</LinkTo>
-              </span>
-              <span class="decklist-banner-stat ms-4">
-                15 Dec. 2023
-              </span>
-              <span class="decklist-banner-stat ms-4">
-                25 Favourites
-              </span>
-              <span class="decklist-banner-stat ms-4">
-                12 Stars
-              </span>
-              <span class="decklist-banner-stat ms-4">
-                6 Comments
-              </span>
-            </div>
+  {{! HEADER - Custom rather than TitleBox }}
+  <div class="decklist-banner">
+    <div class="container">
+      <div class="decklist-banner-data d-flex">
+        <div class="mt-auto">
+          <h1><Icon @icon="shaper" /><b>{{@model.decklist.name}}</b></h1>
+          <div>
+            <span class="decklist-banner-stat">
+              By
+              <LinkTo @route="home">{{@model.decklist.userId}}</LinkTo>
+            </span>
+            <span class="decklist-banner-stat ms-4">
+              15 Dec. 2023
+            </span>
+            <span class="decklist-banner-stat ms-4">
+              <FaIcon @icon="heart" @prefix="far" />
+              25
+            </span>
+            <span class="decklist-banner-stat ms-4">
+              <FaIcon @icon="star" @prefix="far" />
+              12
+            </span>
+            <span class="decklist-banner-stat ms-4">
+              <FaIcon @icon="comment" @prefix="far" />
+              6
+            </span>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <hr class="mt-0" />
-
   {{! BODY }}
   <div class="container">
+
+    {{! WARNING }}
+    {{#unless @model.decklist.followsBasicDeckbuildingRules}}
+      <div class="warning-box mt-4">
+        This decklist is not legal for tournament play currently, due to Card
+        Errata, Rotation or Legality.
+      </div>
+    {{/unless}}
+
     {{! BUTTONS }}
-    <div class="row mt-5">
+    <div class="row mt-4">
       <div class="col-6">
         <LinkTo @route="home" class="button">Decklist</LinkTo>
-        <LinkTo @route="home" class="button">Packs</LinkTo>
+        <LinkTo @route="home" class="button">Sets</LinkTo>
         <LinkTo @route="home" class="button">Info</LinkTo>
         <LinkTo @route="home" class="button">Actions</LinkTo>
       </div>
       <div class="col-6 text-end">
-        <LinkTo @route="home" class="button">Copy</LinkTo>
-        <LinkTo @route="home" class="button">Compare</LinkTo>
-        <LinkTo @route="home" class="button">Download</LinkTo>
-        <LinkTo @route="home" class="button">Export</LinkTo>
-        <LinkTo @route="home" class="button">Sort</LinkTo>
-        <LinkTo @route="home" class="button">Sort</LinkTo>
+        <LinkTo @route="home" class="button">
+          <FaIcon @icon="file-code" @prefix="far" />
+        </LinkTo>
+        <LinkTo @route="home" class="button">
+          <FaIcon @icon="arrow-down-to-bracket" />
+        </LinkTo>
+        <LinkTo @route="home" class="button">
+          <FaIcon @icon="code-compare" />
+        </LinkTo>
+        <LinkTo @route="home" class="button">
+          <FaIcon @icon="arrow-up-arrow-down" />
+          Sort</LinkTo>
+        <div class="btn-group" role="group">
+          <button class="btn button" {{on "click" this.displayWriteUp}}>
+            <FaIcon @icon="bars-sort" />
+          </button>
+          <button class="btn button" {{on "click" this.displayList}}>
+            <FaIcon @icon="table-list" @prefix="far" @flip="horizontal" />
+          </button>
+          <button class="btn button" {{on "click" this.displayImages}}>
+            <FaIcon @icon="layer-group" @prefix="far" />
+          </button>
+        </div>
       </div>
     </div>
 
     {{! DECKLIST BOX }}
     <div class="row">
-      <div class="col-6 offset-3">
-        <DecklistBox />
+      <div class="col-6">
+        <DecklistBox @decklist={{@model.decklist}} />
+        {{#if (eq this.displayType "writeup")}}
+          <div class="row mt-4 ms-4">
+            {{#each @model.cardsByCategory as |col|}}
+              <div class="col-6">
+                {{#each col as |category|}}
+                  {{#if category.cards}}
+                    <p class="font-size-18">
+                      <Icon @icon={{category.cardTypeId}} />
+                      {{category.name}}
+                      ({{category.count}})
+                    </p>
+                    <ul class="list-unstyled secondary mt-2">
+                      {{#each category.cards as |card|}}
+                        <li>
+                          {{this.quantity card.id}}x
+                          <Card::LinkTo @printing={{card.printing}}>
+                            {{card.title}}
+                            {{#if
+                              (and
+                                (gt card.influenceCost 0)
+                                (not-eq
+                                  card.factionId @model.decklist.factionId
+                                )
+                              )
+                            }}
+                              {{! TODO: Alliance cards and neutral IDs }}
+                              <Card::InfluencePips
+                                @factionId={{card.factionId}}
+                                @count={{card.influenceCost}}
+                                @hideEmpty="true"
+                                @repeat={{this.quantity card.id}}
+                              />
+                            {{/if}}
+                          </Card::LinkTo>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  {{/if}}
+                {{/each}}
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+
+      <div class="col-6 position-relative">
+        <div
+          class="decklist-description
+            {{if (not-eq this.displayType 'writeup') 'truncated'}}"
+        >
+          <h2>{{@model.decklist.name}}</h2>
+          <div>
+            {{this.displayHtml @model.decklist.notes}}
+          </div>
+        </div>
+        {{#if
+          (and
+            (not-eq this.displayType "writeup")
+            (gt @model.decklist.notes.length 200)
+          )
+        }}
+          <button
+            class="position-absolute px-2"
+            style="bottom:0;right:0"
+            {{on "click" this.displayWriteUp}}
+          >
+            Read more
+          </button>
+        {{/if}}
       </div>
     </div>
 
     {{! DESCRIPTION }}
-    <div class="row mt-5">
+    {{! <div class="row mt-4">
       <div class="decklist-description">
         <h1 class="font-size-24">Throw Another Deer on the Barbie!</h1>
         <div class="user-content">
@@ -105,163 +189,41 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> }}
 
     {{! CARDS }}
-    <div>
-      <h3 class="mt-4">
-        <Icon @icon="event" />
-        Event (19)
-      </h3>
-      <div class="row gy-2">
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/30020.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/30020.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/30020.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/31027.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/31027.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/31027.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/31037.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/31037.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/31037.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/33023.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33023.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/30028.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/30028.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/30028.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/33024.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33024.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/30030.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/30030.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/30030.jpg" />
-          </div>
-        </div>
-      </div>
-      <h3 class="mt-4">
-        <Icon @icon="hardware" />
-        Hardware (8)
-      </h3>
-      <div class="row gy-2">
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/34022.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/26075.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/26075.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/22017.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/22017.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/22017.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/33023.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33023.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/33077.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33077.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33077.jpg" />
-          </div>
-        </div>
-      </div>
-      <h3 class="mt-4">
-        <Icon @icon="resource" />
-        Resource (15)
-      </h3>
-      <div class="row gy-2">
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/34028.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/33092.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33092.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33092.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/34007.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/26007.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/21047.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/21047.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/21047.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/21027.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/21027.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/21027.jpg" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/33030.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33030.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/33030.jpg" />
-          </div>
-        </div>
-      </div>
-      <h3 class="mt-4">
-        <Icon @icon="program" />
-        Program (3)
-      </h3>
-      <div class="row gy-2">
-        <div class="col-2">
-          <div class="decklist-card">
-            <img src="https://card-images.netrunnerdb.com/v2/large/21067.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/21067.jpg" />
-            <img src="https://card-images.netrunnerdb.com/v2/tiny/21067.jpg" />
-          </div>
-        </div>
-      </div>
-    </div>
+    {{#if (eq this.displayType "list")}}
+      <Card::List @printings={{@model.printings}} />
+    {{else if (eq this.displayType "images")}}
+      {{#each @model.cardTypes as |type|}}
+        {{#let (get @model.cardsByType type.id) as |cards|}}
+          {{#if cards}}
+            <h3 class="mt-4 font-size-20">
+              <Icon @icon="{{type.id}}" />
+              {{type.name}}
+              ({{get @model.countsByType type.id}})
+            </h3>
+            <div class="row row-cols-8 g-3">
+              {{#each cards as |card|}}
+                <div class="col">
+                  <Card::LinkTo @id={{card.latestPrintingId}}>
+                    <div class="decklist-card">
+                      <img src="{{card.printing.images.nrdb_classic.large}}" />
+                      {{#if (gt (get @model.decklist.cardCounts card.id) 1)}}
+                        <img src="{{card.printing.images.nrdb_classic.tiny}}" />
+                      {{/if}}
+                      {{#if (gt (get @model.decklist.cardCounts card.id) 2)}}
+                        <img src="{{card.printing.images.nrdb_classic.tiny}}" />
+                      {{/if}}
+                    </div>
+                  </Card::LinkTo>
+                </div>
+              {{/each}}
+            </div>
+          {{/if}}
+        {{/let}}
+      {{/each}}
+    {{/if}}
   </div>
 
 </main>

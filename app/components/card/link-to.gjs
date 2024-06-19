@@ -35,7 +35,7 @@ export default class CardLinkToComponent extends Component {
 
   <template>
     {{#if this.printing.isPending}}
-      LOADING...
+      ...
     {{else}}
       <LinkTo @route='card' @model={{this.linkId}} ...attributes>
         {{yield}}

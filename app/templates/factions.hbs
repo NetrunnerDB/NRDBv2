@@ -5,194 +5,73 @@
   <Navbar />
 
   <div class="container">
-    <h2 class="mt-4 mb-3">Runner Factions</h2>
-    <div class="row gy-4">
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/anarch.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="anarch" />
-              <LinkTo @route="faction" @model="anarch">Anarch</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.anarch}}
+    <FancyHeader>Runner Factions</FancyHeader>
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center gy-4"
+    >
+      {{#each @model.runners as |faction|}}
+        <div class="col">
+          <LinkTo @route="faction" @model="{{faction.id}}">
+            <div class="card">
+              <img
+                src="assets/image/faction/banner/{{faction.id}}.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-{{faction.idHyphenated}}">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  {{faction.name}}
+                </h5>
+              </div>
             </div>
-          </div>
+          </LinkTo>
         </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/criminal.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="criminal" />
-              <LinkTo @route="faction" @model="criminal">Criminal</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.criminal}}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/shaper.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="shaper" />
-              <LinkTo @route="faction" @model="shaper">Shaper</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.shaper}}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/runner.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title">
-              <LinkTo @route="faction" @model="neutral_runner">Neutral Runner</LinkTo></h5>
-            <div class="force-one-line">
-              Factionless Runner cards.
-            </div>
-          </div>
-        </div>
-      </div>
+      {{/each}}
     </div>
 
-    <h2 class="mt-4 mb-3">Corp Factions</h2>
-    <div class="row gy-4">
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img src="assets/image/faction/banner/hb.gif" class="card-img-top" />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="haas-bioroid" />
-              <LinkTo
-                @route="faction"
-                @model="haas_bioroid"
-              >Haas-Bioroid</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.haas_bioroid}}
+    <FancyHeader>Corp Factions</FancyHeader>
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center gy-4"
+    >
+      {{#each @model.corps as |faction|}}
+        <div class="col">
+          <LinkTo @route="faction" @model="{{faction.id}}">
+            <div class="card">
+              <img
+                src="assets/image/faction/banner/{{faction.id}}.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-{{faction.idHyphenated}}">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  {{faction.name}}
+                </h5>
+              </div>
             </div>
-          </div>
+          </LinkTo>
         </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/jinteki.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="jinteki" />
-              <LinkTo @route="faction" @model="jinteki">Jinteki</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.jinteki}}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img src="assets/image/faction/banner/nbn.gif" class="card-img-top" />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="nbn" />
-              <LinkTo @route="faction" @model="nbn">NBN</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.nbn}}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/weyland.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="weyland-consortium" />
-              <LinkTo @route="faction" @model="weyland_consortium">
-                Weyland Consortium</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.weyland_consortium}}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/corp.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title">
-              <LinkTo @route="faction" @model="neutral_corp">Neutral Corp</LinkTo></h5>
-            <div class="force-one-line">
-              Factionless Corp cards.
-            </div>
-          </div>
-        </div>
-      </div>
+      {{/each}}
     </div>
 
-    <h2 class="mt-4 mb-3">Mini Factions</h2>
-    <div class="row gy-4">
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/apex.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="apex" />
-              <LinkTo @route="faction" @model="apex">Apex</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.apex}}
+    <FancyHeader>Mini Factions</FancyHeader>
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center gy-4"
+    >
+      {{#each @model.minis as |faction|}}
+        <div class="col">
+          <LinkTo @route="faction" @model="{{faction.id}}">
+            <div class="card">
+              <img
+                src="assets/image/faction/banner/{{faction.id}}.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-{{faction.idHyphenated}}">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  {{faction.name}}
+                </h5>
+              </div>
             </div>
-          </div>
+          </LinkTo>
         </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/adam.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="adam" />
-              <LinkTo @route="faction" @model="adam">Adam</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.adam}}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card">
-          <img
-            src="assets/image/faction/banner/sunny.gif"
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title"><Icon @icon="sunny-lebeau" />
-              <LinkTo @route="faction" @model="sunny_lebeau">Sunny Lebeau</LinkTo></h5>
-            <div class="force-one-line">
-              {{break-lines @model.sunny_lebeau}}
-            </div>
-          </div>
-        </div>
-      </div>
+      {{/each}}
     </div>
   </div>
 

@@ -66,13 +66,19 @@
 
           <h2>Decklist of the week</h2>
 
-          <DecklistBox @decklist={{@model.dotw}} />
+          <DecklistBox
+            @decklist={{@model.dotw}}
+            @showTitle="true"
+            @showLink="true"
+            @showAuthor="true"
+          />
 
           <p class="my-4">
-            {{@model.dotw.notes}}
+            {{@model.dotwDesc}}
           </p>
-          <LinkTo @route="home" class="button">Read more</LinkTo>
-
+          <LinkTo @route="decklist" @model={{@model.dotw}} class="button">
+            Read more
+          </LinkTo>
         </div>
         <div class="box mt-4">Something Else</div>
       </div>
