@@ -1,13 +1,17 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { hash } from 'rsvp';
+import { Hyphenate } from 'netrunnerdb/helpers/hyphenate';
 
 export default class FactionRoute extends Route {
   @service store;
 
   async model(params) {
     // Get the faction object
-    let faction = this.store.findRecord('faction', params.id);
+    let faction = await this.store.findRecord('faction', params.id);
+
+    // Add a hyphenated ID attribute because the hyphenate helper doesn't work because ???
+    faction.idHyphenated = Hyphenate(faction.id);
 
     // Get all ids for the faction
     // TODO: sort ids by legality then alphabetically
@@ -17,21 +21,27 @@ export default class FactionRoute extends Route {
         filter: { search: `t:identity f:${params.id}` },
         include: 'printings',
       })
-      .then(function (ids) {
-        ids.forEach(function (id) {
+      .then((ids) => {
+        ids.forEach((id) => {
           id.latestPrinting = id.printings.find(
             (p) => p.id == id.latestPrintingId,
           );
+          id.decklists = this.store.query('decklist', {
+            filter: { identity_card_id: id.id },
+            sort: '-created_at',
+            page: { limit: 3 },
+          });
         });
         return ids;
       });
 
-    // TEMP
-    let decklists = this.store.query('decklist', {
-      sort: '-created_at',
-      page: { limit: 3 },
-    });
+    return hash({ faction, ids });
+  }
 
-    return hash({ faction, ids, decklists });
+  decklistCount(id) {
+    if ('decklist' in id) {
+      return id.decklist.length;
+    }
+    return -1;
   }
 }

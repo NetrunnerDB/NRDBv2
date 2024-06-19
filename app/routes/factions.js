@@ -1,17 +1,37 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { hash } from 'rsvp';
+import { Hyphenate } from 'netrunnerdb/helpers/hyphenate';
 
 export default class FactionRoute extends Route {
   @service store;
 
   async model(params) {
-    let factions = this.store.findAll('faction').then(function (factions) {
-      return factions.reduce(function (obj, faction) {
-        obj[faction.get('id')] = faction.get('description');
-        return obj;
-      });
+    let factions = await this.store.findAll('faction');
+    let descriptions = factions.reduce(function (obj, faction) {
+      obj[faction.get('id')] = faction.get('description');
+      return obj;
     });
-    return factions;
+
+    // Add a hyphenated ID attribute because the hyphenate helper doesn't work because ???
+    factions = factions.map((faction) => {
+      faction.idHyphenated = Hyphenate(faction.id);
+      return faction;
+    });
+
+    let runners = factions
+      .filter((faction) => faction.sideId == 'runner' && !faction.isMini)
+      .sort((a, b) => (a.id == 'neutral_runner' ? 1 : -1));
+    let corps = factions
+      .filter((faction) => faction.sideId == 'corp')
+      .sort((a, b) => (a.id == 'neutral_corp' ? 1 : -1));
+    let minis = factions.filter((faction) => faction.isMini);
+
+    return hash({
+      corps: corps,
+      runners: runners,
+      minis: minis,
+      descriptions: descriptions,
+    });
   }
 }

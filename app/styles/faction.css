@@ -111,3 +111,115 @@
 .border-neutral-runner {
   border-color: var(--color--neutral-runner) !important;
 }
+
+/* BG IMAGE */
+.bg-img-anarch,
+.bg-img-criminal,
+.bg-img-shaper,
+.bg-img-haas-bioroid,
+.bg-img-jinteki,
+.bg-img-nbn,
+.bg-img-weyland-consortium,
+.bg-img-adam,
+.bg-img-apex,
+.bg-img-sunny-lebeau,
+.bg-img-neutral-corp,
+.bg-img-neutral-runner {
+  position: relative;
+}
+
+.bg-img-anarch:before,
+.bg-img-criminal:before,
+.bg-img-shaper:before,
+.bg-img-haas-bioroid:before,
+.bg-img-jinteki:before,
+.bg-img-nbn:before,
+.bg-img-weyland-consortium:before,
+.bg-img-adam:before,
+.bg-img-apex:before,
+.bg-img-sunny-lebeau:before,
+.bg-img-neutral-corp:before,
+.bg-img-neutral-runner:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  background-repeat: no-repeat;
+  background-position: 110% 50%;
+  background-size: 50%;
+}
+
+/* .bg-img-anarch:before {
+  background-position: 110% 50%;
+  background-size: 40%;
+}
+.bg-img-shaper:before {
+  background-position: 102% 50%;
+  background-size: 40%;
+}
+.bg-img-jinteki:before {
+  background-position: 110% 50%;
+  background-size: 45%;
+}
+.bg-img-nbn:before {
+  background-position: 105% 50%;
+  background-size: 35%;
+}
+.bg-img-adam:before {
+  background-position: 105% 38%;
+  background-size: 40%;
+}
+.bg-img-apex:before {
+  background-position: 105% 50%;
+  background-size: 45%;
+}
+.bg-img-sunny-lebeau:before {
+  background-position: 105% 55%;
+  background-size: 40%;
+} */
+.bg-img-adam:before {
+  background-position: 110% 42%;
+  background-size: 50%;
+}
+
+.bg-img-anarch:before {
+  background-image: url("image/faction/monochrome/anarch.png");
+}
+.bg-img-criminal:before {
+  background-image: url("image/faction/monochrome/criminal.png");
+}
+.bg-img-shaper:before {
+  background-image: url("image/faction/monochrome/shaper.png");
+}
+.bg-img-haas-bioroid:before {
+  background-image: url("image/faction/monochrome/haas-bioroid.png");
+}
+.bg-img-jinteki:before {
+  background-image: url("image/faction/monochrome/jinteki.png");
+}
+.bg-img-nbn:before {
+  background-image: url("image/faction/monochrome/nbn.png");
+}
+.bg-img-weyland-consortium:before {
+  background-image: url("image/faction/monochrome/weyland-consortium.png");
+}
+.bg-img-adam:before {
+  background-image: url("image/faction/monochrome/adam.png");
+}
+.bg-img-apex:before {
+  background-image: url("image/faction/monochrome/apex.png");
+}
+.bg-img-sunny-lebeau:before {
+  background-image: url("image/faction/monochrome/sunny-lebeau.png");
+}
+.bg-img-neutral-corp:before {
+  background-image: url("image/faction/monochrome/neutral-corp.png");
+}
+.bg-img-neutral-runner:before {
+  background-image: url("image/faction/monochrome/neutral-runner.png");
+}

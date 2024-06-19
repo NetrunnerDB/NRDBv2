@@ -20,7 +20,11 @@ export default class DecklistBoxLinkComponent extends Component {
     this.karma = 1337; // TEMP
   }
   <template>
-    <LinkTo @route='home' class='decklist-box-link mt-2'>
+    <LinkTo
+      @route='decklist'
+      @model={{this.args.decklist}}
+      class='decklist-box-link mt-2'
+    >
       <div class='row px-3' style='height:70px'>
         <div class='col-1 col-lg-2 position-relative font-size-32'>
           <div

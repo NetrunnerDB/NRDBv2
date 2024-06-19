@@ -11,9 +11,9 @@ export default class CardCycleModel extends Model {
   @attr('date') createdAt;
   @attr('date') updatedAt;
   @attr factionId;
-  @attr cards;
+  @attr cardCounts;
   @attr numCards;
   @attr influenceSpent;
 
-  // @hasMany('card', { async: true, inverse: null }) cards;
+  @hasMany('card', { async: true, inverse: null }) cards;
 }

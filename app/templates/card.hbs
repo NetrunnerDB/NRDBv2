@@ -9,28 +9,26 @@
     @subtitle={{@model.card.title}}
     @icon={{@model.cardSet.cardCycleId}}
   >
-    <div class="d-flex position-relative mt-4 flex-column">
-      {{#if @model.prevPrinting}}
-        <Card::LinkTo
-          @id={{@model.prevPrinting.id}}
-          class="button round position-absolute end-0"
-          style="transform: translateY(10px)"
-        >
-          <FaIcon @icon="arrow-left-long" />
-          {{@model.prevPrinting.title}}
-        </Card::LinkTo>
-      {{/if}}
-      {{#if @model.nextPrinting}}
-        <Card::LinkTo
-          @id={{@model.nextPrinting.id}}
-          class="button round position-absolute end-0"
-          style="transform: translateY(-100%)"
-        >
-          {{@model.nextPrinting.title}}
-          <FaIcon @icon="arrow-right-long" />
-        </Card::LinkTo>
-      {{/if}}
-    </div>
+    {{#if @model.prevPrinting}}
+      <Card::LinkTo
+        @id={{@model.prevPrinting.id}}
+        class="button round position-absolute end-0"
+        style="top: 0; transform: translateY(-40%)"
+      >
+        <FaIcon @icon="arrow-left-long" />
+        {{@model.prevPrinting.title}}
+      </Card::LinkTo>
+    {{/if}}
+    {{#if @model.nextPrinting}}
+      <Card::LinkTo
+        @id={{@model.nextPrinting.id}}
+        class="button round position-absolute end-0"
+        style="bottom: 0; transform: translateY(40%)"
+      >
+        {{@model.nextPrinting.title}}
+        <FaIcon @icon="arrow-right-long" />
+      </Card::LinkTo>
+    {{/if}}
   </Titlebar>
 
   <div class="container">
@@ -43,5 +41,37 @@
         @startupSnapshot={{@model.startupSnapshot}}
       />
     </div>
+
+    <div class="mt-4">
+      <BsTab @type="pills" as |tab|>
+        <tab.pane @title="Reviews">
+          <div class="mt-4">
+            <div class="mb-5">
+              <Review />
+            </div>
+            <div class="mb-5">
+              <Review />
+            </div>
+          </div>
+        </tab.pane>
+        <tab.pane @title="Rulings ">
+          {{#if @model.rulings}}
+            {{#each @model.rulings as |ruling|}}
+              <div class="mt-4">
+                <Ruling @ruling={{ruling}} />
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="ruling-answer mt-4">
+              This card has no rulings!
+            </div>
+          {{/if}}
+        </tab.pane>
+        <tab.pane @title="Alt arts">
+          <p> ... </p>
+        </tab.pane>
+      </BsTab>
+    </div>
+
   </div>
 </main>

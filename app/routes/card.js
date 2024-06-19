@@ -63,6 +63,11 @@ export default class CardRoute extends Route {
       }
     });
 
+    // Fetch the card's rulings
+    let rulings = await this.store.query('ruling', {
+      filter: { card_id: card.id },
+    });
+
     return hash({
       card,
       printing,
@@ -72,6 +77,7 @@ export default class CardRoute extends Route {
       standardSnapshot,
       startupSnapshot,
       eternalSnapshot,
+      rulings,
     });
   }
 }

@@ -22,6 +22,9 @@
   --color--secondary: var(--color--offwhite);
   --color--secondary-bg: #1b1b1e;
   --color--secondary-border: var(--color--grey);
+  --color--warning: white;
+  --color--warning-bg: #2f2805;
+  --color--warning-border: #6c4c0b;
   --color--header-bg: #14141a;
   --color--button: var(--color--offwhite);
   --color--button-bg: #14141a;

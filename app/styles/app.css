@@ -8,6 +8,10 @@
 
 /* BASE */
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: var(--color--default);
   background-color: var(--color--default-bg);
@@ -20,6 +24,20 @@ nav {
 
 p {
   margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+}
+
+/* BASICS */
+
+.primary {
+  color: var(--color--default);
+}
+.primary-bg {
+  background-color: var(--color--default-bg);
 }
 
 .secondary {
@@ -43,12 +61,14 @@ a:active {
   color: var(--color--link-active);
 }
 
+button,
 .button {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
+button,
 a.button {
   color: var(--color--button);
   background-color: var(--color--button-bg);
@@ -60,11 +80,13 @@ a.button {
   padding: 3px 12px 6px;
 }
 
+button,
 a.button.d-block {
   padding-left: 0;
   padding-right: 0;
 }
 
+button:hover,
 a.button:hover {
   text-decoration: none;
   color: var(--color--button-hover);
@@ -72,16 +94,19 @@ a.button:hover {
   border: 1px solid var(--color--button-hover-border);
 }
 
+button:active,
 a.button:active {
   color: var(--color--button-active);
   background-color: var(--color--button-active-bg);
   border: 1px solid var(--color--button-active-border);
 }
 
+button.round,
 a.button.round {
   border-radius: 90px;
 }
 
+button.cyber,
 a.button.cyber {
   border-radius: 1px;
   clip-path: polygon(
@@ -93,16 +118,48 @@ a.button.cyber {
   );
 }
 
-input {
+/* Overwriting unwanted Bootstrap */
+.btn-group {
+  vertical-align: top;
+}
+.btn-group button {
   color: var(--color--button);
   background-color: var(--color--button-bg);
   border: 1px solid var(--color--button-border);
   border-radius: 3px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  padding: 3px 12px 6px;
+}
+.btn-group button:hover {
+  text-decoration: none;
+  color: var(--color--button-hover);
+  background-color: var(--color--button-hover-bg);
+  border: 1px solid var(--color--button-hover-border);
+}
+.btn-group button:active {
+  color: var(--color--button-active);
+  background-color: var(--color--button-active-bg);
+  border: 1px solid var(--color--button-active-border);
 }
 
+input,
+select,
+.form-control {
+  color: var(--color--button);
+  background-color: var(--color--button-bg);
+  border: 1px solid var(--color--button-border);
+  border-radius: 3px;
+  padding: 0.375rem 0.75rem;
+}
 input[type="text"] {
   padding-left: 10px;
   transform: translateY(-2px);
+}
+
+.form-label {
+  margin-bottom: 2px;
 }
 
 .button.blue {
@@ -145,6 +202,23 @@ input[type="text"] {
   text-decoration: none;
   color: var(--color--button-hover);
   background-color: var(--color--button-hover-bg);
+}
+
+.nav-pills .nav-item {
+  border: none;
+}
+.nav-pills .nav-item:not(:first-of-type) {
+  margin-left: 1em;
+}
+.nav-pills .nav-link.active {
+  color: var(--color--blue-text);
+  background-color: var(--color--blue);
+  border: solid 2px var(--color--blue); /* box-sizing isn't working so we fake the extra space here */
+}
+.nav-pills .nav-link:not(.active) {
+  color: var(--color--box);
+  background-color: var(--color--box-bg);
+  border: solid 2px var(--color--box-border);
 }
 
 /* HEX THUMBNAILS */
@@ -302,8 +376,31 @@ input[type="text"] {
   border: solid 1px var(--color--default-border);
 }
 
+.decklist-description {
+  margin-top: 30px;
+}
+
+.decklist-description.truncated {
+  max-height: 280px;
+}
+.decklist-description.truncated {
+  position: relative;
+  overflow-y: hidden;
+}
+.decklist-description.truncated::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background: linear-gradient(transparent 50%, var(--color--default-bg) 80%);
+}
+
 .decklist-box {
   margin-top: 30px;
+  height: 280px;
   background-color: var(--color--secondary-bg);
   border-radius: 3px;
 }
@@ -314,17 +411,15 @@ input[type="text"] {
 }
 
 .decklist-box .decklist-stats {
-  margin-bottom: 70px;
-}
-
-.decklist-box p:first-of-type {
-  margin-top: 20px;
+  position: relative;
+  padding-top: 20px;
 }
 
 .decklist-box .decklist-identity-name {
 }
 
 .decklist-box .decklist-identity-title {
+  color: var(--color--default);
 }
 
 .decklist-box .decklist-identity-subtitle {
@@ -381,6 +476,17 @@ input[type="text"] {
 }
 .decklist-box-compact .decklist-notes {
   color: var(--color--secondary);
+}
+
+.warning-box {
+  padding-top: 10px;
+  padding-bottom: 13px;
+  text-align: center;
+  font-weight: bold;
+  color: var(--color--warning);
+  background-color: var(--color--warning-bg);
+  border: 2px solid var(--color--warning-border);
+  border-radius: 4px;
 }
 
 /* GAME CARDS (Netrunner cards, not webdev ones) */
@@ -450,6 +556,52 @@ table.game-card-stats tr:nth-child(even) {
   color: var(--color--default);
   border-color: var(--color--box-secondary-border);
   background-color: var(--color--box-bg);
+}
+
+/* RULINGS */
+
+.ruling-header {
+}
+.ruling-question {
+}
+.ruling-answer {
+  border-left: solid 3px var(--color--default-border);
+  padding-left: 0.75em;
+}
+.ruling-text {
+}
+/* Nothing special about h4, but it's currently what all the ruling headers are formatted as in the json and is unaccessible via Bootstrap classes */
+.ruling h4 {
+  margin-top: 6px;
+  font-size: 24px;
+}
+
+/* REVIEWS */
+
+.review {
+}
+.review-buttons {
+  width: 50px;
+  float: left;
+}
+.review-main {
+  margin-left: 50px;
+}
+.review-header {
+  padding-bottom: 3px;
+  border-bottom: solid 1px var(--color--default-border);
+  margin-bottom: 3px;
+}
+.review-content {
+  padding-bottom: 6px;
+  border-bottom: solid 1px var(--color--default-border);
+  margin-bottom: 3px;
+}
+
+.review .comment {
+  padding-bottom: 4px;
+  border-bottom: solid 1px var(--color--default-border);
+  margin-bottom: 3px;
 }
 
 /* NAVBAR */
@@ -550,6 +702,8 @@ nav {
 
 /* DECKLIST BANNER */
 
+/* Decklist banner rotated ID - DEPRECATED - Delete when confirmed */
+/*
 .decklist-banner {
   height: 220px;
   position: relative;
@@ -576,7 +730,13 @@ nav {
 
 .decklist-banner-data {
   margin-left: 240px;
+}*/
+
+.decklist-banner {
+  padding: 40px 0 36px 0;
+  border-bottom: 1px solid var(--color--default-border);
 }
+
 .decklist-banner-data .decklist-banner-stat:not(:first-of-type) {
   color: var(--color--secondary);
 }
@@ -594,8 +754,8 @@ nav {
 }
 .decklist-card img {
   width: 100%;
-  border: solid 2px var(--color--default-border);
-  border-radius: 15px;
+  border-radius: 10px;
+  border: solid 1px var(--color--default-border);
 }
 .decklist-card img:not(:first-of-type) {
   position: absolute;
@@ -603,13 +763,15 @@ nav {
   right: 0;
 }
 .decklist-card img:nth-of-type(2) {
-  transform: scale(90%) rotateZ(0.5deg) translateX(18px);
+  /* transform: scale(95%) rotateZ(0.5deg) translateX(6%); */
+  transform: translate(3%, 3%);
   filter: grayscale(50%);
   opacity: 90%;
   z-index: -1;
 }
 .decklist-card img:nth-of-type(3) {
-  transform: scale(85%) rotateZ(1deg) translateX(31px);
+  /* transform: scale(85%) rotateZ(1deg) translateX(16%); */
+  transform: scale(98%) translate(6%, 6%);
   filter: grayscale(75%);
   z-index: -2;
   opacity: 50%;
@@ -656,8 +818,11 @@ table.results tr:nth-child(even) {
 .legality-rotated:before,
 .legality-added:before,
 .legality-restricted:before,
-.legality-1-inf:before,
-.legality-3-inf:before {
+.legality-inf-1:before,
+.legality-inf-3:before,
+.legality-points-1:before,
+.legality-points-2:before,
+.legality-points-3:before {
   display: inline-block;
   min-width: 7.5em;
   border-radius: 100px;
@@ -715,13 +880,25 @@ table.results tr:nth-child(even) {
   border-color: var(--color--legality-restricted);
 }
 
-.legality-1-inf:before {
+.legality-inf-1:before {
   content: "1 INF.";
   border-color: var(--color--legality-points);
 }
-
-.legality-3-inf:before {
+.legality-inf-3:before {
   content: "3 INF.";
+  border-color: var(--color--legality-points);
+}
+
+.legality-points-1:before {
+  content: "1 POINT";
+  border-color: var(--color--legality-points);
+}
+.legality-points-2:before {
+  content: "2 POINTS";
+  border-color: var(--color--legality-points);
+}
+.legality-points-3:before {
+  content: "3 POINTS";
   border-color: var(--color--legality-points);
 }
 
@@ -754,6 +931,19 @@ table.results tr:nth-child(even) {
   content: "3";
 }
 
+/* FANCY HEADERS */
+
+.fancy-header {
+  padding-bottom: 5px;
+}
+.fancy-title {
+  margin: 0 0.5em;
+}
+.fancy-header span {
+  border-bottom: 1px solid var(--color--default-border);
+  transform: translateY(calc(-50% + 3px));
+}
+
 /* USER CONTENT */
 
 .user-content h1 {
@@ -778,4 +968,8 @@ table.results tr:nth-child(even) {
 .user-content h6 {
   margin-top: 1em;
   font-size: 17px;
+}
+
+.user-content p:not(:first-of-type) {
+  margin-top: 1em;
 }

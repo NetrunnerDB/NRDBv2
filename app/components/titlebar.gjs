@@ -13,7 +13,7 @@ class Titlebar extends Component {
               {{#if @icon}}<Icon @icon={{@icon}} />{{/if}}
             </div>
           </div>
-          <div class='col-7'>
+          <div class='col-7 position-relative'>
             {{yield}}
           </div>
         </div>
