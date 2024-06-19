@@ -72,37 +72,37 @@ class Navbar extends Component {
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='factions' class='nav-link button-link'>
                       Factions
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='formats' class='nav-link button-link'>
                       Formats
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='bans' class='nav-link button-link'>
                       Bans
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='rotation' class='nav-link button-link'>
                       Rotation
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='reviews' class='nav-link button-link'>
                       Reviews
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='rulings' class='nav-link button-link'>
                       Rulings
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
-                    <LinkTo @route='home' class='nav-link button-link'>
+                    <LinkTo @route='illustrators' class='nav-link button-link'>
                       Illustrators
                     </LinkTo>
                   </li>
@@ -150,28 +150,28 @@ class Navbar extends Component {
             <LinkTo @route='home'>Decklists</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Sets</LinkTo>
+            <LinkTo @route='sets'>Sets</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Factions</LinkTo>
+            <LinkTo @route='factions'>Factions</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Formats</LinkTo>
+            <LinkTo @route='formats'>Formats</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Bans</LinkTo>
+            <LinkTo @route='bans'>Bans</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Rotation</LinkTo>
+            <LinkTo @route='rotation'>Rotation</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Reviews</LinkTo>
+            <LinkTo @route='reviews'>Reviews</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Rulings</LinkTo>
+            <LinkTo @route='rulings'>Rulings</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Illustrators</LinkTo>
+            <LinkTo @route='illustrators'>Illustrators</LinkTo>
           </div>
         </div>
       </div>

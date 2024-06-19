@@ -6,6 +6,8 @@ export default class CardCycleModel extends Model {
   @attr legacyCode;
   @attr cardSetIds;
   @attr firstPrintingId;
+  @attr position;
+  @attr releasedBy;
   @attr('date') updatedAt;
 
   @hasMany('card-set', { async: true, inverse: 'cardCycle' }) cardSets;

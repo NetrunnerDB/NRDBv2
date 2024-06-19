@@ -1,0 +1,52 @@
+{{page-title "Advanced Search"}}
+
+<main class="pb-4">
+
+  <Navbar />
+
+  <div class="container">
+    <div class="row">
+      <BsForm @formLayout="vertical" @onSubmit={{this.doSearch}} as |form|>
+        <div class="col-6">
+          <h3>Titles & Texts</h3>
+          <form.element @controlType="text" @label="Title" @value="-" />
+          <form.element @controlType="text" @label="Text" @value="-" />
+          <form.element @controlType="text" @label="Flavour text" @value="-" />
+        </div>
+        <div class="col-6">
+          <h3>Attributes</h3>
+          <div class="mb-3">
+            <label>Set</label>
+            <select class="ember-select w-100">
+              {{#each @model.cardTypes as |type|}}
+                <option value={{type.id}}>{{type.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Type</label>
+            <select class="ember-select w-100">
+              {{#each @model.cardTypes as |type|}}
+                <option value={{type.id}}>{{type.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Subtypes</label>
+            <select class="ember-select w-100">
+              {{#each @model.cardSubtypes as |subtype|}}
+                <option value={{subtype.id}}>{{subtype.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+
+        </div>
+        <div class="col">
+          <form.submitButton>Submit</form.submitButton>
+        </div>
+      </BsForm>
+    </div>
+  </div>
+</main>
