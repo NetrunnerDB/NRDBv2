@@ -79,7 +79,6 @@
     "qunit": "^2.19.4",
     "qunit-dom": "^2.0.0",
     "stylelint": "^15.10.2",
-    "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-prettier": "^4.0.1",
     "tippy.js": "^6.0.0",
