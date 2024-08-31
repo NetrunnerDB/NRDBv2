@@ -35,12 +35,12 @@ export default class CardLinkToComponent extends Component {
 
   <template>
     {{#if this.printing.isPending}}
-      LOADING...
+      ...
     {{else}}
-      <LinkTo @route="page.card" @model={{this.linkId}} ...attributes>
+      <LinkTo @route='card' @model={{this.linkId}} ...attributes>
         {{yield}}
         {{#unless @hideTooltip}}
-          <EmberPopover @tooltipClass="tippy-box" @event="hover">
+          <EmberPopover @tooltipClass='tippy-box' @event='hover'>
             <TextBox
               @printing={{this.printing}}
               @showTitle={{true}}

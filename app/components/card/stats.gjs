@@ -1,26 +1,27 @@
 import { eq, maybe } from 'netrunnerdb/utils/template-operators';
+import Icon from 'netrunnerdb/components/icon';
 
 <template>
-  {{#if (eq @printing.cardTypeId "agenda")}}
+  {{#if (eq @printing.cardTypeId 'agenda')}}
     {{maybe @printing.advancementRequirement}}/{{@printing.agendaPoints}}
-    <i class="icon-agenda-points"></i>
-  {{else if (eq @printing.cardTypeId "runner_identity")}}
-    {{@printing.minimumDeckSize}}/{{maybe @printing.influenceLimit "∞"}}
-    {{@printing.baseLink}}<i class="icon-link"></i>
-  {{else if (eq @printing.cardTypeId "corp_identity")}}
-    {{@printing.minimumDeckSize}}/{{maybe @printing.influenceLimit "∞"}}
+    <Icon @icon='agenda-points' />
+  {{else if (eq @printing.cardTypeId 'runner_identity')}}
+    ({{@printing.minimumDeckSize}}/{{maybe @printing.influenceLimit '∞'}})
+    {{@printing.baseLink}}<Icon @icon='link' />
+  {{else if (eq @printing.cardTypeId 'corp_identity')}}
+    ({{@printing.minimumDeckSize}}/{{maybe @printing.influenceLimit '∞'}})
   {{else}}
-    {{maybe @printing.cost}}<i class="icon-credit"></i>
+    {{maybe @printing.cost}}<Icon @icon='credit' />
 
     {{#if @printing.memoryCost}}
-      {{@printing.memoryCost}}<i class="icon-mu"></i>
+      {{@printing.memoryCost}}<Icon @icon='mu' />
     {{/if}}
 
     {{#if @printing.trashCost}}
-      {{@printing.trashCost}}<i class="icon-trash-cost"></i>
+      {{@printing.trashCost}}<Icon @icon='trash-cost' />
     {{/if}}
 
-    {{#if @showStrength }}
+    {{#if @showStrength}}
       {{#if @printing.strength}}
         <br />
         Strength:
