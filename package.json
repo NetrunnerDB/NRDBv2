@@ -83,7 +83,7 @@
     "stylelint-prettier": "^4.0.1",
     "tippy.js": "^6.0.0",
     "tracked-built-ins": "^3.3.0",
-    "webpack": "^5.78.0"
+    "webpack": "^5.94.0"
   },
   "engines": {
     "node": "16.* || >= 18"
