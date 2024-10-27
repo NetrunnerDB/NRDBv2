@@ -1,11 +1,8 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import MarkdownToHtml from 'ember-cli-showdown/components/markdown-to-html';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
-import { FormatDate } from 'netrunnerdb/helpers/format-date';
 import CardImage from 'netrunnerdb/components/card/image';
 import Comment from 'netrunnerdb/components/review/comment';
-import Icon from './icon';
 
 export default class ReviewComponent extends Component {
   @service store;

@@ -5,7 +5,6 @@ import { LinkTo } from '@ember/routing';
 import { on } from '@ember/modifier';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 import Collapse from 'ember-bootstrap/components/bs-collapse';
-import Dropdown from 'ember-bootstrap/components/bs-dropdown';
 
 class Navbar extends Component {
   @tracked showDropdown = false;

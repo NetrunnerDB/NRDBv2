@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { LinkTo } from '@ember/routing';
 import { service } from '@ember/service';
-import Icon from './icon';
 
 export default class CardListsComponent extends Component {
   @service store;

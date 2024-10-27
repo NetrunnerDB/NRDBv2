@@ -3,7 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import { LinkTo } from '@ember/routing';
 import { service } from '@ember/service';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
-import { Hyphenate } from '../helpers/hyphenate';
 import {
   GetIdentityTitle,
   GetIdentitySubtitle,

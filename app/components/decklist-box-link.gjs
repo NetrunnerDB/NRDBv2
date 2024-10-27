@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { computed, set } from '@ember/object';
 import { LinkTo } from '@ember/routing';
 import { service } from '@ember/service';
 import { Hyphenate } from '../helpers/hyphenate';
