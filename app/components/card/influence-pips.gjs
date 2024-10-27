@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { Hyphenate } from 'netrunnerdb/helpers/hyphenate';
 import { Range } from 'netrunnerdb/helpers/range';
-import { not } from 'netrunnerdb/utils/template-operators';
 
 // Note: this.args.hideEmpty is effectively always true if this.args.repeat is set
 
@@ -39,3 +38,11 @@ export default class CardInfluencePips extends Component {
     </span>
   </template>
 }
+
+const SmallInfluencePips = <template>
+  <span class='influence influence-{{@printing.factionId}}'>
+    {{#each (Range @printing.influenceCost)~}}•{{~/each}}
+  </span>
+</template>;
+
+export { SmallInfluencePips };

@@ -8,7 +8,7 @@ import { TruncateFaction } from 'netrunnerdb/helpers/truncate-faction';
 import { TruncateType } from 'netrunnerdb/helpers/truncate-type';
 
 import Icon from '../icon';
-import SmallInfluencePips from './small-influence-pips';
+import { SmallInfluencePips } from './influence-pips';
 import Stats from './stats';
 import Text from './text';
 
