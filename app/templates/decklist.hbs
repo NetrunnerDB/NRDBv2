@@ -69,13 +69,25 @@
           <FaIcon @icon="arrow-up-arrow-down" />
           Sort</LinkTo>
         <div class="btn-group" role="group">
-          <button class="btn button" {{on "click" this.displayWriteUp}}>
+          <button
+            type="button"
+            class="btn button"
+            {{on "click" this.displayWriteUp}}
+          >
             <FaIcon @icon="bars-sort" />
           </button>
-          <button class="btn button" {{on "click" this.displayList}}>
+          <button
+            type="button"
+            class="btn button"
+            {{on "click" this.displayList}}
+          >
             <FaIcon @icon="table-list" @prefix="far" @flip="horizontal" />
           </button>
-          <button class="btn button" {{on "click" this.displayImages}}>
+          <button
+            type="button"
+            class="btn button"
+            {{on "click" this.displayImages}}
+          >
             <FaIcon @icon="layer-group" @prefix="far" />
           </button>
         </div>
