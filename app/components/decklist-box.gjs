@@ -18,12 +18,12 @@ export default class DecklistBoxComponent extends Component {
   constructor(...args) {
     super(...args);
 
-    this.loadPrinting();
+    this.loadPrinting(this.args.decklist);
   }
 
-  async loadPrinting() {
-    let identityCardId = this.args.decklist.identityCardId;
-    let userId = this.args.decklist.userId;
+  async loadPrinting(decklist) {
+    let identityCardId = decklist.identityCardId;
+    let userId = decklist.userId;
 
     this.identityCard = await this.store.findRecord('card', identityCardId, {
       include: 'printings',
@@ -64,14 +64,17 @@ export default class DecklistBoxComponent extends Component {
           <p class='decklist-influence'>
             {{@decklist.influenceSpent}}
             influence spent (max
-            {{this.identityCard.influenceLimit}}, available
-            {{sub this.identityCard.influenceLimit @decklist.influenceSpent}})
+            {{@decklist.identityCard.influenceLimit}}, available
+            {{sub
+              @decklist.identityCard.influenceLimit
+              @decklist.influenceSpent
+            }})
           </p>
           <p class='decklist-cards'>
             <FaIcon @icon='cards-blank' @flip='horizontal' />
             {{@decklist.numCards}}
             cards (min
-            {{this.identityCard.minimumDeckSize}})
+            {{@decklist.identityCard.minimumDeckSize}})
           </p>
           <p class='decklist-set'>
             Cards up to The Automata Initiative
@@ -79,14 +82,14 @@ export default class DecklistBoxComponent extends Component {
           {{#if @showAuthor}}
             <p class='decklist-author font-size-16'>
               Author:
-              {{this.user}}
+              {{@decklist.author.username}}
               (1187)
             </p>
           {{/if}}
           {{#if @showLink}}
             <LinkTo
               @route='decklist'
-              @model={{@decklist}}
+              @model={{@decklist.id}}
               class='button decklist-box-button'
             >
               <Icon @icon='subroutine' />

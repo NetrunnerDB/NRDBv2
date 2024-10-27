@@ -15,5 +15,11 @@ export default class CardCycleModel extends Model {
   @attr numCards;
   @attr influenceSpent;
 
+  get identityCard() {
+    return this.store.findRecord('card', this.identityCardId, {
+      include: 'printings',
+    });
+  }
+
   @hasMany('card', { async: true, inverse: null }) cards;
 }
