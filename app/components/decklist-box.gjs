@@ -18,19 +18,20 @@ export default class DecklistBoxComponent extends Component {
   constructor(...args) {
     super(...args);
 
-    this.init();
+    this.loadPrinting();
   }
 
-  async init() {
+  async loadPrinting() {
     let identityCardId = this.args.decklist.identityCardId;
     let userId = this.args.decklist.userId;
 
-    this.identityCard = this.store.findRecord('card', identityCardId, {
+    this.identityCard = await this.store.findRecord('card', identityCardId, {
       include: 'printings',
     });
-    this.identityPrinting = await this.identityCard.then(function (card) {
-      return card.printings.find((p) => p.id == card.latestPrintingId);
-    });
+    this.identityPrinting = this.identityCard.printings.find(
+      (p) => p.id == this.identityCard.latestPrintingId,
+    );
+
     this.user = userId; // TEMP
   }
 
