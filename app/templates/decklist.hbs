@@ -209,10 +209,10 @@
                   <Card::LinkTo @id={{card.latestPrintingId}}>
                     <div class="decklist-card">
                       <img src="{{card.printing.images.nrdb_classic.large}}" />
-                      {{#if (gt (get @model.decklist.cardCounts card.id) 1)}}
+                      {{#if (gt (get @model.decklist.cardSlots card.id) 1)}}
                         <img src="{{card.printing.images.nrdb_classic.tiny}}" />
                       {{/if}}
-                      {{#if (gt (get @model.decklist.cardCounts card.id) 2)}}
+                      {{#if (gt (get @model.decklist.cardSlots card.id) 2)}}
                         <img src="{{card.printing.images.nrdb_classic.tiny}}" />
                       {{/if}}
                     </div>

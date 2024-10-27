@@ -22,7 +22,7 @@ export default class DecklistController extends Controller {
   }
 
   quantity = (cardId) => {
-    return this.model.decklist.cardCounts[cardId];
+    return this.model.decklist.cardSlots[cardId];
   };
 
   constructor(...args) {

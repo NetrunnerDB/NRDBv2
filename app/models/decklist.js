@@ -11,7 +11,7 @@ export default class CardCycleModel extends Model {
   @attr('date') createdAt;
   @attr('date') updatedAt;
   @attr factionId;
-  @attr cardCounts;
+  @attr cardSlots;
   @attr numCards;
   @attr influenceSpent;
 

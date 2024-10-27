@@ -32,14 +32,14 @@ export default class DecklistRoute extends Route {
       countsByType[type.id] = 0;
     });
     cards.forEach((card) => {
-      countsByType[card.cardTypeId] += decklist.cardCounts[card.id];
+      countsByType[card.cardTypeId] += decklist.cardSlots[card.id];
     });
 
     // Update the value of each printing's quantity to trick the CardList component into displaying the number of each card in the deck insteaad of its set
     let printings = all(
       cards.map((card) =>
         card.printing.then((printing) => {
-          printing.quantity = decklist.cardCounts[card.id];
+          printing.quantity = decklist.cardSlots[card.id];
           return printing;
         }),
       ),
@@ -59,7 +59,7 @@ export default class DecklistRoute extends Route {
   countCards(cards, decklist) {
     let count = 0;
     cards.forEach((card) => {
-      count += decklist.cardCounts[card.id];
+      count += decklist.cardSlots[card.id];
     });
     return count;
   }
