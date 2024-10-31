@@ -10,12 +10,8 @@ export default class DecklistBoxLinkComponent extends Component {
   constructor(...args) {
     super(...args);
 
-    let identityCardId = this.args.decklist.identityCardId;
-    let userId = this.args.decklist.userId;
-
-    this.identityCard = this.store.findRecord('card', identityCardId);
-
-    this.user = userId; // TEMP
+    this.factionId = this.args.decklist.factionId;
+    this.user = this.args.decklist.userId; // TEMP
     this.karma = 1337; // TEMP
   }
   <template>
@@ -30,7 +26,7 @@ export default class DecklistBoxLinkComponent extends Component {
             class='decklist-link-faction position-absolute w-75'
             style='top:50%; transform:translateY(calc(-50% - 4px))'
           >
-            <Icon @icon='{{Hyphenate this.identityCard.factionId}}' />
+            <Icon @icon='{{Hyphenate this.factionId}}' />
           </div>
         </div>
         <div class='col-11 col-lg-10 position-relative font-size-14'>
