@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { Hyphenate } from 'netrunnerdb/helpers/hyphenate';
+import Hyphenate from '../../utils/hyphenate';
 import { Range } from 'netrunnerdb/helpers/range';
 
 // Note: this.args.hideEmpty is effectively always true if this.args.repeat is set

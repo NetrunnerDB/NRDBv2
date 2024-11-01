@@ -1,5 +1,5 @@
 import { svgJar } from 'ember-svg-jar/helpers/svg-jar';
-import { Hyphenate } from '../helpers/hyphenate';
+import Hyphenate from '../utils/hyphenate';
 
 <template>
   {{svgJar

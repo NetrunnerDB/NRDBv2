@@ -1,6 +1,6 @@
 import { LinkTo } from '@ember/routing';
 import { or, eq, notEmpty, maybe } from 'netrunnerdb/utils/template-operators';
-import { Hyphenate } from 'netrunnerdb/helpers/hyphenate';
+import Hyphenate from '../../utils/hyphenate';
 import { TruncateType } from 'netrunnerdb/helpers/truncate-type';
 import Icon from '../icon';
 import Image from './image';

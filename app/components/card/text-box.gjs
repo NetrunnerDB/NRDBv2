@@ -3,7 +3,7 @@ import { LinkTo } from '@ember/routing';
 import { hash } from '@ember/helper';
 import { htmlSafe } from '@ember/template';
 import { and, eq } from 'netrunnerdb/utils/template-operators';
-import { Hyphenate } from 'netrunnerdb/helpers/hyphenate';
+import Hyphenate from '../../utils/hyphenate';
 import { TruncateFaction } from 'netrunnerdb/helpers/truncate-faction';
 import { TruncateType } from 'netrunnerdb/helpers/truncate-type';
 
