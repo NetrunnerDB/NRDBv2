@@ -1,12 +1,11 @@
 import { LinkTo } from '@ember/routing';
-import { or, eq, notEmpty, maybe } from 'netrunnerdb/utils/template-operators';
+import { or, eq, notEmpty } from 'netrunnerdb/utils/template-operators';
 import Hyphenate from '../../utils/hyphenate';
 import { TruncateType } from 'netrunnerdb/helpers/truncate-type';
 import Icon from '../icon';
 import Image from './image';
 import InfluencePips from './influence-pips';
 import Text from './text';
-import TextBox from './text-box';
 import Legality from './legality';
 import LinkToCard from './link-to';
 

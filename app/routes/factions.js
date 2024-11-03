@@ -6,7 +6,7 @@ import Hyphenate from '../../utils/hyphenate';
 export default class FactionRoute extends Route {
   @service store;
 
-  async model(params) {
+  async model() {
     let factions = await this.store.findAll('faction');
     let descriptions = factions.reduce(function (obj, faction) {
       obj[faction.get('id')] = faction.get('description');

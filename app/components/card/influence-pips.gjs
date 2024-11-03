@@ -23,7 +23,7 @@ export default class CardInfluencePips extends Component {
     <span class='influence-pips {{Hyphenate @factionId}}'>
       {{#if @repeat}}
         {{#each (Range (this.div)) as |_|}}●●●●●{{/each}}
-        {{~#each (Range (this.mod)) as |_|}}●{{/each}}
+        {{#each (Range (this.mod)) as |_|}}●{{/each}}
       {{else}}
         <span>
           {{#each (Range this.filled) as |_|}}●{{/each}}

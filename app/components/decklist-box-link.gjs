@@ -17,7 +17,7 @@ export default class DecklistBoxLinkComponent extends Component {
   <template>
     <LinkTo
       @route='decklist'
-      @model={{this.args.decklist}}
+      @model={{@decklist.id}}
       class='decklist-box-link mt-2'
     >
       <div class='row px-3' style='height:70px'>
