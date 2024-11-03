@@ -1,4 +1,4 @@
-{{page-title "Decklist"}}
+{{page-title @model.decklist.name}}
 
 <main class="pb-4">
 
@@ -67,7 +67,8 @@
         </LinkTo>
         <LinkTo @route="home" class="button">
           <FaIcon @icon="arrow-up-arrow-down" />
-          Sort</LinkTo>
+          Sort
+        </LinkTo>
         <div class="btn-group" role="group">
           <button
             type="button"
