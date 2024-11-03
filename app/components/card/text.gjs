@@ -6,7 +6,8 @@ export default class CardTextComponent extends Component {
   constructor(...args) {
     super(...args);
 
-    let processed = this.args.text
+    let text = this.args?.text || '';
+    let processed = text
       .replaceAll('[trash]', '[trash-ability]')
       .replaceAll('\n', '<br>');
     let iconRegex = /\[[^\d]*?\]/g;
