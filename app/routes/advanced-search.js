@@ -5,7 +5,7 @@ import { hash } from 'rsvp';
 export default class AdvancedSearchRoute extends Route {
   @service store;
 
-  async model(params) {
+  async model() {
     let cardTypes = this.store.findAll('cardType');
     let cardSubtypes = this.store.findAll('cardSubtype');
     let cardSets = this.store.findAll('cardSet');

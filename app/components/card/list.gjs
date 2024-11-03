@@ -1,13 +1,6 @@
 import Component from '@glimmer/component';
 import truncateType from 'netrunnerdb/helpers/truncate-type';
-import {
-  eq,
-  notEq,
-  not,
-  or,
-  notEmpty,
-  maybe,
-} from 'netrunnerdb/utils/template-operators';
+import { eq, or, notEmpty, maybe } from 'netrunnerdb/utils/template-operators';
 import Icon from '../icon';
 import InfluencePips from './influence-pips';
 import CardLinkTo from './link-to';

@@ -1,8 +1,6 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { all, hash } from 'rsvp';
-import LinkTo from 'netrunnerdb/components/card/link-to';
-import { Range } from 'netrunnerdb/helpers/range';
 
 export default class DecklistRoute extends Route {
   @service store;

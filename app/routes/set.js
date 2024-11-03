@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { hash } from 'rsvp';
-import { truncateType } from '../helpers/truncate-type';
 
 export default class SetsRoute extends Route {
   @service store;

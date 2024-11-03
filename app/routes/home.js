@@ -2,12 +2,11 @@ import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { htmlSafe } from '@ember/template';
 import { hash } from 'rsvp';
-import { range } from '../helpers/range';
 
 export default class HomeRoute extends Route {
   @service store;
 
-  async model(params) {
+  async model() {
     let decklists = await this.store.findAll('decklist', {
       filter: { sort: '-created_at' },
       page: { limit: 10 },

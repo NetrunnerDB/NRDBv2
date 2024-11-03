@@ -21,10 +21,10 @@ export default class FactionRoute extends Route {
 
     let runners = factions
       .filter((faction) => faction.sideId == 'runner' && !faction.isMini)
-      .sort((a, b) => (a.id == 'neutral_runner' ? 1 : -1));
+      .sort((a) => (a.id == 'neutral_runner' ? 1 : -1));
     let corps = factions
       .filter((faction) => faction.sideId == 'corp')
-      .sort((a, b) => (a.id == 'neutral_corp' ? 1 : -1));
+      .sort((a) => (a.id == 'neutral_corp' ? 1 : -1));
     let minis = factions.filter((faction) => faction.isMini);
 
     return hash({
