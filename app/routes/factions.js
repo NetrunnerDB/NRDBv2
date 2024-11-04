@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { hash } from 'rsvp';
-import Hyphenate from '../../utils/hyphenate';
+import Hyphenate from '../utils/hyphenate';
 
 export default class FactionRoute extends Route {
   @service store;
