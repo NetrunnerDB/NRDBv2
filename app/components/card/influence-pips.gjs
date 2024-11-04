@@ -22,15 +22,15 @@ export default class CardInfluencePips extends Component {
   <template>
     <span class='influence-pips {{Hyphenate @factionId}}'>
       {{#if @repeat}}
-        {{#each (Range (this.div)) as |_|}}●●●●●{{/each}}
-        {{#each (Range (this.mod)) as |_|}}●{{/each}}
+        {{#each (Range (this.div))}}●●●●●{{/each}}
+        {{#each (Range (this.mod))}}●{{/each}}
       {{else}}
         <span>
-          {{#each (Range this.filled) as |_|}}●{{/each}}
+          {{#each (Range this.filled)}}●{{/each}}
         </span>
         <span class='empty'>
           {{#unless @hideEmpty}}
-            {{#each (Range this.empty) as |_|~}}○{{~/each}}
+            {{#each (Range this.empty)~}}○{{~/each}}
           {{/unless}}
         </span>
       {{/if}}
