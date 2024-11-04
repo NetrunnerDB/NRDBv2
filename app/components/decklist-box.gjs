@@ -23,7 +23,6 @@ export default class DecklistBoxComponent extends Component {
 
   async loadPrinting(decklist) {
     let identityCardId = decklist.identityCardId;
-    let userId = decklist.userId;
 
     this.identityCard = await this.store.findRecord('card', identityCardId, {
       include: 'printings',
@@ -31,8 +30,6 @@ export default class DecklistBoxComponent extends Component {
     this.identityPrinting = this.identityCard.printings.find(
       (p) => p.id == this.identityCard.latestPrintingId,
     );
-
-    this.user = userId; // TEMP
   }
 
   <template>
@@ -40,6 +37,7 @@ export default class DecklistBoxComponent extends Component {
       <div class='d-flex mx-2'>
         <div class='visible-lg' style='width:200px'>
           <img
+            alt={{this.identityPrinting.title}}
             class='decklist-identity game-card'
             src={{this.identityPrinting.images.nrdb_classic.large}}
           />
