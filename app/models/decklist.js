@@ -16,10 +16,8 @@ export default class CardCycleModel extends Model {
   @attr influenceSpent;
 
   get identityCard() {
-    return this.store.findRecord('card', this.identityCardId, {
-      include: 'printings',
-    });
+    return this.cards.find((card) => card.id === this.identityCardId);
   }
 
-  @hasMany('card', { async: true, inverse: null }) cards;
+  @hasMany('card', { async: false, inverse: null }) cards;
 }

@@ -1,12 +1,22 @@
+import Component from '@glimmer/component';
+import { get } from '@ember/helper';
 import { and } from 'netrunnerdb/utils/template-operators';
 import gt from 'ember-truth-helpers/helpers/gt';
 import notEq from 'ember-truth-helpers/helpers/not-eq';
-import Component from '@glimmer/component';
 import Icon from '../icon';
 import CardLinkTo from '../card/link-to';
 import InfluencePips from '../card/influence-pips';
 
 export default class Writeup extends Component {
+  // Sorts a decklist's cards into an array of arrays of objects:
+  // [[{
+  //   name
+  //   cardTypeId
+  //   cards
+  //   count
+  // }]]
+  // Each top level array represents a column on the decklist view
+  // Each nested array represents the types (or subtypes) of cards within each subtype
   formatCards(cards, cardTypes, decklist) {
     let row1CardTypes = cardTypes.filter((type) =>
       [
@@ -87,9 +97,75 @@ export default class Writeup extends Component {
     return [row1Cards, row2Cards];
   }
 
+  // Counts the number of individual cards in a decklist are from a list of distinct cards
+  countCards(cards, decklist) {
+    let count = 0;
+    cards.forEach((card) => {
+      count += decklist.cardSlots[card.id];
+    });
+    return count;
+  }
+
+  // Collect the ice from a list of cards and separate them by subtype
+  formatIce(cards) {
+    cards = cards.filter((card) => card.cardTypeId == 'ice');
+
+    let barriers = [];
+    let codeGates = [];
+    let sentries = [];
+    let multis = [];
+    let misc = [];
+
+    cards.forEach((card) => {
+      let isBarrier = card.cardSubtypeIds.includes('barrier');
+      let isCodeGate = card.cardSubtypeIds.includes('code_gate');
+      let isSentry = card.cardSubtypeIds.includes('sentry');
+
+      if (
+        (isBarrier && isCodeGate) ||
+        (isBarrier && isSentry) ||
+        (isCodeGate && isSentry)
+      ) {
+        multis.push(card);
+      } else if (isBarrier) {
+        barriers.push(card);
+      } else if (isCodeGate) {
+        codeGates.push(card);
+      } else if (isSentry) {
+        sentries.push(card);
+      } else {
+        misc.push(card);
+      }
+    });
+
+    return { barriers, codeGates, sentries, multis, misc };
+  }
+
+  // Collect the programs from a list of cards and separate them by icebreaker vs non-icebreaker
+  formatPrograms(cards) {
+    cards = cards.filter((card) => card.cardTypeId == 'program');
+
+    let icebreakers = cards.filter((card) =>
+      card.cardSubtypeIds.includes('icebreaker'),
+    );
+    let misc = cards.filter(
+      (card) => !card.cardSubtypeIds.includes('icebreaker'),
+    );
+
+    return { icebreakers, misc };
+  }
+
+  get cardsByCategory() {
+    return this.formatCards(
+      this.args.decklist.cards,
+      this.args.cardTypes,
+      this.args.decklist,
+    );
+  }
+
   <template>
     <div class='row mt-4 ms-4'>
-      {{#each @cards as |col|}}
+      {{#each this.cardsByCategory as |col|}}
         <div class='col-6'>
           {{#each col as |category|}}
             {{#if category.cards}}
@@ -101,8 +177,11 @@ export default class Writeup extends Component {
               <ul class='list-unstyled secondary mt-2'>
                 {{#each category.cards as |card|}}
                   <li>
-                    {{this.quantity card.id}}x
-                    <CardLinkTo @printing={{card.printing}}>
+                    {{get @decklist.cardSlots card.id}}&times;
+                    <CardLinkTo
+                      @printing={{card.latestPrinting}}
+                      @card={{card}}
+                    >
                       {{card.title}}
                       {{#if
                         (and

@@ -102,7 +102,7 @@
         {{#if (eq this.displayType "writeup")}}
           <Deck::Writeup
             @decklist={{@model.decklist}}
-            @cards={{@model.cardsByCategory}}
+            @cardTypes={{@model.cardTypes}}
           />
         {{/if}}
       </div>

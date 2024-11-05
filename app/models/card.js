@@ -56,4 +56,12 @@ export default class CardModel extends Model {
   @hasMany('card-subtype', { async: true, inverse: 'cards' }) cardSubtypes;
   @hasMany('printing', { async: false, inverse: 'card' }) printings;
   @hasMany('ruling', { async: true, inverse: 'card' }) rulings;
+
+  get latestPrinting() {
+    let print = this.printings.find(
+      (print) => print.id == this.latestPrintingId,
+    );
+
+    return print ?? this.printings[0];
+  }
 }

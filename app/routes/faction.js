@@ -23,9 +23,6 @@ export default class FactionRoute extends Route {
       })
       .then((ids) => {
         ids.forEach((id) => {
-          id.latestPrinting = id.printings.find(
-            (p) => p.id == id.latestPrintingId,
-          );
           id.decklists = this.store.query('decklist', {
             filter: { identity_card_id: id.id },
             sort: '-created_at',
