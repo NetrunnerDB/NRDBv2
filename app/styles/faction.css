@@ -2,36 +2,47 @@
 .anarch {
   color: var(--color--anarch) !important;
 }
+
 .criminal {
   color: var(--color--criminal) !important;
 }
+
 .shaper {
   color: var(--color--shaper) !important;
 }
+
 .haas-bioroid {
   color: var(--color--haas-bioroid) !important;
 }
+
 .jinteki {
   color: var(--color--jinteki) !important;
 }
+
 .nbn {
   color: var(--color--nbn) !important;
 }
+
 .weyland-consortium {
   color: var(--color--weyland-consortium) !important;
 }
+
 .adam {
   color: var(--color--adam) !important;
 }
+
 .apex {
   color: var(--color--apex) !important;
 }
+
 .sunny-lebeau {
   color: var(--color--sunny-lebeau) !important;
 }
+
 .neutral-corp {
   color: var(--color--neutral-corp) !important;
 }
+
 .neutral-runner {
   color: var(--color--neutral-runner) !important;
 }
@@ -40,36 +51,47 @@
 .bg-anarch {
   background-color: var(--color--anarch) !important;
 }
+
 .bg-criminal {
   background-color: var(--color--criminal) !important;
 }
+
 .bg-shaper {
   background-color: var(--color--shaper) !important;
 }
+
 .bg-haas-bioroid {
   background-color: var(--color--haas-bioroid) !important;
 }
+
 .bg-jinteki {
   background-color: var(--color--jinteki) !important;
 }
+
 .bg-nbn {
   background-color: var(--color--nbn) !important;
 }
+
 .bg-weyland-consortium {
   background-color: var(--color--weyland-consortium) !important;
 }
+
 .bg-adam {
   background-color: var(--color--adam) !important;
 }
+
 .bg-apex {
   background-color: var(--color--apex) !important;
 }
+
 .bg-sunny-lebeau {
   background-color: var(--color--sunny-lebeau) !important;
 }
+
 .bg-neutral-corp {
   background-color: var(--color--neutral-corp) !important;
 }
+
 .bg-neutral-runner {
   background-color: var(--color--neutral-runner) !important;
 }
@@ -78,36 +100,47 @@
 .border-anarch {
   border-color: var(--color--anarch) !important;
 }
+
 .border-criminal {
   border-color: var(--color--criminal) !important;
 }
+
 .border-shaper {
   border-color: var(--color--shaper) !important;
 }
+
 .border-haas-bioroid {
   border-color: var(--color--haas-bioroid) !important;
 }
+
 .border-jinteki {
   border-color: var(--color--jinteki) !important;
 }
+
 .border-nbn {
   border-color: var(--color--nbn) !important;
 }
+
 .border-weyland-consortium {
   border-color: var(--color--weyland-consortium) !important;
 }
+
 .border-adam {
   border-color: var(--color--adam) !important;
 }
+
 .border-apex {
   border-color: var(--color--apex) !important;
 }
+
 .border-sunny-lebeau {
   border-color: var(--color--sunny-lebeau) !important;
 }
+
 .border-neutral-corp {
   border-color: var(--color--neutral-corp) !important;
 }
+
 .border-neutral-runner {
   border-color: var(--color--neutral-runner) !important;
 }
@@ -128,18 +161,18 @@
   position: relative;
 }
 
-.bg-img-anarch:before,
-.bg-img-criminal:before,
-.bg-img-shaper:before,
-.bg-img-haas-bioroid:before,
-.bg-img-jinteki:before,
-.bg-img-nbn:before,
-.bg-img-weyland-consortium:before,
-.bg-img-adam:before,
-.bg-img-apex:before,
-.bg-img-sunny-lebeau:before,
-.bg-img-neutral-corp:before,
-.bg-img-neutral-runner:before {
+.bg-img-anarch::before,
+.bg-img-criminal::before,
+.bg-img-shaper::before,
+.bg-img-haas-bioroid::before,
+.bg-img-jinteki::before,
+.bg-img-nbn::before,
+.bg-img-weyland-consortium::before,
+.bg-img-adam::before,
+.bg-img-apex::before,
+.bg-img-sunny-lebeau::before,
+.bg-img-neutral-corp::before,
+.bg-img-neutral-runner::before {
   content: " ";
   display: block;
   position: absolute;
@@ -182,44 +215,52 @@
   background-position: 105% 55%;
   background-size: 40%;
 } */
-.bg-img-adam:before {
+.bg-img-adam::before {
   background-position: 110% 42%;
   background-size: 50%;
-}
-
-.bg-img-anarch:before {
-  background-image: url("image/faction/monochrome/anarch.png");
-}
-.bg-img-criminal:before {
-  background-image: url("image/faction/monochrome/criminal.png");
-}
-.bg-img-shaper:before {
-  background-image: url("image/faction/monochrome/shaper.png");
-}
-.bg-img-haas-bioroid:before {
-  background-image: url("image/faction/monochrome/haas-bioroid.png");
-}
-.bg-img-jinteki:before {
-  background-image: url("image/faction/monochrome/jinteki.png");
-}
-.bg-img-nbn:before {
-  background-image: url("image/faction/monochrome/nbn.png");
-}
-.bg-img-weyland-consortium:before {
-  background-image: url("image/faction/monochrome/weyland-consortium.png");
-}
-.bg-img-adam:before {
   background-image: url("image/faction/monochrome/adam.png");
 }
-.bg-img-apex:before {
+
+.bg-img-anarch::before {
+  background-image: url("image/faction/monochrome/anarch.png");
+}
+
+.bg-img-criminal::before {
+  background-image: url("image/faction/monochrome/criminal.png");
+}
+
+.bg-img-shaper::before {
+  background-image: url("image/faction/monochrome/shaper.png");
+}
+
+.bg-img-haas-bioroid::before {
+  background-image: url("image/faction/monochrome/haas-bioroid.png");
+}
+
+.bg-img-jinteki::before {
+  background-image: url("image/faction/monochrome/jinteki.png");
+}
+
+.bg-img-nbn::before {
+  background-image: url("image/faction/monochrome/nbn.png");
+}
+
+.bg-img-weyland-consortium::before {
+  background-image: url("image/faction/monochrome/weyland-consortium.png");
+}
+
+.bg-img-apex::before {
   background-image: url("image/faction/monochrome/apex.png");
 }
-.bg-img-sunny-lebeau:before {
+
+.bg-img-sunny-lebeau::before {
   background-image: url("image/faction/monochrome/sunny-lebeau.png");
 }
-.bg-img-neutral-corp:before {
+
+.bg-img-neutral-corp::before {
   background-image: url("image/faction/monochrome/neutral-corp.png");
 }
-.bg-img-neutral-runner:before {
+
+.bg-img-neutral-runner::before {
   background-image: url("image/faction/monochrome/neutral-runner.png");
 }

@@ -44,7 +44,6 @@
   --color--link-active: #bbb;
   --color--table-row-alt-a: var(--color--grey-alt);
   --color--table-row-alt-b: var(--color--grey);
-
   --color--anarch: #e26b35;
   --color--criminal: #194c9b;
   --color--shaper: #4cb148;
@@ -57,7 +56,6 @@
   --color--sunny-lebeau: #939598;
   --color--neutral-corp: #5e5e5e;
   --color--neutral-runner: #919191;
-
   --color--legality-text: var(--color--default);
   --color--legality-legal: #698146;
   --color--legality-not-legal: #494949;

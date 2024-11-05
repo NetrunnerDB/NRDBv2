@@ -10,8 +10,9 @@
 }
 
 /* sm */
-@media (device-width >= 576px) {
-}
+
+/* @media (device-width >= 576px) {
+} */
 
 @media (device-width <= 767px) {
   .visible-md {
@@ -24,8 +25,9 @@
 }
 
 /* md */
-@media (device-width >= 768px) {
-}
+
+/* @media (device-width >= 768px) {
+} */
 
 @media (device-width <= 991px) {
   .visible-lg {
@@ -38,8 +40,9 @@
 }
 
 /* lg */
-@media (device-width >= 992px) {
-}
+
+/* @media (device-width >= 992px) {
+} */
 
 @media (device-width <= 1199px) {
   .visible-xl {
@@ -66,8 +69,9 @@
 }
 
 /* xxl */
-@media (device-width >= 1400px) {
-}
+
+/* @media (device-width >= 1400px) {
+} */
 
 .hidden-xxl {
   display: none !important;
@@ -76,16 +80,21 @@
 /* ROW COLS */
 .row-cols-7 > * {
   flex: 0 0 auto;
+  /* stylelint-disable-next-line number-max-precision */
   width: 14.2857142857%;
 }
+
 .row-cols-8 > * {
   flex: 0 0 auto;
   width: 12.5%;
 }
+
 .row-cols-9 > * {
   flex: 0 0 auto;
+  /* stylelint-disable-next-line number-max-precision */
   width: 11.111111111%;
 }
+
 .row-cols-10 > * {
   flex: 0 0 auto;
   width: 10%;
@@ -95,27 +104,35 @@
 .fw-100 {
   font-weight: 100;
 }
+
 .fw-200 {
   font-weight: 200;
 }
+
 .fw-300 {
   font-weight: 300;
 }
+
 .fw-400 {
   font-weight: 400;
 }
+
 .fw-500 {
   font-weight: 500;
 }
+
 .fw-600 {
   font-weight: 600;
 }
+
 .fw-700 {
   font-weight: 700;
 }
+
 .fw-800 {
   font-weight: 800;
 }
+
 .fw-900 {
   font-weight: 900;
 }
