@@ -100,47 +100,10 @@
       <div class="col-6">
         <DecklistBox @decklist={{@model.decklist}} />
         {{#if (eq this.displayType "writeup")}}
-          <div class="row mt-4 ms-4">
-            {{#each @model.cardsByCategory as |col|}}
-              <div class="col-6">
-                {{#each col as |category|}}
-                  {{#if category.cards}}
-                    <p class="font-size-18">
-                      <Icon @icon={{category.cardTypeId}} />
-                      {{category.name}}
-                      ({{category.count}})
-                    </p>
-                    <ul class="list-unstyled secondary mt-2">
-                      {{#each category.cards as |card|}}
-                        <li>
-                          {{this.quantity card.id}}x
-                          <Card::LinkTo @printing={{card.printing}}>
-                            {{card.title}}
-                            {{#if
-                              (and
-                                (gt card.influenceCost 0)
-                                (not-eq
-                                  card.factionId @model.decklist.factionId
-                                )
-                              )
-                            }}
-                              {{! TODO: Alliance cards and neutral IDs }}
-                              <Card::InfluencePips
-                                @factionId={{card.factionId}}
-                                @count={{card.influenceCost}}
-                                @hideEmpty="true"
-                                @repeat={{this.quantity card.id}}
-                              />
-                            {{/if}}
-                          </Card::LinkTo>
-                        </li>
-                      {{/each}}
-                    </ul>
-                  {{/if}}
-                {{/each}}
-              </div>
-            {{/each}}
-          </div>
+          <Deck::Writeup
+            @decklist={{@model.decklist}}
+            @cards={{@model.cardsByCategory}}
+          />
         {{/if}}
       </div>
 
@@ -161,6 +124,7 @@
           )
         }}
           <button
+            type="button"
             class="position-absolute px-2"
             style="bottom:0;right:0"
             {{on "click" this.displayWriteUp}}
@@ -221,12 +185,21 @@
                 <div class="col">
                   <Card::LinkTo @id={{card.latestPrintingId}}>
                     <div class="decklist-card">
-                      <img src="{{card.printing.images.nrdb_classic.large}}" />
+                      <img
+                        src="{{card.printing.images.nrdb_classic.large}}"
+                        alt={{card.title}}
+                      />
                       {{#if (gt (get @model.decklist.cardSlots card.id) 1)}}
-                        <img src="{{card.printing.images.nrdb_classic.tiny}}" />
+                        <img
+                          src="{{card.printing.images.nrdb_classic.tiny}}"
+                          alt={{card.title}}
+                        />
                       {{/if}}
                       {{#if (gt (get @model.decklist.cardSlots card.id) 2)}}
-                        <img src="{{card.printing.images.nrdb_classic.tiny}}" />
+                        <img
+                          src="{{card.printing.images.nrdb_classic.tiny}}"
+                          alt={{card.title}}
+                        />
                       {{/if}}
                     </div>
                   </Card::LinkTo>
