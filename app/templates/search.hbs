@@ -1,0 +1,17 @@
+{{page-title "Search"}}
+
+<main class="pb-4">
+
+  <Navbar />
+
+  <div class="container">
+    {{! BUTTON - Refine search }}
+    {{! DISPLAY - Showing X Results }}
+  </div>
+
+  <div class="container">
+    {{#if @model.printings.length}}
+      <Card::List @printings={{@model.printings}} />
+    {{/if}}
+  </div>
+</main>

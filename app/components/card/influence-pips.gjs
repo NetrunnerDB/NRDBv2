@@ -1,15 +1,47 @@
 import Component from '@glimmer/component';
+import Hyphenate from '../../utils/hyphenate';
+import { Range } from 'netrunnerdb/helpers/range';
 
-export default class InfluencePipsComponent extends Component {
-  get influence() {
-    let inf = '';
-    for (let i = 0; i < this.args.printing.influenceCost; i++) {
-      inf += '•';
-    }
-    return inf;
+// Note: this.args.hideEmpty is effectively always true if this.args.repeat is set
+
+export default class CardInfluencePips extends Component {
+  constructor(...args) {
+    super(...args);
+
+    this.filled = this.args.count;
+    this.empty = 5 - this.args.count;
   }
 
+  mod = () => {
+    return (this.args.count * this.args.repeat) % 5;
+  };
+  div = () => {
+    return Math.floor((this.args.count * this.args.repeat) / 5);
+  };
+
   <template>
-    <span class="influence influence-{{ @printing.factionId }}">{{ this.influence }}</span>
+    <span class='influence-pips {{Hyphenate @factionId}}'>
+      {{#if @repeat}}
+        {{#each (Range (this.div))}}●●●●●{{/each}}
+        {{#each (Range (this.mod))}}●{{/each}}
+      {{else}}
+        <span>
+          {{#each (Range this.filled)}}●{{/each}}
+        </span>
+        <span class='empty'>
+          {{#unless @hideEmpty}}
+            {{#each (Range this.empty)~}}○{{~/each}}
+          {{/unless}}
+        </span>
+      {{/if}}
+    </span>
   </template>
 }
+
+const SmallInfluencePips = <template>
+  <span class='influence influence-{{@printing.factionId}}'>
+    {{#each (Range @printing.influenceCost)~}}•{{~/each}}
+  </span>
+</template>;
+
+export { SmallInfluencePips };

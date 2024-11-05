@@ -3,9 +3,12 @@ import { LinkTo } from '@ember/routing';
 import { hash } from '@ember/helper';
 import { htmlSafe } from '@ember/template';
 import { and, eq } from 'netrunnerdb/utils/template-operators';
+import Hyphenate from '../../utils/hyphenate';
+import { TruncateFaction } from 'netrunnerdb/helpers/truncate-faction';
+import { TruncateType } from 'netrunnerdb/helpers/truncate-type';
 
 import Icon from '../icon';
-import InfluencePips from './influence-pips';
+import { SmallInfluencePips } from './influence-pips';
 import Stats from './stats';
 import Text from './text';
 
@@ -14,7 +17,7 @@ function backgroundImage(image) {
 }
 
 <template>
-  <div class='card-text-box'>
+  <div class='game-card-text-box'>
     {{#if @showThumbnail}}
       <div class='hex'>
         <div class='hex-border'>
@@ -22,7 +25,10 @@ function backgroundImage(image) {
             {{! template-lint-disable no-inline-styles }}
             {{! template-lint-disable style-concatenation }}
             <div
-              class='hex-image thumbnail-{{@printing.cardTypeId}}'
+              class='hex-image thumbnail-{{Hyphenate @printing.cardTypeId}}{{if
+                  (eq @printing.releasedBy "fantasy_flight_games")
+                  "-ffg"
+                }}'
               style={{backgroundImage @printing.images.nrdb_classic.small}}
             ></div>
           </div>
@@ -30,44 +36,49 @@ function backgroundImage(image) {
       </div>
     {{/if}}
     {{#if @showTitle}}
-      <div class='card-title'>
+      <div class='game-card-title font-size-20'>
         {{#if @printing.isUnique}}♦ {{/if}}{{@printing.title}}
       </div>
     {{/if}}
-    <div class='card-details'>
-      <span class='card-type'><b>{{@printing.cardType.name}}:</b></span>
-      <span class='card-subtypes'>{{@printing.displaySubtypes}}</span>
-      <span class='card-stats'><Stats @printing={{@printing}} /></span>
+    <div class='game-card-details {{if @showThumbnail "me-4"}}'>
+      <span class='game-card-type'>
+        <b>{{TruncateType @printing.cardType.name}}:</b>
+      </span>
+      <span class='game-card-subtypes'>{{@printing.displaySubtypes}}</span>
+      <span class='game-card-stats'><Stats @printing={{@printing}} /></span>
     </div>
     {{#if @printing.text}}
-      <div class='card-text border-{{@printing.factionId}}'>
+      <div class='game-card-text border-{{Hyphenate @printing.factionId}}'>
         <Text @text={{@printing.text}} />
       </div>
     {{/if}}
     {{#if @showFlavor}}
       {{#if @printing.flavor}}
-        <div class='card-flavor'>
+        <div class='game-card-flavor'>
           {{htmlSafe @printing.flavor}}
         </div>
       {{/if}}
     {{/if}}
-    <div>
+    <div class='game-card-footer'>
       <p>
-        <InfluencePips @printing={{@printing}} /><Icon
-          @icon={{@printing.factionId}}
-        />
-        {{@printing.faction.name}}
+        <span class='{{Hyphenate @printing.factionId}}'>
+          <SmallInfluencePips @printing={{@printing}} /><Icon
+            @icon={{@printing.factionId}}
+          />
+        </span>
+        {{TruncateFaction @printing.faction.name}}
         •
         <Icon @icon={{@printing.cardSetId}} />
         <LinkTo
-          @route='page.set'
+          @route='set'
           @model='{{@printing.cardSet.id}}'
         >{{@printing.cardSet.name}}</LinkTo>
+        •
         {{@printing.position}}
       </p>
     </div>
     {{#if @showIllustrators}}
-      <div class='card-illustrator'>
+      <div class='game-card-illustrator'>
         <p>
           Illustrated by
           {{#each @printing.illustratorNames as |name|}}
@@ -80,7 +91,7 @@ function backgroundImage(image) {
       </div>
     {{/if}}
     {{#if @showProduction}}
-      <div class='card-producer'>
+      <div class='game-card-producer'>
         <p>
           {{#if
             (and

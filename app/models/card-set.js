@@ -8,6 +8,7 @@ export default class CardSetModel extends Model {
   @attr cardSetTypeId;
   @attr legacyCode;
   @attr firstPrintingId;
+  @attr releasedBy;
   @attr('date') updatedAt;
 
   @belongsTo('card-cycle', { async: true, inverse: 'cardSets' }) cardCycle;

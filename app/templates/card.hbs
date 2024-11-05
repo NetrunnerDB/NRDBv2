@@ -1,0 +1,78 @@
+{{page-title @model.cardSet.name}}
+
+<main class="pb-4">
+
+  <Navbar />
+
+  <Titlebar
+    @title="Card"
+    @subtitle={{@model.card.title}}
+    @icon={{@model.cardSet.cardCycleId}}
+  >
+    {{#if @model.prevPrinting}}
+      {{! template-lint-disable no-inline-styles }}
+      <Card::LinkTo
+        @id={{@model.prevPrinting.id}}
+        class="button round position-absolute end-0"
+        style="top: 0; transform: translateY(-40%)"
+      >
+        <FaIcon @icon="arrow-left-long" />
+        {{@model.prevPrinting.title}}
+      </Card::LinkTo>
+    {{/if}}
+    {{#if @model.nextPrinting}}
+      <Card::LinkTo
+        @id={{@model.nextPrinting.id}}
+        class="button round position-absolute end-0"
+        style="bottom: 0; transform: translateY(40%)"
+      >
+        {{@model.nextPrinting.title}}
+        <FaIcon @icon="arrow-right-long" />
+      </Card::LinkTo>
+    {{/if}}
+  </Titlebar>
+
+  <div class="container">
+    <div class="mt-4">
+      <Card::FullDisplay
+        @printing={{@model.printing}}
+        @allPrintings={{@model.allPrintings}}
+        @eternalSnapshot={{@model.eternalSnapshot}}
+        @standardSnapshot={{@model.standardSnapshot}}
+        @startupSnapshot={{@model.startupSnapshot}}
+      />
+    </div>
+
+    <div class="mt-4">
+      <BsTab @type="pills" as |tab|>
+        <tab.pane @title="Reviews">
+          <div class="mt-4">
+            <div class="mb-5">
+              <Review />
+            </div>
+            <div class="mb-5">
+              <Review />
+            </div>
+          </div>
+        </tab.pane>
+        <tab.pane @title="Rulings ">
+          {{#if @model.rulings}}
+            {{#each @model.rulings as |ruling|}}
+              <div class="mt-4">
+                <Ruling @ruling={{ruling}} />
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="ruling-answer mt-4">
+              This card has no rulings!
+            </div>
+          {{/if}}
+        </tab.pane>
+        <tab.pane @title="Alt arts">
+          <p> ... </p>
+        </tab.pane>
+      </BsTab>
+    </div>
+
+  </div>
+</main>

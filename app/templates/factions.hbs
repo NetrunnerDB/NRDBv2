@@ -1,0 +1,81 @@
+{{page-title "Factions"}}
+
+<main class="pb-4">
+
+  <Navbar />
+
+  <div class="container">
+    <FancyHeader>Runner Factions</FancyHeader>
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center gy-4"
+    >
+      {{#each @model.runners as |faction|}}
+        <div class="col">
+          <LinkTo @route="faction" @model="{{faction.id}}">
+            <div class="card">
+              <img
+                alt={{faction.name}}
+                src="assets/image/faction/banner/{{faction.id}}.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-{{faction.idHyphenated}}">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  {{faction.name}}
+                </h5>
+              </div>
+            </div>
+          </LinkTo>
+        </div>
+      {{/each}}
+    </div>
+
+    <FancyHeader>Corp Factions</FancyHeader>
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center gy-4"
+    >
+      {{#each @model.corps as |faction|}}
+        <div class="col">
+          <LinkTo @route="faction" @model="{{faction.id}}">
+            <div class="card">
+              <img
+                alt={{faction.name}}
+                src="assets/image/faction/banner/{{faction.id}}.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-{{faction.idHyphenated}}">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  {{faction.name}}
+                </h5>
+              </div>
+            </div>
+          </LinkTo>
+        </div>
+      {{/each}}
+    </div>
+
+    <FancyHeader>Mini Factions</FancyHeader>
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center gy-4"
+    >
+      {{#each @model.minis as |faction|}}
+        <div class="col">
+          <LinkTo @route="faction" @model="{{faction.id}}">
+            <div class="card">
+              <img
+                alt={{faction.name}}
+                src="assets/image/faction/banner/{{faction.id}}.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-{{faction.idHyphenated}}">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  {{faction.name}}
+                </h5>
+              </div>
+            </div>
+          </LinkTo>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+
+</main>

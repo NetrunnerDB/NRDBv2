@@ -1,5 +1,10 @@
-import { format } from './quote';
+import { svgJar } from 'ember-svg-jar/helpers/svg-jar';
+import Hyphenate from '../utils/hyphenate';
 
 <template>
-  <i class="icon-{{format @icon}} {{format @icon}}"></i>
+  {{svgJar
+    (Hyphenate @icon)
+    height='1em'
+    style='max-width: 100%; transform: translateY(-2px)'
+  }}
 </template>

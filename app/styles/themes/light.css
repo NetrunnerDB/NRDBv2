@@ -1,0 +1,50 @@
+:root {
+  /* CONST COLOURS */
+  --color--offwhite: #909090;
+  --color--grey: #262626;
+  --color--grey-hover: #202020;
+  --color--grey-active: #060606;
+  --color--grey-text: white;
+  --color--grey-hover-text: white;
+  --color--grey-active-text: white;
+  --color--blue: #1a62ed;
+  --color--blue-hover: #083ba1;
+  --color--blue-active: #021844;
+  --color--blue-text: white;
+  --color--blue-hover-text: white;
+  --color--blue-active-text: white;
+
+  /* DERIVED */
+  --color--default: white;
+  --color--default-bg: #0e0e11;
+  --color--default-border: var(--color--grey);
+  --color--secondary: var(--color--offwhite);
+  --color--secondary-bg: #1b1b1e;
+  --color--secondary-border: var(--color--grey);
+  --color--header-bg: #14141a;
+  --color--button: var(--color--offwhite);
+  --color--button-bg: #14141a;
+  --color--button-border: var(--color--grey);
+  --color--button-hover: var(--color--offwhite);
+  --color--button-hover-bg: #0f0f10;
+  --color--button-hover-border: var(--color--grey);
+  --color--button-active: #0e0e11;
+  --color--button-active-bg: var(--color--offwhite);
+  --color--button-active-border: var(--color--offwhite);
+  --color--box-bg: #14141a;
+  --color--box-border: var(--color--grey);
+  --color--box-secondary-bg: var(--color--grey);
+  --color--box-secondary-border: var(--color--grey);
+  --color--anarch: #e26b35;
+  --color--criminal: #194c9b;
+  --color--shaper: #4cb148;
+  --color--haas-bioroid: #794d94;
+  --color--jinteki: #ba3339;
+  --color--nbn: #ffde00;
+  --color--weyland-consortium: #516751;
+  --color--adam: #a89c33;
+  --color--apex: #000;
+  --color--sunny-lebeau: #939598;
+  --color--neutral-corp: #5e5e5e;
+  --color--neutral-runner: #919191;
+}

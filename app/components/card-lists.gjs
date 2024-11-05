@@ -47,7 +47,6 @@ export default class CardListsComponent extends Component {
   }
 
   <template>
-    {{@foo}}
     <div class='card flex-grow-1' id='nav-main-content'>
       <div class='card-header'>
         <ul class='nav nav-tabs nav-fill card-header-tabs'>
@@ -96,12 +95,14 @@ export default class CardListsComponent extends Component {
               <tbody>
                 {{#each (sortBy 'id:asc' @printings) as |printing|}}
                   <tr>
-                    <td><Icon @icon={{printing.cardCycleId}} />{{printing.cardSet.name}}
+                    <td><Icon
+                        @icon={{printing.cardCycleId}}
+                      />{{printing.cardSet.name}}
                       {{printing.position}}</td>
                     <td>
-                      <CardLinkTo
-                        @printing={{printing}}
-                      >{{#if printing.isUnique }}♦ {{/if}}{{printing.title}}</CardLinkTo>
+                      <CardLinkTo @printing={{printing}}>{{#if
+                          printing.isUnique
+                        }}♦ {{/if}}{{printing.title}}</CardLinkTo>
                     </td>
                     <td><Icon @icon='{{printing.factionId}}' /><InfluencePips
                         @printing={{printing}}
@@ -136,8 +137,12 @@ export default class CardListsComponent extends Component {
           {{#each this.printingsTableForImages as |row|}}
             <div class='row'>
               {{#each row as |p|}}
-                <div class='col-xl-3 col-lg-3 col-md-6 card-art-container px-2 pb-3'>
-                  <CardLinkTo @printing={{ p }}><Image src={{p.images.nrdb_classic.large}} /></CardLinkTo>
+                <div
+                  class='col-xl-3 col-lg-3 col-md-6 card-art-container px-2 pb-3'
+                >
+                  <CardLinkTo @printing={{p}}><Image
+                      src={{p.images.nrdb_classic.large}}
+                    /></CardLinkTo>
                 </div>
               {{/each}}
             </div>
@@ -148,13 +153,14 @@ export default class CardListsComponent extends Component {
             {{#each this.printingsTableForTextOnly as |row|}}
               <div class='row'>
                 {{#each row as |p|}}
-                  <div class="card col-4 px-md-0">
-                    <div class="card-header">
-                      <div class="card-title">
-                        <CardLinkTo @printing={{p}}>{{#if p.isUnique }}♦ {{/if}}{{p.title}}</CardLinkTo>
+                  <div class='card col-4 px-md-0'>
+                    <div class='card-header'>
+                      <div class='card-title'>
+                        <CardLinkTo @printing={{p}}>{{#if p.isUnique}}♦
+                          {{/if}}{{p.title}}</CardLinkTo>
                       </div>
                     </div>
-                    <div class="card-body">
+                    <div class='card-body'>
                       <CardTextBox
                         @cardSet={{@p.cardSet}}
                         @cardType={{@p.cardType}}

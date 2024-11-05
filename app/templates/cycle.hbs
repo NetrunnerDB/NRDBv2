@@ -1,0 +1,40 @@
+{{page-title @model.cardCycle.name}}
+
+<main class="pb-4">
+
+  <Navbar />
+
+  <Titlebar
+    @title="Cycle"
+    @subtitle={{@model.cardCycle.name}}
+    @icon={{@model.cardCycle.id}}
+  >
+    <div class="d-flex position-relative mt-4 flex-column">
+      {{#if @model.prevCycle}}
+        <LinkTo
+          @model={{@model.prevCycle.id}}
+          class="button round position-absolute end-0"
+          style="transform: translateY(10px)"
+        >
+          <FaIcon @icon="arrow-left-long" />
+          {{@model.prevCycle.name}}
+        </LinkTo>
+      {{/if}}
+      {{#if @model.nextCycle}}
+        <LinkTo
+          @model={{@model.nextCycle.id}}
+          class="button round position-absolute end-0"
+          style="transform: translateY(-100%)"
+        >
+          {{@model.nextCycle.name}}
+          <FaIcon @icon="arrow-right-long" />
+        </LinkTo>
+      {{/if}}
+    </div>
+  </Titlebar>
+
+  <div class="container">
+    <Card::List @printings={{sort-by "position" @model.cardCycle.printings}} />
+  </div>
+
+</main>
