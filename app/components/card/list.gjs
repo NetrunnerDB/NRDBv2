@@ -55,6 +55,7 @@ export default class CardListComponent extends Component {
             <td>{{printing.displaySubtypes}}</td>
             <td>
               {{#if (notEmpty printing.cost)}}
+                {{! template-lint-disable simple-unless }}
                 {{#unless
                   (or
                     (eq printing.sideId 'runner')

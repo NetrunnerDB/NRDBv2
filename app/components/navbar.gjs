@@ -41,6 +41,7 @@ class Navbar extends Component {
             </div>
             <div class='d-lg-none'>
               <Collapse @collapsed={{this.isCollapsed}} class='navbar-collapse'>
+                {{! template-lint-disable no-invalid-interactive }}
                 <ul
                   class='navbar-nav text-center'
                   {{on 'click' this.closeDropdown}}
@@ -112,7 +113,12 @@ class Navbar extends Component {
 
           <div class='col-12 col-lg-6'>
             <form>
-              <input class='w-100' type='text' placeholder='Search' />
+              <input
+                class='w-100'
+                type='text'
+                placeholder='Search'
+                aria-label='Search'
+              />
             </form>
           </div>
 
@@ -136,6 +142,7 @@ class Navbar extends Component {
       </div>
     </nav>
 
+    {{! template-lint-disable no-duplicate-landmark-elements }}
     <nav id='bottom-nav' class='col visible-lg py-2 font-size-14'>
       <div class='container py-2'>
         <div class='row'>
