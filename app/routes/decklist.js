@@ -11,11 +11,7 @@ export default class DecklistRoute extends Route {
     let decklist = await this.store.findRecord('decklist', params.id, {
       include: 'cards,cards.printings',
     });
-
-    let cards = decklist.cards.map((card) => {
-      card.printing = this.store.findRecord('printing', card.latestPrintingId);
-      return card;
-    });
+    let cards = decklist.cards;
 
     let cardsByType = {};
     cardTypes.forEach((type) => {
@@ -33,16 +29,6 @@ export default class DecklistRoute extends Route {
       countsByType[card.cardTypeId] += decklist.cardSlots[card.id];
     });
 
-    // Update the value of each printing's quantity to trick the CardList component into displaying the number of each card in the deck insteaad of its set
-    let printings = all(
-      cards.map((card) =>
-        card.printing.then((printing) => {
-          printing.quantity = decklist.cardSlots[card.id];
-          return printing;
-        }),
-      ),
-    );
-
-    return hash({ decklist, cardTypes, cardsByType, countsByType, printings });
+    return hash({ decklist, cardTypes, cardsByType, countsByType });
   }
 }
