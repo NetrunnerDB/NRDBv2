@@ -70,4 +70,16 @@ export default class PrintingModel extends Model {
   @attr cardPoolIds;
   @attr snapshotIds;
   @attr restrictions;
+
+  get tinyImage() {
+    return this.images.nrdb_classic.tiny;
+  }
+
+  get mediumImage() {
+    return this.images.nrdb_classic.medium;
+  }
+
+  get largeImage() {
+    return this.images.nrdb_classic.large;
+  }
 }

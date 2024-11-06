@@ -21,10 +21,6 @@ export default class DecklistController extends Controller {
     return htmlSafe(source);
   }
 
-  quantity = (cardId) => {
-    return this.model.decklist.cardSlots[cardId];
-  };
-
   constructor(...args) {
     super(...args);
 

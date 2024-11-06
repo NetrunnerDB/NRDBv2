@@ -170,7 +170,11 @@
 
     {{! CARDS }}
     {{#if (eq this.displayType "list")}}
-      <Card::List @printings={{@model.printings}} />
+      <Card::List @printings={{@model.decklist.cards}}>
+        <:quantity as |card|>
+          {{get @model.decklist.cardSlots card.id}}
+        </:quantity>
+      </Card::List>
     {{else if (eq this.displayType "images")}}
       {{#each @model.cardTypes as |type|}}
         {{#let (get @model.cardsByType type.id) as |cards|}}
@@ -183,21 +187,21 @@
             <div class="row row-cols-8 g-3">
               {{#each cards as |card|}}
                 <div class="col">
-                  <Card::LinkTo @id={{card.latestPrintingId}}>
+                  <Card::LinkTo @printing={{card.latestPrinting}}>
                     <div class="decklist-card">
                       <img
-                        src="{{card.printing.images.nrdb_classic.large}}"
+                        src="{{card.latestPrinting.largeImage}}"
                         alt={{card.title}}
                       />
                       {{#if (gt (get @model.decklist.cardSlots card.id) 1)}}
                         <img
-                          src="{{card.printing.images.nrdb_classic.tiny}}"
+                          src="{{card.latestPrinting.mediumImage}}"
                           alt={{card.title}}
                         />
                       {{/if}}
                       {{#if (gt (get @model.decklist.cardSlots card.id) 2)}}
                         <img
-                          src="{{card.printing.images.nrdb_classic.tiny}}"
+                          src="{{card.latestPrinting.tinyImage}}"
                           alt={{card.title}}
                         />
                       {{/if}}
