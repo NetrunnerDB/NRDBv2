@@ -59,7 +59,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    ENV.API_URL = 'https://api.netrunnerdb.com/api/';
+    ENV.API_URL = 'https://api-preview.netrunnerdb.com/api/v3';
     ENV['ember-simple-auth-oidc'].clientId = 'nrdb-v2';
     ENV['ember-simple-auth-oidc'].afterLogoutUri =
       'https://v2.netrunnerdb.com/';
