@@ -15,50 +15,50 @@ export default class CardCommunityComponent extends Component {
   }
 
   <template>
-    <div class="card flex-grow-1" id="nav-main-content">
-      <div class="card-header">
-        <ul class="nav nav-tabs nav-fill card-header-tabs">
-          <li class="nav-item">
+    <div class='card flex-grow-1' id='nav-main-content'>
+      <div class='card-header'>
+        <ul class='nav nav-tabs nav-fill card-header-tabs'>
+          <li class='nav-item'>
             <a
-              href="#"
-              role="button"
-              class="nav-link {{if (eq this.tab 'content-rulings') 'active'}}"
-              {{on "click" (fn this.setTab "content-rulings")}}
+              href='#'
+              role='button'
+              class='nav-link {{if (eq this.tab "content-rulings") "active"}}'
+              {{on 'click' (fn this.setTab 'content-rulings')}}
             >Rulings</a>
           </li>
-          <li class="nav-item">
+          <li class='nav-item'>
             <a
-              href="#"
-              role="button"
-              class="nav-link {{if (eq this.tab 'content-reviews') 'active'}}"
-              {{on "click" (fn this.setTab "content-reviews")}}
+              href='#'
+              role='button'
+              class='nav-link {{if (eq this.tab "content-reviews") "active"}}'
+              {{on 'click' (fn this.setTab 'content-reviews')}}
             >Reviews</a>
           </li>
-          <li class="nav-item">
+          <li class='nav-item'>
             <a
-              href="#"
-              role="button"
-              class="nav-link {{if (eq this.tab 'content-forum') 'active'}}"
-              {{on "click" (fn this.setTab "content-forum")}}
+              href='#'
+              role='button'
+              class='nav-link {{if (eq this.tab "content-forum") "active"}}'
+              {{on 'click' (fn this.setTab 'content-forum')}}
             >Forum</a>
           </li>
         </ul>
       </div>
 
-      <div class="card-body">
-        {{#if (eq this.tab "content-rulings")}}
-          <div id="content-rulings">
-            {{!-- TODO(plural): Put ruling display into a new component with pretty formatting. --}}
-            {{#each (sortBy "updatedAt:desc" @rulings) as |ruling|}}
-            <CardRuling @ruling={{ruling}} />
+      <div class='card-body'>
+        {{#if (eq this.tab 'content-rulings')}}
+          <div id='content-rulings'>
+            {{! TODO(plural): Put ruling display into a new component with pretty formatting. }}
+            {{#each (sortBy 'updatedAt:desc' @rulings) as |ruling|}}
+              <CardRuling @ruling={{ruling}} />
             {{/each}}
           </div>
-        {{else if (eq this.tab "content-reviews")}}
-          <div id="content-reviews">
+        {{else if (eq this.tab 'content-reviews')}}
+          <div id='content-reviews'>
             Reviews go here
           </div>
-        {{else if (eq this.tab "content-forum")}}
-          <div id="content-forum">
+        {{else if (eq this.tab 'content-forum')}}
+          <div id='content-forum'>
             Against all odds, here be a forum
           </div>
         {{/if}}

@@ -320,7 +320,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.textOperators}}
                 @selected={{this.searchParams.title_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.title_operator)}}
                 as |x|
               >
@@ -341,7 +341,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.textOperators}}
                 @selected={{this.searchParams.text_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.text_operator)}}
                 as |x|
               >
@@ -359,7 +359,11 @@ export default class SearchFormComponent extends Component {
         <legend>Printing Attributes</legend>
         <div class='row'>
           <div class='col-sm-3'>
-            <form.element @label='Latest Printing Only?' @property='latest_printing_only' as |el|>
+            <form.element
+              @label='Latest Printing Only?'
+              @property='latest_printing_only'
+              as |el|
+            >
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.yesNo}}
@@ -367,7 +371,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.latest_printing_only)}}
                 as |x|
               >
@@ -381,7 +385,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.position_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.position_operator)}}
                 as |x|
               >
@@ -402,7 +406,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.quantity_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.quantity_operator)}}
                 as |x|
               >
@@ -418,12 +422,16 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='num_printings_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='num_printings_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.num_printings_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.num_printings_operator)}}
                 as |x|
               >
@@ -446,7 +454,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.textOperators}}
                 @selected={{this.searchParams.flavor_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.flavor_operator)}}
                 as |x|
               >
@@ -462,14 +470,18 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-6'>
-            <form.element @label='Illustrators' @property='illustrator_id' as |el|>
+            <form.element
+              @label='Illustrators'
+              @property='illustrator_id'
+              as |el|
+            >
               <PowerSelectMultiple
                 @options={{@illustrators}}
                 @selected={{this.searchParams.illustrator_id}}
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.illustrator_id)}}
                 as |x|
               >
@@ -492,7 +504,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.side_id)}}
                 as |x|
               >
@@ -508,12 +520,13 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.faction_id)}}
                 as |x|
               >
                 <Icon @icon={{x.id}} />
-                {{x.name}}{{'         '}}
+                {{!template-lint-disable no-whitespace-for-layout}}
+                {{x.name}}'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
               </PowerSelectMultiple>
             </form.element>
           </div>
@@ -525,7 +538,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.card_type_id)}}
                 as |x|
               >
@@ -545,7 +558,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.card_subtype_id)}}
                 as |x|
               >
@@ -564,7 +577,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.is_unique)}}
                 as |x|
               >
@@ -575,12 +588,16 @@ export default class SearchFormComponent extends Component {
         </div>
         <div class='row'>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='influence_cost_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='influence_cost_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.influence_cost_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.influence_cost_operator)}}
                 as |x|
               >
@@ -601,7 +618,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.cost_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.cost_operator)}}
                 as |x|
               >
@@ -613,13 +630,19 @@ export default class SearchFormComponent extends Component {
             <form.element @controlType='text' @label='Cost' @property='cost' />
           </div>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='advancement_cost_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='advancement_cost_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.advancement_cost_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.advancement_cost_operator)}}
+                {{!-- @onFocus={{action.focus}} --}}
+                @onChange={{fn
+                  (mut this.searchParams.advancement_cost_operator)
+                }}
                 as |x|
               >
                 {{x.name}}
@@ -634,12 +657,16 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='agenda_points_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='agenda_points_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.agenda_points_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.agenda_points_operator)}}
                 as |x|
               >
@@ -657,12 +684,16 @@ export default class SearchFormComponent extends Component {
         </div>
         <div class='row'>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='base_link_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='base_link_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.base_link_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.base_link_operator)}}
                 as |x|
               >
@@ -678,12 +709,16 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='memory_usage_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='memory_usage_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.memory_usage_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.memory_usage_operator)}}
                 as |x|
               >
@@ -704,7 +739,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.strength_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.strength_operator)}}
                 as |x|
               >
@@ -720,12 +755,16 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='trash_cost_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='trash_cost_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.trash_cost_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.trash_cost_operator)}}
                 as |x|
               >
@@ -759,7 +798,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.additional_cost)}}
                 as |x|
               >
@@ -776,7 +815,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.advanceable)}}
                 as |x|
               >
@@ -797,7 +836,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.gains_subroutines)}}
                 as |x|
               >
@@ -806,11 +845,7 @@ export default class SearchFormComponent extends Component {
             </form.element>
           </div>
           <div class='col-sm-3'>
-            <form.element
-              @label='Has Interrupt?'
-              @property='interrupt'
-              as |el|
-            >
+            <form.element @label='Has Interrupt?' @property='interrupt' as |el|>
               <PowerSelect
                 @allowClear={{true}}
                 @options={{this.yesNo}}
@@ -818,7 +853,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.interrupt)}}
                 as |x|
               >
@@ -841,7 +876,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.on_encounter_effect)}}
                 as |x|
               >
@@ -862,7 +897,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.performs_trace)}}
                 as |x|
               >
@@ -880,7 +915,7 @@ export default class SearchFormComponent extends Component {
                 @searchField='name'
                 @triggerId={{el.id}}
                 @triggerRole='listbox'
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.rez_effect)}}
                 as |x|
               >
@@ -901,7 +936,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.trash_ability)}}
                 as |x|
               >
@@ -912,12 +947,16 @@ export default class SearchFormComponent extends Component {
         </div>
         <div class='row'>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='link_provided_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='link_provided_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.link_provided_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.link_provided_operator)}}
                 as |x|
               >
@@ -933,12 +972,16 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='mu_provided_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='mu_provided_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.mu_provided_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.mu_provided_operator)}}
                 as |x|
               >
@@ -954,13 +997,19 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='num_printed_subroutines_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='num_printed_subroutines_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.num_printed_subroutines_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.num_printed_subroutines_operator)}}
+                {{!-- @onFocus={{action.focus}} --}}
+                @onChange={{fn
+                  (mut this.searchParams.num_printed_subroutines_operator)
+                }}
                 as |x|
               >
                 {{x.name}}
@@ -975,13 +1024,19 @@ export default class SearchFormComponent extends Component {
             />
           </div>
           <div class='col-sm-1'>
-            <form.element @label='&nbsp;' @property='recurring_credits_provided_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='recurring_credits_provided_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.numericOperators}}
                 @selected={{this.searchParams.recurring_credits_provided_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
-                @onChange={{fn (mut this.searchParams.recurring_credits_provided_operator)}}
+                {{!-- @onFocus={{action.focus}} --}}
+                @onChange={{fn
+                  (mut this.searchParams.recurring_credits_provided_operator)
+                }}
                 as |x|
               >
                 {{x.name}}
@@ -1009,12 +1064,13 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.card_cycle)}}
                 as |x|
               >
                 <Icon @icon={{x.id}} />
-                {{x.name}}{{'         '}}
+                {{!template-lint-disable no-whitespace-for-layout}}
+                {{x.name}}'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
               </PowerSelectMultiple>
             </form.element>
           </div>
@@ -1026,7 +1082,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.card_set)}}
                 as |x|
               >
@@ -1049,7 +1105,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.snapshot)}}
                 as |x|
               >
@@ -1067,7 +1123,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.format)}}
                 as |x|
               >
@@ -1083,7 +1139,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.card_pool)}}
                 as |x|
               >
@@ -1103,7 +1159,7 @@ export default class SearchFormComponent extends Component {
                 @searchEnabled={{true}}
                 @searchField='name'
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.restriction_id)}}
                 as |x|
               >
@@ -1124,7 +1180,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.orgs}}
                 @selected={{this.searchParams.designed_by}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.designed_by)}}
                 as |x|
               >
@@ -1139,7 +1195,7 @@ export default class SearchFormComponent extends Component {
                 @options={{this.orgs}}
                 @selected={{this.searchParams.released_by}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.released_by)}}
                 as |x|
               >
@@ -1148,12 +1204,16 @@ export default class SearchFormComponent extends Component {
             </form.element>
           </div>
           <div class='col-sm-2'>
-            <form.element @label='&nbsp;' @property='attribution_operator' as |el|>
+            <form.element
+              @label='&nbsp;'
+              @property='attribution_operator'
+              as |el|
+            >
               <PowerSelect
                 @options={{this.textOperators}}
                 @selected={{this.searchParams.attribution_operator}}
                 @triggerId={{el.id}}
-                @onFocus={{action.focus}}
+                {{!-- @onFocus={{action.focus}} --}}
                 @onChange={{fn (mut this.searchParams.attribution_operator)}}
                 as |x|
               >
@@ -1188,7 +1248,7 @@ export default class SearchFormComponent extends Component {
               @options={{this.maxRecords}}
               @selected={{this.searchParams.max_records}}
               @triggerId={{el.id}}
-              @onFocus={{action.focus}}
+              {{!-- @onFocus={{action.focus}} --}}
               @onChange={{fn (mut this.searchParams.max_records)}}
               as |x|
             >
@@ -1202,7 +1262,7 @@ export default class SearchFormComponent extends Component {
               @options={{this.displayOptions}}
               @selected={{this.searchParams.display}}
               @triggerId={{el.id}}
-              @onFocus={{action.focus}}
+              {{!-- @onFocus={{action.focus}} --}}
               @onChange={{fn (mut this.searchParams.display)}}
               as |x|
             >

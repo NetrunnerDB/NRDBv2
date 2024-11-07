@@ -47,6 +47,17 @@ module.exports = {
       },
       extends: ['plugin:n/recommended'],
     },
+    // single-file components
+    {
+      files: ['**/*.gjs'],
+      parser: 'ember-eslint-parser',
+      plugins: ['ember'],
+      extends: [
+        'eslint:recommended',
+        'plugin:ember/recommended',
+        'plugin:ember/recommended-gjs',
+      ],
+    },
     {
       // test files
       files: ['tests/**/*-test.{js,ts}'],

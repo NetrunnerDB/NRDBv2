@@ -7,7 +7,7 @@ export default class StringTextElementComponent extends Component {
   }
 
   <template>
-    <div class="form-group">
+    <div class='form-group'>
       <label for='{{@id}}'>{{@name}}:</label>
       <div>
         <input type='text' id='{{@id}}' name='{{@id}}' value='{{@value}}' />

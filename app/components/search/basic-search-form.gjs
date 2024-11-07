@@ -74,11 +74,7 @@ export default class SearchFormComponent extends Component {
   <template>
     <h1>Basic Search Form</h1>
 
-    <BsForm
-      @formLayout='vertical'
-      @onSubmit={{this.doSearch}}
-      as |form|
-    >
+    <BsForm @formLayout='vertical' @onSubmit={{this.doSearch}} as |form|>
       <fieldset>
         <div class='row'>
           <div class='col-sm-12'>
@@ -99,7 +95,7 @@ export default class SearchFormComponent extends Component {
               @options={{this.maxRecords}}
               @selected={{this.selectedMaxRecords}}
               @triggerId={{el.id}}
-              @onFocus={{action.focus}}
+              {{!-- @onFocus={{action.focus}} --}}
               @onChange={{this.setMaxRecords}}
               as |x|
             >
@@ -113,7 +109,7 @@ export default class SearchFormComponent extends Component {
               @options={{this.displayOptions}}
               @selected={{this.selectedDisplay}}
               @triggerId={{el.id}}
-              @onFocus={{action.focus}}
+              {{!-- @onFocus={{action.focus}} --}}
               @onChange={{this.setDisplay}}
               as |x|
             >

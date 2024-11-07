@@ -22,7 +22,6 @@ function backgroundImage(image) {
       <div class='hex'>
         <div class='hex-border'>
           <div class='hex-background'>
-            {{! template-lint-disable no-inline-styles }}
             {{! template-lint-disable style-concatenation }}
             <div
               class='hex-image thumbnail-{{Hyphenate @printing.cardTypeId}}{{if

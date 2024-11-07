@@ -2,7 +2,7 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-module.exports = function (defaults) {
+module.exports = async function (defaults) {
   const app = new EmberApp(defaults, {
     'ember-bootstrap': {
       bootstrapVersion: 5,
@@ -13,15 +13,6 @@ module.exports = function (defaults) {
     },
     'ember-simple-auth': {
       useSessionSetupMethod: true,
-    },
-    outputPaths: {
-      app: {
-        css: {
-          color: '/assets/color.css',
-          panel: '/assets/panel.css',
-          bootstrap_ext: '/assets/bootstrap-ext.css',
-        },
-      },
     },
   });
 
