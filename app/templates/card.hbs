@@ -10,7 +10,6 @@
     @icon={{@model.cardSet.cardCycleId}}
   >
     {{#if @model.prevPrinting}}
-      {{! template-lint-disable no-inline-styles }}
       <Card::LinkTo
         @id={{@model.prevPrinting.id}}
         class="button round position-absolute end-0"

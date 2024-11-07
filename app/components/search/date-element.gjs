@@ -8,11 +8,6 @@ export default class DateElementComponent extends Component {
 
   <template>
     <label for='{{@id}}'>{{@name}}:</label>
-    <input
-      type='date'
-      id='{{@id}}'
-      name='{{@id}}'
-      value='{{@value}}'
-    />
+    <input type='date' id='{{@id}}' name='{{@id}}' value='{{@value}}' />
   </template>
 }

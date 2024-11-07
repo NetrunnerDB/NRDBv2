@@ -31,13 +31,13 @@ export default class CardRulingComponent extends Component {
   }
 
   <template>
-    <div id="ruling-{{@ruling.id}}">
-      <p class="{{ this.verifiedClass }}"> {{ @ruling.updatedAt }}</p>
+    <div id='ruling-{{@ruling.id}}'>
+      <p class='{{this.verifiedClass}}'> {{@ruling.updatedAt}}</p>
       {{#if @ruling.textRuling}}
-      <p>Text Ruling: {{ this.textRuling }}</p>
+        <p>Text Ruling: {{this.textRuling}}</p>
       {{else}}
-      <p>Question: {{ this.question }}</p>
-      <p>Answer: {{ this.answer }}</p>
+        <p>Question: {{this.question}}</p>
+        <p>Answer: {{this.answer}}</p>
       {{/if}}
     </div>
     <hr />

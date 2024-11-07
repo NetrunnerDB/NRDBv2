@@ -10,7 +10,6 @@
     @icon={{@model.cardSet.cardCycleId}}
   >
     {{#if @model.prevSet}}
-      {{! template-lint-disable no-inline-styles }}
       <LinkTo
         @model={{@model.prevSet.id}}
         class="button round position-absolute end-0"
