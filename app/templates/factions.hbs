@@ -9,24 +9,70 @@
     <div
       class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center gy-4"
     >
-      {{#each @model.runners as |faction|}}
         <div class="col">
-          <LinkTo @route="faction" @model="{{faction.id}}">
+          <LinkTo @route="faction" @model="anarch">
             <div class="card">
               <img
-                alt={{faction.name}}
-                src="/assets/image/faction/banner/{{faction.id}}.gif"
+                alt="Anarch"
+                src="/assets/image/faction/banner/anarch.gif"
                 class="card-img-top"
               />
-              <div class="card-body bg-img-{{faction.idHyphenated}}">
+              <div class="card-body bg-img-anarch">
                 <h5 class="card-title text-center text-nowrap mb-0">
-                  {{faction.name}}
+                  Anarch
                 </h5>
               </div>
             </div>
           </LinkTo>
         </div>
-      {{/each}}
+        <div class="col">
+          <LinkTo @route="faction" @model="criminal">
+            <div class="card">
+              <img
+                alt="Criminal"
+                src="/assets/image/faction/banner/criminal.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-criminal">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  Criminal
+                </h5>
+              </div>
+            </div>
+          </LinkTo>
+        </div>
+        <div class="col">
+          <LinkTo @route="faction" @model="shaper">
+            <div class="card">
+              <img
+                alt="Shaper"
+                src="/assets/image/faction/banner/shaper.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-shaper">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  Shaper
+                </h5>
+              </div>
+            </div>
+          </LinkTo>
+        </div>
+        <div class="col">
+          <LinkTo @route="faction" @model="shaper">
+            <div class="card">
+              <img
+                alt="Shaper"
+                src="/assets/image/faction/banner/neutral_runner.gif"
+                class="card-img-top"
+              />
+              <div class="card-body bg-img-neutral-runner">
+                <h5 class="card-title text-center text-nowrap mb-0">
+                  Neutral Runner
+                </h5>
+              </div>
+            </div>
+          </LinkTo>
+        </div>
     </div>
 
     <FancyHeader>Corp Factions</FancyHeader>
