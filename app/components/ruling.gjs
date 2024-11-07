@@ -1,5 +1,5 @@
 import MarkdownToHtml from 'ember-cli-showdown/components/markdown-to-html';
-import { FormatDate } from 'netrunnerdb/helpers/format-date';
+import { formatDate } from 'netrunnerdb/helpers/format-date';
 
 <template>
   <div class='ruling'>
@@ -11,7 +11,7 @@ import { FormatDate } from 'netrunnerdb/helpers/format-date';
       {{/if}}
       <span class='fst-italic ms-1 font-size-14'>
         Updated
-        {{FormatDate @ruling.updatedAt}}
+        {{formatDate @ruling.updatedAt}}
       </span>
     </div>
     {{#if @ruling.question}}
