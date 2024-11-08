@@ -55,17 +55,15 @@
           </div>
         </tab.pane>
         <tab.pane @title="Rulings ">
-          {{#if @model.rulings}}
-            {{#each @model.rulings as |ruling|}}
-              <div class="mt-4">
-                <Ruling @ruling={{ruling}} />
-              </div>
-            {{/each}}
+          {{#each @model.rulings as |ruling|}}
+            <div class="mt-4">
+              <Ruling @ruling={{ruling}} />
+            </div>
           {{else}}
             <div class="ruling-answer mt-4">
               This card has no rulings!
             </div>
-          {{/if}}
+          {{/each}}
         </tab.pane>
         <tab.pane @title="Alt arts">
           <p> ... </p>

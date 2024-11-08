@@ -176,43 +176,10 @@
         </:quantity>
       </Card::List>
     {{else if (eq this.displayType "images")}}
-      {{#each @model.cardTypes as |type|}}
-        {{#let (get @model.cardsByType type.id) as |cards|}}
-          {{#if cards}}
-            <h3 class="mt-4 font-size-20">
-              <Icon @icon="{{type.id}}" />
-              {{type.name}}
-              ({{get @model.countsByType type.id}})
-            </h3>
-            <div class="row row-cols-8 g-3">
-              {{#each cards as |card|}}
-                <div class="col">
-                  <Card::LinkTo @printing={{card.latestPrinting}}>
-                    <div class="decklist-card">
-                      <img
-                        src="{{card.latestPrinting.largeImage}}"
-                        alt={{card.title}}
-                      />
-                      {{#if (gt (get @model.decklist.cardSlots card.id) 1)}}
-                        <img
-                          src="{{card.latestPrinting.mediumImage}}"
-                          alt={{card.title}}
-                        />
-                      {{/if}}
-                      {{#if (gt (get @model.decklist.cardSlots card.id) 2)}}
-                        <img
-                          src="{{card.latestPrinting.tinyImage}}"
-                          alt={{card.title}}
-                        />
-                      {{/if}}
-                    </div>
-                  </Card::LinkTo>
-                </div>
-              {{/each}}
-            </div>
-          {{/if}}
-        {{/let}}
-      {{/each}}
+      <Decklist::Images
+        @decklist={{@model.decklist}}
+        @cardTypes={{@model.cardTypes}}
+      />
     {{/if}}
   </div>
 
