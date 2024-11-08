@@ -3,6 +3,7 @@ import CardLinkTo from '../card/link-to';
 import Icon from '../icon';
 import { get } from '@ember/helper';
 import gt from 'ember-truth-helpers/helpers/gt';
+import { Range } from 'netrunnerdb/helpers/range';
 
 export default class DecklistImages extends Component {
   cardsByType = (cardType) => {
@@ -33,22 +34,12 @@ export default class DecklistImages extends Component {
               <div class='col'>
                 <CardLinkTo @printing={{card.latestPrinting}}>
                   <div class='decklist-card'>
-                    <img
-                      src='{{card.latestPrinting.largeImage}}'
-                      alt={{card.title}}
-                    />
-                    {{#if (gt (get @decklist.cardSlots card.id) 1)}}
+                    {{#each (Range (get @decklist.cardSlots card.id))}}
                       <img
-                        src='{{card.latestPrinting.mediumImage}}'
+                        src='{{card.latestPrinting.largeImage}}'
                         alt={{card.title}}
                       />
-                    {{/if}}
-                    {{#if (gt (get @decklist.cardSlots card.id) 2)}}
-                      <img
-                        src='{{card.latestPrinting.tinyImage}}'
-                        alt={{card.title}}
-                      />
-                    {{/if}}
+                    {{/each}}
                   </div>
                 </CardLinkTo>
               </div>
