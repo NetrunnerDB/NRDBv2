@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 import CardLinkTo from '../card/link-to';
 import Icon from '../icon';
 import { get } from '@ember/helper';
-import gt from 'ember-truth-helpers/helpers/gt';
 import { Range } from 'netrunnerdb/helpers/range';
 
 export default class DecklistImages extends Component {
