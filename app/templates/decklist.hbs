@@ -177,12 +177,12 @@
       </Card::List>
     {{else if (eq this.displayType "images")}}
       {{#each @model.cardTypes as |type|}}
-        {{#let (get @model.cardsByType type.id) as |cards|}}
+        {{#let (get this.cardsByType type.id) as |cards|}}
           {{#if cards}}
             <h3 class="mt-4 font-size-20">
               <Icon @icon="{{type.id}}" />
               {{type.name}}
-              ({{get @model.countsByType type.id}})
+              ({{get this.countsByType type.id}})
             </h3>
             <div class="row row-cols-8 g-3">
               {{#each cards as |card|}}

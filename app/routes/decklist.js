@@ -5,30 +5,12 @@ import { hash } from 'rsvp';
 export default class DecklistRoute extends Route {
   @service store;
 
-  async model(params) {
-    let cardTypes = await this.store.findAll('cardType');
-
-    let decklist = await this.store.findRecord('decklist', params.id, {
+  async model({ id }) {
+    let cardTypes = this.store.findAll('cardType');
+    let decklist = this.store.findRecord('decklist', id, {
       include: 'cards,cards.printings',
     });
-    let cards = decklist.cards;
 
-    let cardsByType = {};
-    cardTypes.forEach((type) => {
-      cardsByType[type.id] = [];
-    });
-    cards.forEach((card) => {
-      cardsByType[card.cardTypeId].push(card);
-    });
-
-    let countsByType = {};
-    cardTypes.forEach((type) => {
-      countsByType[type.id] = 0;
-    });
-    cards.forEach((card) => {
-      countsByType[card.cardTypeId] += decklist.cardSlots[card.id];
-    });
-
-    return hash({ decklist, cardTypes, cardsByType, countsByType });
+    return hash({ cardTypes, decklist });
   }
 }
