@@ -19,5 +19,5 @@ export default class CardCycleModel extends Model {
     return this.cards.find((card) => card.id === this.identityCardId);
   }
 
-  @hasMany('card', { async: false, inverse: null }) cards;
+  @hasMany('card', { inverse: null }) cards;
 }

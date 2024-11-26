@@ -44,7 +44,7 @@
         </div>
         <div class="col-12 col-md-10">
           {{#each id.decklists as |decklist|}}
-            <DecklistBoxCompact @decklist={{decklist}} />
+            <DecklistBoxCompact @decklist={{decklist}} @identity={{id}} />
             <br />
           {{/each}}
         </div>
