@@ -26,7 +26,7 @@ export default class FactionRoute extends Route {
           id.decklists = this.store.query('decklist', {
             filter: { identity_card_id: id.id },
             sort: '-created_at',
-            page: { limit: 3 },
+            page: { size: 3 },
           });
         });
         return ids;
