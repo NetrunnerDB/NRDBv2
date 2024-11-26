@@ -32,7 +32,7 @@
   </Titlebar>
 
   <div class="container">
-    <Card::List @printings={{@model.cardSet.printings}} />
+    <Card::List @printings={{sort-by "position" @model.cardSet.printings}} />
   </div>
 
 </main>
