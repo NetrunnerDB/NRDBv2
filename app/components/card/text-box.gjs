@@ -67,7 +67,7 @@ function backgroundImage(image) {
         </span>
         {{TruncateFaction @printing.faction.name}}
         •
-        <Icon @icon={{@printing.cardSetId}} />
+        <Icon @icon={{@printing.cardCycleId}} />
         <LinkTo
           @route='set'
           @model='{{@printing.cardSet.id}}'
