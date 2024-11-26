@@ -7,13 +7,12 @@ export default class CyclesRoute extends Route {
 
   async model(params) {
     let cardCycle = this.store.findRecord('cardCycle', params.id, {
-      include: ['printings', 'printings.card_type']
+      include: ['printings', 'printings.card_type'],
     });
 
-    let allCycles = await this.store
-      .query('cardCycle', {
-        sort: 'date_release',
-      });
+    let allCycles = await this.store.query('cardCycle', {
+      sort: 'date_release',
+    });
 
     let cycleIndex = allCycles.findIndex((cycle) => cycle.id == params.id);
     let nextCycle =
