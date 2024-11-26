@@ -52,7 +52,7 @@ export default class DecklistBoxCompactComponent extends Component {
           >
             <div class='row'>
               <div class='col col-lg-12 decklist-date'>
-              {{ formatDate @decklist.createdAt }}
+                {{formatDate @decklist.createdAt}}
               </div>
               <div class='col col-lg-12 decklist-notes'>
                 <span class='likes'><FaIcon @icon='heart' /> 19</span>
