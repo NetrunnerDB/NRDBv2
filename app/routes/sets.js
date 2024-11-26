@@ -1,13 +1,27 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
+import { hash } from 'rsvp';
 
 export default class SetsRoute extends Route {
   @service store;
 
   async model() {
-    return this.store.query('cardCycle', {
+    let cycles = await this.store.query('cardCycle', {
       include: ['card_sets'],
-      sort: '-position',
+      sort: '-date_release',
     });
+
+    // Fetch active snapshots for the 3 main formats.
+    let formats = await this.store.query('snapshot', {
+      filter: { active: true, format_id: ['eternal', 'standard', 'startup'] },
+    });
+    let standard =
+      formats[formats.findIndex((snapshot) => snapshot.formatId == 'standard')];
+    let startup =
+      formats[formats.findIndex((snapshot) => snapshot.formatId == 'startup')];
+    let eternal =
+      formats[formats.findIndex((snapshot) => snapshot.formatId == 'eternal')];
+
+    return hash({ cycles, standard, startup, eternal });
   }
 }

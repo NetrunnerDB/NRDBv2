@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each @model as |cycle|}}
+        {{#each @model.cycles as |cycle|}}
           <tr>
             <td>
               <Icon @icon={{cycle.id}} />
@@ -43,9 +43,21 @@
                 "NSG"
                 "FFG"
               }}</td>
-            <td>Standard</td>
-            <td>Startup</td>
-            <td>Eternal</td>
+            <td>{{if
+              (includes cycle.id @model.standard.cardCycleIds)
+                "Standard"
+                ""
+              }}</td>
+            <td>{{if
+              (includes cycle.id @model.startup.cardCycleIds)
+                "Startup"
+                ""
+              }}</td>
+            <td>{{if
+              (includes cycle.id @model.eternal.cardCycleIds)
+                "Eternal"
+                ""
+              }}</td>
           </tr>
           {{#if (gt cycle.cardSets.length 1)}}
             {{#each cycle.cardSets as |set|}}
@@ -63,9 +75,21 @@
                     "NSG"
                     "FFG"
                   }}</td>
-                <td>Standard</td>
-                <td>Startup</td>
-                <td>Eternal</td>
+            <td>{{if
+              (includes set.id @model.standard.cardSetIds)
+                "Standard"
+                ""
+              }}</td>
+            <td>{{if
+              (includes set.id @model.startup.cardSetIds)
+                "Startup"
+                ""
+              }}</td>
+            <td>{{if
+              (includes set.id @model.eternal.cardSetIds)
+                "Eternal"
+                ""
+              }}</td>
               </tr>
             {{/each}}
           {{/if}}
