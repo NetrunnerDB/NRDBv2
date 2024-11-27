@@ -25,7 +25,7 @@ export default class CardRoute extends Route {
     }
     let cardSetPrintings = await this.store.query('printing', {
       filter: { card_set_id: printing.cardSetId },
-      page: { limit: 1000 },
+      page: { size: 1000 },
       sort: 'id',
     });
 
