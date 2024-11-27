@@ -6,7 +6,9 @@ export default class SetsRoute extends Route {
   @service store;
 
   async model(params) {
-    let cardSet = this.store.findRecord('cardSet', params.id);
+    let cardSet = this.store.findRecord('cardSet', params.id, {
+      include: ['printings', 'printings.card_type'],
+    });
 
     let allSets = await this.store.query('cardSet', {
       sort: 'date_release',
