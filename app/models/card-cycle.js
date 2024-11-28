@@ -10,16 +10,13 @@ export default class CardCycleModel extends Model {
   @attr releasedBy;
   @attr('date') updatedAt;
 
-  @hasMany('card-set', { async: true, inverse: 'cardCycle' }) cardSets;
+  @hasMany('card-set', { async: false, inverse: 'cardCycle' }) cardSets;
   @hasMany('card', { async: true, inverse: null }) cards;
   @hasMany('printing', { async: true, inverse: 'cardCycle' }) printings;
 
   get cardCount() {
-    return (async () => {
-      let cs = await this.cardSets;
-      return cs
-        .filter((set) => !set.isBooster)
-        .reduce((sum, set) => sum + set.size, 0);
-    })();
+    return this.cardSets
+      .filter((set) => !set.isBooster)
+      .reduce((sum, set) => sum + set.size, 0);
   }
 }
