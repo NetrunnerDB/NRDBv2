@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each @model as |cycle|}}
+        {{#each @model.cycles as |cycle|}}
           <tr>
             <td>
               <Icon @icon={{cycle.id}} />
@@ -37,15 +37,15 @@
               {{/if}}
             </td>
             <td>{{cycle.cardCount}}</td>
-            <td>{{format-date cycle.dateRelease}}</td>
+            <td>{{format-iso8601-date cycle.dateRelease}}</td>
             <td>{{if
                 (eq cycle.releasedBy "null_signal_games")
                 "NSG"
                 "FFG"
               }}</td>
-            <td>Standard</td>
-            <td>Startup</td>
-            <td>Eternal</td>
+            <td>{{if (includes cycle.id @model.standard.cardCycleIds) "Standard" }}</td>
+            <td>{{if (includes cycle.id @model.startup.cardCycleIds) "Startup" }}</td>
+            <td>{{if (includes cycle.id @model.eternal.cardCycleIds) "Eternal" }}</td>
           </tr>
           {{#if (gt cycle.cardSets.length 1)}}
             {{#each cycle.cardSets as |set|}}
@@ -57,15 +57,15 @@
                   </span>
                 </td>
                 <td>{{set.size}}</td>
-                <td>{{format-date set.dateRelease}}</td>
+                <td>{{format-iso8601-date set.dateRelease}}</td>
                 <td>{{if
                     (eq cycle.releasedBy "null_signal_games")
                     "NSG"
                     "FFG"
                   }}</td>
-                <td>Standard</td>
-                <td>Startup</td>
-                <td>Eternal</td>
+                <td>{{if (includes set.id @model.standard.cardSetIds) "Standard" }}</td>
+                <td>{{if (includes set.id @model.startup.cardSetIds) "Startup" }}</td>
+                <td>{{if (includes set.id @model.eternal.cardSetIds) "Eternal" }}</td>
               </tr>
             {{/each}}
           {{/if}}

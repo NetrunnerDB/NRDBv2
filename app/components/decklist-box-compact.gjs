@@ -1,4 +1,4 @@
-import { formatDate } from 'netrunnerdb/helpers/format-date';
+import { formatIso8601Date } from 'netrunnerdb/helpers/format-iso8601-date';
 import { LinkTo } from '@ember/routing';
 import { service } from '@ember/service';
 import Component from '@glimmer/component';
@@ -54,7 +54,7 @@ export default class DecklistBoxCompactComponent extends Component {
           >
             <div class='row'>
               <div class='col col-lg-12 decklist-date'>
-                {{formatDate @decklist.createdAt}}
+                {{formatIso8601Date @decklist.createdAt}}
               </div>
               <div class='col col-lg-12 decklist-notes'>
                 <span class='likes'><FaIcon @icon='heart' /> 19</span>
