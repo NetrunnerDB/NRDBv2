@@ -6,7 +6,7 @@ export default class SetsRoute extends Route {
   @service store;
 
   async model() {
-    let cycles = await this.store.query('cardCycle', {
+    let cycles = this.store.query('cardCycle', {
       include: ['card_sets'],
       sort: '-date_release',
     });
@@ -16,11 +16,11 @@ export default class SetsRoute extends Route {
       filter: { active: true, format_id: ['eternal', 'standard', 'startup'] },
     });
     let standard =
-      formats[formats.findIndex((snapshot) => snapshot.formatId == 'standard')];
+      formats[formats.findIndex(({ formatId }) => formatId == 'standard')];
     let startup =
-      formats[formats.findIndex((snapshot) => snapshot.formatId == 'startup')];
+      formats[formats.findIndex(({ formatId }) => formatId == 'startup')];
     let eternal =
-      formats[formats.findIndex((snapshot) => snapshot.formatId == 'eternal')];
+      formats[formats.findIndex(({ formatId }) => formatId == 'eternal')];
 
     return hash({ cycles, standard, startup, eternal });
   }
