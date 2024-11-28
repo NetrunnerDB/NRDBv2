@@ -31,7 +31,7 @@ export default class DecklistBoxCompactComponent extends Component {
             {{/if}}
           </p>
           <p class='decklist-name font-size-20'>
-            {{@decklist.name}}
+            <LinkTo @route='decklist' @model={{@decklist.id}}>{{@decklist.name}}</LinkTo>
           </p>
           <p class='mt-3 font-size-14'>
             <span class='decklist-author'>
