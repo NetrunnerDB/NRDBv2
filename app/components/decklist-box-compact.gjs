@@ -1,6 +1,7 @@
-import Component from '@glimmer/component';
+import { formatDate } from 'netrunnerdb/helpers/format-date';
 import { LinkTo } from '@ember/routing';
 import { service } from '@ember/service';
+import Component from '@glimmer/component';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 import Icon from './icon';
 
@@ -10,11 +11,9 @@ export default class DecklistBoxCompactComponent extends Component {
   constructor(...args) {
     super(...args);
 
-    let identityCardId = this.args.decklist.identityCardId;
-    let userId = this.args.decklist.userId;
+    this.user = this.args.decklist.userId;
 
-    this.identityCard = this.store.findRecord('card', identityCardId);
-    this.user = userId; // TEMP
+    this.identityCard = this.args.identity;
   }
 
   <template>
@@ -24,7 +23,7 @@ export default class DecklistBoxCompactComponent extends Component {
           <p class='decklist-identity-name fw-600'>
             {{#if this.identityCard}}
               <span class='font-size-18'>
-                <Icon @icon={{this.identityCard.faction.id}} />
+                <Icon @icon={{@decklist.factionId}} />
               </span>
               <span class='decklist-identity-title font-size-14 fw-600'>
                 {{this.identityCard.title}}
@@ -52,7 +51,9 @@ export default class DecklistBoxCompactComponent extends Component {
             class='text-center d-flex flex-column justify-content-center h-100'
           >
             <div class='row'>
-              <div class='col col-lg-12 decklist-date'>17 Dec. 2023</div>
+              <div class='col col-lg-12 decklist-date'>
+                {{formatDate @decklist.createdAt}}
+              </div>
               <div class='col col-lg-12 decklist-notes'>
                 <span class='likes'><FaIcon @icon='heart' /> 19</span>
                 <span class='stars ms-3'><FaIcon @icon='star' /> 8</span>

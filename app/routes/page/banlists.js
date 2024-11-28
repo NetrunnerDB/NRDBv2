@@ -85,7 +85,7 @@ export default class PageBanlistsRoute extends Route {
         distinct_cards: true,
       },
       include: ['card', 'card_set', 'card_type', 'faction'],
-      page: { limit: 2000 },
+      page: { size: 2000 },
     });
 
     const cards = new Map();

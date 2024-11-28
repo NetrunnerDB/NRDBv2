@@ -9,7 +9,7 @@ export default class HomeRoute extends Route {
   async model() {
     let decklists = await this.store.findAll('decklist', {
       filter: { sort: '-created_at' },
-      page: { limit: 10 },
+      page: { size: 10 },
     });
 
     // Set the latest decklist in the API as the dotw (temporary selection process)

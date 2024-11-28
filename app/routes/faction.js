@@ -24,21 +24,15 @@ export default class FactionRoute extends Route {
       .then((ids) => {
         ids.forEach((id) => {
           id.decklists = this.store.query('decklist', {
+            include: ['faction'],
             filter: { identity_card_id: id.id },
             sort: '-created_at',
-            page: { limit: 3 },
+            page: { size: 3 },
           });
         });
         return ids;
       });
 
     return hash({ faction, ids });
-  }
-
-  decklistCount(id) {
-    if ('decklist' in id) {
-      return id.decklist.length;
-    }
-    return -1;
   }
 }
