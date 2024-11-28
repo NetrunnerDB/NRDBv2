@@ -11,7 +11,7 @@ export default class PageCycleRoute extends Route {
       printings: this.store.query('printing', {
         filter: { card_cycle_id: params.id },
         include: ['card_set', 'card_type', 'faction'],
-        page: { limit: 1000 },
+        page: { size: 1000 },
       }),
     });
   }

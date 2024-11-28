@@ -6,18 +6,13 @@ export default class CyclesRoute extends Route {
   @service store;
 
   async model(params) {
-    let cardCycle = this.store.findRecord('cardCycle', params.id);
+    let cardCycle = this.store.findRecord('cardCycle', params.id, {
+      include: ['printings', 'printings.card_type'],
+    });
 
-    let allCycles = await this.store
-      .query('cardCycle', {
-        sort: 'date_release',
-      })
-      // Temporary measure to filter out non-cycles until that data is added to the API
-      .then((cycles) =>
-        cycles.filter((cycle) => {
-          return cycle.cardSets.length > 1;
-        }),
-      );
+    let allCycles = await this.store.query('cardCycle', {
+      sort: 'date_release',
+    });
 
     let cycleIndex = allCycles.findIndex((cycle) => cycle.id == params.id);
     let nextCycle =

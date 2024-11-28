@@ -19,7 +19,7 @@ export default class SearchRoute extends Route {
         printings: this.store.query('printing', {
           filter: { search: params.query },
           include: ['card_set', 'card_type', 'faction'],
-          page: { limit: params.max_records || 100 },
+          page: { size: params.max_records || 100 },
         }),
         query: params.query,
       });
