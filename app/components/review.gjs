@@ -30,7 +30,7 @@ export default class ReviewComponent extends Component {
               {{formatISO8601Date @review.createdAt}}
             </div>
             <div>
-              Rezeki
+              {{ @card.title }}
             </div>
           </div>
         </div>

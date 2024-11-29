@@ -49,7 +49,7 @@
           {{#each @model.reviews as |review|}}
             <div class="mt-4">
               <div class="mb-5">
-                <Review @review={{ review }} />
+                <Review @card={{ @model.card }} @review={{ review }} />
               </div>
             </div>
           {{else}}
