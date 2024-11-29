@@ -49,9 +49,7 @@ export default class ReviewComponent extends Component {
 
         <div class='review-comments'>
           {{#each @review.comments as |comment|}}
-            <div>
-              <Comment @comment={{comment}} />
-            </div>
+            <Comment @comment={{comment}} />
           {{/each}}
         </div>
       </div>
