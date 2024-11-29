@@ -29,9 +29,11 @@ export default class ReviewComponent extends Component {
               -
               {{formatISO8601Date @review.createdAt}}
             </div>
-            <div>
-              {{ @card.title }}
-            </div>
+            {{#if @showCard}}
+              <div>
+                {{@card.title}}
+              </div>
+            {{/if}}
           </div>
         </div>
         <div class='review-content'>
