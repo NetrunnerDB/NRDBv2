@@ -1,26 +1,59 @@
-{{page-title "Formats"}}
+{{page-title "Illlustrators"}}
 
 <main class="pb-4">
 
   <Navbar />
-  <Titlebar @title="Bans" />
+  <Titlebar @title="Illlustrators" />
 
   <div class="container">
 
     <div class="row">
 
       <div class="col-12">
-        <FancyHeader>Standard</FancyHeader>
+        <FancyHeader>Illustrators</FancyHeader>
         <p>
-          The flagship format of Netrunner Organized Play, Standard is
-          frequently changing to keep the meta exciting and engaging for players
-          of all levels. Most official Organized Play events will follow the
-          Standard format. If a format is not specified, assume Standard, but
-          contact your Tournament Organizer for clarity.</p>
+          The world of Netrunner has been brought to life by a wide
+          selection of amazing artists!
+        </p>
+        <p>
+          This page lists all artists whose
+          work has appeared on cards and which cards they illustrated.
+        </p>
       </div>
 
     </div>
 
-  </div>
-
+    <div class="row">
+      <div class="row">
+        <Ui::Accordion @showSearch="true" @showSort="true" @items={{@model.illustrators}} @query={{this.search}} as
+          |Panel illustrator|>
+          <Panel>
+            <:title>{{illustrator.name}}</:title>
+            <:subtitle>
+              {{illustrator.numPrintings}} card{{if (not-eq illustrator.numPrintings 1) 's' }}
+              <div>
+<ul>
+                 {{#each (sort-by "id" illustrator.printings) as |printing|}}
+                 <li>{{printing.id}}</li>
+                 {{/each}}
+                 </ul>
+              </div>
+            </:subtitle>
+            <:body>
+              <div class="row">
+                hi
+                {{#each (sort-by "title" illustrator.printings) as |printing|}}
+                <div class="col-3 p-2">
+                  <Card::LinkTo @printing={{printing}} @hideTooltip="true">
+                    <Card::Image @printing={{printing}} @size="large" />
+                  </Card::LinkTo>
+                </div>
+                {{/each}}
+              </div>
+            </:body>
+          </Panel>
+        </Ui::Accordion>
+      </div>
+    </div>
+    </div>
 </main>

@@ -5,5 +5,5 @@ export default class IllustratorModel extends Model {
   @attr numPrintings;
   @attr updatedAt;
 
-  @hasMany('printing', { async: true, inverse: 'illustrators' }) printings;
+  @hasMany('printing', { async: false, inverse: 'illustrators' }) printings;
 }
