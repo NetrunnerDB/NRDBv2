@@ -34,6 +34,7 @@
   <div class="container">
     <div class="mt-4">
       <Card::FullDisplay
+        @card={{@model.card}}
         @printing={{@model.printing}}
         @allPrintings={{@model.allPrintings}}
         @eternalSnapshot={{@model.eternalSnapshot}}
@@ -45,14 +46,17 @@
     <div class="mt-4">
       <BsTab @type="pills" as |tab|>
         <tab.pane @title="Reviews">
-          <div class="mt-4">
-            <div class="mb-5">
-              <Review />
+          {{#each @model.reviews as |review|}}
+            <div class="mt-4">
+              <div class="mb-5">
+                <Review @card={{ @model.card }} @review={{ review }} />
+              </div>
             </div>
-            <div class="mb-5">
-              <Review />
+          {{else}}
+            <div class="ruling-answer mt-4">
+              This card has no reviews!
             </div>
-          </div>
+          {{/each}}
         </tab.pane>
         <tab.pane @title="Rulings ">
           {{#each @model.rulings as |ruling|}}

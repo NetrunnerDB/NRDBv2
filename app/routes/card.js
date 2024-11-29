@@ -8,25 +8,39 @@ export default class CardRoute extends Route {
   async model(params) {
     let id = params.id;
 
-    // Card pages display a printing, not an abstract card
-    // If the given ID is not a printing ID, treat it as a card ID and find its latest printing
+    // Card pages always default to the latest printing of a card unless
+    // a specific printing is specified.  This only affects some elements
+    // on the page, however.
+
     let card = undefined;
-    if (isNaN(parseInt(id))) {
-      card = await this.store.findRecord('card', id);
-      id = card.latestPrintingId;
+    let printing = undefined;
+    let allPrintings = undefined;
+
+    // Printing Code - load card via printing.
+    if (id.match(/^\d{5}$/)) {
+      // Get the printing
+      printing = await this.store.findRecord('printing', id, {
+        include:
+          'card_set,card_type,faction,card,card.rulings,card.reviews,card.printings',
+      });
+      card = printing.card;
+      id = card.id;
+      // this was done because of an ember warning.
+      allPrintings = card.get('printings');
+    } else {
+      card = await this.store.findRecord('card', id, {
+        include: ['card_sets,card_type,faction,printings,reviews,rulings'],
+      });
+      id = card.id;
+      allPrintings = card.printings;
+      printing = card.latestPrinting;
+      console.log(printing);
     }
 
-    // Get the printing
-    let printing = await this.store.findRecord('printing', id, {
-      include: 'card_set,card_type,faction,card,card.rulings',
-    });
-    if (!card) {
-      card = await printing.card;
-    }
     let cardSetPrintings = await this.store.query('printing', {
       filter: { card_set_id: printing.cardSetId },
       page: { size: 1000 },
-      sort: 'id',
+      sort: 'position',
     });
 
     // Identify previous and next printings in the set.
@@ -39,11 +53,6 @@ export default class CardRoute extends Route {
       if (!nextPrinting && printing.id < p.id) {
         nextPrinting = p;
       }
-    });
-
-    let allPrintings = await this.store.query('printing', {
-      filter: { card_id: printing.cardId },
-      sort: '-id',
     });
 
     // Fetch active snapshots for the 3 main formats.
@@ -63,10 +72,8 @@ export default class CardRoute extends Route {
       }
     });
 
-    // Fetch the card's rulings
-    let rulings = await this.store.query('ruling', {
-      filter: { card_id: card.id },
-    });
+    let rulings = card.get('rulings');
+    let reviews = card.get('reviews');
 
     return hash({
       card,
@@ -77,6 +84,7 @@ export default class CardRoute extends Route {
       standardSnapshot,
       startupSnapshot,
       eternalSnapshot,
+      reviews,
       rulings,
     });
   }
