@@ -7,7 +7,6 @@ export default class IllustratorsRoute extends Route {
 
   async model() {
     let illustrators = this.store.query('illustrator', {
-      include: ['printings'],
       page: { size: 1000 },
     });
 

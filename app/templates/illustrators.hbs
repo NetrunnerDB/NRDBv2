@@ -31,17 +31,9 @@
             <:title>{{illustrator.name}}</:title>
             <:subtitle>
               {{illustrator.numPrintings}} card{{if (not-eq illustrator.numPrintings 1) 's' }}
-              <div>
-<ul>
-                 {{#each (sort-by "id" illustrator.printings) as |printing|}}
-                 <li>{{printing.id}}</li>
-                 {{/each}}
-                 </ul>
-              </div>
             </:subtitle>
             <:body>
               <div class="row">
-                hi
                 {{#each (sort-by "title" illustrator.printings) as |printing|}}
                 <div class="col-3 p-2">
                   <Card::LinkTo @printing={{printing}} @hideTooltip="true">
@@ -55,5 +47,5 @@
         </Ui::Accordion>
       </div>
     </div>
-    </div>
+  </div>
 </main>
