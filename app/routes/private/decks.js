@@ -4,14 +4,14 @@ import RSVP from 'rsvp';
 
 export default class DecksRoute extends Route {
   @service session;
-
-  // beforeModel(transition) {
-  //   this.session.requireAuthentication(transition, "home.login");
-  // }
+  @service store;
 
   model() {
     return RSVP.hash({
       userinfo: this.session.data.authenticated.userinfo,
+      decks: this.store.findAll('deck', {
+        reload: true,
+      }),
     });
   }
 }
