@@ -67,20 +67,26 @@
 
           <h2>Decklist of the week</h2>
 
-          <DecklistBox
-            @decklist={{@model.dotw}}
-            @showTitle="true"
-            @showLink="true"
-            @showAuthor="true"
-          />
+          {{#if @mode.dotw}}
+            <DecklistBox
+              @decklist={{@model.dotw}}
+              @showTitle="true"
+              @showLink="true"
+              @showAuthor="true"
+            />
 
-          <p class="my-4">
-            {{@model.dotwDesc}}
-          </p>
-          {{! template-lint-disable no-invalid-link-text }}
-          <LinkTo @route="decklist" @model={{@model.dotw.id}} class="button">
-            Read more
-          </LinkTo>
+            <p class="my-4">
+              {{@model.dotwDesc}}
+            </p>
+            {{! template-lint-disable no-invalid-link-text }}
+            <LinkTo @route="decklist" @model={{@model.dotw.id}} class="button">
+              Read more
+            </LinkTo>
+          {{else}}
+            <p class="my-4">
+              There is no decklist of the week!
+            </p>
+          {{/if}}
         </div>
         <div class="box mt-4">Something Else</div>
       </div>
