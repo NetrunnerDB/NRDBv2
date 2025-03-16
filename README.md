@@ -13,8 +13,6 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-# TODO corething enable
-
 - `git clone <repository-url>` this repository
 - `cd NRDBv2`
 - `corepack enable` (see [here](https://yarnpkg.com/getting-started/install) for an explanation, this is required by yarn)
