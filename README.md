@@ -15,14 +15,14 @@ You will need the following things properly installed on your computer.
 
 # TODO corething enable
 
-- `$ git clone <repository-url>` this repository
-- `$ cd NRDBv2`
-- `$ corepack enable` (see [here](https://yarnpkg.com/getting-started/install) for an explanation, this is required by yarn)
-- `$ yarn install`
+- `git clone <repository-url>` this repository
+- `cd NRDBv2`
+- `corepack enable` (see [here](https://yarnpkg.com/getting-started/install) for an explanation, this is required by yarn)
+- `yarn install`
 
 ## Running / Development
 
-- `$ yarn start`
+- `yarn start`
 - Visit your app at [http://localhost:4200](http://localhost:4200).
 - Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
