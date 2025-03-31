@@ -1,6 +1,16 @@
 <div id="content-sets">
-  <h2 class="nr-primary mb-4">Private Decks Placeholder Page</h2>
+  <h2 class="nr-primary mb-4">My Decks</h2>
   <div class="tab-body">
-    <p>Private Deck Functionality Coming Soon!</p>
+    <p>My Decks - In Progress</p>
+
+    <div>
+      <ul>
+      {{#each @model.decks as |deck|}}
+        <li>
+            {{deck.name}} - {{ deck.sideId }} - {{ deck.identityCardId }} - {{ deck.numCards }} cards
+        </li>
+      {{/each}}
+      </ul>
+    </div>
   </div>
 </div>
