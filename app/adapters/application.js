@@ -1,4 +1,4 @@
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import OIDCJSONAPIAdapter from 'ember-simple-auth-oidc/adapters/oidc-json-api-adapter';
 import { pluralize } from 'ember-inflector';
 import ENV from 'netrunnerdb/config/environment';
