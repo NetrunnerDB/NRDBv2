@@ -1,4 +1,4 @@
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
@@ -14,8 +14,6 @@ export default class PrivateRoute extends Route {
   }
 
   model() {
-    return RSVP.hash({
-      userinfo: this.session.data.authenticated.userinfo,
-    });
+    return RSVP.hash({ userinfo: this.session.data.authenticated.userinfo });
   }
 }

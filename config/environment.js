@@ -27,7 +27,8 @@ module.exports = function (environment) {
       refreshLeeway: 1000,
     },
 
-    API_URL: 'http://localhost:3000/api/v3',
+    // API_URL: 'http://localhost:3000/api/v3',
+    API_URL: 'https://api-preview.netrunnerdb.com/api/v3',
     googleFonts: ['Merriweather Sans', 'Outfit', 'Inter', 'Nova Mono'],
 
     APP: {
