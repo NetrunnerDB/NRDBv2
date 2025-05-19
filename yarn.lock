@@ -2736,7 +2736,7 @@
 
 "@glimmer/component@^1.0.4", "@glimmer/component@^1.1.2":
   version "1.1.2"
-  resolved "https://registry.npmjs.org/@glimmer/component/-/component-1.1.2.tgz"
+  resolved "https://registry.yarnpkg.com/@glimmer/component/-/component-1.1.2.tgz#892ec0c9f0b6b3e41c112be502fde073cf24d17c"
   integrity sha512-XyAsEEa4kWOPy+gIdMjJ8XlzA3qrGH55ZDv6nA16ibalCR17k74BI0CztxuRds+Rm6CtbUVgheCVlcCULuqD7A==
   dependencies:
     "@glimmer/di" "^0.1.9"
@@ -7703,7 +7703,7 @@ ember-style-modifier@^0.8.0:
     ember-cli-babel "^7.26.6"
     ember-modifier "^3.2.7"
 
-ember-svg-jar@^2.4.7:
+ember-svg-jar@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/ember-svg-jar/-/ember-svg-jar-2.6.2.tgz#197813770b3bb35a820759e7926ff427bcf43472"
   integrity sha512-bDwzecB1DjVMvYCg0QpSsqQoHjK/zRDJ/ob+QbB0VzL8rPbSsThpoyKAsRcNip7m0l+gUxBfyUoHorPlyc0UxA==
