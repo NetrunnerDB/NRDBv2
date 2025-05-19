@@ -2360,17 +2360,6 @@
   resolved "https://registry.yarnpkg.com/@ember/edition-utils/-/edition-utils-1.2.0.tgz#a039f542dc14c8e8299c81cd5abba95e2459cfa6"
   integrity sha512-VmVq/8saCaPdesQmftPqbFtxJWrzxNGSQ+e8x8LLe3Hjm36pJ04Q8LeORGZkAeOhldoUX9seLGmSaHeXkIqoog==
 
-"@ember/jquery@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ember/jquery/-/jquery-2.0.0.tgz#083a1de32333b3fc938fad246a6f3ea7eefe5b10"
-  integrity sha512-f8+WNqzXBNxl96jo0IwJBO5QCi0bnUlba9I7WbZcGhgnzszC76INJkw6l8UepZ1PMGG1H1wYpoIGoBBp5ZVmFA==
-  dependencies:
-    broccoli-funnel "^3.0.6"
-    broccoli-merge-trees "^4.2.0"
-    ember-cli-babel "^7.26.6"
-    jquery "^3.5.0"
-    resolve "^1.15.1"
-
 "@ember/optional-features@^2.1.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@ember/optional-features/-/optional-features-2.2.0.tgz#61305ea5397e9a712185e4cf4722a2862ea2b9da"
@@ -4910,7 +4899,7 @@ broccoli-funnel@^2.0.0, broccoli-funnel@^2.0.2:
     symlink-or-copy "^1.0.0"
     walk-sync "^0.3.1"
 
-broccoli-funnel@^3.0.5, broccoli-funnel@^3.0.6, broccoli-funnel@^3.0.8:
+broccoli-funnel@^3.0.5, broccoli-funnel@^3.0.8:
   version "3.0.8"
   resolved "https://registry.npmjs.org/broccoli-funnel/-/broccoli-funnel-3.0.8.tgz"
   integrity sha512-ng4eIhPYiXqMw6SyGoxPHR3YAwEd2lr9FgBI1CyTbspl4txZovOsmzFkMkGAlu88xyvYXJqHiM2crfLa65T1BQ==
@@ -7466,6 +7455,14 @@ ember-inflector@^4.0.2:
   integrity sha512-E+NnmzybMRWn1JyEfDxY7arjOTJLIcGjcXnUxizgjD4TlvO1s3O65blZt+Xq2C2AFSPeqHLC6PXd6XHYM8BxdQ==
   dependencies:
     ember-cli-babel "^7.26.11"
+
+ember-inflector@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ember-inflector/-/ember-inflector-6.0.0.tgz#ec49e2af3ef096823fcc8accf0a3abeb2ac002c2"
+  integrity sha512-g6trqBhQHRwlq9bBmoyxhAl0tD0/CaTKK0xWPUgi3BfxFOgGG1bbiwAx+tjyiAkLzDqU+ihyjtT+sd41y6K1hA==
+  dependencies:
+    "@embroider/addon-shim" "^1.8.7"
+    decorator-transforms "^2.0.0"
 
 ember-lifeline@^7.0.0:
   version "7.0.0"
@@ -10333,11 +10330,6 @@ jest-worker@^27.4.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-jquery@^3.5.0:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
-  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
-
 js-sha256@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.11.0.tgz#256a921d9292f7fe98905face82e367abaca9576"
@@ -12825,7 +12817,7 @@ resolve@^1.10.0, resolve@^1.11.1, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.1
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-resolve@^1.10.1, resolve@^1.15.1, resolve@^1.5.0:
+resolve@^1.10.1, resolve@^1.5.0:
   version "1.22.8"
   resolved "https://registry.npmjs.org/resolve/-/resolve-1.22.8.tgz"
   integrity sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==
