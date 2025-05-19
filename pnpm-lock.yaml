@@ -21,9 +21,6 @@ importers:
       '@babel/plugin-proposal-decorators':
         specifier: ^7.27.1
         version: 7.27.1(@babel/core@7.27.4)
-      '@ember/jquery':
-        specifier: ^2.0.0
-        version: 2.0.0
       '@ember/optional-features':
         specifier: ^2.1.0
         version: 2.2.0
@@ -986,10 +983,6 @@ packages:
 
   '@ember/edition-utils@1.2.0':
     resolution: {integrity: sha512-VmVq/8saCaPdesQmftPqbFtxJWrzxNGSQ+e8x8LLe3Hjm36pJ04Q8LeORGZkAeOhldoUX9seLGmSaHeXkIqoog==}
-
-  '@ember/jquery@2.0.0':
-    resolution: {integrity: sha512-f8+WNqzXBNxl96jo0IwJBO5QCi0bnUlba9I7WbZcGhgnzszC76INJkw6l8UepZ1PMGG1H1wYpoIGoBBp5ZVmFA==}
-    engines: {node: 12.* || 14.* || >= 16}
 
   '@ember/optional-features@2.2.0':
     resolution: {integrity: sha512-a1OQ+w9vDvMXd9BNA9r779yr8MAPguGaMGbIeTMPWACeWBdD6bACBB5iKE3gNyrJAYKMq2wab6BKmRFS3Qw3hw==}
@@ -4932,9 +4925,6 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
 
-  jquery@3.7.1:
-    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
-
   js-sha256@0.11.1:
     resolution: {integrity: sha512-o6WSo/LUvY2uC4j7mO50a2ms7E/EAdbP0swigLV+nzHKTTaYnaLIWJ02VdXrsJX0vGedDESQnLsOekr94ryfjg==}
 
@@ -8465,16 +8455,6 @@ snapshots:
       - supports-color
 
   '@ember/edition-utils@1.2.0': {}
-
-  '@ember/jquery@2.0.0':
-    dependencies:
-      broccoli-funnel: 3.0.8
-      broccoli-merge-trees: 4.2.0
-      ember-cli-babel: 7.26.11
-      jquery: 3.7.1
-      resolve: 1.22.10
-    transitivePeerDependencies:
-      - supports-color
 
   '@ember/optional-features@2.2.0':
     dependencies:
@@ -14125,8 +14105,6 @@ snapshots:
       '@types/node': 24.0.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
-
-  jquery@3.7.1: {}
 
   js-sha256@0.11.1: {}
 
