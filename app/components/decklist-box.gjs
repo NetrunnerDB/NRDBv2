@@ -3,6 +3,8 @@ import { tracked } from '@glimmer/tracking';
 import { LinkTo } from '@ember/routing';
 import { service } from '@ember/service';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import { faCardsBlank } from '@fortawesome/free-solid-svg-icons';
+
 import {
   GetIdentityTitle,
   GetIdentitySubtitle,
@@ -69,7 +71,7 @@ export default class DecklistBoxComponent extends Component {
             }})
           </p>
           <p class='decklist-cards'>
-            <FaIcon @icon='cards-blank' @flip='horizontal' />
+            <FaIcon @icon={{faCardsBlank}} @flip='horizontal' />
             {{@decklist.numCards}}
             cards (min
             {{@decklist.identityCard.minimumDeckSize}})

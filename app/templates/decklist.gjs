@@ -6,6 +6,19 @@ import { on } from '@ember/modifier';
 import { get } from '@ember/helper';
 import { pageTitle } from 'ember-page-title';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import {
+  faHeart,
+  faStar,
+  faComment,
+  faCodeCompare,
+  faTableList,
+  faSort,
+  faImages,
+  faDownload,
+  faAlignLeft,
+  faFileCode,
+} from '@fortawesome/free-solid-svg-icons';
+
 import and from 'ember-truth-helpers/helpers/and';
 import notEq from 'ember-truth-helpers/helpers/not-eq';
 import gt from 'ember-truth-helpers/helpers/gt';
@@ -63,15 +76,15 @@ export default class DecklistComponent extends Component {
                   15 Dec. 2023
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='heart' @prefix='far' />
+                  <FaIcon @icon={{faHeart}} @prefix='far' />
                   25
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='star' @prefix='far' />
+                  <FaIcon @icon={{faStar}} @prefix='far' />
                   12
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='comment' @prefix='far' />
+                  <FaIcon @icon={{faComment}} @prefix='far' />
                   6
                 </span>
               </div>
@@ -101,16 +114,16 @@ export default class DecklistComponent extends Component {
           </div>
           <div class='col-6 text-end'>
             <LinkTo @route='home' class='button'>
-              <FaIcon @icon='file-code' @prefix='far' />
+              <FaIcon @icon={{faFileCode}} @prefix='far' />
             </LinkTo>
             <LinkTo @route='home' class='button'>
-              <FaIcon @icon='arrow-down-to-bracket' />
+              <FaIcon @icon={{faDownload}} />
             </LinkTo>
             <LinkTo @route='home' class='button'>
-              <FaIcon @icon='code-compare' />
+              <FaIcon @icon={{faCodeCompare}} />
             </LinkTo>
             <LinkTo @route='home' class='button'>
-              <FaIcon @icon='arrow-up-arrow-down' />
+              <FaIcon @icon={{faSort}} />
               Sort
             </LinkTo>
             <div class='btn-group' role='group'>
@@ -119,21 +132,25 @@ export default class DecklistComponent extends Component {
                 class='btn button'
                 {{on 'click' this.displayWriteUp}}
               >
-                <FaIcon @icon='bars-sort' />
+                <FaIcon @icon={{faAlignLeft}} />
               </button>
               <button
                 type='button'
                 class='btn button'
                 {{on 'click' this.displayList}}
               >
-                <FaIcon @icon='table-list' @prefix='far' @flip='horizontal' />
+                <FaIcon
+                  @icon={{faTableList}}
+                  @prefix='far'
+                  @flip='horizontal'
+                />
               </button>
               <button
                 type='button'
                 class='btn button'
                 {{on 'click' this.displayImages}}
               >
-                <FaIcon @icon='layer-group' @prefix='far' />
+                <FaIcon @icon={{faImages}} @prefix='far' />
               </button>
             </div>
           </div>
