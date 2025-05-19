@@ -1,6 +1,6 @@
 import { LinkTo } from '@ember/routing';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
-import sortBy from 'ember-composable-helpers/helpers/sort-by';
+import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 import { pageTitle } from 'ember-page-title';
 
 import Navbar from 'netrunnerdb/components/navbar';

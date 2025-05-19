@@ -3,7 +3,7 @@ import Navbar from 'netrunnerdb/components/navbar';
 import Titlebar from 'netrunnerdb/components/titlebar';
 import FancyHeader from 'netrunnerdb/components/fancy-header';
 import Accordion from 'netrunnerdb/components/ui/accordion';
-import sortBy from 'ember-composable-helpers/helpers/sort-by';
+import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 import CardLinkTo from 'netrunnerdb/components/card/link-to';
 import notEq from 'ember-truth-helpers/helpers/not-eq';
 import CardImage from 'netrunnerdb/components/card/image';

@@ -4,7 +4,7 @@ import { hash } from '@ember/helper';
 import { service } from '@ember/service';
 import { eq } from 'netrunnerdb/utils/template-operators';
 import { LinkTo } from '@ember/routing';
-import sortBy from 'ember-composable-helpers/helpers/sort-by';
+import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 import CardLinkTo from './card/link-to';
 import InfluencePips from './card/influence-pips';
 import FullDisplay from './card/full-display';
