@@ -6,6 +6,8 @@ import { on } from '@ember/modifier';
 import { get } from '@ember/helper';
 import { pageTitle } from 'ember-page-title';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import { faHeart, faStar, faComment } from '@fortawesome/free-solid-svg-icons';
+
 import and from 'ember-truth-helpers/helpers/and';
 import notEq from 'ember-truth-helpers/helpers/not-eq';
 import gt from 'ember-truth-helpers/helpers/gt';
@@ -63,15 +65,15 @@ export default class DecklistComponent extends Component {
                   15 Dec. 2023
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='heart' @prefix='far' />
+                  <FaIcon @icon={{faHeart}} @prefix='far' />
                   25
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='star' @prefix='far' />
+                  <FaIcon @icon={{faStar}} @prefix='far' />
                   12
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='comment' @prefix='far' />
+                  <FaIcon @icon={{faComment}} @prefix='far' />
                   6
                 </span>
               </div>

@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import { faHeart, faMessage } from '@fortawesome/free-solid-svg-icons';
 import CardImage from 'netrunnerdb/components/card/image';
 import Comment from 'netrunnerdb/components/review/comment';
 import formatISO8601Date from '../helpers/format-iso8601-date';
@@ -15,8 +16,8 @@ export default class ReviewComponent extends Component {
   <template>
     <div class='review'>
       <div class='review-buttons'>
-        <div class='likes'><FaIcon @icon='heart' /> {{@review.votes}}</div>
-        <div class='comments mt-2'><FaIcon @icon='message' />
+        <div class='likes'><FaIcon @icon={{faHeart}} /> {{@review.votes}}</div>
+        <div class='comments mt-2'><FaIcon @icon={{faMessage}} />
           {{@review.comments.length}}
         </div>
       </div>
