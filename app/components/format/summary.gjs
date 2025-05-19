@@ -1,4 +1,4 @@
-import sortBy from 'ember-composable-helpers/helpers/sort-by';
+import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 import { hash } from '@ember/helper';
 import { LinkTo } from '@ember/routing';
 

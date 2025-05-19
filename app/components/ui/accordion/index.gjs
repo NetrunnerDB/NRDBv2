@@ -5,7 +5,7 @@ import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { fn, get } from '@ember/helper';
 import { on } from '@ember/modifier';
-import sortBy from 'ember-composable-helpers/helpers/sort-by';
+import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 import { or } from 'ember-truth-helpers';
 
 import Panel from 'netrunnerdb/components/ui/accordion/panel';

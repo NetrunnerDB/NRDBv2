@@ -6,7 +6,7 @@ import Icon from 'netrunnerdb/components/icon';
 import { eq } from 'netrunnerdb/utils/template-operators';
 import gt from 'ember-truth-helpers/helpers/gt';
 import formatISO8601Date from 'netrunnerdb/helpers/format-iso8601-date';
-import includes from 'ember-composable-helpers/helpers/includes';
+import { includes } from '@nullvoxpopuli/ember-composable-helpers';
 
 <template>
   {{pageTitle 'Sets'}}
