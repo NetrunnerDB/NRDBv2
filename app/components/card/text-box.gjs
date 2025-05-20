@@ -1,4 +1,5 @@
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import { faFantasyFlightGames } from '@fortawesome/free-brands-svg-icons';
 import { LinkTo } from '@ember/routing';
 import { hash } from '@ember/helper';
 import { htmlSafe } from '@ember/template';
@@ -98,7 +99,7 @@ function backgroundImage(image) {
               (eq @printing.releasedBy 'fantasy_flight_games')
             )
           }}
-            <FaIcon @icon='fantasy-flight-games' @prefix='fab' />
+            <FaIcon @icon={{faFantasyFlightGames}} @prefix='fab' />
             Designed & Released by Fantasy Flight Games
           {{else if
             (and
@@ -115,7 +116,7 @@ function backgroundImage(image) {
               (eq @printing.releasedBy 'null_signal_games')
             )
           }}
-            <FaIcon @icon='fantasy-flight-games' @prefix='fab' />
+            <FaIcon @icon={{faFantasyFlightGames}} @prefix='fab' />
             Designed by Fantasy Flight Games.
             <br />
             {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
