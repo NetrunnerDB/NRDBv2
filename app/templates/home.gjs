@@ -1,4 +1,5 @@
 import { pageTitle } from 'ember-page-title';
+import { t } from 'ember-intl';
 import { LinkTo } from '@ember/routing';
 
 import Navbar from 'netrunnerdb/components/navbar';
@@ -8,7 +9,7 @@ import BoxLink from 'netrunnerdb/components/box-link';
 import DecklistBoxLink from 'netrunnerdb/components/decklist-box-link';
 
 <template>
-  {{pageTitle 'Home'}}
+  {{pageTitle (t 'routes.home')}}
 
   <main class='pb-4'>
     <Navbar />
