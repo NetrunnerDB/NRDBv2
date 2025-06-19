@@ -5,6 +5,7 @@ import { LinkTo } from '@ember/routing';
 import { on } from '@ember/modifier';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 import Collapse from 'ember-bootstrap/components/bs-collapse';
+import formatMessage from 'ember-intl/helpers/format-message';
 
 class Navbar extends Component {
   @tracked showDropdown = false;
@@ -28,7 +29,7 @@ class Navbar extends Component {
           <div class='col-12 col-lg-3 mb-4 mb-lg-0'>
             <LinkTo @route='home' class='navbar-brand'>
               <img src='/assets/image/logo.png' alt='NetrunnerDB' />
-              <span>NetrunnerDB</span>
+              <span>{{formatMessage 'NetrunnerDB'}}</span>
             </LinkTo>
             <div class='col-2 d-lg-none float-end'>
               <button
@@ -48,62 +49,62 @@ class Navbar extends Component {
                 >
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='home' class='nav-link button-link'>
-                      Home
+                      {{formatMessage 'Home'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='home' class='nav-link button-link'>
-                      Register/Login
+                      {{formatMessage 'Register/Login'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='home' class='nav-link button-link'>
-                      My Decks
+                      {{formatMessage 'My Decks'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='home' class='nav-link button-link'>
-                      Decklists
+                      {{formatMessage 'Decklists'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='home' class='nav-link button-link'>
-                      Sets
+                      {{formatMessage 'Sets'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='factions' class='nav-link button-link'>
-                      Factions
+                      {{formatMessage 'Factions'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='formats' class='nav-link button-link'>
-                      Formats
+                      {{formatMessage 'Formats'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='bans' class='nav-link button-link'>
-                      Bans
+                      {{formatMessage 'Bans'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='rotation' class='nav-link button-link'>
-                      Rotation
+                      {{formatMessage 'Rotation'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='reviews' class='nav-link button-link'>
-                      Reviews
+                      {{formatMessage 'Reviews'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='rulings' class='nav-link button-link'>
-                      Rulings
+                      {{formatMessage 'Rulings'}}
                     </LinkTo>
                   </li>
                   <li class='nav-item nav-link-container'>
                     <LinkTo @route='illustrators' class='nav-link button-link'>
-                      Illustrators
+                      {{formatMessage 'Illustrators'}}
                     </LinkTo>
                   </li>
                 </ul>
@@ -128,13 +129,13 @@ class Navbar extends Component {
                 <LinkTo
                   @route='home'
                   class='button d-block grey cyber'
-                >Register</LinkTo>
+                >{{formatMessage 'Register'}}</LinkTo>
               </div>
               <div class='col-xl-4 col-lg-5 col-6'>
                 <LinkTo
                   @route='home'
                   class='button d-block blue cyber'
-                >Login</LinkTo>
+                >{{formatMessage 'Login'}}</LinkTo>
               </div>
             </div>
           </div>
@@ -147,37 +148,39 @@ class Navbar extends Component {
       <div class='container py-2'>
         <div class='row'>
           <div class='col'>
-            <LinkTo @route='home'>Home</LinkTo>
+            <LinkTo @route='home'>{{formatMessage 'Home'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>My Decks</LinkTo>
+            <LinkTo @route='home'>{{formatMessage 'My Decks'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='home'>Decklists</LinkTo>
+            <LinkTo @route='home'>{{formatMessage 'Decklists'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='sets'>Sets</LinkTo>
+            <LinkTo @route='sets'>{{formatMessage 'Sets'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='factions'>Factions</LinkTo>
+            <LinkTo @route='factions'>{{formatMessage 'Factions'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='formats'>Formats</LinkTo>
+            <LinkTo @route='formats'>{{formatMessage 'Formats'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='bans'>Bans</LinkTo>
+            <LinkTo @route='bans'>{{formatMessage 'Bans'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='rotation'>Rotation</LinkTo>
+            <LinkTo @route='rotation'>{{formatMessage 'Rotation'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='reviews'>Reviews</LinkTo>
+            <LinkTo @route='reviews'>{{formatMessage 'Reviews'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='rulings'>Rulings</LinkTo>
+            <LinkTo @route='rulings'>{{formatMessage 'Rulings'}}</LinkTo>
           </div>
           <div class='col'>
-            <LinkTo @route='illustrators'>Illustrators</LinkTo>
+            <LinkTo @route='illustrators'>
+              {{formatMessage 'Illustrators'}}
+            </LinkTo>
           </div>
         </div>
       </div>
