@@ -117,9 +117,6 @@ importers:
       ember-data:
         specifier: ~5.5.0
         version: 5.5.0(@ember/string@3.1.1)(@ember/test-helpers@3.3.1(@babel/core@7.27.4)(ember-source@6.4.0(@glimmer/component@1.1.2(@babel/core@7.27.4))(rsvp@4.8.5))(webpack@5.99.9))(@ember/test-waiters@3.1.0)(ember-inflector@6.0.0(@babel/core@7.27.4))(ember-source@6.4.0(@glimmer/component@1.1.2(@babel/core@7.27.4))(rsvp@4.8.5))(qunit@2.24.1)
-      ember-google-fonts:
-        specifier: ^1.0.1
-        version: 1.0.1
       ember-inflector:
         specifier: ^6.0.0
         version: 6.0.0(@babel/core@7.27.4)
@@ -3395,10 +3392,6 @@ packages:
     engines: {node: '>= 14.0.0'}
     peerDependencies:
       ember-source: ^3.25.0 || >=4.0.0
-
-  ember-google-fonts@1.0.1:
-    resolution: {integrity: sha512-VLKmRf8t2WL3JroqvfJOsOVGXu5if9LDXWhdTyJ79QnMQtKVDeB2c/6ty8UmuehuPyIo7NDzwjt11t1h3UwNCw==}
-    engines: {node: 8.* || >= 10.*}
 
   ember-in-element-polyfill@1.0.1:
     resolution: {integrity: sha512-eHs+7D7PuQr8a1DPqsJTsEyo3FZ1XuH6WEZaEBPDa9s0xLlwByCNKl8hi1EbXOgvgEZNHHi9Rh0vjxyfakrlgg==}
@@ -11910,12 +11903,6 @@ snapshots:
       ember-cli-typescript: 5.3.0
       ember-cli-version-checker: 5.1.2
       ember-source: 6.4.0(@glimmer/component@1.1.2(@babel/core@7.27.4))(rsvp@4.8.5)
-    transitivePeerDependencies:
-      - supports-color
-
-  ember-google-fonts@1.0.1:
-    dependencies:
-      ember-cli-babel: 7.26.11
     transitivePeerDependencies:
       - supports-color
 
