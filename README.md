@@ -15,12 +15,12 @@ You will need the following things properly installed on your computer.
 
 - `git clone <repository-url>` this repository
 - `cd NRDBv2`
-- `corepack enable` (see [here](https://yarnpkg.com/getting-started/install) for an explanation, this is required by yarn)
-- `yarn install`
+- install `pnpm` using the [pnpm installation documentation](https://pnpm.io/installation)
+- `pnpm install`
 
 ## Running / Development
 
-- `yarn start`
+- `pnpm start`
 - Visit your app at [http://localhost:4200](http://localhost:4200).
 - Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
@@ -35,15 +35,15 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Linting
 
-- `yarn lint`
-- `yarn lint:fix`
+- `pnpm lint`
+- `pnpm lint:fix`
 
 ### Building
 
 - `ember build` (development)
 - `ember build --environment production` (production)
 
-`yarn build` runs the production version of `ember build`.
+`pnpm build` runs the production version of `ember build`.
 
 ### Deploying
 
