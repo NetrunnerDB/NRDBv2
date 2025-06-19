@@ -117,9 +117,6 @@ importers:
       ember-data:
         specifier: ~5.5.0
         version: 5.5.0(@ember/string@3.1.1)(@ember/test-helpers@3.3.1(@babel/core@7.27.4)(ember-source@6.4.0(@glimmer/component@1.1.2(@babel/core@7.27.4))(rsvp@4.8.5))(webpack@5.99.9))(@ember/test-waiters@3.1.0)(ember-inflector@6.0.0(@babel/core@7.27.4))(ember-source@6.4.0(@glimmer/component@1.1.2(@babel/core@7.27.4))(rsvp@4.8.5))(qunit@2.24.1)
-      ember-fetch:
-        specifier: ^8.1.2
-        version: 8.1.2
       ember-google-fonts:
         specifier: ^1.0.1
         version: 1.0.1
