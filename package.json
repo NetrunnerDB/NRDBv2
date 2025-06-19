@@ -61,7 +61,7 @@
     "ember-cli-terser": "^4.0.2",
     "ember-composable-helpers": "^5.0.0",
     "ember-concurrency": "^4.0.4",
-    "ember-data": "~4.13.0-alpha.9",
+    "ember-data": "~5.5.0",
     "ember-fetch": "^8.1.2",
     "ember-google-fonts": "^1.0.1",
     "ember-inflector": "^6.0.0",
