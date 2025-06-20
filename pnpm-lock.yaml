@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  ember-simple-auth-oidc:
+    hash: 85581507b33b5a1f44d74dfb450b9eb2138c95483c513686376026d5b3ee0a19
+    path: patches/ember-simple-auth-oidc.patch
+
 importers:
 
   .:
@@ -142,7 +147,7 @@ importers:
         version: 13.1.1
       ember-simple-auth-oidc:
         specifier: ^7.0.3
-        version: 7.0.4(f345e1b86ef24ff0d2e7f04c17298043)
+        version: 7.0.4(patch_hash=85581507b33b5a1f44d74dfb450b9eb2138c95483c513686376026d5b3ee0a19)(f345e1b86ef24ff0d2e7f04c17298043)
       ember-source:
         specifier: ~6.4.0
         version: 6.4.0(@glimmer/component@2.0.0)(rsvp@4.8.5)
@@ -11001,7 +11006,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-simple-auth-oidc@7.0.4(f345e1b86ef24ff0d2e7f04c17298043):
+  ember-simple-auth-oidc@7.0.4(patch_hash=85581507b33b5a1f44d74dfb450b9eb2138c95483c513686376026d5b3ee0a19)(f345e1b86ef24ff0d2e7f04c17298043):
     dependencies:
       '@apollo/client': 3.13.8(graphql@16.11.0)
       '@babel/core': 7.27.4

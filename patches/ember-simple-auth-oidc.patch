@@ -1,0 +1,397 @@
+diff --git a/README.md b/README.md
+index 6aaf281e40dc7ae484b84ecb1fa67c55c63f8f5c..192c4e667261b9a2f204374c2d614bd40affea1d 100644
+--- a/README.md
++++ b/README.md
+@@ -51,7 +51,7 @@ causing redirect loops).
+ // app/routes/protected.js
+ 
+ import Route from "@ember/routing/route";
+-import { inject as service } from "@ember/service";
++import { service } from "@ember/service";
+ 
+ export default class ProtectedRoute extends Route {
+   @service session;
+@@ -73,7 +73,7 @@ header included.
+ ```js
+ // app/adapters/application.js
+ 
+-import { inject as service } from "@ember/service";
++import { service } from "@ember/service";
+ import OIDCJSONAPIAdapter from "ember-simple-auth-oidc/adapters/oidc-json-api-adapter";
+ 
+ export default class ApplicationAdapter extends OIDCJSONAPIAdapter {
+@@ -92,7 +92,7 @@ Simply, wrap the http link in `apolloMiddleware` like so:
+ ```js
+ // app/services/apollo.js
+ 
+-import { inject as service } from "@ember/service";
++import { service } from "@ember/service";
+ import ApolloService from "ember-apollo-client/services/apollo";
+ import { apolloMiddleware } from "ember-simple-auth-oidc";
+ 
+@@ -114,7 +114,7 @@ services as well, you can use the `handleUnauthorized` function and the
+ shows an example of a custom fetch service with proper authentication handling:
+ 
+ ```js
+-import Service, { inject as service } from "@ember/service";
++import Service, { service } from "@ember/service";
+ import { handleUnauthorized } from "ember-simple-auth-oidc";
+ import fetch from "fetch";
+ 
+diff --git a/addon/adapters/oidc-json-api-adapter.js b/addon/adapters/oidc-json-api-adapter.js
+index 75a1cd45a7844e3f421512e1fbd18e705b5a5325..a5d94d7aa3b9d619848d3db179e627674df2da4a 100644
+--- a/addon/adapters/oidc-json-api-adapter.js
++++ b/addon/adapters/oidc-json-api-adapter.js
+@@ -1,6 +1,6 @@
+-import { inject as service } from "@ember/service";
+-import JSONAPIAdapter from "@ember-data/adapter/json-api";
+-import { handleUnauthorized } from "ember-simple-auth-oidc";
++import { service } from '@ember/service';
++import JSONAPIAdapter from '@ember-data/adapter/json-api';
++import { handleUnauthorized } from 'ember-simple-auth-oidc';
+ 
+ export default class OIDCJSONAPIAdapter extends JSONAPIAdapter {
+   @service session;
+@@ -13,13 +13,13 @@ export default class OIDCJSONAPIAdapter extends JSONAPIAdapter {
+       get(target, prop, receiver) {
+         if (
+           [
+-            "findRecord",
+-            "createRecord",
+-            "updateRecord",
+-            "deleteRecord",
+-            "findAll",
+-            "query",
+-            "findMany",
++            'findRecord',
++            'createRecord',
++            'updateRecord',
++            'deleteRecord',
++            'findAll',
++            'query',
++            'findMany',
+           ].includes(prop)
+         ) {
+           return new Proxy(target[prop], {
+diff --git a/addon/adapters/oidc-rest-adapter.js b/addon/adapters/oidc-rest-adapter.js
+index bb990667adc4549e231e48fb53367d9c04920bd2..bafce96a79d6ee0f33e49c06eea691776a07267a 100644
+--- a/addon/adapters/oidc-rest-adapter.js
++++ b/addon/adapters/oidc-rest-adapter.js
+@@ -1,6 +1,6 @@
+-import { inject as service } from "@ember/service";
+-import RESTAdapter from "@ember-data/adapter/rest";
+-import { handleUnauthorized } from "ember-simple-auth-oidc";
++import { service } from '@ember/service';
++import RESTAdapter from '@ember-data/adapter/rest';
++import { handleUnauthorized } from 'ember-simple-auth-oidc';
+ 
+ export default class OIDCRESTAdapter extends RESTAdapter {
+   @service session;
+@@ -13,13 +13,13 @@ export default class OIDCRESTAdapter extends RESTAdapter {
+       get(target, prop, receiver) {
+         if (
+           [
+-            "findRecord",
+-            "createRecord",
+-            "updateRecord",
+-            "deleteRecord",
+-            "findAll",
+-            "query",
+-            "findMany",
++            'findRecord',
++            'createRecord',
++            'updateRecord',
++            'deleteRecord',
++            'findAll',
++            'query',
++            'findMany',
+           ].includes(prop)
+         ) {
+           return new Proxy(target[prop], {
+diff --git a/addon/authenticators/oidc.js b/addon/authenticators/oidc.js
+index d41229cef3dff737a30adda7d336dafdeb863d6b..be6b7aabc6517b4403967e0813b5c3e4c9cc6ddc 100644
+--- a/addon/authenticators/oidc.js
++++ b/addon/authenticators/oidc.js
+@@ -1,17 +1,17 @@
+-import { later } from "@ember/runloop";
+-import { inject as service } from "@ember/service";
++import { later } from '@ember/runloop';
++import { service } from '@ember/service';
+ import {
+   isServerErrorResponse,
+   isAbortError,
+   isBadRequestResponse,
+-} from "ember-fetch/errors";
+-import BaseAuthenticator from "ember-simple-auth/authenticators/base";
+-import fetch from "fetch";
+-import { resolve } from "rsvp";
+-import { TrackedObject } from "tracked-built-ins";
++} from 'ember-fetch/errors';
++import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
++import fetch from 'fetch';
++import { resolve } from 'rsvp';
++import { TrackedObject } from 'tracked-built-ins';
+ 
+-import config from "ember-simple-auth-oidc/config";
+-import getAbsoluteUrl from "ember-simple-auth-oidc/utils/absolute-url";
++import config from 'ember-simple-auth-oidc/config';
++import getAbsoluteUrl from 'ember-simple-auth-oidc/utils/absolute-url';
+ 
+ export default class OidcAuthenticator extends BaseAuthenticator {
+   @service router;
+@@ -31,7 +31,7 @@ export default class OidcAuthenticator extends BaseAuthenticator {
+   async authenticate({ code, redirectUri, codeVerifier, isRefresh }) {
+     if (!this.config.tokenEndpoint || !this.config.userinfoEndpoint) {
+       throw new Error(
+-        "Please define all OIDC endpoints (auth, token, userinfo)",
++        'Please define all OIDC endpoints (auth, token, userinfo)',
+       );
+     }
+ 
+@@ -45,7 +45,7 @@ export default class OidcAuthenticator extends BaseAuthenticator {
+     const bodyObject = {
+       code,
+       client_id: this.config.clientId,
+-      grant_type: "authorization_code",
++      grant_type: 'authorization_code',
+       redirect_uri: redirectUri,
+     };
+ 
+@@ -55,15 +55,15 @@ export default class OidcAuthenticator extends BaseAuthenticator {
+ 
+     const body = Object.keys(bodyObject)
+       .map((k) => `${k}=${encodeURIComponent(bodyObject[k])}`)
+-      .join("&");
++      .join('&');
+ 
+     const response = await fetch(
+       getAbsoluteUrl(this.config.tokenEndpoint, this.config.host),
+       {
+-        method: "POST",
++        method: 'POST',
+         headers: {
+-          Accept: "application/json",
+-          "Content-Type": "application/x-www-form-urlencoded",
++          Accept: 'application/json',
++          'Content-Type': 'application/x-www-form-urlencoded',
+         },
+         body,
+       },
+@@ -124,7 +124,7 @@ export default class OidcAuthenticator extends BaseAuthenticator {
+       `${getAbsoluteUrl(
+         this.config.endSessionEndpoint,
+         this.config.host,
+-      )}?${params.join("&")}`,
++      )}?${params.join('&')}`,
+     );
+   }
+ 
+@@ -147,7 +147,7 @@ export default class OidcAuthenticator extends BaseAuthenticator {
+     const { refresh_token, expireTime, redirectUri } = sessionData;
+ 
+     if (!refresh_token) {
+-      throw new Error("Refresh token is missing");
++      throw new Error('Refresh token is missing');
+     }
+ 
+     if (expireTime && expireTime <= new Date().getTime()) {
+@@ -169,20 +169,20 @@ export default class OidcAuthenticator extends BaseAuthenticator {
+       const bodyObject = {
+         refresh_token,
+         client_id: this.config.clientId,
+-        grant_type: "refresh_token",
++        grant_type: 'refresh_token',
+         redirect_uri: redirectUri,
+       };
+       const body = Object.keys(bodyObject)
+         .map((k) => `${k}=${encodeURIComponent(bodyObject[k])}`)
+-        .join("&");
++        .join('&');
+ 
+       const response = await fetch(
+         getAbsoluteUrl(this.config.tokenEndpoint, this.config.host),
+         {
+-          method: "POST",
++          method: 'POST',
+           headers: {
+-            Accept: "application/json",
+-            "Content-Type": "application/x-www-form-urlencoded",
++            Accept: 'application/json',
++            'Content-Type': 'application/x-www-form-urlencoded',
+           },
+           body,
+         },
+@@ -232,7 +232,7 @@ export default class OidcAuthenticator extends BaseAuthenticator {
+       {
+         headers: {
+           Authorization: `${this.config.authPrefix} ${accessToken}`,
+-          Accept: "application/json",
++          Accept: 'application/json',
+         },
+       },
+     );
+diff --git a/addon/routes/oidc-authentication.js b/addon/routes/oidc-authentication.js
+index 0e6e4729b478ed393f2e964bb25b7eef7ae5f8a3..efc6f14385809a359e34a0aba3777ae75569a1f1 100644
+--- a/addon/routes/oidc-authentication.js
++++ b/addon/routes/oidc-authentication.js
+@@ -1,14 +1,14 @@
+-import { assert } from "@ember/debug";
+-import Route from "@ember/routing/route";
+-import { inject as service } from "@ember/service";
+-import { v4 } from "uuid";
++import { assert } from '@ember/debug';
++import Route from '@ember/routing/route';
++import { service } from '@ember/service';
++import { v4 } from 'uuid';
+ 
+-import config from "ember-simple-auth-oidc/config";
+-import getAbsoluteUrl from "ember-simple-auth-oidc/utils/absolute-url";
++import config from 'ember-simple-auth-oidc/config';
++import getAbsoluteUrl from 'ember-simple-auth-oidc/utils/absolute-url';
+ import {
+   generatePkceChallenge,
+   generateCodeVerifier,
+-} from "ember-simple-auth-oidc/utils/pkce";
++} from 'ember-simple-auth-oidc/utils/pkce';
+ export default class OIDCAuthenticationRoute extends Route {
+   @service session;
+   @service router;
+@@ -41,7 +41,7 @@ export default class OIDCAuthenticationRoute extends Route {
+ 
+       if (!pkceCodeVerifier) {
+         pkceCodeVerifier = generateCodeVerifier(96);
+-        this.session.set("data.pkceCodeVerifier", pkceCodeVerifier);
++        this.session.set('data.pkceCodeVerifier', pkceCodeVerifier);
+       }
+     }
+   }
+@@ -68,7 +68,7 @@ export default class OIDCAuthenticationRoute extends Route {
+   async afterModel(_, transition) {
+     if (!this.config.authEndpoint) {
+       throw new Error(
+-        "Please define all OIDC endpoints (auth, token, logout, userinfo)",
++        'Please define all OIDC endpoints (auth, token, logout, userinfo)',
+       );
+     }
+ 
+@@ -105,10 +105,10 @@ export default class OIDCAuthenticationRoute extends Route {
+    */
+   async _handleCallbackRequest(code, state) {
+     if (state !== this.session.data.state) {
+-      assert("State did not match");
++      assert('State did not match');
+     }
+ 
+-    this.session.set("data.state", undefined);
++    this.session.set('data.state', undefined);
+ 
+     const data = {
+       code,
+@@ -119,7 +119,7 @@ export default class OIDCAuthenticationRoute extends Route {
+       data.codeVerifier = this.session.data.pkceCodeVerifier;
+     }
+ 
+-    await this.session.authenticate("authenticator:oidc", data);
++    await this.session.authenticate('authenticator:oidc', data);
+   }
+ 
+   /**
+@@ -134,7 +134,7 @@ export default class OIDCAuthenticationRoute extends Route {
+     const state = v4();
+ 
+     // Store state to session data
+-    this.session.set("data.state", state);
++    this.session.set('data.state', state);
+ 
+     /**
+      * Store the `nextURL` in the localstorage so when the user returns after
+@@ -142,11 +142,11 @@ export default class OIDCAuthenticationRoute extends Route {
+      */
+     if (!this.session.data.nextURL) {
+       const url = this.session.attemptedTransition?.intent?.url;
+-      this.session.set("data.nextURL", url);
++      this.session.set('data.nextURL', url);
+     }
+ 
+     // forward `login_hint` query param if present
+-    const key = this.config.loginHintName || "login_hint";
++    const key = this.config.loginHintName || 'login_hint';
+ 
+     let search = [
+       `client_id=${this.config.clientId}`,
+@@ -162,10 +162,10 @@ export default class OIDCAuthenticationRoute extends Route {
+         this.session.data.pkceCodeVerifier,
+       );
+       search.push(`code_challenge=${pkceChallenge}`);
+-      search.push("code_challenge_method=S256");
++      search.push('code_challenge_method=S256');
+     }
+ 
+-    search = search.filter(Boolean).join("&");
++    search = search.filter(Boolean).join('&');
+ 
+     this._redirectToUrl(
+       `${getAbsoluteUrl(this.config.host)}${
+diff --git a/addon/services/session.js b/addon/services/session.js
+index 0b768d88a1f70890e610953d9894ba4505f614de..a7debdab8a2ac86e1e2de24f43d501cb8a90e8da 100644
+--- a/addon/services/session.js
++++ b/addon/services/session.js
+@@ -1,8 +1,8 @@
+-import { inject as service } from "@ember/service";
+-import { enqueueTask } from "ember-concurrency";
+-import SessionServiceESA from "ember-simple-auth/services/session";
++import { service } from '@ember/service';
++import { enqueueTask } from 'ember-concurrency';
++import SessionServiceESA from 'ember-simple-auth/services/session';
+ 
+-import config from "ember-simple-auth-oidc/config";
++import config from 'ember-simple-auth-oidc/config';
+ 
+ export default class Service extends SessionServiceESA {
+   @service router;
+@@ -53,12 +53,12 @@ export default class Service extends SessionServiceESA {
+ 
+     if (this.isAuthenticated && isExpired) {
+       try {
+-        return yield this.session.authenticate("authenticator:oidc", {
++        return yield this.session.authenticate('authenticator:oidc', {
+           redirectUri: this.redirectUri,
+           isRefresh: true,
+         });
+       } catch {
+-        console.warn("Token is invalid. Re-authentification is required.");
++        console.warn('Token is invalid. Re-authentification is required.');
+       }
+     }
+   }
+@@ -82,7 +82,7 @@ export default class Service extends SessionServiceESA {
+     // nextURL is stored to the localStorage using the
+     // session service's set method
+     // eslint-disable-next-line ember/classic-decorator-no-classic-methods
+-    this.set("data.nextURL", undefined);
++    this.set('data.nextURL', undefined);
+ 
+     if (nextURL) {
+       this.router.replaceWith(nextURL);
+diff --git a/docs/migration-v4.md b/docs/migration-v4.md
+index 1b582fbbc84fd2d6e8e2332252dd38b1717c46c3..6934d1a92914902e682b48c3f6739c24da88998d 100644
+--- a/docs/migration-v4.md
++++ b/docs/migration-v4.md
+@@ -27,7 +27,7 @@ the access token before accessing the authenticated route.
+ 
+   import Route from "@ember/routing/route";
+ - import AuthenticatedRouteMixin from "ember-simple-auth/mixins/authenticated-route-mixin";
+-+ import { inject as service } from "@ember/service";
+++ import { service } from "@ember/service";
+ 
+ - export default class ProtectedRoute extends Route.extend(
+ -   AuthenticatedRouteMixin
+@@ -92,7 +92,7 @@ adapter's headers. The provided adapters contain the necessary logic to handle
+ 
+ - import JSONAPIAdapter from "@ember-data/adapter/json-api";
+ - import OIDCAdapterMixin from "ember-simple-auth-oidc/mixins/oidc-adapter-mixin";
+-+ import { inject as service } from "@ember/service";
+++ import { service } from "@ember/service";
+ + import OIDCJSONAPIAdapter from "ember-simple-auth-oidc/adapters/oidc-json-api-adapter";
+ 
+ - export default class ApplicationAdapter extends JSONAPIAdapter.extend(
