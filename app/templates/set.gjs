@@ -5,6 +5,7 @@ import Titlebar from 'netrunnerdb/components/titlebar';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 import CardList from 'netrunnerdb/components/card/list';
+import { Await } from '@warp-drive/ember';
 
 <template>
   {{pageTitle @model.cardSet.name}}
@@ -41,7 +42,14 @@ import CardList from 'netrunnerdb/components/card/list';
     </Titlebar>
 
     <div class='container'>
-      <CardList @printings={{sortBy 'position' @model.cardSet.printings}} />
+      <Await @promise={{@model.cardSet.printings}}>
+        <:pending>
+          Loading cards...
+        </:pending>
+        <:success as |printings|>
+          <CardList @printings={{sortBy 'position' printings}} />
+        </:success>
+      </Await>
     </div>
 
   </main>
