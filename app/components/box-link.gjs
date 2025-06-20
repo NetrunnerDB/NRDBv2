@@ -10,7 +10,7 @@ export default class CardListsComponent extends Component {
   constructor(...args) {
     super(...args);
 
-    this.latestSet = this.store.query('cardSet', {});
+    this.latestSet = this.store.query('card-set', {});
   }
 
   <template>

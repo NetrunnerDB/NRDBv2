@@ -6,7 +6,7 @@ export default class DecklistRoute extends Route {
   @service store;
 
   async model({ id }) {
-    let cardTypes = this.store.findAll('cardType');
+    let cardTypes = this.store.findAll('card-type');
     let decklist = this.store.findRecord('decklist', id, {
       include: 'cards,cards.printings',
     });

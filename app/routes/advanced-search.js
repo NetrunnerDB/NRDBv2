@@ -6,9 +6,9 @@ export default class AdvancedSearchRoute extends Route {
   @service store;
 
   async model() {
-    let cardTypes = this.store.findAll('cardType');
-    let cardSubtypes = this.store.findAll('cardSubtype');
-    let cardSets = this.store.findAll('cardSet');
+    let cardTypes = this.store.findAll('card-type');
+    let cardSubtypes = this.store.findAll('card-sub-type');
+    let cardSets = this.store.findAll('card-set');
     let factions = this.store.findAll('faction');
 
     return hash({ cardTypes, cardSubtypes, cardSets, factions });

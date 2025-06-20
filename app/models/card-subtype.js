@@ -4,6 +4,6 @@ export default class CardSubtypeModel extends Model {
   @attr name;
   @attr updatedAt;
 
-  @hasMany('cards', { async: true, inverse: 'cardSubtypes' }) cards;
+  @hasMany('card', { async: true, inverse: 'cardSubtypes' }) cards;
   @hasMany('printing', { async: true, inverse: null }) printings;
 }

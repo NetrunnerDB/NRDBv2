@@ -5,7 +5,7 @@ import { action } from '@ember/object';
 import { fn } from '@ember/helper';
 import { on } from '@ember/modifier';
 import { eq } from 'netrunnerdb/utils/template-operators';
-import sortBy from 'ember-composable-helpers/helpers/sort-by';
+import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 
 export default class CardCommunityComponent extends Component {
   @tracked tab = 'content-rulings';

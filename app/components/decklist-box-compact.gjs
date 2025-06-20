@@ -3,6 +3,14 @@ import { LinkTo } from '@ember/routing';
 import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import {
+  faCertificate,
+  faArrowRotateRight,
+  faHeart,
+  faStar,
+  faMessage,
+} from '@fortawesome/free-solid-svg-icons';
+
 import Icon from './icon';
 
 export default class DecklistBoxCompactComponent extends Component {
@@ -41,10 +49,10 @@ export default class DecklistBoxCompactComponent extends Component {
               (1187)
             </span>
             <LinkTo @route='home' class='button round d-inline'>
-              <FaIcon @icon='certificate' />
+              <FaIcon @icon={{faCertificate}} />
               2024 Accelerated Meta Test</LinkTo>
             <LinkTo @route='home' class='button round d-inline'>
-              <FaIcon @icon='arrow-rotate-right' />
+              <FaIcon @icon={{faArrowRotateRight}} />
               Sixth rotation</LinkTo>
           </p>
         </div>
@@ -57,9 +65,10 @@ export default class DecklistBoxCompactComponent extends Component {
                 {{formatIso8601Date @decklist.createdAt}}
               </div>
               <div class='col col-lg-12 decklist-notes'>
-                <span class='likes'><FaIcon @icon='heart' /> 19</span>
-                <span class='stars ms-3'><FaIcon @icon='star' /> 8</span>
-                <span class='comments ms-3'><FaIcon @icon='message' /> 5</span>
+                <span class='likes'><FaIcon @icon={{faHeart}} /> 19</span>
+                <span class='stars ms-3'><FaIcon @icon={{faStar}} /> 8</span>
+                <span class='comments ms-3'><FaIcon @icon={{faMessage}} />
+                  5</span>
               </div>
             </div>
           </div>

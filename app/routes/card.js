@@ -73,7 +73,7 @@ export default class CardRoute extends Route {
     });
 
     let rulings = card.get('rulings');
-    let reviews = card.get('reviews');
+    let reviews = card.get('review');
 
     return hash({
       card,

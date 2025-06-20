@@ -1,11 +1,25 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { htmlSafe } from '@ember/template';
 import { LinkTo } from '@ember/routing';
 import { on } from '@ember/modifier';
 import { get } from '@ember/helper';
+import { hash } from '@ember/helper';
 import { pageTitle } from 'ember-page-title';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
+import {
+  faHeart,
+  faStar,
+  faComment,
+  faCodeCompare,
+  faTableList,
+  faSort,
+  faImages,
+  faDownload,
+  faAlignLeft,
+  faFileCode,
+} from '@fortawesome/free-solid-svg-icons';
+import formatISO8601Date from '../helpers/format-iso8601-date';
+
 import and from 'ember-truth-helpers/helpers/and';
 import notEq from 'ember-truth-helpers/helpers/not-eq';
 import gt from 'ember-truth-helpers/helpers/gt';
@@ -19,19 +33,6 @@ import CardList from 'netrunnerdb/components/card/list';
 import DecklistImages from 'netrunnerdb/components/decklist/images';
 
 export default class DecklistComponent extends Component {
-  // ENUM: writeup, list, images
-  @tracked displayType = 'writeup';
-
-  displayWriteUp = () => {
-    this.displayType = 'writeup';
-  };
-  displayList = () => {
-    this.displayType = 'list';
-  };
-  displayImages = () => {
-    this.displayType = 'images';
-  };
-
   displayHtml(source) {
     return htmlSafe(source);
   }
@@ -60,18 +61,18 @@ export default class DecklistComponent extends Component {
                   <LinkTo @route='home'>{{@model.decklist.userId}}</LinkTo>
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  15 Dec. 2023
+                  {{formatISO8601Date @model.decklist.createdAt}}
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='heart' @prefix='far' />
+                  <FaIcon @icon={{faHeart}} @prefix='far' />
                   25
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='star' @prefix='far' />
+                  <FaIcon @icon={{faStar}} @prefix='far' />
                   12
                 </span>
                 <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon='comment' @prefix='far' />
+                  <FaIcon @icon={{faComment}} @prefix='far' />
                   6
                 </span>
               </div>
@@ -101,40 +102,33 @@ export default class DecklistComponent extends Component {
           </div>
           <div class='col-6 text-end'>
             <LinkTo @route='home' class='button'>
-              <FaIcon @icon='file-code' @prefix='far' />
+              <FaIcon @icon={{faFileCode}} @prefix='far' />
             </LinkTo>
             <LinkTo @route='home' class='button'>
-              <FaIcon @icon='arrow-down-to-bracket' />
+              <FaIcon @icon={{faDownload}} />
             </LinkTo>
             <LinkTo @route='home' class='button'>
-              <FaIcon @icon='code-compare' />
+              <FaIcon @icon={{faCodeCompare}} />
             </LinkTo>
             <LinkTo @route='home' class='button'>
-              <FaIcon @icon='arrow-up-arrow-down' />
+              <FaIcon @icon={{faSort}} />
               Sort
             </LinkTo>
+
             <div class='btn-group' role='group'>
-              <button
-                type='button'
-                class='btn button'
-                {{on 'click' this.displayWriteUp}}
-              >
-                <FaIcon @icon='bars-sort' />
-              </button>
-              <button
-                type='button'
-                class='btn button'
-                {{on 'click' this.displayList}}
-              >
-                <FaIcon @icon='table-list' @prefix='far' @flip='horizontal' />
-              </button>
-              <button
-                type='button'
-                class='btn button'
-                {{on 'click' this.displayImages}}
-              >
-                <FaIcon @icon='layer-group' @prefix='far' />
-              </button>
+              <LinkTo @query={{hash display='writeup'}} class='button'>
+                <FaIcon @icon={{faAlignLeft}} />
+              </LinkTo>
+              <LinkTo @query={{hash display='list'}} class='button'>
+                <FaIcon
+                  @icon={{faTableList}}
+                  @prefix='far'
+                  @flip='horizontal'
+                />
+              </LinkTo>
+              <LinkTo @query={{hash display='images'}} class='button'>
+                <FaIcon @icon={{faImages}} @prefix='far' />
+              </LinkTo>
             </div>
           </div>
         </div>
@@ -143,7 +137,7 @@ export default class DecklistComponent extends Component {
         <div class='row'>
           <div class='col-6'>
             <DecklistBox @decklist={{@model.decklist}} />
-            {{#if (eq this.displayType 'writeup')}}
+            {{#if (eq @controller.display 'writeup')}}
               <DeckWriteup
                 @decklist={{@model.decklist}}
                 @cardTypes={{@model.cardTypes}}
@@ -154,7 +148,7 @@ export default class DecklistComponent extends Component {
           <div class='col-6 position-relative'>
             <div
               class='decklist-description
-                {{if (notEq this.displayType "writeup") "truncated"}}'
+                {{if (notEq @controller.display "writeup") "truncated"}}'
             >
               <h2>{{@model.decklist.name}}</h2>
               <div>
@@ -163,7 +157,7 @@ export default class DecklistComponent extends Component {
             </div>
             {{#if
               (and
-                (notEq this.displayType 'writeup')
+                (notEq @controller.display 'writeup')
                 (gt @model.decklist.notes.length 200)
               )
             }}
@@ -171,7 +165,7 @@ export default class DecklistComponent extends Component {
                 type='button'
                 class='position-absolute px-2'
                 style='bottom:0;right:0'
-                {{on 'click' this.displayWriteUp}}
+                {{on 'click' @controller.displayWriteUp}}
               >
                 Read more
               </button>
@@ -213,13 +207,13 @@ export default class DecklistComponent extends Component {
       </div> }}
 
         {{! CARDS }}
-        {{#if (eq this.displayType 'list')}}
+        {{#if (eq @controller.display 'list')}}
           <CardList @printings={{@model.decklist.cards}}>
             <:quantity as |card|>
               {{get @model.decklist.cardSlots card.id}}
             </:quantity>
           </CardList>
-        {{else if (eq this.displayType 'images')}}
+        {{else if (eq @controller.display 'images')}}
           <DecklistImages
             @decklist={{@model.decklist}}
             @cardTypes={{@model.cardTypes}}
