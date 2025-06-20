@@ -55,7 +55,7 @@ export default class CardModel extends Model {
   @belongsTo('card-type', { async: true, inverse: 'cards' }) cardType;
   @hasMany('card-subtype', { async: true, inverse: 'cards' }) cardSubtypes;
   @hasMany('printing', { async: false, inverse: 'card' }) printings;
-  @hasMany('reviews', { async: false, inverse: 'card' }) reviews;
+  @hasMany('review', { async: false, inverse: 'card' }) reviews;
   @hasMany('ruling', { async: true, inverse: 'card' }) rulings;
 
   get latestPrinting() {

@@ -8,5 +8,5 @@ export default class ReviewModel extends Model {
   @attr createdAt;
   @attr comments;
 
-  @belongsTo('card', { async: false, inverse: 'reviews' }) card;
+  @belongsTo('card', { async: false, inverse: 'review' }) card;
 }
