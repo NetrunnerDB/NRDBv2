@@ -1,2 +1,3 @@
 patchedDependencies:
   ember-simple-auth-oidc: patches/ember-simple-auth-oidc.patch
+  ember-bootstrap: patches/ember-bootstrap.patch

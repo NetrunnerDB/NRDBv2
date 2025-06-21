@@ -1,0 +1,24 @@
+diff --git a/addon/components/bs-link-to.ts b/addon/components/bs-link-to.ts
+index 01817cb177b6026638795a1a788f81f921dd84e4..c40352c0cbcd8eb6ad7a8d98d3b4f46943f8dd63 100644
+--- a/addon/components/bs-link-to.ts
++++ b/addon/components/bs-link-to.ts
+@@ -1,5 +1,5 @@
+ import Component from '@glimmer/component';
+-import { inject as service } from '@ember/service';
++import { service } from '@ember/service';
+ import { assert } from '@ember/debug';
+ import type RouterService from '@ember/routing/router-service';
+ 
+diff --git a/addon/components/bs-modal.ts b/addon/components/bs-modal.ts
+index d99766fd8a6a2e7bdb04fb671fc3d9a1de48c2c9..7de2600c9e6980e5f86576dd94368b582f4f46e8 100644
+--- a/addon/components/bs-modal.ts
++++ b/addon/components/bs-modal.ts
+@@ -2,7 +2,7 @@ import { action } from '@ember/object';
+ import { assert } from '@ember/debug';
+ import Component from '@glimmer/component';
+ import { next, schedule } from '@ember/runloop';
+-import { inject as service } from '@ember/service';
++import { service } from '@ember/service';
+ import transitionEnd from '../utils/transition-end';
+ import { getDestinationElement } from '../utils/dom';
+ import usesTransition from '../utils/decorators/uses-transition';
