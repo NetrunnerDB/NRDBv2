@@ -6,8 +6,7 @@ module.exports = async function (defaults) {
   const app = new EmberApp(defaults, {
     'ember-bootstrap': {
       insertEmberWormholeElementToDom: false,
-      bootstrapVersion: 5,
-      importBootstrapCSS: true,
+      importBootstrapCSS: false,
     },
     'ember-power-select': {
       theme: 'bootstrap',
