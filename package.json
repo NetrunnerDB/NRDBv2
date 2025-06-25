@@ -98,7 +98,8 @@
     "webpack": "^5.99.8"
   },
   "engines": {
-    "node": "22.* || 24.*"
+    "node": "22.* || 24.*",
+    "pnpm": "10.12.1"
   },
   "ember": {
     "edition": "octane"
