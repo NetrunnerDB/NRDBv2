@@ -4,7 +4,6 @@ import loadInitializers from 'ember-load-initializers';
 import config from 'netrunnerdb/config/environment';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import './font-awesome'; // Add this import statement for Font Awesome setup
-import 'bootstrap/dist/css/bootstrap.css';
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');

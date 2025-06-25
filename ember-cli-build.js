@@ -7,6 +7,7 @@ module.exports = async function (defaults) {
     'ember-bootstrap': {
       insertEmberWormholeElementToDom: false,
       importBootstrapCSS: false,
+      include: ['bs-collapse', 'bs-dropdown', 'bs-form', 'bs-tab'],
     },
     'ember-power-select': {
       theme: 'bootstrap',
