@@ -22,3 +22,40 @@ index d99766fd8a6a2e7bdb04fb671fc3d9a1de48c2c9..7de2600c9e6980e5f86576dd94368b58
  import transitionEnd from '../utils/transition-end';
  import { getDestinationElement } from '../utils/dom';
  import usesTransition from '../utils/decorators/uses-transition';
+diff --git a/addon/utils/dom.js b/addon/utils/dom.js
+index 5bd4a14ab7783d9dfc03e1657db157b31952af20..9f2ceb5f2d2d097f5796cecd82721de75856baec 100644
+--- a/addon/utils/dom.js
++++ b/addon/utils/dom.js
+@@ -7,8 +7,8 @@
+ 
+ import { getOwner } from '@ember/application';
+ import { DEBUG } from '@glimmer/env';
+-import requirejs from 'require';
+ import { warn } from '@ember/debug';
++import { importSync, isTesting } from '@embroider/macros';
+ 
+ function childNodesOfElement(element) {
+   let children = [];
+@@ -68,16 +68,13 @@ export function getDestinationElement(context) {
+     findElementById(dom, id) || findElemementByIdInShadowDom(context, id);
+ 
+   if (DEBUG && !destinationElement) {
+-    let config = getOwner(context).resolveRegistration('config:environment');
+-    if (config.environment === 'test' && typeof FastBoot === 'undefined') {
++    if (isTesting() && typeof FastBoot === 'undefined') {
+       let id;
+-      if (requirejs.has('@ember/test-helpers/dom/get-root-element')) {
+-        try {
+-          id = requirejs('@ember/test-helpers/dom/get-root-element').default()
+-            .id;
+-        } catch (ex) {
+-          // no op
+-        }
++      try {
++        id = importSync('@ember/test-helpers/dom/get-root-element').default()
++          .id;
++      } catch (ex) {
++        // no op
+       }
+       if (!id) {
+         return document.querySelector('#ember-testing');

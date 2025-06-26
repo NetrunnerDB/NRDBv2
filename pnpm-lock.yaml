@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   ember-bootstrap:
-    hash: c3038ddb49c9c14096107b39580d4fad4c461e939da325cb690c7da7bfe66e6d
+    hash: e1ff8417213d52e6a521724aba26c2cfbe945177b12980bf9c04471a9758afd6
     path: patches/ember-bootstrap.patch
   ember-simple-auth-oidc:
     hash: 85581507b33b5a1f44d74dfb450b9eb2138c95483c513686376026d5b3ee0a19
@@ -102,7 +102,7 @@ importers:
         version: 2.10.0(webpack@5.99.9)
       ember-bootstrap:
         specifier: ^6.5.0
-        version: 6.5.0(patch_hash=c3038ddb49c9c14096107b39580d4fad4c461e939da325cb690c7da7bfe66e6d)(@babel/core@7.27.4)(@ember/string@4.0.1)(@glimmer/component@2.0.0)(@glimmer/tracking@1.1.2)(ember-modifier@4.2.2(@babel/core@7.27.4))(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))(webpack@5.99.9)
+        version: 6.5.0(patch_hash=e1ff8417213d52e6a521724aba26c2cfbe945177b12980bf9c04471a9758afd6)(@babel/core@7.27.4)(@ember/string@4.0.1)(@glimmer/component@2.0.0)(@glimmer/tracking@1.1.2)(ember-modifier@4.2.2(@babel/core@7.27.4))(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))(webpack@5.99.9)
       ember-cli:
         specifier: ~5.12.0
         version: 5.12.0(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
@@ -10911,7 +10911,7 @@ snapshots:
       - ember-source
       - supports-color
 
-  ember-bootstrap@6.5.0(patch_hash=c3038ddb49c9c14096107b39580d4fad4c461e939da325cb690c7da7bfe66e6d)(@babel/core@7.27.4)(@ember/string@4.0.1)(@glimmer/component@2.0.0)(@glimmer/tracking@1.1.2)(ember-modifier@4.2.2(@babel/core@7.27.4))(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))(webpack@5.99.9):
+  ember-bootstrap@6.5.0(patch_hash=e1ff8417213d52e6a521724aba26c2cfbe945177b12980bf9c04471a9758afd6)(@babel/core@7.27.4)(@ember/string@4.0.1)(@glimmer/component@2.0.0)(@glimmer/tracking@1.1.2)(ember-modifier@4.2.2(@babel/core@7.27.4))(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))(webpack@5.99.9):
     dependencies:
       '@ember/render-modifiers': 3.0.0(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
       '@embroider/macros': 1.18.0
