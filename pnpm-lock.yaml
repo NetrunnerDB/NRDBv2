@@ -28,6 +28,12 @@ importers:
       '@babel/plugin-transform-runtime':
         specifier: ^7.26.9
         version: 7.27.4(@babel/core@7.27.4)
+      '@ember-data/model':
+        specifier: ^5.5.0
+        version: 5.5.0(8e24bb8a5dbe76a6233c365f654ac7ea)
+      '@ember-data/serializer':
+        specifier: ^5.5.0
+        version: 5.5.0(@ember-data/legacy-compat@5.5.0(93e0dac189caea603e1b77aa0ced7d85))(@ember-data/request-utils@5.5.0(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember/string@4.0.1)(@warp-drive/core-types@5.5.0)(ember-inflector@6.0.0(@babel/core@7.27.4)))(@ember-data/store@5.5.0(@ember-data/request-utils@5.5.0(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember/string@4.0.1)(@warp-drive/core-types@5.5.0)(ember-inflector@6.0.0(@babel/core@7.27.4)))(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember-data/tracking@5.5.0(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)))(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)))(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
       '@ember/optional-features':
         specifier: ^2.1.0
         version: 2.2.0
@@ -85,6 +91,9 @@ importers:
       '@rollup/plugin-babel':
         specifier: ^6.0.4
         version: 6.0.4(@babel/core@7.27.4)(rollup@4.44.1)
+      '@warp-drive/ember':
+        specifier: ^5.5.0
+        version: 5.5.0(@ember-data/request-utils@5.5.0(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember/string@4.0.1)(@warp-drive/core-types@5.5.0)(ember-inflector@6.0.0(@babel/core@7.27.4)))(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember-data/store@5.5.0(@ember-data/request-utils@5.5.0(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember/string@4.0.1)(@warp-drive/core-types@5.5.0)(ember-inflector@6.0.0(@babel/core@7.27.4)))(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember-data/tracking@5.5.0(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)))(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)))(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
       babel-plugin-ember-template-compilation:
         specifier: ^2.3.0
         version: 2.4.1
