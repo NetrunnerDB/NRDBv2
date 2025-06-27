@@ -28,6 +28,12 @@ importers:
       '@babel/plugin-transform-runtime':
         specifier: ^7.26.9
         version: 7.27.4(@babel/core@7.28.0)
+      '@ember-data/model':
+        specifier: ^5.5.0
+        version: 5.6.0
+      '@ember-data/serializer':
+        specifier: ^5.5.0
+        version: 5.6.0
       '@ember/optional-features':
         specifier: ^2.2.0
         version: 2.2.0
@@ -88,6 +94,9 @@ importers:
       '@rollup/plugin-babel':
         specifier: ^6.0.4
         version: 6.0.4(@babel/core@7.28.0)(rollup@4.46.2)
+      '@warp-drive/ember':
+        specifier: ^5.5.0
+        version: 5.6.0(@ember/test-waiters@4.1.0)
       babel-plugin-ember-template-compilation:
         specifier: ^2.3.0
         version: 2.4.1
