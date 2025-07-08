@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 
-export default class PageFormatsRoute extends Route {
+export default class FormatsRoute extends Route {
   @service store;
 
   async model() {
@@ -10,9 +10,15 @@ export default class PageFormatsRoute extends Route {
 
     // Get the major formats
     let [standard, startup, eternal] = await Promise.all([
-      this.store.findRecord('format', 'standard'),
-      this.store.findRecord('format', 'startup'),
-      this.store.findRecord('format', 'eternal'),
+      this.store.findRecord('format', 'standard', {
+        include: 'snapshots,restrictions',
+      }),
+      this.store.findRecord('format', 'startup', {
+        include: 'snapshots,restrictions',
+      }),
+      this.store.findRecord('format', 'eternal', {
+        include: 'snapshots,restrictions',
+      }),
     ]);
 
     // Get their current snapshot

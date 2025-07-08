@@ -1,7 +1,36 @@
 import { pageTitle } from 'ember-page-title';
+import { formatMessage, formatDate } from 'ember-intl';
 
 import Navbar from 'netrunnerdb/components/navbar';
 import FancyHeader from 'netrunnerdb/components/fancy-header';
+
+const FormatSection = <template>
+  <div class='col-12'>
+    <FancyHeader>{{@format.name}}</FancyHeader>
+    <img
+      alt={{@format.name}}
+      src='/assets/image/format/{{@format.name}}.png'
+      class='float-{{@float}} me-4'
+      style='width: 100px'
+    />
+
+    {{yield to='description'}}
+
+    <h3>Current Ban List</h3>
+    <p>
+      {{formatMessage
+        '{name} active as of {dateStart}'
+        name=@format.currentRestriction.name
+        dateStart=(formatDate
+          @format.currentRestriction.dateStart
+          day='numeric'
+          month='long'
+          year='numeric'
+        )
+      }}
+    </p>
+  </div>
+</template>;
 
 <template>
   {{pageTitle 'Formats'}}
@@ -15,68 +44,59 @@ import FancyHeader from 'netrunnerdb/components/fancy-header';
   /> }}
 
     <div class='container'>
+      {{#each @model.formats as |format|}}
+        <h1 class='text-center'>{{format.name}}</h1>
+      {{/each}}
+    </div>
 
+    <div class='container'>
       <div class='row'>
+        <FormatSection @format={{@model.standard.format}} @float='start'>
+          <:description>
+            <p>
+              The flagship format of Netrunner Organized Play, Standard is
+              frequently changing to keep the meta exciting and engaging for
+              players of all levels. Most official Organized Play events will
+              follow the Standard format. If a format is not specified, assume
+              Standard, but contact your Tournament Organizer for clarity.
+            </p>
+          </:description>
+        </FormatSection>
 
-        <div class='col-12'>
-          <FancyHeader>Standard</FancyHeader>
-          <img
-            alt='Standard'
-            src='/assets/image/format/standard.png'
-            class='float-start me-4'
-            style='width: 100px'
-          />
-          <p>
-            The flagship format of Netrunner Organized Play, Standard is
-            frequently changing to keep the meta exciting and engaging for
-            players of all levels. Most official Organized Play events will
-            follow the Standard format. If a format is not specified, assume
-            Standard, but contact your Tournament Organizer for clarity.</p>
-        </div>
+        <FormatSection @format={{@model.startup.format}} @float='end'>
+          <:description>
+            <p>
+              If you’re looking to get into organized play, Startup is the place
+              to, well, start. It’s a limited-cardpool format, intended for new
+              players taking their first steps into Organized Play as well as
+              experienced players who want a slimmed-down deckbuilding
+              challenge. The cardpool for Startup consists of:</p>
+            <ul class='mt-2'>
+              <li>System Gateway and System Update 2021</li>
+              <li>The most recent complete Null Signal narrative cycle</li>
+              <li>All sets in the current incomplete Null Signal narrative cycle</li>
+            </ul>
+          </:description>
+        </FormatSection>
 
-        <div class='col-12'>
-          <FancyHeader>Startup</FancyHeader>
-          <img
-            alt='Startup'
-            src='/assets/image/format/startup.png'
-            class='float-end ms-4'
-            style='width: 100px'
-          />
-          <p>
-            If you’re looking to get into organized play, Startup is the place
-            to, well, start. It’s a limited-cardpool format, intended for new
-            players taking their first steps into Organized Play as well as
-            experienced players who want a slimmed-down deckbuilding challenge.
-            The cardpool for Startup consists of:</p>
-          <ul class='mt-2'>
-            <li>System Gateway and System Update 2021</li>
-            <li>The most recent complete Null Signal narrative cycle</li>
-            <li>All sets in the current incomplete Null Signal narrative cycle</li>
-          </ul>
-        </div>
-
-        <div class='col-12'>
-          <FancyHeader>Eternal</FancyHeader>
-          <img
-            alt='Eternal'
-            src='/assets/image/format/eternal.png'
-            class='float-start me-4'
-            style='width: 100px'
-          />
-          <p>
-            Eternal is not affected by rotation and has a far less restrictive
-            list governing it. The largest and most complex format, it
-            encompasses nearly the entirety of the printed card pool and only
-            grows larger with time.</p>
-          <p class='mt-2'>
-            The Eternal Points List bans a small number of cards, and assigns a
-            points value between 0 and 3 points to every card in the format. You
-            have 7 points to spend during deckbuilding (these are not shared
-            between your Corp and Runner decks – each deck can have up to 7
-            points spent on it). Spending the points cost of a card allows you
-            to include up to a full playset of that card in your deck. Any card
-            not included in the list below has a points cost of 0.</p>
-        </div>
+        <FormatSection @format={{@model.eternal.format}} @float='start'>
+          <:description>
+            <p>
+              Eternal is not affected by rotation and has a far less restrictive
+              list governing it. The largest and most complex format, it
+              encompasses nearly the entirety of the printed card pool and only
+              grows larger with time.</p>
+            <p class='mt-2'>
+              The Eternal Points List bans a small number of cards, and assigns
+              a points value between 0 and 3 points to every card in the format.
+              You have 7 points to spend during deckbuilding (these are not
+              shared between your Corp and Runner decks – each deck can have up
+              to 7 points spent on it). Spending the points cost of a card
+              allows you to include up to a full playset of that card in your
+              deck. Any card not included in the list below has a points cost of
+              0.</p>
+          </:description>
+        </FormatSection>
 
         <div class='col-12 col-lg-6'>
           <FancyHeader>Random Access Memories</FancyHeader>
