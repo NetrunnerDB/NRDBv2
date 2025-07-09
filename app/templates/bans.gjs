@@ -1,5 +1,11 @@
 import { pageTitle } from 'ember-page-title';
-import BanlistTabs from 'netrunnerdb/components/banlist/tabs';
+import { LinkTo } from '@ember/routing';
+import { hash } from '@ember/helper';
+import { eq } from 'netrunnerdb/utils/template-operators';
+import Accordion from 'netrunnerdb/components/ui/accordion';
+import formatDate from 'netrunnerdb/helpers/format-date';
+import Side from 'netrunnerdb/components/banlist/side';
+import { formatMessage } from 'ember-intl';
 
 <template>
   {{pageTitle 'Ban Lists'}}
@@ -45,12 +51,75 @@ import BanlistTabs from 'netrunnerdb/components/banlist/tabs';
                   >Null Signal Games' Supported Formats page</a>
                   for more information.</p>
 
-                <BanlistTabs
-                  @loadedFormats={{@model.loadedFormats}}
-                  @formats={{@model.formats}}
-                  @selectedFormat={{@controller.format}}
-                  @query={{@controller.search}}
-                />
+                <div class='card flex-grow-1' id='nav-main-content'>
+                  <div class='card-header'>
+                    <ul class='nav nav-tabs nav-fill card-header-tabs'>
+                      {{#each @model.formats as |format|}}
+                        <li class='nav-item'>
+                          <LinkTo
+                            class='nav-link'
+                            @route='bans'
+                            @query={{hash format=format.id}}
+                          >{{format.name}}</LinkTo>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                  <div class='card-body'>
+                    {{#each @model.formats as |format|}}
+                      {{#if (eq @controller.format format.id)}}
+                        <div id={{format.id}}>
+                          <Accordion
+                            @showMassToggle={{true}}
+                            @showSearch={{true}}
+                            @query={{@controller.search}}
+                            @expandFirstItem={{true}}
+                            @items={{format.restrictions}}
+                          >
+                            <:default as |Panel restriction|>
+                              <Panel>
+                                <:title>
+                                  {{restriction.name}}
+                                </:title>
+                                <:subtitle>
+                                  {{formatMessage
+                                    '{count, plural, one {# card} other {# cards}}. Start Date: {date}.'
+                                    count=restriction.obj.size
+                                    date=(formatDate restriction.obj.dateStart)
+                                  }}
+                                </:subtitle>
+                                <:body>
+                                  <div class='row'>
+                                    <Side
+                                      @side='corp'
+                                      @formats={{@model.loadedFormats}}
+                                      @selectedFormat={{@controller.format}}
+                                      @restriction={{restriction}}
+                                    />
+
+                                    <Side
+                                      @side='runner'
+                                      @formats={{@model.loadedFormats}}
+                                      @selectedFormat={{@controller.format}}
+                                      @restriction={{restriction}}
+                                    />
+                                  </div>
+                                </:body>
+                              </Panel>
+                            </:default>
+                            <:empty>
+                              {{formatMessage
+                                'No cards are currently banned in {format}. Have a blast!'
+                                format=format.name
+                              }}
+                            </:empty>
+                          </Accordion>
+                        </div>
+                      {{/if}}
+                    {{/each}}
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
