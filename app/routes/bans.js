@@ -165,6 +165,7 @@ export default class PageBanlistsRoute extends Route {
     });
 
     return RSVP.hash({
+      loadedFormats: loadedFormats,
       formats: formats,
       cards: cardsQuery,
     });

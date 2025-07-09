@@ -3,7 +3,7 @@
   margin-top: var(--bs-gutter-y);
   margin-bottom: 20px;
   padding: 0;
-  background-color: #fff;
+  background-color: var(--color--default-bg);
   border: 1px solid transparent;
   border-color: transparent;
   border-radius: 4px;
