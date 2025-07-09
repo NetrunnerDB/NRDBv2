@@ -2,7 +2,12 @@ import Application from '@ember/application';
 import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from 'netrunnerdb/config/environment';
+import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import './font-awesome'; // Add this import statement for Font Awesome setup
+
+if (macroCondition(isDevelopingApp())) {
+  importSync('./deprecation-workflow');
+}
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;

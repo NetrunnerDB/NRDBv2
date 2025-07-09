@@ -55,8 +55,8 @@
 }
 
 /* xl */
-@media (device-width >= 1200px) {
-}
+/* @media (device-width >= 1200px) {
+} */
 
 @media (device-width <= 1399px) {
   .visible-xxl {

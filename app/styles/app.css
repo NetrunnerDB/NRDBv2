@@ -1,3 +1,4 @@
+@import url("/bootstrap.css");
 @import url("./themes/dark.css");
 @import url("./themes/light.css");
 
@@ -450,9 +451,6 @@ input[type="text"] {
   padding-top: 20px;
 }
 
-.decklist-box .decklist-identity-name {
-}
-
 .decklist-box .decklist-identity-title {
   color: var(--color--default);
 }
@@ -461,17 +459,8 @@ input[type="text"] {
   color: var(--color--secondary);
 }
 
-.decklist-box .decklist-influence {
-}
-
-.decklist-box .decklist-cards {
-}
-
 .decklist-box .decklist-author {
   color: var(--color--secondary);
-}
-
-.decklist-box .decklist-set {
 }
 
 .decklist-box .decklist-box-button {
@@ -609,18 +598,9 @@ table.game-card-stats tr:nth-child(even) {
 
 /* RULINGS */
 
-.ruling-header {
-}
-
-.ruling-question {
-}
-
 .ruling-answer {
   border-left: solid 3px var(--color--default-border);
   padding-left: 0.75em;
-}
-
-.ruling-text {
 }
 
 /* Nothing special about h4, but it's currently what all the ruling headers are formatted as in the json and is unaccessible via Bootstrap classes */
@@ -630,9 +610,6 @@ table.game-card-stats tr:nth-child(even) {
 }
 
 /* REVIEWS */
-
-.review {
-}
 
 .review-buttons {
   width: 50px;
@@ -760,37 +737,6 @@ table.game-card-stats tr:nth-child(even) {
 }
 
 /* DECKLIST BANNER */
-
-/* Decklist banner rotated ID - DEPRECATED - Delete when confirmed */
-
-/*
-.decklist-banner {
-  height: 220px;
-  position: relative;
-  overflow-y: hidden;
-}
-
-.decklist-banner-identity {
-  position: absolute;
-  width: 180px;
-  border-radius: 8px;
-  overflow: hidden;
-  transform: translate(10px, 5px) rotateZ(-3deg);
-}
-.decklist-banner-identity::after {
-  box-shadow: inset 0 -50px 20px 0 var(--color--default-bg);
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: -10px;
-  height: 100%;
-  width: calc(100% + 20px);
-}
-
-.decklist-banner-data {
-  margin-left: 240px;
-} */
 
 .decklist-banner {
   padding: 40px 0 36px;
