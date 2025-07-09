@@ -5,4 +5,5 @@ export default class BanlistsController extends Controller {
   queryParams = ['format', 'search'];
 
   @tracked format = 'standard';
+  @tracked search = '';
 }
