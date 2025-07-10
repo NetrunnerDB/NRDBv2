@@ -79,11 +79,9 @@ export default class Side extends Component {
       {{/if}}
 
       <Points
-        @formats={{@loadedFormats}}
-        @selectedFormat={{@selectedFormat}}
         @currentFormat={{this.currentFormat}}
-        @restriction={{@restriction}}
-        @side='runner'
+        @restriction={{@restriction.obj}}
+        @side={{@side}}
       />
 
       {{#if @restriction.hasUniversalInfluence}}

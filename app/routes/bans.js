@@ -32,7 +32,6 @@ export default class PageBanlistsRoute extends Route {
           name: restriction.name,
           obj: restriction,
           dateStart: restriction.dateStart,
-          hasPoints: false,
           hasUniversalInfluence: false,
           // This is less general, but we currently only have 1 banned subtype.
           banned_subtype: restriction.bannedSubtypes.length
@@ -45,9 +44,6 @@ export default class PageBanlistsRoute extends Route {
             banned: [],
             restricted: [],
             global_penalty: [],
-            onePoint: [],
-            twoPoints: [],
-            threePoints: [],
             oneUniversalInfluence: [],
             threeUniversalInfluence: [],
           },
@@ -55,9 +51,6 @@ export default class PageBanlistsRoute extends Route {
             banned: [],
             restricted: [],
             global_penalty: [],
-            onePoint: [],
-            twoPoints: [],
-            threePoints: [],
             oneUniversalInfluence: [],
             threeUniversalInfluence: [],
           },
@@ -121,28 +114,6 @@ export default class PageBanlistsRoute extends Route {
             r.runner['global_penalty'].push(card);
           }
         });
-        for (let cardId in r.obj.verdicts.points) {
-          r.hasPoints = true;
-          let card = cards.get(cardId);
-          let points = r.obj.verdicts.points[cardId];
-          if (card.sideId == 'corp') {
-            if (points == 1) {
-              r.corp.onePoint.push(card);
-            } else if (points == 2) {
-              r.corp.twoPoints.push(card);
-            } else if (points == 3) {
-              r.corp.threePoints.push(card);
-            }
-          } else if (card.sideId == 'runner') {
-            if (points == 1) {
-              r.runner.onePoint.push(card);
-            } else if (points == 2) {
-              r.runner.twoPoints.push(card);
-            } else if (points == 3) {
-              r.runner.threePoints.push(card);
-            }
-          }
-        }
         for (let cardId in r.obj.verdicts.universal_faction_cost) {
           r.hasUniversalInfluence = true;
           let card = cards.get(cardId);
