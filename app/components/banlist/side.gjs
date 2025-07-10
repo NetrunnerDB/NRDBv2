@@ -77,6 +77,7 @@ export default class Side extends Component {
           @currentFormat={{this.currentFormat}}
           @restriction={{@restriction.obj}}
           @side={{@side}}
+          @cards={{@cards}}
         />
       {{/if}}
 

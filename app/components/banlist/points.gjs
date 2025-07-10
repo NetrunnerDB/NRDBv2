@@ -1,12 +1,9 @@
 import { formatMessage } from 'ember-intl';
 import CardLinkTo from '../card/link-to';
 import Component from '@glimmer/component';
-import { service } from '@ember/service';
 import { cached } from '@glimmer/tracking';
 
 export default class Points extends Component {
-  @service store;
-
   @cached
   get pointCategories() {
     let pointGroups = Object.groupBy(
@@ -18,7 +15,7 @@ export default class Points extends Component {
       .map(([i, cards]) => [
         i,
         cards
-          .map(([cardId]) => this.store.peekRecord('card', cardId))
+          .map(([cardId]) => this.args.cards.get(cardId))
           .filter((card) => card.sideId === this.args.side),
       ])
       .reverse();
