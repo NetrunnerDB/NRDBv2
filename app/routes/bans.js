@@ -33,22 +33,13 @@ export default class PageBanlistsRoute extends Route {
           obj: restriction,
           dateStart: restriction.dateStart,
           hasUniversalInfluence: false,
-          // This is less general, but we currently only have 1 banned subtype.
-          banned_subtype: restriction.bannedSubtypes.length
-            ? restriction.bannedSubtypes[0]
-            : null,
-          formatted_banned_subtype: restriction.bannedSubtypes.length
-            ? this.capitalize(restriction.bannedSubtypes[0])
-            : null,
           corp: {
-            banned: [],
             restricted: [],
             global_penalty: [],
             oneUniversalInfluence: [],
             threeUniversalInfluence: [],
           },
           runner: {
-            banned: [],
             restricted: [],
             global_penalty: [],
             oneUniversalInfluence: [],
@@ -88,16 +79,6 @@ export default class PageBanlistsRoute extends Route {
 
     formats.forEach((f) => {
       f.restrictions.forEach((r) => {
-        r.obj.verdicts['banned'].forEach((b) => {
-          const card = cards.get(b);
-          if (card.cardSubtypeIds.indexOf(r.banned_subtype) == -1) {
-            if (card.sideId == 'corp') {
-              r.corp['banned'].push(card);
-            } else if (card.sideId == 'runner') {
-              r.runner['banned'].push(card);
-            }
-          }
-        });
         r.obj.verdicts['restricted'].forEach((b) => {
           const card = cards.get(b);
           if (card.sideId == 'corp') {
@@ -138,7 +119,7 @@ export default class PageBanlistsRoute extends Route {
     return RSVP.hash({
       loadedFormats: loadedFormats,
       formats: formats,
-      cards: cardsQuery,
+      cards: cards,
     });
   }
 }

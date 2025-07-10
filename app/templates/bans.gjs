@@ -95,6 +95,7 @@ import { formatMessage } from 'ember-intl';
                                       @formats={{@model.loadedFormats}}
                                       @selectedFormat={{@controller.format}}
                                       @restriction={{restriction}}
+                                      @cards={{@model.cards}}
                                     />
 
                                     <Side
@@ -102,6 +103,7 @@ import { formatMessage } from 'ember-intl';
                                       @formats={{@model.loadedFormats}}
                                       @selectedFormat={{@controller.format}}
                                       @restriction={{restriction}}
+                                      @cards={{@model.cards}}
                                     />
                                   </div>
                                 </:body>

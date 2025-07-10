@@ -1,4 +1,5 @@
 import Points from './points';
+import Banned from './banned';
 import CardLinkTo from '../card/link-to';
 import { get } from '@ember/helper';
 import Component from '@glimmer/component';
@@ -11,31 +12,20 @@ export default class Side extends Component {
     return this.args.formats?.find((f) => f.id === this.args.selectedFormat);
   }
 
+  get hasBanned() {
+    return this.args.restriction.obj.verdicts.banned.length;
+  }
+
   <template>
     <div class='col-6'>
       <h3 style={{capitalize}}>{{@side}} Cards</h3>
-      {{#if @restriction.obj.verdicts.banned.length}}
-        <ul>
-          <li>
-            <strong>Banned</strong>
-            <ul>
-              {{#if @restriction.banned_subtype.length}}
-                {{! TODO: have those cards here, but collapsed by default }}
-                <li>
-                  All Cards With Subtype:
-                  <strong>{{@restriction.formatted_banned_subtype}}</strong>
-                </li>
-              {{/if}}
-              {{#each (get (get @restriction @side) 'banned') as |banned|}}
-                <li>
-                  <CardLinkTo @printing={{banned}} class='text-truncate'>
-                    {{banned.title}}
-                  </CardLinkTo>
-                </li>
-              {{/each}}
-            </ul>
-          </li>
-        </ul>
+
+      {{#if this.hasBanned}}
+        <Banned
+          @restriction={{@restriction.obj}}
+          @side={{@side}}
+          @cards={{@cards}}
+        />
       {{/if}}
 
       {{#if @restriction.obj.verdicts.restricted.length}}
