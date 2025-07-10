@@ -16,6 +16,10 @@ export default class Side extends Component {
     return this.args.restriction.obj.verdicts.banned.length;
   }
 
+  get hasPoints() {
+    return Object.keys(this.args.restriction.obj.verdicts.points).length > 0;
+  }
+
   <template>
     <div class='col-6'>
       <h3 style={{capitalize}}>{{@side}} Cards</h3>
@@ -68,11 +72,13 @@ export default class Side extends Component {
         </ul>
       {{/if}}
 
-      <Points
-        @currentFormat={{this.currentFormat}}
-        @restriction={{@restriction.obj}}
-        @side={{@side}}
-      />
+      {{#if this.hasPoints}}
+        <Points
+          @currentFormat={{this.currentFormat}}
+          @restriction={{@restriction.obj}}
+          @side={{@side}}
+        />
+      {{/if}}
 
       {{#if @restriction.hasUniversalInfluence}}
         <ul>

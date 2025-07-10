@@ -26,40 +26,34 @@ export default class Points extends Component {
     return new Map(cardGroups);
   }
 
-  get hasPoints() {
-    return Object.keys(this.args.restriction.verdicts.points).length > 0;
-  }
-
   <template>
-    {{#if this.hasPoints}}
-      <ul>
-        <li>
-          <strong>Points</strong>
-          <ul>
-            {{#each-in this.pointCategories as |points cards|}}
-              {{#if cards.length}}
-                <li>
-                  <strong>
-                    {{formatMessage
-                      '{amount, plural, one {# Point} other {# Points} }'
-                      amount=points
-                    }}
-                  </strong>
-                  <ul>
-                    {{#each cards as |card|}}
-                      <li>
-                        <CardLinkTo @printing={{card}} class='text-truncate'>
-                          {{card.title}}
-                        </CardLinkTo>
-                      </li>
-                    {{/each}}
-                  </ul>
-                </li>
-              {{/if}}
-            {{/each-in}}
-          </ul>
-        </li>
-      </ul>
-    {{/if}}
+    <ul>
+      <li>
+        <strong>Points</strong>
+        <ul>
+          {{#each-in this.pointCategories as |points cards|}}
+            {{#if cards.length}}
+              <li>
+                <strong>
+                  {{formatMessage
+                    '{amount, plural, one {# Point} other {# Points} }'
+                    amount=points
+                  }}
+                </strong>
+                <ul>
+                  {{#each cards as |card|}}
+                    <li>
+                      <CardLinkTo @printing={{card}} class='text-truncate'>
+                        {{card.title}}
+                      </CardLinkTo>
+                    </li>
+                  {{/each}}
+                </ul>
+              </li>
+            {{/if}}
+          {{/each-in}}
+        </ul>
+      </li>
+    </ul>
   </template>
 }
