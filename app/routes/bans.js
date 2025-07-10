@@ -32,32 +32,16 @@ export default class PageBanlistsRoute extends Route {
           name: restriction.name,
           obj: restriction,
           dateStart: restriction.dateStart,
-          hasPoints: false,
           hasUniversalInfluence: false,
-          // This is less general, but we currently only have 1 banned subtype.
-          banned_subtype: restriction.bannedSubtypes.length
-            ? restriction.bannedSubtypes[0]
-            : null,
-          formatted_banned_subtype: restriction.bannedSubtypes.length
-            ? this.capitalize(restriction.bannedSubtypes[0])
-            : null,
           corp: {
-            banned: [],
             restricted: [],
             global_penalty: [],
-            onePoint: [],
-            twoPoints: [],
-            threePoints: [],
             oneUniversalInfluence: [],
             threeUniversalInfluence: [],
           },
           runner: {
-            banned: [],
             restricted: [],
             global_penalty: [],
-            onePoint: [],
-            twoPoints: [],
-            threePoints: [],
             oneUniversalInfluence: [],
             threeUniversalInfluence: [],
           },
@@ -95,16 +79,6 @@ export default class PageBanlistsRoute extends Route {
 
     formats.forEach((f) => {
       f.restrictions.forEach((r) => {
-        r.obj.verdicts['banned'].forEach((b) => {
-          const card = cards.get(b);
-          if (card.cardSubtypeIds.indexOf(r.banned_subtype) == -1) {
-            if (card.sideId == 'corp') {
-              r.corp['banned'].push(card);
-            } else if (card.sideId == 'runner') {
-              r.runner['banned'].push(card);
-            }
-          }
-        });
         r.obj.verdicts['restricted'].forEach((b) => {
           const card = cards.get(b);
           if (card.sideId == 'corp') {
@@ -121,28 +95,6 @@ export default class PageBanlistsRoute extends Route {
             r.runner['global_penalty'].push(card);
           }
         });
-        for (let cardId in r.obj.verdicts.points) {
-          r.hasPoints = true;
-          let card = cards.get(cardId);
-          let points = r.obj.verdicts.points[cardId];
-          if (card.sideId == 'corp') {
-            if (points == 1) {
-              r.corp.onePoint.push(card);
-            } else if (points == 2) {
-              r.corp.twoPoints.push(card);
-            } else if (points == 3) {
-              r.corp.threePoints.push(card);
-            }
-          } else if (card.sideId == 'runner') {
-            if (points == 1) {
-              r.runner.onePoint.push(card);
-            } else if (points == 2) {
-              r.runner.twoPoints.push(card);
-            } else if (points == 3) {
-              r.runner.threePoints.push(card);
-            }
-          }
-        }
         for (let cardId in r.obj.verdicts.universal_faction_cost) {
           r.hasUniversalInfluence = true;
           let card = cards.get(cardId);
@@ -167,7 +119,7 @@ export default class PageBanlistsRoute extends Route {
     return RSVP.hash({
       loadedFormats: loadedFormats,
       formats: formats,
-      cards: cardsQuery,
+      cards: cards,
     });
   }
 }
