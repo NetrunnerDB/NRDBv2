@@ -8,18 +8,33 @@ import FancyHeader from 'netrunnerdb/components/fancy-header';
 
   <main class='pb-4'>
     <Navbar />
-    <Titlebar @title='Bans' />
+    <Titlebar @title='Rulings' />
 
     <div class='container'>
       <div class='row'>
         <div class='col-12'>
-          <FancyHeader>Standard</FancyHeader>
-          <p>
-            The flagship format of Netrunner Organized Play, Standard is
-            frequently changing to keep the meta exciting and engaging for
-            players of all levels. Most official Organized Play events will
-            follow the Standard format. If a format is not specified, assume
-            Standard, but contact your Tournament Organizer for clarity.</p>
+          <FancyHeader>All cards with clarification and F.A.Q.</FancyHeader>
+
+          {{#each @model.rulings as |ruling|}}
+            <div class='card mb-3'>
+              <div class='card-body'>
+                <h5 class='card-title'>
+                  {{ruling.card.title}}
+                  ({{ruling.card.latestPrinting.cardSet.name}},
+                  {{ruling.card.latestPrinting.position}})
+                  {{#if ruling.verified}}™{{/if}}
+                </h5>
+
+                <p>
+                  {{{ruling.question}}}
+                </p>
+                <hr />
+                <p>
+                  {{ruling.answer}}
+                </p>
+              </div>
+            </div>
+          {{/each}}
         </div>
       </div>
     </div>
