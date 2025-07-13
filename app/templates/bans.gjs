@@ -6,22 +6,23 @@ import Accordion from 'netrunnerdb/components/ui/accordion';
 import formatDate from 'netrunnerdb/helpers/format-date';
 import Side from 'netrunnerdb/components/banlist/side';
 import { formatMessage } from 'ember-intl';
+import Navbar from 'netrunnerdb/components/navbar';
+import Titlebar from 'netrunnerdb/components/titlebar';
 
 <template>
   {{pageTitle 'Ban Lists'}}
 
-  <div class='container'>
-    <div class='row'>
-      <div
-        class='col-12 col-xl-8 offset-xl-2 d-flex flex-row flex-sm-column my-2'
-      >
-        <div class='card border-0 flex-grow-1' id='nav-main-content'>
-          <div
-            class='card-body d-flex flex-column flex-lg-row justify-content-between'
-          >
+  <main class='pb-4'>
+    <Navbar />
+    <Titlebar @title='Ban Lists' />
 
-            <div class='container' id='banlists'>
-              <h1>Ban Lists</h1>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-12'>
+          <div class='card border-0 flex-grow-1' id='nav-main-content'>
+            <div
+              class='card-body d-flex flex-column flex-lg-row justify-content-between'
+            >
               <div>
                 <p>There are currently three official
                   <a href='/en/formats'>formats</a>
@@ -121,12 +122,11 @@ import { formatMessage } from 'ember-intl';
                     {{/each}}
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
