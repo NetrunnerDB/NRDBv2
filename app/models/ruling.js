@@ -8,5 +8,5 @@ export default class RulingModel extends Model {
   @attr answer;
   @attr updatedAt;
 
-  @belongsTo('card', { async: true, inverse: 'rulings' }) card;
+  @belongsTo('card', { async: false, inverse: 'rulings' }) card;
 }
