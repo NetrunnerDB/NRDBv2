@@ -2,9 +2,12 @@ import { pageTitle } from 'ember-page-title';
 import Navbar from 'netrunnerdb/components/navbar';
 import Titlebar from 'netrunnerdb/components/titlebar';
 import FancyHeader from 'netrunnerdb/components/fancy-header';
+import Ruling from 'netrunnerdb/components/ruling';
+import Icon from 'netrunnerdb/components/icon';
+import CardLinkTo from 'netrunnerdb/components/card/link-to';
 
 <template>
-  {{pageTitle 'Formats'}}
+  {{pageTitle 'Rulings'}}
 
   <main class='pb-4'>
     <Navbar />
@@ -19,19 +22,15 @@ import FancyHeader from 'netrunnerdb/components/fancy-header';
             <div class='card mb-3'>
               <div class='card-body'>
                 <h5 class='card-title'>
-                  {{ruling.card.title}}
-                  ({{ruling.card.latestPrinting.cardSet.name}},
+                  <CardLinkTo @printing={{ruling.card.latestPrinting}}>
+                    {{ruling.card.title}}
+                  </CardLinkTo>
+                  (<Icon @icon={{ruling.card.latestPrinting.cardCycle.id}} />
+                  {{ruling.card.latestPrinting.cardSet.name}},
                   {{ruling.card.latestPrinting.position}})
-                  {{#if ruling.verified}}™{{/if}}
                 </h5>
 
-                <p>
-                  {{{ruling.question}}}
-                </p>
-                <hr />
-                <p>
-                  {{ruling.answer}}
-                </p>
+                <Ruling @ruling={{ruling}} />
               </div>
             </div>
           {{/each}}
