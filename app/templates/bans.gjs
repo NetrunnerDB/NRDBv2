@@ -52,7 +52,7 @@ import Titlebar from 'netrunnerdb/components/titlebar';
                   >Null Signal Games' Supported Formats page</a>
                   for more information.</p>
 
-                <div class='card flex-grow-1' id='nav-main-content'>
+                <div class='card flex-grow-1'>
                   <div class='card-header'>
                     <ul class='nav nav-tabs nav-fill card-header-tabs'>
                       {{#each @model.formats as |format|}}
