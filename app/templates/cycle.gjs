@@ -11,7 +11,6 @@ import CardList from 'netrunnerdb/components/card/list';
   {{pageTitle @model.cardCycle.name}}
 
   <main class='pb-4'>
-
     <Navbar />
 
     <Titlebar
@@ -46,6 +45,5 @@ import CardList from 'netrunnerdb/components/card/list';
     <div class='container'>
       <CardList @printings={{sortBy 'position' @model.cardCycle.printings}} />
     </div>
-
   </main>
 </template>
