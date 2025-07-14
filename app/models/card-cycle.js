@@ -12,7 +12,7 @@ export default class CardCycleModel extends Model {
 
   @hasMany('card-set', { async: false, inverse: 'cardCycle' }) cardSets;
   @hasMany('card', { async: true, inverse: null }) cards;
-  @hasMany('printing', { async: true, inverse: 'cardCycle' }) printings;
+  @hasMany('printing', { async: false, inverse: 'cardCycle' }) printings;
 
   get cardCount() {
     return this.cardSets
