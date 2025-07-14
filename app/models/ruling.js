@@ -6,7 +6,7 @@ export default class RulingModel extends Model {
   @attr textRuling;
   @attr question;
   @attr answer;
-  @attr updatedAt;
+  @attr('date') updatedAt;
 
   @belongsTo('card', { async: false, inverse: 'rulings' }) card;
 }
