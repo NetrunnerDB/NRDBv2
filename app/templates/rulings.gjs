@@ -5,6 +5,7 @@ import FancyHeader from 'netrunnerdb/components/fancy-header';
 import Ruling from 'netrunnerdb/components/ruling';
 import Icon from 'netrunnerdb/components/icon';
 import CardLinkTo from 'netrunnerdb/components/card/link-to';
+import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 
 <template>
   {{pageTitle 'Rulings'}}
@@ -18,7 +19,7 @@ import CardLinkTo from 'netrunnerdb/components/card/link-to';
         <div class='col-12'>
           <FancyHeader>All cards with clarification and F.A.Q.</FancyHeader>
 
-          {{#each @model.rulings as |ruling|}}
+          {{#each (sortBy 'updatedAt:desc' @model.rulings) as |ruling|}}
             <div class='card mb-3'>
               <div class='card-body'>
                 <h5 class='card-title'>
