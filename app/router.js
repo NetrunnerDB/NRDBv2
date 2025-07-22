@@ -11,12 +11,16 @@ Router.map(function () {
   this.route('decklist', { path: '/decklist/:id' });
   this.route('factions');
   this.route('faction', { path: '/faction/:id' });
-  this.route('formats');
+  this.route('formats', function () {
+    this.route('format', { path: '/:id' });
+  });
   this.route('bans');
   this.route('rotation');
   this.route('reviews');
   this.route('rulings');
-  this.route('illustrators');
+  this.route('illustrators', function () {
+    this.route('illustrator', { path: '/:id' });
+  });
   this.route('search');
   this.route('advanced-search', { path: '/advanced-search/:params' });
   this.route('sets');
@@ -24,6 +28,12 @@ Router.map(function () {
   this.route('cycle', { path: '/cycle/:id' });
   this.route('card', { path: '/card/:id' });
   this.route('checkers');
+
+  this.route('decks', function () {
+    this.route('index', { path: '/' });
+    this.route('deck', { path: '/:id' });
+    this.route('new');
+  });
 
   // OLD
   this.route('private', function () {
