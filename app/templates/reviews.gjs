@@ -1,6 +1,7 @@
 import { pageTitle } from 'ember-page-title';
 import Navbar from 'netrunnerdb/components/navbar';
 import Titlebar from 'netrunnerdb/components/titlebar';
+import Review from 'netrunnerdb/components/review';
 
 <template>
   {{pageTitle 'Formats'}}
@@ -10,7 +11,28 @@ import Titlebar from 'netrunnerdb/components/titlebar';
     <Titlebar @subtitle='Reviews' />
 
     <div class='container'>
-      TODO: Add latest reviews with page navigation here.
+      {{#each @model.reviews as |review|}}
+        <Review
+          @review={{review}}
+          @showCard={{true}}
+          @showPrinting={{true}}
+          @card={{review.card}}
+          @printing={{review.card.latestPrinting}}
+        />
+      {{/each}}
+
+      <ul>
+        {{#each @model.reviews as |review|}}
+          <li>
+            <h3>
+              {{review.username}}
+            </h3>
+
+            <p>{{review.body}}</p>
+          </li>
+        {{/each}}
+
+      </ul>
     </div>
   </main>
 </template>
