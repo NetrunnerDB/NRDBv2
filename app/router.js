@@ -27,7 +27,6 @@ Router.map(function () {
   this.route('set', { path: '/set/:id' });
   this.route('cycle', { path: '/cycle/:id' });
   this.route('card', { path: '/card/:id' });
-  this.route('checkers');
 
   this.route('decks', function () {
     this.route('index', { path: '/' });
