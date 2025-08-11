@@ -7,6 +7,7 @@ import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 import CardLinkTo from 'netrunnerdb/components/card/link-to';
 import notEq from 'ember-truth-helpers/helpers/not-eq';
 import CardImage from 'netrunnerdb/components/card/image';
+import { Await } from '@warp-drive/ember';
 
 <template>
   {{pageTitle 'Illlustrators'}}
@@ -48,13 +49,24 @@ import CardImage from 'netrunnerdb/components/card/image';
               </:subtitle>
               <:body>
                 <div class='row'>
-                  {{#each (sortBy 'title' illustrator.printings) as |printing|}}
-                    <div class='col-3 p-2'>
-                      <CardLinkTo @printing={{printing}} @hideTooltip='true'>
-                        <CardImage @printing={{printing}} @size='large' />
-                      </CardLinkTo>
-                    </div>
-                  {{/each}}
+                  <Await @promise={{illustrator.printings}}>
+                    <:pending>
+                      Loading cards...
+                    </:pending>
+                    <:success as |printings|>
+                      {{#each (sortBy 'title' printings) as |printing|}}
+                        <div class='col-3 p-2'>
+                          <CardLinkTo
+                            @printing={{printing}}
+                            @hideTooltip='true'
+                          >
+                            <CardImage @printing={{printing}} @size='large' />
+                          </CardLinkTo>
+                        </div>
+                      {{/each}}
+                    </:success>
+                  </Await>
+
                 </div>
               </:body>
             </Panel>
