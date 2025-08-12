@@ -1,6 +1,9 @@
 # unconventional js
 /blueprints/*/files/
 
+# vendored bootstrap CSS
+/public/vendor/bootstrap.css
+
 # compiled output
 /dist/
 
@@ -8,6 +11,6 @@
 /coverage/
 !.*
 .*/
-
-# ember-try
-/.node_modules.ember-try/
+/pnpm-lock.yaml
+ember-cli-update.json
+*.html
