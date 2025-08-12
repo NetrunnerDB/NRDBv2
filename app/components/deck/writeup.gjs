@@ -164,17 +164,17 @@ export default class Writeup extends Component {
   }
 
   <template>
-    <div class='row mt-4 ms-4'>
+    <div class="row mt-4 ms-4">
       {{#each this.cardsByCategory as |col|}}
-        <div class='col-6'>
+        <div class="col-6">
           {{#each col as |category|}}
             {{#if category.cards}}
-              <p class='font-size-18'>
+              <p class="font-size-18">
                 <Icon @icon={{category.cardTypeId}} />
                 {{category.name}}
                 ({{category.count}})
               </p>
-              <ul class='list-unstyled secondary mt-2'>
+              <ul class="list-unstyled secondary mt-2">
                 {{#each category.cards as |card|}}
                   <li>
                     {{get @decklist.cardSlots card.id}}&times;
@@ -193,7 +193,7 @@ export default class Writeup extends Component {
                         <InfluencePips
                           @factionId={{card.factionId}}
                           @count={{card.influenceCost}}
-                          @hideEmpty='true'
+                          @hideEmpty="true"
                           @repeat={{this.quantity card.id}}
                         />
                       {{/if}}

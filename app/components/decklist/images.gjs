@@ -23,19 +23,19 @@ export default class DecklistImages extends Component {
     {{#each @cardTypes as |type|}}
       {{#let (this.cardsByType type.id) as |cards|}}
         {{#if cards}}
-          <h3 class='mt-4 font-size-20'>
-            <Icon @icon='{{type.id}}' />
+          <h3 class="mt-4 font-size-20">
+            <Icon @icon="{{type.id}}" />
             {{type.name}}
             ({{this.countByType type.id}})
           </h3>
-          <div class='row row-cols-8 g-3'>
+          <div class="row row-cols-8 g-3">
             {{#each cards as |card|}}
-              <div class='col'>
+              <div class="col">
                 <CardLinkTo @printing={{card.latestPrinting}}>
-                  <div class='decklist-card'>
+                  <div class="decklist-card">
                     {{#each (Range (get @decklist.cardSlots card.id))}}
                       <img
-                        src='{{card.latestPrinting.largeImage}}'
+                        src="{{card.latestPrinting.largeImage}}"
                         alt={{card.title}}
                       />
                     {{/each}}

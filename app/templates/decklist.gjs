@@ -46,33 +46,33 @@ export default class DecklistComponent extends Component {
   <template>
     {{pageTitle @model.decklist.name}}
 
-    <main class='pb-4'>
+    <main class="pb-4">
       <Navbar />
 
       {{! HEADER - Custom rather than TitleBox }}
-      <div class='decklist-banner'>
-        <div class='container'>
-          <div class='decklist-banner-data d-flex'>
-            <div class='mt-auto'>
-              <h1><Icon @icon='shaper' /><b>{{@model.decklist.name}}</b></h1>
+      <div class="decklist-banner">
+        <div class="container">
+          <div class="decklist-banner-data d-flex">
+            <div class="mt-auto">
+              <h1><Icon @icon="shaper" /><b>{{@model.decklist.name}}</b></h1>
               <div>
-                <span class='decklist-banner-stat'>
+                <span class="decklist-banner-stat">
                   By
-                  <LinkTo @route='home'>{{@model.decklist.userId}}</LinkTo>
+                  <LinkTo @route="home">{{@model.decklist.userId}}</LinkTo>
                 </span>
-                <span class='decklist-banner-stat ms-4'>
+                <span class="decklist-banner-stat ms-4">
                   {{formatISO8601Date @model.decklist.createdAt}}
                 </span>
-                <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon={{faHeart}} @prefix='far' />
+                <span class="decklist-banner-stat ms-4">
+                  <FaIcon @icon={{faHeart}} @prefix="far" />
                   25
                 </span>
-                <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon={{faStar}} @prefix='far' />
+                <span class="decklist-banner-stat ms-4">
+                  <FaIcon @icon={{faStar}} @prefix="far" />
                   12
                 </span>
-                <span class='decklist-banner-stat ms-4'>
-                  <FaIcon @icon={{faComment}} @prefix='far' />
+                <span class="decklist-banner-stat ms-4">
+                  <FaIcon @icon={{faComment}} @prefix="far" />
                   6
                 </span>
               </div>
@@ -82,62 +82,62 @@ export default class DecklistComponent extends Component {
       </div>
 
       {{! BODY }}
-      <div class='container'>
+      <div class="container">
 
         {{! WARNING }}
         {{#unless @model.decklist.followsBasicDeckbuildingRules}}
-          <div class='warning-box mt-4'>
+          <div class="warning-box mt-4">
             This decklist is not legal for tournament play currently, due to
             Card Errata, Rotation or Legality.
           </div>
         {{/unless}}
 
         {{! BUTTONS }}
-        <div class='row mt-4'>
-          <div class='col-6'>
-            <LinkTo @route='home' class='button'>Decklist</LinkTo>
-            <LinkTo @route='home' class='button'>Sets</LinkTo>
-            <LinkTo @route='home' class='button'>Info</LinkTo>
-            <LinkTo @route='home' class='button'>Actions</LinkTo>
+        <div class="row mt-4">
+          <div class="col-6">
+            <LinkTo @route="home" class="button">Decklist</LinkTo>
+            <LinkTo @route="home" class="button">Sets</LinkTo>
+            <LinkTo @route="home" class="button">Info</LinkTo>
+            <LinkTo @route="home" class="button">Actions</LinkTo>
           </div>
-          <div class='col-6 text-end'>
-            <LinkTo @route='home' class='button'>
-              <FaIcon @icon={{faFileCode}} @prefix='far' />
+          <div class="col-6 text-end">
+            <LinkTo @route="home" class="button">
+              <FaIcon @icon={{faFileCode}} @prefix="far" />
             </LinkTo>
-            <LinkTo @route='home' class='button'>
+            <LinkTo @route="home" class="button">
               <FaIcon @icon={{faDownload}} />
             </LinkTo>
-            <LinkTo @route='home' class='button'>
+            <LinkTo @route="home" class="button">
               <FaIcon @icon={{faCodeCompare}} />
             </LinkTo>
-            <LinkTo @route='home' class='button'>
+            <LinkTo @route="home" class="button">
               <FaIcon @icon={{faSort}} />
               Sort
             </LinkTo>
 
-            <div class='btn-group' role='group'>
-              <LinkTo @query={{hash display='writeup'}} class='button'>
+            <div class="btn-group" role="group">
+              <LinkTo @query={{hash display="writeup"}} class="button">
                 <FaIcon @icon={{faAlignLeft}} />
               </LinkTo>
-              <LinkTo @query={{hash display='list'}} class='button'>
+              <LinkTo @query={{hash display="list"}} class="button">
                 <FaIcon
                   @icon={{faTableList}}
-                  @prefix='far'
-                  @flip='horizontal'
+                  @prefix="far"
+                  @flip="horizontal"
                 />
               </LinkTo>
-              <LinkTo @query={{hash display='images'}} class='button'>
-                <FaIcon @icon={{faImages}} @prefix='far' />
+              <LinkTo @query={{hash display="images"}} class="button">
+                <FaIcon @icon={{faImages}} @prefix="far" />
               </LinkTo>
             </div>
           </div>
         </div>
 
         {{! DECKLIST BOX }}
-        <div class='row'>
-          <div class='col-6'>
+        <div class="row">
+          <div class="col-6">
             <DecklistBox @decklist={{@model.decklist}} />
-            {{#if (eq @controller.display 'writeup')}}
+            {{#if (eq @controller.display "writeup")}}
               <DeckWriteup
                 @decklist={{@model.decklist}}
                 @cardTypes={{@model.cardTypes}}
@@ -145,10 +145,10 @@ export default class DecklistComponent extends Component {
             {{/if}}
           </div>
 
-          <div class='col-6 position-relative'>
+          <div class="col-6 position-relative">
             <div
-              class='decklist-description
-                {{if (notEq @controller.display "writeup") "truncated"}}'
+              class="decklist-description
+                {{if (notEq @controller.display 'writeup') 'truncated'}}"
             >
               <h2>{{@model.decklist.name}}</h2>
               <div>
@@ -157,15 +157,15 @@ export default class DecklistComponent extends Component {
             </div>
             {{#if
               (and
-                (notEq @controller.display 'writeup')
+                (notEq @controller.display "writeup")
                 (gt @model.decklist.notes.length 200)
               )
             }}
               <button
-                type='button'
-                class='position-absolute px-2'
-                style='bottom:0;right:0'
-                {{on 'click' @controller.displayWriteUp}}
+                type="button"
+                class="position-absolute px-2"
+                style="bottom:0;right:0"
+                {{on "click" @controller.displayWriteUp}}
               >
                 Read more
               </button>
@@ -207,13 +207,13 @@ export default class DecklistComponent extends Component {
       </div> }}
 
         {{! CARDS }}
-        {{#if (eq @controller.display 'list')}}
+        {{#if (eq @controller.display "list")}}
           <CardList @printings={{@model.decklist.cards}}>
             <:quantity as |card|>
               {{get @model.decklist.cardSlots card.id}}
             </:quantity>
           </CardList>
-        {{else if (eq @controller.display 'images')}}
+        {{else if (eq @controller.display "images")}}
           <DecklistImages
             @decklist={{@model.decklist}}
             @cardTypes={{@model.cardTypes}}

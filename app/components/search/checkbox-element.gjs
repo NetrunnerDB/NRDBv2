@@ -8,13 +8,13 @@ export default class CheckboxElementComponent extends Component {
   }
 
   <template>
-    <label for='{{@id}}'>{{@name}}</label>
+    <label for="{{@id}}">{{@name}}</label>
     <input
-      id='{{@id}}'
-      name='{{@id}}'
-      type='checkbox'
-      checked={{eq @value 'true'}}
-      value='true'
+      id="{{@id}}"
+      name="{{@id}}"
+      type="checkbox"
+      checked={{eq @value "true"}}
+      value="true"
     />
   </template>
 }

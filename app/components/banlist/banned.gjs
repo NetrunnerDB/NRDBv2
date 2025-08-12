@@ -33,7 +33,7 @@ export default class Banned extends Component {
 
           {{#each this.bannedCards as |card|}}
             <li>
-              <CardLinkTo @printing={{card}} class='text-truncate'>
+              <CardLinkTo @printing={{card}} class="text-truncate">
                 {{card.title}}
               </CardLinkTo>
             </li>

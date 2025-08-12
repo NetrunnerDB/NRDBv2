@@ -31,8 +31,8 @@ export default class CardRulingComponent extends Component {
   }
 
   <template>
-    <div id='ruling-{{@ruling.id}}'>
-      <p class='{{this.verifiedClass}}'> {{@ruling.updatedAt}}</p>
+    <div id="ruling-{{@ruling.id}}">
+      <p class="{{this.verifiedClass}}"> {{@ruling.updatedAt}}</p>
       {{#if @ruling.textRuling}}
         <p>Text Ruling: {{this.textRuling}}</p>
       {{else}}

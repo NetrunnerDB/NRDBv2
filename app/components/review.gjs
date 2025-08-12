@@ -14,16 +14,16 @@ export default class ReviewComponent extends Component {
   }
 
   <template>
-    <div class='review'>
-      <div class='review-buttons'>
-        <div class='likes'><FaIcon @icon={{faHeart}} /> {{@review.votes}}</div>
-        <div class='comments mt-2'><FaIcon @icon={{faMessage}} />
+    <div class="review">
+      <div class="review-buttons">
+        <div class="likes"><FaIcon @icon={{faHeart}} /> {{@review.votes}}</div>
+        <div class="comments mt-2"><FaIcon @icon={{faMessage}} />
           {{@review.comments.length}}
         </div>
       </div>
-      <div class='review-main'>
-        <div class='review-header font-size-18'>
-          <div class='d-flex justify-content-between'>
+      <div class="review-main">
+        <div class="review-header font-size-18">
+          <div class="d-flex justify-content-between">
             <div>
               A review by
               {{@review.username}}
@@ -37,18 +37,18 @@ export default class ReviewComponent extends Component {
             {{/if}}
           </div>
         </div>
-        <div class='review-content'>
+        <div class="review-content">
           {{#if @showPrinting}}
-            <div class='float-end col-2 ms-2 my-2'>
-              <CardImage src='{{@printing.images.nrdb_classic.large}}' />
+            <div class="float-end col-2 ms-2 my-2">
+              <CardImage src="{{@printing.images.nrdb_classic.large}}" />
             </div>
           {{/if}}
-          <div class='user-content'>
+          <div class="user-content">
             <p>{{@review.body}}</p>
           </div>
         </div>
 
-        <div class='review-comments'>
+        <div class="review-comments">
           {{#each @review.comments as |comment|}}
             <Comment @comment={{comment}} />
           {{/each}}

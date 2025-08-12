@@ -10,22 +10,22 @@ import Navbar from 'netrunnerdb/components/navbar';
 import Titlebar from 'netrunnerdb/components/titlebar';
 
 <template>
-  {{pageTitle 'Ban Lists'}}
+  {{pageTitle "Ban Lists"}}
 
-  <main class='pb-4'>
+  <main class="pb-4">
     <Navbar />
-    <Titlebar @title='Ban Lists' />
+    <Titlebar @title="Ban Lists" />
 
-    <div class='container'>
-      <div class='row'>
-        <div class='col-12'>
-          <div class='card border-0 flex-grow-1' id='nav-main-content'>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card border-0 flex-grow-1" id="nav-main-content">
             <div
-              class='card-body d-flex flex-column flex-lg-row justify-content-between'
+              class="card-body d-flex flex-column flex-lg-row justify-content-between"
             >
               <div>
                 <p>There are currently three official
-                  <a href='/en/formats'>formats</a>
+                  <a href="/en/formats">formats</a>
                   supported by Null Signal Games: Startup, Standard, and
                   Eternal. This page displays the ban lists for each.</p>
                 <h2>Explanation</h2>
@@ -48,25 +48,25 @@ import Titlebar from 'netrunnerdb/components/titlebar';
                 </ul>
                 <p>See
                   <a
-                    href='https://nullsignal.games/players/supported-formats/'
+                    href="https://nullsignal.games/players/supported-formats/"
                   >Null Signal Games' Supported Formats page</a>
                   for more information.</p>
 
-                <div class='card flex-grow-1'>
-                  <div class='card-header'>
-                    <ul class='nav nav-tabs nav-fill card-header-tabs'>
+                <div class="card flex-grow-1">
+                  <div class="card-header">
+                    <ul class="nav nav-tabs nav-fill card-header-tabs">
                       {{#each @model.formats as |format|}}
-                        <li class='nav-item'>
+                        <li class="nav-item">
                           <LinkTo
-                            class='nav-link'
-                            @route='bans'
+                            class="nav-link"
+                            @route="bans"
                             @query={{hash format=format.id}}
                           >{{format.name}}</LinkTo>
                         </li>
                       {{/each}}
                     </ul>
                   </div>
-                  <div class='card-body'>
+                  <div class="card-body">
                     {{#each @model.formats as |format|}}
                       {{#if (eq @controller.format format.id)}}
                         <div id={{format.id}}>
@@ -84,15 +84,15 @@ import Titlebar from 'netrunnerdb/components/titlebar';
                                 </:title>
                                 <:subtitle>
                                   {{formatMessage
-                                    '{count, plural, one {# card} other {# cards}}. Start Date: {date}.'
+                                    "{count, plural, one {# card} other {# cards}}. Start Date: {date}."
                                     count=restriction.obj.size
                                     date=(formatDate restriction.obj.dateStart)
                                   }}
                                 </:subtitle>
                                 <:body>
-                                  <div class='row'>
+                                  <div class="row">
                                     <Side
-                                      @side='corp'
+                                      @side="corp"
                                       @formats={{@model.loadedFormats}}
                                       @selectedFormat={{@controller.format}}
                                       @restriction={{restriction}}
@@ -100,7 +100,7 @@ import Titlebar from 'netrunnerdb/components/titlebar';
                                     />
 
                                     <Side
-                                      @side='runner'
+                                      @side="runner"
                                       @formats={{@model.loadedFormats}}
                                       @selectedFormat={{@controller.format}}
                                       @restriction={{restriction}}
@@ -112,7 +112,7 @@ import Titlebar from 'netrunnerdb/components/titlebar';
                             </:default>
                             <:empty>
                               {{formatMessage
-                                'No cards are currently banned in {format}. Have a blast!'
+                                "No cards are currently banned in {format}. Have a blast!"
                                 format=format.name
                               }}
                             </:empty>

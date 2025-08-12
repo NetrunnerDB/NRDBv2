@@ -33,14 +33,14 @@ export default class Points extends Component {
               <li>
                 <strong>
                   {{formatMessage
-                    '{amount, plural, one {# Point} other {# Points} }'
+                    "{amount, plural, one {# Point} other {# Points} }"
                     amount=points
                   }}
                 </strong>
                 <ul>
                   {{#each cards as |card|}}
                     <li>
-                      <CardLinkTo @printing={{card}} class='text-truncate'>
+                      <CardLinkTo @printing={{card}} class="text-truncate">
                         {{card.title}}
                       </CardLinkTo>
                     </li>

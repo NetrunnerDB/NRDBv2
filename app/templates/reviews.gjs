@@ -4,13 +4,13 @@ import Titlebar from 'netrunnerdb/components/titlebar';
 import Review from 'netrunnerdb/components/review';
 
 <template>
-  {{pageTitle 'Formats'}}
+  {{pageTitle "Formats"}}
 
-  <main class='pb-4'>
+  <main class="pb-4">
     <Navbar />
-    <Titlebar @subtitle='Reviews' />
+    <Titlebar @subtitle="Reviews" />
 
-    <div class='container'>
+    <div class="container">
       {{#each @model.reviews as |review|}}
         <Review
           @review={{review}}

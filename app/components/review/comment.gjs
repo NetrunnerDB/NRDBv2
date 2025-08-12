@@ -7,15 +7,15 @@ export default class ReviewCommentComponent extends Component {
   }
 
   <template>
-    <div class='comment secondary'>
-      <div class='comment-content'>
-        <div class='user-content'>
+    <div class="comment secondary">
+      <div class="comment-content">
+        <div class="user-content">
           {{@comment.body}}
         </div>
       </div>
-      <div class='comment-meta'>
+      <div class="comment-meta">
         —
-        <span class='anarch'>{{@comment.user}}</span>
+        <span class="anarch">{{@comment.user}}</span>
         {{formatISO8601Date @comment.created_at}}
       </div>
     </div>

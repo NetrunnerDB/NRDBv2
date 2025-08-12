@@ -15,27 +15,27 @@ export default class CardListsComponent extends Component {
 
   <template>
     <LinkTo
-      @route='set'
-      @model='rebellion_without_rehearsal'
-      class='box-link latest-set'
+      @route="set"
+      @model="rebellion_without_rehearsal"
+      class="box-link latest-set"
     >
-      <div class='row'>
-        <div class='col-2 col-lg-4'>
+      <div class="row">
+        <div class="col-2 col-lg-4">
           <img
-            src='/assets/image/set/liberation.png'
-            alt='Liberation cycle icon'
-            style='width:100%; opacity:50%;'
+            src="/assets/image/set/liberation.png"
+            alt="Liberation cycle icon"
+            style="width:100%; opacity:50%;"
           />
         </div>
-        <div class='col-10 col-lg-8 position-relative'>
+        <div class="col-10 col-lg-8 position-relative">
           <div
-            class='position-absolute w-75'
-            style='top:50%; transform:translateY(-50%)'
+            class="position-absolute w-75"
+            style="top:50%; transform:translateY(-50%)"
           >
             <div>
               Latest set:
             </div>
-            <div class='fst-italic'>
+            <div class="fst-italic">
               Rebellion without Rehearsal
             </div>
           </div>

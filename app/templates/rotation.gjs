@@ -4,14 +4,14 @@ import Titlebar from 'netrunnerdb/components/titlebar';
 import FancyHeader from 'netrunnerdb/components/fancy-header';
 
 <template>
-  {{pageTitle 'Formats'}}
+  {{pageTitle "Formats"}}
 
   <Navbar />
-  <Titlebar @title='Bans' />
+  <Titlebar @title="Bans" />
 
-  <div class='container'>
-    <div class='row'>
-      <div class='col-12'>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
         <FancyHeader>Standard</FancyHeader>
         <p>
           The flagship format of Netrunner Organized Play, Standard is

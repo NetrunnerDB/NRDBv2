@@ -60,75 +60,75 @@ export default class AccordionComponent extends Component {
 
   <template>
     {{#if true}}
-      <div class='panel-list'>
+      <div class="panel-list">
         {{#if (or @showMassToggle @showSearch @showSort)}}
-          <p class='row'>
+          <p class="row">
             {{#if @showMassToggle}}
               <button
-                class='show-all col-2 btn btn-secondary'
-                type='button'
-                {{on 'click' (fn this.setAllPanels true)}}
+                class="show-all col-2 btn btn-secondary"
+                type="button"
+                {{on "click" (fn this.setAllPanels true)}}
               >Show all</button>
             {{/if}}
             {{#if @showSearch}}
-              <div class='panel-search'>
+              <div class="panel-search">
                 <input
-                  type='text'
-                  class='form-control'
-                  placeholder='Search...'
-                  aria-label='Search'
+                  type="text"
+                  class="form-control"
+                  placeholder="Search..."
+                  aria-label="Search"
                   value={{this.query}}
-                  {{on 'input' this.updateFilter}}
+                  {{on "input" this.updateFilter}}
                 />
               </div>
             {{/if}}
             {{#if @showMassToggle}}
               <button
-                class='hide-all col-2 btn btn-secondary'
-                type='button'
-                {{on 'click' (fn this.setAllPanels false)}}
+                class="hide-all col-2 btn btn-secondary"
+                type="button"
+                {{on "click" (fn this.setAllPanels false)}}
               >Hide all</button>
             {{/if}}
             {{#if @showSort}}
               <div
-                class='panel-dropdown dropdown
-                  {{if this.isDropdownOpen "open"}}'
+                class="panel-dropdown dropdown
+                  {{if this.isDropdownOpen 'open'}}"
               >
                 <button
-                  class='dropdown-toggle btn btn-light'
-                  data-toggle='dropdown'
-                  aria-expanded='{{this.isDropdownOpen}}'
-                  type='button'
-                  {{on 'click' this.toggleDropdown}}
+                  class="dropdown-toggle btn btn-light"
+                  data-toggle="dropdown"
+                  aria-expanded="{{this.isDropdownOpen}}"
+                  type="button"
+                  {{on "click" this.toggleDropdown}}
                 >
                   Sort
-                  <span class='caret'></span>
+                  <span class="caret"></span>
                 </button>
-                <ul class='dropdown-menu dropdown-menu-right' role='menu'>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
                   <li><a
-                      href='#'
-                      id='sort-0'
-                      {{on 'click' (fn this.setSortingOrder 'name:asc')}}
+                      href="#"
+                      id="sort-0"
+                      {{on "click" (fn this.setSortingOrder "name:asc")}}
                     >Name (A-Z)</a></li>
                   <li><a
-                      href='#'
-                      id='sort-1'
-                      {{on 'click' (fn this.setSortingOrder 'name:desc')}}
+                      href="#"
+                      id="sort-1"
+                      {{on "click" (fn this.setSortingOrder "name:desc")}}
                     >Name (Z-A)</a></li>
                   <li><a
-                      href='#'
-                      id='sort-2'
+                      href="#"
+                      id="sort-2"
                       {{on
-                        'click'
-                        (fn this.setSortingOrder 'numPrintings:desc')
+                        "click"
+                        (fn this.setSortingOrder "numPrintings:desc")
                       }}
                     >Cards (most)</a></li>
                   <li><a
-                      href='#'
-                      id='sort-3'
+                      href="#"
+                      id="sort-3"
                       {{on
-                        'click'
-                        (fn this.setSortingOrder 'numPrintings:asc')
+                        "click"
+                        (fn this.setSortingOrder "numPrintings:asc")
                       }}
                     >Cards (least)</a></li>
                 </ul>
@@ -150,7 +150,7 @@ export default class AccordionComponent extends Component {
         {{/each}}
       </div>
     {{else}}
-      {{yield to='empty'}}
+      {{yield to="empty"}}
     {{/if}}
   </template>
 }

@@ -10,37 +10,37 @@ import { LinkTo } from '@ember/routing';
 <template>
   {{pageTitle @model.faction.name}}
 
-  <main class='pb-4'>
+  <main class="pb-4">
     <Navbar />
     <Titlebar
-      @title='Faction'
+      @title="Faction"
       @subtitle={{@model.faction.name}}
       @icon={{@model.faction.id}}
     />
 
-    <div class='container'>
+    <div class="container">
       {{#if @model.faction.description}}
         <div
-          class='box fst-italic visible-lg mt-4 mx-5 bg-img-{{@model.faction.idHyphenated}}'
+          class="box fst-italic visible-lg mt-4 mx-5 bg-img-{{@model.faction.idHyphenated}}"
         >
           {{breakLines @model.faction.description}}
         </div>
       {{/if}}
 
       {{#each @model.ids as |id|}}
-        <div class='row pt-4 pb-4'>
-          <h2 class='font-size-20'>
-            <CardLinkTo @printing={{id.latestPrinting}} class='primary'>
+        <div class="row pt-4 pb-4">
+          <h2 class="font-size-20">
+            <CardLinkTo @printing={{id.latestPrinting}} class="primary">
               <FancyHeader>{{id.title}}</FancyHeader>
             </CardLinkTo>
           </h2>
-          <div class='col-12 col-md-2'>
+          <div class="col-12 col-md-2">
             <img
               alt={{id.title}}
-              class='w-100 visible-md mb-2 game-card'
-              src='{{id.latestPrinting.images.nrdb_classic.large}}'
+              class="w-100 visible-md mb-2 game-card"
+              src="{{id.latestPrinting.images.nrdb_classic.large}}"
             />
-            <LinkTo @route='home' class='button blue d-block mb-2'>
+            <LinkTo @route="home" class="button blue d-block mb-2">
               Create deck</LinkTo>
             {{#if id.pronouns}}
               <div>
@@ -49,7 +49,7 @@ import { LinkTo } from '@ember/routing';
               </div>
             {{/if}}
           </div>
-          <div class='col-12 col-md-10'>
+          <div class="col-12 col-md-10">
             {{#each id.decklists as |decklist|}}
               <DecklistBoxCompact @decklist={{decklist}} @identity={{id}} />
               <br />

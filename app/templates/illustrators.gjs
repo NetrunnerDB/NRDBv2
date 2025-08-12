@@ -10,15 +10,15 @@ import CardImage from 'netrunnerdb/components/card/image';
 import { Await } from '@warp-drive/ember';
 
 <template>
-  {{pageTitle 'Illlustrators'}}
+  {{pageTitle "Illlustrators"}}
 
-  <main class='pb-4'>
+  <main class="pb-4">
     <Navbar />
-    <Titlebar @title='Illlustrators' />
+    <Titlebar @title="Illlustrators" />
 
-    <div class='container'>
-      <div class='row'>
-        <div class='col-12'>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
           <FancyHeader>Illustrators</FancyHeader>
           <p>
             The world of Netrunner has been brought to life by a wide selection
@@ -32,11 +32,11 @@ import { Await } from '@warp-drive/ember';
 
       </div>
 
-      <div class='row'>
-        <div class='row'>
+      <div class="row">
+        <div class="row">
           <Accordion
-            @showSearch='true'
-            @showSort='true'
+            @showSearch="true"
+            @showSort="true"
             @items={{@model.illustrators}}
             @query={{this.search}}
             as |Panel illustrator|
@@ -45,22 +45,22 @@ import { Await } from '@warp-drive/ember';
               <:title>{{illustrator.name}}</:title>
               <:subtitle>
                 {{illustrator.numPrintings}}
-                card{{if (notEq illustrator.numPrintings 1) 's'}}
+                card{{if (notEq illustrator.numPrintings 1) "s"}}
               </:subtitle>
               <:body>
-                <div class='row'>
+                <div class="row">
                   <Await @promise={{illustrator.printings}}>
                     <:pending>
                       Loading cards...
                     </:pending>
                     <:success as |printings|>
-                      {{#each (sortBy 'title' printings) as |printing|}}
-                        <div class='col-3 p-2'>
+                      {{#each (sortBy "title" printings) as |printing|}}
+                        <div class="col-3 p-2">
                           <CardLinkTo
                             @printing={{printing}}
-                            @hideTooltip='true'
+                            @hideTooltip="true"
                           >
-                            <CardImage @printing={{printing}} @size='large' />
+                            <CardImage @printing={{printing}} @size="large" />
                           </CardLinkTo>
                         </div>
                       {{/each}}

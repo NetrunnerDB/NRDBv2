@@ -12,39 +12,39 @@ import BsTab from 'ember-bootstrap/components/bs-tab';
 <template>
   {{pageTitle @model.cardSet.name}}
 
-  <main class='pb-4'>
+  <main class="pb-4">
 
     <Navbar />
 
     <Titlebar
-      @title='Card'
+      @title="Card"
       @subtitle={{@model.card.title}}
       @icon={{@model.cardSet.cardCycleId}}
     >
       {{#if @model.prevPrinting}}
         <CardLinkTo
           @id={{@model.prevPrinting.id}}
-          class='button round position-absolute end-0'
-          style='top: 0; transform: translateY(-40%)'
+          class="button round position-absolute end-0"
+          style="top: 0; transform: translateY(-40%)"
         >
-          <FaIcon @icon='arrow-left-long' />
+          <FaIcon @icon="arrow-left-long" />
           {{@model.prevPrinting.title}}
         </CardLinkTo>
       {{/if}}
       {{#if @model.nextPrinting}}
         <CardLinkTo
           @id={{@model.nextPrinting.id}}
-          class='button round position-absolute end-0'
-          style='bottom: 0; transform: translateY(40%)'
+          class="button round position-absolute end-0"
+          style="bottom: 0; transform: translateY(40%)"
         >
           {{@model.nextPrinting.title}}
-          <FaIcon @icon='arrow-right-long' />
+          <FaIcon @icon="arrow-right-long" />
         </CardLinkTo>
       {{/if}}
     </Titlebar>
 
-    <div class='container'>
-      <div class='mt-4'>
+    <div class="container">
+      <div class="mt-4">
         <CardFullDisplay
           @card={{@model.card}}
           @printing={{@model.printing}}
@@ -55,33 +55,33 @@ import BsTab from 'ember-bootstrap/components/bs-tab';
         />
       </div>
 
-      <div class='mt-4'>
-        <BsTab @type='pills' as |tab|>
-          <tab.pane @title='Reviews'>
+      <div class="mt-4">
+        <BsTab @type="pills" as |tab|>
+          <tab.pane @title="Reviews">
             {{#each @model.reviews as |review|}}
-              <div class='mt-4'>
-                <div class='mb-5'>
+              <div class="mt-4">
+                <div class="mb-5">
                   <Review @card={{@model.card}} @review={{review}} />
                 </div>
               </div>
             {{else}}
-              <div class='ruling-answer mt-4'>
+              <div class="ruling-answer mt-4">
                 This card has no reviews!
               </div>
             {{/each}}
           </tab.pane>
-          <tab.pane @title='Rulings '>
+          <tab.pane @title="Rulings ">
             {{#each @model.rulings as |ruling|}}
-              <div class='mt-4'>
+              <div class="mt-4">
                 <Ruling @ruling={{ruling}} />
               </div>
             {{else}}
-              <div class='ruling-answer mt-4'>
+              <div class="ruling-answer mt-4">
                 This card has no rulings!
               </div>
             {{/each}}
           </tab.pane>
-          <tab.pane @title='Alt arts'>
+          <tab.pane @title="Alt arts">
             <p> ... </p>
           </tab.pane>
         </BsTab>

@@ -47,44 +47,44 @@ export default class CardListsComponent extends Component {
   }
 
   <template>
-    <div class='card flex-grow-1' id='nav-main-content'>
-      <div class='card-header'>
-        <ul class='nav nav-tabs nav-fill card-header-tabs'>
-          <li class='nav-item'>
+    <div class="card flex-grow-1" id="nav-main-content">
+      <div class="card-header">
+        <ul class="nav nav-tabs nav-fill card-header-tabs">
+          <li class="nav-item">
             <LinkTo
-              @query={{hash display='checklist'}}
-              role='button'
-              class='nav-link'
+              @query={{hash display="checklist"}}
+              role="button"
+              class="nav-link"
             >Checklist</LinkTo>
           </li>
-          <li class='nav-item'>
+          <li class="nav-item">
             <LinkTo
-              @query={{hash display='full'}}
-              role='button'
-              class='nav-link'
+              @query={{hash display="full"}}
+              role="button"
+              class="nav-link"
             >Full Cards</LinkTo>
           </li>
-          <li class='nav-item'>
+          <li class="nav-item">
             <LinkTo
-              @query={{hash display='images'}}
-              role='button'
-              class='nav-link'
+              @query={{hash display="images"}}
+              role="button"
+              class="nav-link"
             >Images Only</LinkTo>
           </li>
-          <li class='nav-item'>
+          <li class="nav-item">
             <LinkTo
-              @query={{hash display='text'}}
-              role='button'
-              class='nav-link'
+              @query={{hash display="text"}}
+              role="button"
+              class="nav-link"
             >Text Only</LinkTo>
           </li>
         </ul>
       </div>
 
-      <div class='card-body'>
-        {{#if (eq @display 'checklist')}}
-          <div id='card-list-checklist'>
-            <table class='table-striped table-fill'>
+      <div class="card-body">
+        {{#if (eq @display "checklist")}}
+          <div id="card-list-checklist">
+            <table class="table-striped table-fill">
               <thead>
                 <th>Position</th>
                 <th>Title</th>
@@ -93,7 +93,7 @@ export default class CardListsComponent extends Component {
                 <th>Type: Subtypes</th>
               </thead>
               <tbody>
-                {{#each (sortBy 'id:asc' @printings) as |printing|}}
+                {{#each (sortBy "id:asc" @printings) as |printing|}}
                   <tr>
                     <td><Icon
                         @icon={{printing.cardCycleId}}
@@ -104,7 +104,7 @@ export default class CardListsComponent extends Component {
                           printing.isUnique
                         }}♦ {{/if}}{{printing.title}}</CardLinkTo>
                     </td>
-                    <td><Icon @icon='{{printing.factionId}}' /><InfluencePips
+                    <td><Icon @icon="{{printing.factionId}}" /><InfluencePips
                         @printing={{printing}}
                       /></td>
                     <td><Stats @printing={{printing}} /></td>
@@ -117,10 +117,10 @@ export default class CardListsComponent extends Component {
             </table>
           </div>
 
-        {{else if (eq @display 'full')}}
-          <div id='card-list-full-cards'>
+        {{else if (eq @display "full")}}
+          <div id="card-list-full-cards">
             {{#each @printings as |p|}}
-              <div class='row'>
+              <div class="row">
                 <FullDisplay
                   faction={{p.faction}}
                   @cardSet={{p.cardSet}}
@@ -133,12 +133,12 @@ export default class CardListsComponent extends Component {
             {{/each}}
           </div>
 
-        {{else if (eq @display 'images')}}
+        {{else if (eq @display "images")}}
           {{#each this.printingsTableForImages as |row|}}
-            <div class='row'>
+            <div class="row">
               {{#each row as |p|}}
                 <div
-                  class='col-xl-3 col-lg-3 col-md-6 card-art-container px-2 pb-3'
+                  class="col-xl-3 col-lg-3 col-md-6 card-art-container px-2 pb-3"
                 >
                   <CardLinkTo @printing={{p}}><Image
                       src={{p.images.nrdb_classic.large}}
@@ -148,19 +148,19 @@ export default class CardListsComponent extends Component {
             </div>
           {{/each}}
 
-        {{else if (eq @display 'text')}}
-          <div id='card-list-text-only'>
+        {{else if (eq @display "text")}}
+          <div id="card-list-text-only">
             {{#each this.printingsTableForTextOnly as |row|}}
-              <div class='row'>
+              <div class="row">
                 {{#each row as |p|}}
-                  <div class='card col-4 px-md-0'>
-                    <div class='card-header'>
-                      <div class='card-title'>
+                  <div class="card col-4 px-md-0">
+                    <div class="card-header">
+                      <div class="card-title">
                         <CardLinkTo @printing={{p}}>{{#if p.isUnique}}♦
                           {{/if}}{{p.title}}</CardLinkTo>
                       </div>
                     </div>
-                    <div class='card-body'>
+                    <div class="card-body">
                       <CardTextBox
                         @cardSet={{@p.cardSet}}
                         @cardType={{@p.cardType}}

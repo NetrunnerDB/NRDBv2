@@ -8,21 +8,21 @@ import CardLinkTo from 'netrunnerdb/components/card/link-to';
 import { sortBy } from '@nullvoxpopuli/ember-composable-helpers';
 
 <template>
-  {{pageTitle 'Rulings'}}
+  {{pageTitle "Rulings"}}
 
-  <main class='pb-4'>
+  <main class="pb-4">
     <Navbar />
-    <Titlebar @title='Rulings' />
+    <Titlebar @title="Rulings" />
 
-    <div class='container'>
-      <div class='row'>
-        <div class='col-12'>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
           <FancyHeader>All cards with clarification and F.A.Q.</FancyHeader>
 
-          {{#each (sortBy 'updatedAt:desc' @model.rulings) as |ruling|}}
-            <div class='card mb-3'>
-              <div class='card-body'>
-                <h5 class='card-title'>
+          {{#each (sortBy "updatedAt:desc" @model.rulings) as |ruling|}}
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">
                   <CardLinkTo @printing={{ruling.card.latestPrinting}}>
                     {{ruling.card.title}}
                   </CardLinkTo>

@@ -18,17 +18,17 @@ function backgroundImage(image) {
 }
 
 <template>
-  <div class='game-card-text-box'>
+  <div class="game-card-text-box">
     {{#if @showThumbnail}}
-      <div class='hex'>
-        <div class='hex-border'>
-          <div class='hex-background'>
+      <div class="hex">
+        <div class="hex-border">
+          <div class="hex-background">
             {{! template-lint-disable style-concatenation }}
             <div
-              class='hex-image thumbnail-{{Hyphenate @printing.cardTypeId}}{{if
-                  (eq @printing.releasedBy "fantasy_flight_games")
-                  "-ffg"
-                }}'
+              class="hex-image thumbnail-{{Hyphenate @printing.cardTypeId}}{{if
+                  (eq @printing.releasedBy 'fantasy_flight_games')
+                  '-ffg'
+                }}"
               style={{backgroundImage @printing.images.nrdb_classic.small}}
             ></div>
           </div>
@@ -36,32 +36,32 @@ function backgroundImage(image) {
       </div>
     {{/if}}
     {{#if @showTitle}}
-      <div class='game-card-title font-size-20'>
+      <div class="game-card-title font-size-20">
         {{#if @printing.isUnique}}♦ {{/if}}{{@printing.title}}
       </div>
     {{/if}}
-    <div class='game-card-details {{if @showThumbnail "me-4"}}'>
-      <span class='game-card-type'>
+    <div class="game-card-details {{if @showThumbnail 'me-4'}}">
+      <span class="game-card-type">
         <b>{{TruncateType @printing.cardType.name}}:</b>
       </span>
-      <span class='game-card-subtypes'>{{@printing.displaySubtypes}}</span>
-      <span class='game-card-stats'><Stats @printing={{@printing}} /></span>
+      <span class="game-card-subtypes">{{@printing.displaySubtypes}}</span>
+      <span class="game-card-stats"><Stats @printing={{@printing}} /></span>
     </div>
     {{#if @printing.text}}
-      <div class='game-card-text border-{{Hyphenate @printing.factionId}}'>
+      <div class="game-card-text border-{{Hyphenate @printing.factionId}}">
         <Text @text={{@printing.text}} />
       </div>
     {{/if}}
     {{#if @showFlavor}}
       {{#if @printing.flavor}}
-        <div class='game-card-flavor'>
+        <div class="game-card-flavor">
           {{htmlSafe @printing.flavor}}
         </div>
       {{/if}}
     {{/if}}
-    <div class='game-card-footer'>
+    <div class="game-card-footer">
       <p>
-        <span class='{{Hyphenate @printing.factionId}}'>
+        <span class="{{Hyphenate @printing.factionId}}">
           <SmallInfluencePips @printing={{@printing}} /><Icon
             @icon={{@printing.factionId}}
           />
@@ -70,20 +70,20 @@ function backgroundImage(image) {
         •
         <Icon @icon={{@printing.cardCycleId}} />
         <LinkTo
-          @route='set'
-          @model='{{@printing.cardSet.id}}'
+          @route="set"
+          @model="{{@printing.cardSet.id}}"
         >{{@printing.cardSet.name}}</LinkTo>
         •
         {{@printing.position}}
       </p>
     </div>
     {{#if @showIllustrators}}
-      <div class='game-card-illustrator'>
+      <div class="game-card-illustrator">
         <p>
           Illustrated by
           {{#each @printing.illustratorNames as |name|}}
             <LinkTo
-              @route='page.illustrators'
+              @route="page.illustrators"
               @query={{hash search=name}}
             >{{name}}</LinkTo>
           {{/each}}
@@ -91,36 +91,36 @@ function backgroundImage(image) {
       </div>
     {{/if}}
     {{#if @showProduction}}
-      <div class='game-card-producer'>
+      <div class="game-card-producer">
         <p>
           {{#if
             (and
-              (eq @printing.designedBy 'fantasy_flight_games')
-              (eq @printing.releasedBy 'fantasy_flight_games')
+              (eq @printing.designedBy "fantasy_flight_games")
+              (eq @printing.releasedBy "fantasy_flight_games")
             )
           }}
-            <FaIcon @icon={{faFantasyFlightGames}} @prefix='fab' />
+            <FaIcon @icon={{faFantasyFlightGames}} @prefix="fab" />
             Designed & Released by Fantasy Flight Games
           {{else if
             (and
-              (eq @printing.designedBy 'null_signal_games')
-              (eq @printing.releasedBy 'null_signal_games')
+              (eq @printing.designedBy "null_signal_games")
+              (eq @printing.releasedBy "null_signal_games")
             )
           }}
             {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
-            <Icon @icon='neutral-runner' />
+            <Icon @icon="neutral-runner" />
             Designed & Released by Null Signal Games
           {{else if
             (and
-              (eq @printing.designedBy 'fantasy_flight_games')
-              (eq @printing.releasedBy 'null_signal_games')
+              (eq @printing.designedBy "fantasy_flight_games")
+              (eq @printing.releasedBy "null_signal_games")
             )
           }}
-            <FaIcon @icon={{faFantasyFlightGames}} @prefix='fab' />
+            <FaIcon @icon={{faFantasyFlightGames}} @prefix="fab" />
             Designed by Fantasy Flight Games.
             <br />
             {{! TODO: make a new named icon for nsg instead of reusing neutral-runner}}
-            <Icon @icon='neutral-runner' />
+            <Icon @icon="neutral-runner" />
             Released by Null Signal Games.
           {{/if}}
         </p>

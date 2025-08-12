@@ -74,13 +74,13 @@ export default class SearchFormComponent extends Component {
   <template>
     <h1>Basic Search Form</h1>
 
-    <BsForm @formLayout='vertical' @onSubmit={{this.doSearch}} as |form|>
+    <BsForm @formLayout="vertical" @onSubmit={{this.doSearch}} as |form|>
       <fieldset>
-        <div class='row'>
-          <div class='col-sm-12'>
+        <div class="row">
+          <div class="col-sm-12">
             <form.element
-              @controlType='textarea'
-              @label='Query'
+              @controlType="textarea"
+              @label="Query"
               @value={{this.query}}
               @onChange={{this.setQuery}}
             />
@@ -88,9 +88,9 @@ export default class SearchFormComponent extends Component {
         </div>
       </fieldset>
 
-      <div class='row'>
-        <div class='col-sm-3'>
-          <form.element @label='Num Records' @property='max_records' as |el|>
+      <div class="row">
+        <div class="col-sm-3">
+          <form.element @label="Num Records" @property="max_records" as |el|>
             <PowerSelect
               @options={{this.maxRecords}}
               @selected={{this.selectedMaxRecords}}
@@ -103,8 +103,8 @@ export default class SearchFormComponent extends Component {
             </PowerSelect>
           </form.element>
         </div>
-        <div class='col-sm-3'>
-          <form.element @label='Display' @property='display' as |el|>
+        <div class="col-sm-3">
+          <form.element @label="Display" @property="display" as |el|>
             <PowerSelect
               @options={{this.displayOptions}}
               @selected={{this.selectedDisplay}}
@@ -119,8 +119,8 @@ export default class SearchFormComponent extends Component {
           </form.element>
         </div>
       </div>
-      <div class='row'>
-        <div class='col-sm-2'>
+      <div class="row">
+        <div class="col-sm-2">
           <form.submitButton>Submit</form.submitButton>
         </div>
       </div>

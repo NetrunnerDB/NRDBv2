@@ -21,7 +21,7 @@ export default class Side extends Component {
   }
 
   <template>
-    <div class='col-6'>
+    <div class="col-6">
       <h3 style={{capitalize}}>{{@side}} Cards</h3>
 
       {{#if this.hasBanned}}
@@ -37,9 +37,9 @@ export default class Side extends Component {
           <li>
             <strong>Restricted</strong>
             <ul>
-              {{#each (get @restriction @side 'restricted') as |restricted|}}
+              {{#each (get @restriction @side "restricted") as |restricted|}}
                 <li>
-                  <CardLinkTo @printing={{restricted}} class='text-truncate'>
+                  <CardLinkTo @printing={{restricted}} class="text-truncate">
                     {{restricted.title}}
                   </CardLinkTo>
                 </li>
@@ -55,13 +55,13 @@ export default class Side extends Component {
             <strong>Global Penalty</strong>
             <ul>
               {{#each
-                (get (get @restriction @side) 'global_penalty')
+                (get (get @restriction @side) "global_penalty")
                 as |global_penalty|
               }}
                 <li>
                   <CardLinkTo
                     @printing={{global_penalty}}
-                    class='text-truncate'
+                    class="text-truncate"
                   >
                     {{global_penalty.title}}
                   </CardLinkTo>
@@ -87,7 +87,7 @@ export default class Side extends Component {
             <strong>Universal Influence</strong>
             <ul>
               {{#let
-                (get (get @restriction @side) 'threeUniversalInfluence')
+                (get (get @restriction @side) "threeUniversalInfluence")
                 as |threeInf|
               }}
                 {{#if threeInf.length}}
@@ -96,7 +96,7 @@ export default class Side extends Component {
                     <ul>
                       {{#each threeInf as |card|}}
                         <li>
-                          <CardLinkTo @printing={{card}} class='text-truncate'>
+                          <CardLinkTo @printing={{card}} class="text-truncate">
                             {{card.title}}
                           </CardLinkTo>
                         </li>
@@ -106,7 +106,7 @@ export default class Side extends Component {
                 {{/if}}
               {{/let}}
               {{#let
-                (get (get @restriction @side) 'oneUniversalInfluence')
+                (get (get @restriction @side) "oneUniversalInfluence")
                 as |oneInf|
               }}
                 {{#if oneInf.length}}
@@ -115,7 +115,7 @@ export default class Side extends Component {
                     <ul>
                       {{#each oneInf as |card|}}
                         <li>
-                          <CardLinkTo @printing={{card}} class='text-truncate'>
+                          <CardLinkTo @printing={{card}} class="text-truncate">
                             {{card.title}}
                           </CardLinkTo>
                         </li>

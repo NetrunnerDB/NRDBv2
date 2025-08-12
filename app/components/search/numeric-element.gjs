@@ -7,14 +7,14 @@ export default class NumericElementComponent extends Component {
   }
 
   <template>
-    <label for='{{@id}}'>{{@name}}:</label>
+    <label for="{{@id}}">{{@name}}:</label>
     <input
-      type='number'
-      min='{{@min}}'
-      max='{{@max}}'
-      id='{{@id}}'
-      name='{{@id}}'
-      value='{{@value}}'
+      type="number"
+      min="{{@min}}"
+      max="{{@max}}"
+      id="{{@id}}"
+      name="{{@id}}"
+      value="{{@value}}"
     />
   </template>
 }

@@ -20,7 +20,7 @@ export default class CardInfluencePips extends Component {
   };
 
   <template>
-    <span class='influence-pips {{Hyphenate @factionId}}'>
+    <span class="influence-pips {{Hyphenate @factionId}}">
       {{#if @repeat}}
         {{#each (Range (this.div))}}●●●●●{{/each}}
         {{#each (Range (this.mod))}}●{{/each}}
@@ -28,7 +28,7 @@ export default class CardInfluencePips extends Component {
         <span>
           {{#each (Range this.filled)}}●{{/each}}
         </span>
-        <span class='empty'>
+        <span class="empty">
           {{#unless @hideEmpty}}
             {{#each (Range this.empty)~}}○{{~/each}}
           {{/unless}}
@@ -39,7 +39,7 @@ export default class CardInfluencePips extends Component {
 }
 
 const SmallInfluencePips = <template>
-  <span class='influence influence-{{@printing.factionId}}'>
+  <span class="influence influence-{{@printing.factionId}}">
     {{#each (Range @printing.influenceCost)~}}•{{~/each}}
   </span>
 </template>;

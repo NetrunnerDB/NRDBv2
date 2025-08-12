@@ -5,7 +5,7 @@ import InfluencePips from './influence-pips';
 import CardLinkTo from './link-to';
 
 <template>
-  <table class='results mt-4'>
+  <table class="results mt-4">
     <thead>
       <tr>
         <th>Qty.</th>
@@ -23,16 +23,16 @@ import CardLinkTo from './link-to';
       {{#each @printings as |printing|}}
         <tr>
           <td>
-            <span class='badge'>
-              {{#if (has-block 'quantity')}}
-                {{yield printing to='quantity'}}
+            <span class="badge">
+              {{#if (has-block "quantity")}}
+                {{yield printing to="quantity"}}
               {{else}}
                 {{printing.quantity}}
               {{/if}}
             </span>
           </td>
           <td>
-            <CardLinkTo @printing={{printing}} class='text-truncate'>
+            <CardLinkTo @printing={{printing}} class="text-truncate">
               {{printing.title}}
             </CardLinkTo>
           </td>
@@ -56,18 +56,18 @@ import CardLinkTo from './link-to';
               {{! template-lint-disable simple-unless }}
               {{#unless
                 (or
-                  (eq printing.sideId 'runner') (eq printing.typeId 'operation')
+                  (eq printing.sideId "runner") (eq printing.typeId "operation")
                 )
               }}
-                <Icon @icon='rez-cost' />
+                <Icon @icon="rez-cost" />
               {{/unless}}
               {{maybe printing.cost}}
               {{#if
                 (or
-                  (eq printing.sideId 'runner') (eq printing.typeId 'operation')
+                  (eq printing.sideId "runner") (eq printing.typeId "operation")
                 )
               }}
-                <Icon @icon='credit' />
+                <Icon @icon="credit" />
               {{/if}}
             {{else if (notEmpty printing.advancementRequirement)}}
               {{maybe printing.advancementRequirement}}
@@ -78,10 +78,10 @@ import CardLinkTo from './link-to';
           <td>
             {{#if (notEmpty printing.trashCost)}}
               {{maybe printing.trashCost}}
-              <Icon @icon='trash-cost' />
+              <Icon @icon="trash-cost" />
             {{else if (notEmpty printing.agendaPoints)}}
               {{printing.agendaPoints}}
-              <Icon @icon='agenda-points-simple' />
+              <Icon @icon="agenda-points-simple" />
             {{else if (notEmpty printing.influenceLimit)}}
               {{printing.influenceLimit}}
             {{/if}}
@@ -89,7 +89,7 @@ import CardLinkTo from './link-to';
           <td>
             {{#if (notEmpty printing.strength)}}
               {{maybe printing.strength}}
-              <Icon @icon='strength' />
+              <Icon @icon="strength" />
             {{/if}}
           </td>
         </tr>
