@@ -4,10 +4,8 @@ import { action } from '@ember/object';
 import { LinkTo } from '@ember/routing';
 import { on } from '@ember/modifier';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
-import {
-  faBars,
-  faFantasyFlightGames,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faFantasyFlightGames } from '@fortawesome/free-brands-svg-icons';
 
 import Collapse from 'ember-bootstrap/components/bs-collapse';
 import formatMessage from 'ember-intl/helpers/format-message';
