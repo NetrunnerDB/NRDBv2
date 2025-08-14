@@ -28,7 +28,7 @@ module.exports = function (environment) {
     },
 
     // API_URL: 'http://localhost:3000/api/v3',
-    API_URL: 'https://api.netrunnerdb.com/api/v3',
+    API_URL: 'https://api-preview.netrunnerdb.com/api/v3',
     googleFonts: ['Merriweather Sans', 'Outfit', 'Inter', 'Nova Mono'],
 
     APP: {
@@ -60,7 +60,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    ENV.API_URL = 'https://api.netrunnerdb.com/api/v3';
+    ENV.API_URL = 'https://api-preview.netrunnerdb.com/api/v3';
     ENV['ember-simple-auth-oidc'].clientId = 'nrdb-v2';
     ENV['ember-simple-auth-oidc'].afterLogoutUri =
       'https://v2.netrunnerdb.com/';
