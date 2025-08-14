@@ -7,8 +7,8 @@ export default class HomeRoute extends Route {
   @service store;
 
   async model() {
-    let decklists = await this.store.findAll('decklist', {
-      filter: { sort: '-created_at' },
+    let decklists = await this.store.query('decklist', {
+      sort: '-created_at',
       page: { size: 10 },
     });
 
