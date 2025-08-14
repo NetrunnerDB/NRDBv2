@@ -55,7 +55,8 @@ export default class AllPrintingsService extends Service {
       });
       let first = cards?.[0];
       return first?.updatedAt ?? null;
-    } catch (_e) {
+    } catch (e) {
+      console.error("error getting remote updated at", e);
       return null;
     }
   }
@@ -118,7 +119,6 @@ export default class AllPrintingsService extends Service {
         }
       } catch (e) {
         console.error("error loading printings", e);
-      } finally {
       }
     })();
 
