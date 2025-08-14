@@ -2,6 +2,7 @@ import Service from '@ember/service';
 import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { storageFor } from 'ember-local-storage';
+import LZString from 'lz-string';
 
 export default class AllPrintingsService extends Service {
   @service store;
@@ -9,6 +10,41 @@ export default class AllPrintingsService extends Service {
   @tracked allPrintings = [];
   #loadPromise = null;
   @storageFor('all-printings') allPrintingsCache;
+
+  // Compression helpers
+  compressData(data) {
+    try {
+      const jsonString = JSON.stringify(data);
+      return LZString.compress(jsonString);
+    } catch (e) {
+      console.error('Error compressing data:', e);
+      return null;
+    }
+  }
+
+  decompressData(compressedData) {
+    try {
+      if (!compressedData) return null;
+      const decompressed = LZString.decompress(compressedData);
+      return decompressed ? JSON.parse(decompressed) : null;
+    } catch (e) {
+      console.error('Error decompressing data:', e);
+      return null;
+    }
+  }
+
+  // Enhanced cache methods with compression
+  getCachedItems() {
+    const compressed = this.allPrintingsCache?.get?.('items');
+    return this.decompressData(compressed) || [];
+  }
+
+  setCachedItems(items) {
+    const compressed = this.compressData(items);
+    if (compressed) {
+      this.allPrintingsCache?.set?.('items', compressed);
+    }
+  }
 
   async getRemoteUpdatedAt() {
     try {
@@ -36,23 +72,28 @@ export default class AllPrintingsService extends Service {
     }
   }
 
-  async loadPrintings() {
+  async loadPrintings(forceRefresh = false) {
+    // Reset load promise if forcing refresh
+    if (forceRefresh) {
+      this.#loadPromise = null;
+    }
+    
     if (this.#loadPromise) return this.#loadPromise;
 
     this.#loadPromise = (async () => {
       try {
-        // 1) Load from cache first if available
-        let cached = this.allPrintingsCache?.get?.('items') || [];
-        if (cached.length > 0) {
+        // 1) Load from cache first if available (unless forcing refresh)
+        let cached = this.getCachedItems();
+        if (cached.length > 0 && !forceRefresh) {
           this.allPrintings = cached;
         }
 
         // 2) Check freshness in background
         let remoteUpdatedAt = await this.getRemoteUpdatedAt();
         let cachedRemote = this.allPrintingsCache?.get?.('remoteUpdatedAt');
-        let stale = !remoteUpdatedAt || !cachedRemote || new Date(remoteUpdatedAt) > new Date(cachedRemote);
+        let stale = forceRefresh || !remoteUpdatedAt || !cachedRemote || new Date(remoteUpdatedAt) > new Date(cachedRemote);
         
-        // 3) If data is fresh or we have no cached data, return early
+        // 3) If data is fresh and not forcing refresh, return early
         if (!stale && cached.length > 0) {
           return;
         }
@@ -60,14 +101,16 @@ export default class AllPrintingsService extends Service {
         // 4) Fetch and persist fresh data if stale or no cache
         let printings = await this.store.query('printing', { page: { size: 5000 } });
         let compact = printings.map((p) => {
+          // Serialize all attributes and properties from the printing object
+          let serialized = p.serialize();
           return {
-              id: p.id,
-              title: p.title,
+            id: p.id,
+            ...serialized.data.attributes
           };
         });
 
         this.allPrintings = compact;
-        this.allPrintingsCache?.set?.('items', compact);
+        this.setCachedItems(compact);
         this.allPrintingsCache?.set?.('updatedAt', new Date().toISOString());
 
         if (remoteUpdatedAt) {
