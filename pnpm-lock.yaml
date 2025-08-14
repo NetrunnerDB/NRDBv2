@@ -15,10 +15,6 @@ patchedDependencies:
 importers:
 
   .:
-    dependencies:
-      lz-string:
-        specifier: ^1.5.0
-        version: 1.5.0
     devDependencies:
       '@babel/core':
         specifier: ^7.27.1
@@ -200,6 +196,9 @@ importers:
       loader.js:
         specifier: ^4.7.0
         version: 4.7.0
+      lz-string:
+        specifier: ^1.5.0
+        version: 1.5.0
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
