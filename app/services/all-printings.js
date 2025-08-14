@@ -41,31 +41,31 @@ export default class AllPrintingsService extends Service {
 
     this.#loadPromise = (async () => {
       try {
-
-        // 1) Determine staleness
-        let remoteUpdatedAt = await this.getRemoteUpdatedAt();
+        // 1) Load from cache first if available
         let cached = this.allPrintingsCache?.get?.('items') || [];
+        if (cached.length > 0) {
+          this.allPrintings = cached;
+        }
+
+        // 2) Check freshness in background
+        let remoteUpdatedAt = await this.getRemoteUpdatedAt();
         let cachedRemote = this.allPrintingsCache?.get?.('remoteUpdatedAt');
         let stale = !remoteUpdatedAt || !cachedRemote || new Date(remoteUpdatedAt) > new Date(cachedRemote);
+        
+        // 3) If data is fresh or we have no cached data, return early
         if (!stale && cached.length > 0) {
-          this.allPrintings = cached;
           return;
         }
 
-        // 2) Fetch and persist compact index
+        // 4) Fetch and persist fresh data if stale or no cache
         let printings = await this.store.query('printing', { page: { size: 5000 } });
-        let compact = [];
-        if (printings && typeof printings.forEach === 'function') {
-          printings.forEach((p) => {
-            compact.push({
+        let compact = printings.map((p) => {
+          return {
               id: p.id,
               title: p.title,
-              displaySubtypes: p.displaySubtypes,
-              factionId: p.factionId,
-              cardTypeId: p.cardTypeId,
-            });
-          });
-        }
+          };
+        });
+
         this.allPrintings = compact;
         this.allPrintingsCache?.set?.('items', compact);
         this.allPrintingsCache?.set?.('updatedAt', new Date().toISOString());
@@ -75,7 +75,6 @@ export default class AllPrintingsService extends Service {
         }
       } catch (e) {
         console.error("error loading printings", e);
-        this.allPrintings = [];
       } finally {
       }
     })();
