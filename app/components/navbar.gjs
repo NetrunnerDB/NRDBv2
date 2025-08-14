@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { LinkTo } from '@ember/routing';
+import NavbarSearch from 'netrunnerdb/components/search/navbar-search';
 import { on } from '@ember/modifier';
 import FaIcon from '@fortawesome/ember-fontawesome/components/fa-icon';
 import {
@@ -120,14 +121,7 @@ class Navbar extends Component {
           </div>
 
           <div class='col-12 col-lg-6'>
-            <form>
-              <input
-                class='w-100'
-                type='text'
-                placeholder='Search'
-                aria-label='Search'
-              />
-            </form>
+            <NavbarSearch />
           </div>
 
           <div class='col-3 visible-lg text-end mt-3 mt-sm-0'>

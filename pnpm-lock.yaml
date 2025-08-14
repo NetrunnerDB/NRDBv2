@@ -130,6 +130,9 @@ importers:
       ember-load-initializers:
         specifier: ^3.0.1
         version: 3.0.1(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
+      ember-local-storage:
+        specifier: ^2.0.7
+        version: 2.0.7(@babel/core@7.27.4)
       ember-math-helpers:
         specifier: ^5.0.0
         version: 5.0.0(@babel/core@7.27.4)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
@@ -1964,6 +1967,9 @@ packages:
   blank-object@1.0.2:
     resolution: {integrity: sha512-kXQ19Xhoghiyw66CUiGypnuRpWlbHAzY/+NyvqTEdTfhfQGH1/dbEMYiXju7fYKIFePpzp/y9dsu5Cu/PkmawQ==}
 
+  blob-polyfill@7.0.20220408:
+    resolution: {integrity: sha512-oD8Ydw+5lNoqq+en24iuPt1QixdPpe/nUF8azTHnviCZYu9zUC+TwdzIp5orpblJosNlgNbVmmAb//c6d6ImUQ==}
+
   bluebird@3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
 
@@ -3051,6 +3057,10 @@ packages:
     peerDependencies:
       ember-source: '>=4.0'
 
+  ember-copy@2.0.1:
+    resolution: {integrity: sha512-N/XFvZszrzyyX4IcNoeK4mJvIItNuONumhPLqi64T8NDjJkxBj4Pq61rvMkJx/9eZ8alzE4I8vYKOLxT0FvRuQ==}
+    engines: {node: 10.* || >= 12}
+
   ember-data@5.5.0:
     resolution: {integrity: sha512-qAuVKeCXn4tiqON9orbjS7H3iitCw5GC+XGdbqRk4Ow2phn/RRsCWf98KJLtB8tmflyp4l3Q1o4nJwjsNeDpeQ==}
     engines: {node: '>= 18.20.8'}
@@ -3066,6 +3076,10 @@ packages:
         optional: true
       qunit:
         optional: true
+
+  ember-destroyable-polyfill@2.0.3:
+    resolution: {integrity: sha512-TovtNqCumzyAiW0/OisSkkVK93xnVF4NRU6+FN0ubpfwEOpRrmM2RqDwXI6YAChCgSHON1cz0DfQStpA1Gjuuw==}
+    engines: {node: 10.* || >= 12}
 
   ember-element-helper@0.8.8:
     resolution: {integrity: sha512-3slTltQV5ke53t3YVP2GYoswsQ6y+lhuVzKmt09tbEx91DapG8I/xa8W5OA0StvcQlavL3/vHrz/vCQEFs8bBA==}
@@ -3130,6 +3144,10 @@ packages:
     engines: {node: '>= 18.*'}
     peerDependencies:
       ember-source: '>= 5'
+
+  ember-local-storage@2.0.7:
+    resolution: {integrity: sha512-EPvxH/27mIzrX/EEgng+FG6HD0ri/God9OH/9mhmgPSXrgMNq/614Z3NMnooM4QKIEBAvr0p+p1UL2DgrTTMNg==}
+    engines: {node: 12.* || 14.* || >= 16}
 
   ember-math-helpers@5.0.0:
     resolution: {integrity: sha512-UKChQuu1Ki57NGMFF0V1mbRJ5LtkZ+EMIdCl5w+3nrwCOzn8GpePQDgtQqgdE3tFrm3TsHfLgHtfa38uNSSG6w==}
@@ -8838,6 +8856,8 @@ snapshots:
 
   blank-object@1.0.2: {}
 
+  blob-polyfill@7.0.20220408: {}
+
   bluebird@3.7.2: {}
 
   body-parser@1.20.3:
@@ -10478,6 +10498,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  ember-copy@2.0.1:
+    dependencies:
+      ember-cli-babel: 7.26.11
+    transitivePeerDependencies:
+      - supports-color
+
   ember-data@5.5.0(@ember/string@3.1.1)(@ember/test-helpers@5.2.2(@babel/core@7.27.4))(@ember/test-waiters@4.1.0)(ember-inflector@6.0.0(@babel/core@7.27.4))(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))(qunit@2.24.1):
     dependencies:
       '@ember-data/adapter': 5.5.0(@ember-data/legacy-compat@5.5.0(0114dc230c5492a332c39e2c4fb58d69))(@ember-data/request-utils@5.5.0(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember/string@3.1.1)(@warp-drive/core-types@5.5.0)(ember-inflector@6.0.0(@babel/core@7.27.4)))(@ember-data/store@5.5.0(@ember-data/request-utils@5.5.0(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember/string@3.1.1)(@warp-drive/core-types@5.5.0)(ember-inflector@6.0.0(@babel/core@7.27.4)))(@ember-data/request@5.5.0(@ember/test-waiters@4.1.0)(@warp-drive/core-types@5.5.0))(@ember-data/tracking@5.5.0(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)))(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)))(@warp-drive/core-types@5.5.0)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
@@ -10506,6 +10532,15 @@ snapshots:
       - '@glint/template'
       - ember-inflector
       - ember-provide-consume-context
+      - supports-color
+
+  ember-destroyable-polyfill@2.0.3(@babel/core@7.27.4):
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-version-checker: 5.1.2
+      ember-compatibility-helpers: 1.2.7(@babel/core@7.27.4)
+    transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
 
   ember-element-helper@0.8.8:
@@ -10618,6 +10653,21 @@ snapshots:
   ember-load-initializers@3.0.1(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)):
     dependencies:
       ember-source: 6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)
+
+  ember-local-storage@2.0.7(@babel/core@7.27.4):
+    dependencies:
+      blob-polyfill: 7.0.20220408
+      broccoli-funnel: 3.0.8
+      broccoli-merge-trees: 4.2.0
+      broccoli-stew: 3.0.0
+      ember-cli-babel: 7.26.11
+      ember-cli-string-utils: 1.1.0
+      ember-cli-version-checker: 5.1.2
+      ember-copy: 2.0.1
+      ember-destroyable-polyfill: 2.0.3(@babel/core@7.27.4)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
 
   ember-math-helpers@5.0.0(@babel/core@7.27.4)(ember-source@6.5.0(@glimmer/component@2.0.0)(rsvp@4.8.5)):
     dependencies:
