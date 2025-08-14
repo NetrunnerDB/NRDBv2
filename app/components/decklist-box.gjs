@@ -35,33 +35,33 @@ export default class DecklistBoxComponent extends Component {
   }
 
   <template>
-    <div class="decklist-box">
-      <div class="d-flex mx-2">
-        <div class="visible-lg" style="width:200px">
+    <div class='decklist-box'>
+      <div class='d-flex mx-2'>
+        <div class='visible-lg' style='width:200px'>
           <img
             alt={{this.identityPrinting.title}}
-            class="decklist-identity game-card"
+            class='decklist-identity game-card'
             src={{this.identityPrinting.images.nrdb_classic.large}}
           />
         </div>
-        <div class="decklist-stats ms-4">
+        <div class='decklist-stats ms-4'>
           {{#if @showTitle}}
-            <p class="font-size-26">{{@decklist.name}}</p>
+            <p class='font-size-26'>{{@decklist.name}}</p>
           {{/if}}
           {{#if this.identityPrinting}}
-            <p class="decklist-identity-name">
+            <p class='decklist-identity-name'>
               <CardLinkTo @printing={{this.identityPrinting}}>
-                <span class="decklist-identity-title font-size-24">
+                <span class='decklist-identity-title font-size-24'>
                   <Icon @icon={{@decklist.factionId}} />
                   {{GetIdentityTitle this.identityCard.title}}
                 </span>
-                <span class="decklist-identity-subtitle fontsize-22">
+                <span class='decklist-identity-subtitle fontsize-22'>
                   {{GetIdentitySubtitle this.identityCard.title}}
                 </span>
               </CardLinkTo>
             </p>
           {{/if}}
-          <p class="decklist-influence">
+          <p class='decklist-influence'>
             {{@decklist.influenceSpent}}
             influence spent (max
             {{@decklist.identityCard.influenceLimit}}, available
@@ -70,17 +70,17 @@ export default class DecklistBoxComponent extends Component {
               @decklist.influenceSpent
             }})
           </p>
-          <p class="decklist-cards">
-            <FaIcon @icon={{faLayerGroup}} @flip="horizontal" />
+          <p class='decklist-cards'>
+            <FaIcon @icon={{faLayerGroup}} @flip='horizontal' />
             {{@decklist.numCards}}
             cards (min
             {{@decklist.identityCard.minimumDeckSize}})
           </p>
-          <p class="decklist-set">
+          <p class='decklist-set'>
             Cards up to The Automata Initiative
           </p>
           {{#if @showAuthor}}
-            <p class="decklist-author font-size-16">
+            <p class='decklist-author font-size-16'>
               Author:
               {{@decklist.author.username}}
               (1187)
@@ -88,11 +88,11 @@ export default class DecklistBoxComponent extends Component {
           {{/if}}
           {{#if @showLink}}
             <LinkTo
-              @route="decklist"
+              @route='decklist'
               @model={{@decklist.id}}
-              class="button decklist-box-button"
+              class='button decklist-box-button'
             >
-              <Icon @icon="subroutine" />
+              <Icon @icon='subroutine' />
               View deck
             </LinkTo>
           {{/if}}
