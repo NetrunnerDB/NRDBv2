@@ -33,6 +33,7 @@ export default class NavbarSearchComponent extends Component {
   }
 
   @action updateQuery(e) {
+    this.isOpen = true;
     this.query = e.target.value;
     let q = this.query?.trim();
     if (!q) {

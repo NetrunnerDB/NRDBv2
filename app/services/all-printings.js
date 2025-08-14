@@ -10,12 +10,23 @@ export default class AllPrintingsService extends Service {
   #loadPromise = null;
   @storageFor('all-printings') allPrintingsCache;
 
+  async getRemoteUpdatedAt() {
+    try {
+      let cards = await this.store.query('card', {
+        sort: '-updated_at',
+        page: { size: 1 },
+        fields: { cards: 'updated_at' },
+      });
+      let first = cards?.[0];
+      return first?.updatedAt ?? null;
+    } catch (_e) {
+      return null;
+    }
+  }
+
   async needsRefresh() {
     try {
-      let resp = await fetch('https://api.netrunnerdb.com/api/v3/public/cards?sort=-updated_at&page[size]=1');
-      if (!resp.ok) return true;
-      let data = await resp.json();
-      let updated = data?.data?.[0]?.attributes?.updated_at;
+      let updated = await this.getRemoteUpdatedAt();
       if (!updated) return true;
       let cachedRemote = this.allPrintingsCache?.get?.('remoteUpdatedAt');
       return !cachedRemote || new Date(updated) > new Date(cachedRemote);
@@ -31,9 +42,11 @@ export default class AllPrintingsService extends Service {
     this.#loadPromise = (async () => {
       try {
 
-        // 1) Load cached compact index if available and not stale
+        // 1) Determine staleness
+        let remoteUpdatedAt = await this.getRemoteUpdatedAt();
         let cached = this.allPrintingsCache?.get?.('items') || [];
-        let stale = await this.needsRefresh();
+        let cachedRemote = this.allPrintingsCache?.get?.('remoteUpdatedAt');
+        let stale = !remoteUpdatedAt || !cachedRemote || new Date(remoteUpdatedAt) > new Date(cachedRemote);
         if (!stale && cached.length > 0) {
           this.allPrintings = cached;
           return;
@@ -57,15 +70,8 @@ export default class AllPrintingsService extends Service {
         this.allPrintingsCache?.set?.('items', compact);
         this.allPrintingsCache?.set?.('updatedAt', new Date().toISOString());
 
-        try {
-          let resp = await fetch('https://api.netrunnerdb.com/api/v3/public/cards?sort=-updated_at&page[size]=1');
-          if (resp.ok) {
-            let data = await resp.json();
-            let updated = data?.data?.[0]?.attributes?.updated_at;
-            if (updated) this.allPrintingsCache?.set?.('remoteUpdatedAt', updated);
-          }
-        } catch (e) {
-          console.error("error fetching remote updated at", e);
+        if (remoteUpdatedAt) {
+          this.allPrintingsCache?.set?.('remoteUpdatedAt', remoteUpdatedAt);
         }
       } catch (e) {
         console.error("error loading printings", e);
