@@ -1,10 +1,11 @@
 import Component from '@glimmer/component';
+import { cached } from '@glimmer/tracking';
 import CardLinkTo from '../card/link-to';
 
 const capitalize = 'text-transform: capitalize';
 
 export default class Banned extends Component {
-  get bannedCards() {
+  @cached get bannedCards() {
     return this.args.restriction.verdicts.banned
       .map((cardId) => {
         return this.args.cards.get(cardId);

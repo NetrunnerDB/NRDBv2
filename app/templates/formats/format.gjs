@@ -8,31 +8,31 @@ import Navbar from 'netrunnerdb/components/navbar';
 import FancyHeader from 'netrunnerdb/components/fancy-header';
 
 const FormatSection = <template>
-  <div class="col-12">
+  <div class='col-12'>
     <FancyHeader>{{@format.name}}</FancyHeader>
     <img
       alt={{@format.name}}
-      src="/assets/image/format/{{@format.name}}.png"
-      class="float-{{@float}} me-4"
-      style="width: 100px"
+      src='/assets/image/format/{{@format.name}}.png'
+      class='float-{{@float}} me-4'
+      style='width: 100px'
     />
 
-    {{yield to="description"}}
+    {{yield to='description'}}
 
     <h3>Current Ban List</h3>
     <p>
       <LinkTo
-        @route="bans"
+        @route='bans'
         @query={{hash format=@format.id search=@format.currentRestriction.name}}
       >
         {{formatMessage
-          "{name} active as of {dateStart}"
+          '{name} active as of {dateStart}'
           name=@format.currentRestriction.name
           dateStart=(formatDate
             @format.currentRestriction.dateStart
-            day="numeric"
-            month="long"
-            year="numeric"
+            day='numeric'
+            month='long'
+            year='numeric'
           )
         }}
       </LinkTo>
@@ -41,16 +41,16 @@ const FormatSection = <template>
 </template>;
 
 <template>
-  {{pageTitle "Formats"}}
+  {{pageTitle 'Formats'}}
 
-  <main class="pb-4">
+  <main class='pb-4'>
 
     <Navbar />
-    <Titlebar @title="Formats" @subtitle={{@model.standard.format.name}} />
+    <Titlebar @title='Formats' @subtitle={{@model.standard.format.name}} />
 
-    <div class="container">
-      <div class="row">
-        <FormatSection @format={{@model.standard.format}} @float="start">
+    <div class='container'>
+      <div class='row'>
+        <FormatSection @format={{@model.standard.format}} @float='start'>
           <:description>
             <p>
               The flagship format of Netrunner Organized Play, Standard is
