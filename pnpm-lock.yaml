@@ -145,6 +145,9 @@ importers:
       ember-load-initializers:
         specifier: ^3.0.1
         version: 3.0.1(ember-source@6.6.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
+      ember-local-storage:
+        specifier: ^2.0.7
+        version: 2.0.7(@babel/core@7.28.0)
       ember-math-helpers:
         specifier: ^5.0.0
         version: 5.0.0(@babel/core@7.28.0)(ember-source@6.6.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
@@ -199,6 +202,9 @@ importers:
       globals:
         specifier: ^16.2.0
         version: 16.2.0
+      lz-string:
+        specifier: ^1.5.0
+        version: 1.5.0
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
@@ -1620,56 +1626,67 @@ packages:
     resolution: {integrity: sha512-EtP8aquZ0xQg0ETFcxUbU71MZlHaw9MChwrQzatiE8U/bvi5uv/oChExXC4mWhjiqK7azGJBqU0tt5H123SzVA==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.46.2':
     resolution: {integrity: sha512-qO7F7U3u1nfxYRPM8HqFtLd+raev2K137dsV08q/LRKRLEc7RsiDWihUnrINdsWQxPR9jqZ8DIIZ1zJJAm5PjQ==}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.46.2':
     resolution: {integrity: sha512-3dRaqLfcOXYsfvw5xMrxAk9Lb1f395gkoBYzSFcc/scgRFptRXL9DOaDpMiehf9CO8ZDRJW2z45b6fpU5nwjng==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.46.2':
     resolution: {integrity: sha512-fhHFTutA7SM+IrR6lIfiHskxmpmPTJUXpWIsBXpeEwNgZzZZSg/q4i6FU4J8qOGyJ0TR+wXBwx/L7Ho9z0+uDg==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.46.2':
     resolution: {integrity: sha512-i7wfGFXu8x4+FRqPymzjD+Hyav8l95UIZ773j7J7zRYc3Xsxy2wIn4x+llpunexXe6laaO72iEjeeGyUFmjKeA==}
     cpu: [loong64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-ppc64-gnu@4.46.2':
     resolution: {integrity: sha512-B/l0dFcHVUnqcGZWKcWBSV2PF01YUt0Rvlurci5P+neqY/yMKchGU8ullZvIv5e8Y1C6wOn+U03mrDylP5q9Yw==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.46.2':
     resolution: {integrity: sha512-32k4ENb5ygtkMwPMucAb8MtV8olkPT03oiTxJbgkJa7lJ7dZMr0GCFJlyvy+K8iq7F/iuOr41ZdUHaOiqyR3iQ==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-musl@4.46.2':
     resolution: {integrity: sha512-t5B2loThlFEauloaQkZg9gxV05BYeITLvLkWOkRXogP4qHXLkWSbSHKM9S6H1schf/0YGP/qNKtiISlxvfmmZw==}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-s390x-gnu@4.46.2':
     resolution: {integrity: sha512-YKjekwTEKgbB7n17gmODSmJVUIvj8CX7q5442/CK80L8nqOUbMtf8b01QkG3jOqyr1rotrAnW6B/qiHwfcuWQA==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.46.2':
     resolution: {integrity: sha512-Jj5a9RUoe5ra+MEyERkDKLwTXVu6s3aACP51nkfnK9wJTraCC8IMe3snOfALkrjTYd2G1ViE1hICj0fZ7ALBPA==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.46.2':
     resolution: {integrity: sha512-7kX69DIrBeD7yNp4A5b81izs8BqoZkCIaxQaOpumcJ1S/kmqNFjPhDu1LHeVXv0SexfHQv5cqHsxLOjETuqDuA==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.46.2':
     resolution: {integrity: sha512-wiJWMIpeaak/jsbaq2HMh/rzZxHVW1rU6coyeNNpMwk5isiPjSTx0a4YLSlYDwBH/WBvLz+EtsNqQScZTLJy3g==}
@@ -2270,6 +2287,9 @@ packages:
 
   blank-object@1.0.2:
     resolution: {integrity: sha512-kXQ19Xhoghiyw66CUiGypnuRpWlbHAzY/+NyvqTEdTfhfQGH1/dbEMYiXju7fYKIFePpzp/y9dsu5Cu/PkmawQ==}
+
+  blob-polyfill@7.0.20220408:
+    resolution: {integrity: sha512-oD8Ydw+5lNoqq+en24iuPt1QixdPpe/nUF8azTHnviCZYu9zUC+TwdzIp5orpblJosNlgNbVmmAb//c6d6ImUQ==}
 
   bluebird@3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
@@ -3298,6 +3318,10 @@ packages:
     peerDependencies:
       ember-source: '>=4.0'
 
+  ember-copy@2.0.1:
+    resolution: {integrity: sha512-N/XFvZszrzyyX4IcNoeK4mJvIItNuONumhPLqi64T8NDjJkxBj4Pq61rvMkJx/9eZ8alzE4I8vYKOLxT0FvRuQ==}
+    engines: {node: 10.* || >= 12}
+
   ember-data@5.6.0:
     resolution: {integrity: sha512-nFFHhAD06C6DM2iD/UQFe+XKPEh27ALudZVZ6CipCAn598i8gfnm5k09ZZiW/YYpU0+4DAqtf91LwZN2e+O3vw==}
     peerDependencies:
@@ -3309,6 +3333,10 @@ packages:
         optional: true
       qunit:
         optional: true
+
+  ember-destroyable-polyfill@2.0.3:
+    resolution: {integrity: sha512-TovtNqCumzyAiW0/OisSkkVK93xnVF4NRU6+FN0ubpfwEOpRrmM2RqDwXI6YAChCgSHON1cz0DfQStpA1Gjuuw==}
+    engines: {node: 10.* || >= 12}
 
   ember-element-helper@0.8.8:
     resolution: {integrity: sha512-3slTltQV5ke53t3YVP2GYoswsQ6y+lhuVzKmt09tbEx91DapG8I/xa8W5OA0StvcQlavL3/vHrz/vCQEFs8bBA==}
@@ -3369,6 +3397,10 @@ packages:
     engines: {node: '>= 18.*'}
     peerDependencies:
       ember-source: '>= 5'
+
+  ember-local-storage@2.0.7:
+    resolution: {integrity: sha512-EPvxH/27mIzrX/EEgng+FG6HD0ri/God9OH/9mhmgPSXrgMNq/614Z3NMnooM4QKIEBAvr0p+p1UL2DgrTTMNg==}
+    engines: {node: 12.* || 14.* || >= 16}
 
   ember-math-helpers@5.0.0:
     resolution: {integrity: sha512-UKChQuu1Ki57NGMFF0V1mbRJ5LtkZ+EMIdCl5w+3nrwCOzn8GpePQDgtQqgdE3tFrm3TsHfLgHtfa38uNSSG6w==}
@@ -4899,6 +4931,10 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lz-string@1.5.0:
+    resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
+    hasBin: true
 
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -9523,6 +9559,8 @@ snapshots:
 
   blank-object@1.0.2: {}
 
+  blob-polyfill@7.0.20220408: {}
+
   bluebird@3.7.2: {}
 
   body-parser@1.20.3:
@@ -10997,6 +11035,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  ember-copy@2.0.1:
+    dependencies:
+      ember-cli-babel: 7.26.11
+    transitivePeerDependencies:
+      - supports-color
+
   ember-data@5.6.0(@ember/test-helpers@5.2.2(@babel/core@7.28.0))(@ember/test-waiters@4.1.0)(ember-inflector@6.0.0(@babel/core@7.28.0))(qunit@2.24.1):
     dependencies:
       '@ember-data/adapter': 5.6.0
@@ -11026,6 +11070,15 @@ snapshots:
       - '@glint/template'
       - ember-inflector
       - ember-provide-consume-context
+      - supports-color
+
+  ember-destroyable-polyfill@2.0.3(@babel/core@7.28.0):
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-version-checker: 5.1.2
+      ember-compatibility-helpers: 1.2.7(@babel/core@7.28.0)
+    transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
 
   ember-element-helper@0.8.8:
@@ -11118,6 +11171,21 @@ snapshots:
   ember-load-initializers@3.0.1(ember-source@6.6.0(@glimmer/component@2.0.0)(rsvp@4.8.5)):
     dependencies:
       ember-source: 6.6.0(@glimmer/component@2.0.0)(rsvp@4.8.5)
+
+  ember-local-storage@2.0.7(@babel/core@7.28.0):
+    dependencies:
+      blob-polyfill: 7.0.20220408
+      broccoli-funnel: 3.0.8
+      broccoli-merge-trees: 4.2.0
+      broccoli-stew: 3.0.0
+      ember-cli-babel: 7.26.11
+      ember-cli-string-utils: 1.1.0
+      ember-cli-version-checker: 5.1.2
+      ember-copy: 2.0.1
+      ember-destroyable-polyfill: 2.0.3(@babel/core@7.28.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
 
   ember-math-helpers@5.0.0(@babel/core@7.28.0)(ember-source@6.6.0(@glimmer/component@2.0.0)(rsvp@4.8.5)):
     dependencies:
@@ -13182,6 +13250,8 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lz-string@1.5.0: {}
 
   magic-string@0.25.9:
     dependencies:
