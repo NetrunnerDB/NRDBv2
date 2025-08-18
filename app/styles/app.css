@@ -1,10 +1,13 @@
-@import url("./themes/dark.css");
-@import url("./themes/light.css");
-
 /* Themes must be imported first */
-@import url("./faction.css");
-@import url("./font-size.css");
-@import url("./bootstrap-ext.css");
+@import url("themes/dark.css");
+@import url("themes/light.css");
+
+/* Site */
+@import url("panel.css");
+@import url("color.css");
+@import url("faction.css");
+@import url("font-size.css");
+@import url("bootstrap-ext.css");
 
 /* BASE */
 

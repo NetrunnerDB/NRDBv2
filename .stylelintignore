@@ -1,8 +1,8 @@
 # unconventional files
 /blueprints/*/files/
 
+# vendored bootstrap CSS
+/public/vendor/bootstrap.css
+
 # compiled output
 /dist/
-
-# addons
-/.node_modules.ember-try/

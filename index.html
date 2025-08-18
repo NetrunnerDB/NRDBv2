@@ -13,23 +13,15 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Merriweather Sans|Outfit|Inter|Nova Mono"
     />
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css" />
     <link
       integrity=""
       rel="stylesheet"
-      href="{{rootURL}}vendor/bootstrap.css"
+      href="/vendor/bootstrap.css"
     />
     <link
       integrity=""
       rel="stylesheet"
-      href="{{rootURL}}assets/netrunnerdb.css"
-    />
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/color.css" />
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/panel.css" />
-    <link
-      integrity=""
-      rel="stylesheet"
-      href="{{rootURL}}assets/bootstrap-ext.css"
+      href="./app/styles/app.css"
     />
 
     {{content-for "head-footer"}}
@@ -37,8 +29,13 @@
   <body>
     {{content-for "body"}}
 
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/netrunnerdb.js"></script>
+    <script src="/@embroider/virtual/vendor.js"></script>
+    <script type="module">
+      import Application from './app/app';
+      import environment from './app/config/environment';
+
+      Application.create(environment.APP);
+    </script>
 
     {{content-for "body-footer"}}
 
