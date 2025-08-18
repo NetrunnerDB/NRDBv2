@@ -671,6 +671,18 @@ table.game-card-stats tr:nth-child(even) {
   background-color: var(--color--header-bg);
 }
 
+.search-results a {
+  display: block;
+  padding: 6px 10px;
+  color: var(--color--default);
+  text-decoration: none;
+}
+
+.search-results a:hover {
+  background-color: var(--color--secondary-bg);
+  text-decoration: none;
+}
+
 #bottom-nav {
   top: 0;
   position: sticky;
@@ -1081,16 +1093,4 @@ table.results tr:nth-child(even) {
 
 .search-results > * {
   padding: 6px 10px;
-}
-
-.search-results a {
-  display: block;
-  padding: 6px 10px;
-  color: var(--color--default);
-  text-decoration: none;
-}
-
-.search-results a:hover {
-  background-color: var(--color--secondary-bg);
-  text-decoration: none;
 }
